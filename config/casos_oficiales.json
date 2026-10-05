@@ -1,0 +1,65 @@
+{
+  "descripcion": "Casos oficiales (4) - datos más completos",
+  "configuracion_comun": {
+    "hora_ciclo": "00",
+    "run_hours": 12,
+    "valid_times": [
+      "00:00:00",
+      "06:00:00",
+      "12:00:00"
+    ],
+    "obs_coef_wind": 0.0001,
+    "obs_coef_temp": 0.0001,
+    "obs_coef_mois": 0.0001,
+    "obs_twindo": 1.0,
+    "namelist_base": "namelist.input",
+    "obs_min_registros": 60,
+    "obs_min_estaciones": 3
+  },
+  "casos": [
+    {
+      "id": "caso1_zonda",
+      "num": 1,
+      "fecha": "2026-07-31",
+      "evento": "viento_zonda",
+      "titulo": "Caso 1 - Viento Zonda",
+      "descripcion": "Evento de viento zonda sobre San Juan",
+      "fuente": "gfs_aws",
+      "resultados_dir": "outputs/runs/2026-07-31_0000z/caso1_zonda",
+      "informe": "outputs/informes/oficiales/informe_caso1_zonda_20260731.md"
+    },
+    {
+      "id": "caso2_calor",
+      "num": 2,
+      "fecha": "2026-01-01",
+      "evento": "calor_verano",
+      "titulo": "Caso 2 - Calor de verano (Año Nuevo)",
+      "descripcion": "Evento de calor en verano sobre San Juan",
+      "fuente": "gfs_aws",
+      "resultados_dir": "outputs/runs/2026-01-01_0000z/caso2_calor",
+      "informe": "outputs/informes/oficiales/informe_caso2_calor_20260101.md"
+    },
+    {
+      "id": "caso3_frentefrio",
+      "num": 3,
+      "fecha": "2026-05-16",
+      "evento": "frente_frio",
+      "titulo": "Caso 3 - Ingreso de frente frio",
+      "descripcion": "Evento de ingreso de frente frío sobre San Juan",
+      "fuente": "gfs_aws",
+      "resultados_dir": "outputs/runs/2026-05-16_0000z/caso3_frentefrio",
+      "informe": "outputs/informes/oficiales/informe_caso3_frentefrio_20260516.md"
+    },
+    {
+      "id": "caso4_sanjuan_0806",
+      "num": 4,
+      "fecha": "2026-08-06",
+      "evento": "caso_sanjuan_0806",
+      "titulo": "Caso 4 - San Juan 2026-08-06",
+      "descripcion": "Caso oficial San Juan 2026-08-06",
+      "fuente": "gfs_aws",
+      "resultados_dir": "outputs/runs/2026-08-06_0000z/sanjuan_0806",
+      "informe": "outputs/informes/oficiales/informe_caso4_sanjuan_0806_20260806.md"
+    }
+  ]
+}

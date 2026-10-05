@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Environments
+.env
+.venv
+venv/
+ENV/
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# WRF/large intermediates (keep wps_sanjuan .gitignore behavior in mind)
+*.nc
+wrfout*
+rsl.*
+met_em.*
+geo_em*
+FILE:*
+GRIBFILE.*
+
+# Outputs - avoid committing large artifacts
+outputs/runs/*/control/wrfout*
+outputs/runs/*/nudged/wrfout*

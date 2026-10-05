@@ -1,0 +1,9 @@
+# Configuración de runtime (opcional)
+# Copiar a runtime.yaml y ajustar rutas específicas del entorno
+local_wrf_dir: "/home/roberto/pgich-wrf-modular/wrf_run"
+wrf_env_bash: null
+mpirun: "mpirun"
+wrf_np: 4
+validation_python: "python3"
+wrf_timeout: 7200
+wrf_retries: 5
