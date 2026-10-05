@@ -166,7 +166,7 @@ Este proyecto está bajo la Licencia MIT - ver el archivo LICENSE para detalles.
 
 ## 📞 Contacto
 
-Rodrigo Molina - [GitHub](https://github.com/rmolina2014)
+Roberto Nicolas Molina - [GitHub](https://github.com/rmolina2014)
 
 ---
 
