@@ -1,13 +1,13 @@
 {
-  "caso": "sanjuan_0806_COMPLETO",
-  "fecha": "2026-10-05 22:37:08",
+  "caso": "caso4_zonda_COMPLETO_TODAS_EST",
+  "fecha": "2026-10-06 17:19:33",
   "ejecutar_wrf": true,
   "chequeos": [
     {
       "id": "2.2.1",
       "descripcion": "Existencia del JSON de observaciones",
       "estado": "OK",
-      "detalle": "1431 registros"
+      "detalle": "2166 registros"
     },
     {
       "id": "2.2.2",
@@ -19,25 +19,25 @@
       "id": "2.2.3",
       "descripcion": "Identificador de plataforma (SYNOP)",
       "estado": "OK",
-      "detalle": "'SYNOP' presente en 951 registros"
+      "detalle": "'SYNOP' presente en 1416 registros"
     },
     {
       "id": "2.2.4",
       "descripcion": "Timestamps de las observaciones",
       "estado": "OK",
-      "detalle": "951 timestamps válidos, orden cronológico OK, cadencia 5 min, segundos en [0]"
+      "detalle": "1416 timestamps válidos, orden cronológico OK, cadencia 5 min, segundos en [0]"
     },
     {
       "id": "2.2.5",
       "descripcion": "Cantidad de obs vs max_obs",
       "estado": "OK",
-      "detalle": "951 obs <= max_obs=10000"
+      "detalle": "1416 obs <= max_obs=10000"
     },
     {
       "id": "2.2.6",
       "descripcion": "Cobertura temporal de las observaciones",
       "estado": "OK",
-      "detalle": "tercio1: 192 obs / tercio2: 171 obs / tercio3: 159 obs"
+      "detalle": "tercio1: 240 obs / tercio2: 240 obs / tercio3: 225 obs"
     }
   ]
 }
