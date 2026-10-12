@@ -1,0 +1,32 @@
+{
+  "caso": "caso2_calor",
+  "fecha": "2026-01-01",
+  "hora": "00:00",
+  "generado": "2026-10-11T23:29:34",
+  "run_dir": "/home/pgich/wrf-operativo/ejecutables/WRF_casos_24h",
+  "run_hours_namelist": 24,
+  "valid_times": "2026-01-01_00:00:00,2026-01-01_06:00:00,2026-01-01_12:00:00,2026-01-01_18:00:00,2026-01-02_00:00:00",
+  "obs_coef": {
+    "wind": 0.0001,
+    "temp": 0.0001,
+    "mois": 0.0001
+  },
+  "tiempos_etapa_s": {
+    "obs_littler_obsdomain": 0.035,
+    "preflight": 0.004,
+    "real_exe": 1.375,
+    "wrf_nudged": 580.712,
+    "wrf_control": 573.116,
+    "validacion": 10.294
+  },
+  "total_pipeline_s": 1165.536,
+  "etapas_orquestador_s": {
+    "api_ecowitt_y_cobertura": 51.1,
+    "obs_flat_parseo_qc": 0.017,
+    "gfs_descarga": 590.749,
+    "wps": 133.563,
+    "met_em_propagacion": 0.018,
+    "pipeline_total": 1166.274
+  },
+  "total_end_to_end_s": 1941.721
+}

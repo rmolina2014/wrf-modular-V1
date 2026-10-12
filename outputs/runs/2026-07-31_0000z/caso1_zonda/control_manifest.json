@@ -1,6 +1,19 @@
 {
-  "creado": "2026-09-17T20:54:10",
+  "creado": "2026-10-11T22:57:02",
   "start": "2026-07-31_00:00:00",
-  "run_hours": 12,
-  "namelist_sha256": "aca28018c60cb15cce200ffab66cfbb21e4bacdc159681e7bc4e711f8a7be18f"
+  "run_hours": 24,
+  "end": "2026-08-01_00:00:00",
+  "obs_coef_wind": 0.0001,
+  "obs_coef_temp": 0.0001,
+  "obs_coef_mois": 0.0001,
+  "fdda_end": 1440.0,
+  "gfdda_end_h": 24.0,
+  "namelist_sha256": "3e2d71a630f456b12a96e7d1d52832d9d849a0af66472ddbfce3a138c1ebdb1d",
+  "tiempos_etapa_s": {
+    "obs_littler_obsdomain": 0.182,
+    "preflight": 0.025,
+    "real_exe": 1.386,
+    "wrf_nudged": 624.25,
+    "wrf_control": 611.356
+  }
 }

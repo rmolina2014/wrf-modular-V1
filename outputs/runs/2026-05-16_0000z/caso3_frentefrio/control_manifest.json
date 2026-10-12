@@ -1,0 +1,19 @@
+{
+  "creado": "2026-10-12T00:02:49",
+  "start": "2026-05-16_00:00:00",
+  "run_hours": 24,
+  "end": "2026-05-17_00:00:00",
+  "obs_coef_wind": 0.0001,
+  "obs_coef_temp": 0.0001,
+  "obs_coef_mois": 0.0001,
+  "fdda_end": 1440.0,
+  "gfdda_end_h": 24.0,
+  "namelist_sha256": "36f47bd88bc58d70b86c621595c53906121e0d72c677b760dfba0ff8e043e35c",
+  "tiempos_etapa_s": {
+    "obs_littler_obsdomain": 0.033,
+    "preflight": 0.004,
+    "real_exe": 1.339,
+    "wrf_nudged": 617.344,
+    "wrf_control": 612.312
+  }
+}

@@ -1,20 +1,20 @@
 ================================================================================
-VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-05-16_00:00:00 caso3 frentefrio 2026-05-16 (generalizacion, hold-out)
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-05-16_00:00:00 caso3_NvC (generalizacion, hold-out)
 ================================================================================
 
 Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
 
-IC95 (95% bootstrap) del RMSE por corrida (caso3 frentefrio 2026-05-16 (generalizacion, hold-out)):
+IC95 (95% bootstrap) del RMSE por corrida (caso3_NvC (generalizacion, hold-out)):
 Variable           N          IC95 RMSE N          IC95 RMSE C
 --------------------------------------------------------------------------------------------------------------------------------------------
-T2 (K)             0          -          -          -        -          -          -          -        -
-T2 (K)             0                    -                    -
-PSFC (hPa)         0          -          -          -        -          -          -          -        -
-PSFC (hPa)         0                    -                    -
-RH (%)             0          -          -          -        -          -          -          -        -
-RH (%)             0                    -                    -
-Wind (m/s)         0          -          -          -        -          -          -          -        -
-Wind (m/s)         0                    -                    -
+T2 (K)             1      -1.98       1.98       1.98        -      -1.98       1.98       1.98        -
+T2 (K)             1                    -                    -
+PSFC (hPa)         1     -95.32      95.32      95.32        -     -95.32      95.32      95.32        -
+PSFC (hPa)         1                    -                    -
+RH (%)             1     -18.31      18.31      18.31        -     -18.31      18.31      18.31        -
+RH (%)             1                    -                    -
+Wind (m/s)         1      +1.01       1.01       1.01        -      +1.01       1.01       1.01        -
+Wind (m/s)         1                    -                    -
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)

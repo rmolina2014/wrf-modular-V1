@@ -1,6 +1,6 @@
 {
   "caso": "caso2_calor",
-  "fecha": "2026-09-13 00:05:55",
+  "fecha": "2026-10-11 23:10:08",
   "ejecutar_wrf": true,
   "chequeos": [
     {
@@ -19,25 +19,25 @@
       "id": "2.2.3",
       "descripcion": "Identificador de plataforma (SYNOP)",
       "estado": "OK",
-      "detalle": "'SYNOP' presente en 290 registros"
+      "detalle": "'SYNOP' presente en 194 registros"
     },
     {
       "id": "2.2.4",
       "descripcion": "Timestamps de las observaciones",
       "estado": "OK",
-      "detalle": "290 timestamps válidos, orden cronológico OK, cadencia 5 min, segundos en [0]"
+      "detalle": "194 timestamps válidos, orden cronológico OK, cadencia 5 min, segundos en [0]"
     },
     {
       "id": "2.2.5",
       "descripcion": "Cantidad de obs vs max_obs",
       "estado": "OK",
-      "detalle": "290 obs <= max_obs=10000"
+      "detalle": "194 obs <= max_obs=10000"
     },
     {
       "id": "2.2.6",
       "descripcion": "Cobertura temporal de las observaciones",
       "estado": "OK",
-      "detalle": "tercio1: 50 obs / tercio2: 48 obs / tercio3: 54 obs"
+      "detalle": "tercio1: 66 obs / tercio2: 64 obs / tercio3: 64 obs"
     }
   ]
 }

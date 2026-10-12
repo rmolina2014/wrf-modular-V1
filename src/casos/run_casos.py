@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Fase 4 - Ejecución de casos de estudio WRF (ciclo 00Z->12Z, con/sin obs nudging).
+"""Fase 4 - Ejecución de casos de estudio WRF (ciclo 00Z->24Z, con/sin obs nudging).
 
 Para cada caso de config/casos_estudio.json:
   1. Descarga histórico EcoWitt del día y mide la cobertura de observaciones.
   2. Si la cobertura es insuficiente -> "NO EJECUTADO - SIN DATOS (causa)".
   3. Descarga GFS 00Z, corre WPS (geogrid+ungrib+metgrid) y copia met_em al run dir.
   4. Corre el pipeline WRF (Little_R -> OBS_DOMAIN101 -> real.exe -> wrf.exe
-     nudged/control -> validacion multi-temporal 00/06/12Z).
+     nudged/control -> validacion multi-temporal 00/06/12/18/24Z).
   5. Redacta informe .md por caso y un informe consolidado al final.
 
 Uso:
@@ -23,7 +23,8 @@ import os
 import shutil
 import subprocess
 import sys
-from datetime import datetime
+import time
+from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -42,15 +43,19 @@ from src.ingesta.gfs_downloader import GFSDownloader
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("run_casos")
 
-CONFIG_JSON = ROOT / "config" / "casos_estudio.json"
+CONFIG_JSON = Path(os.environ.get(
+    "CASOS_JSON",
+    ROOT / "config" / ("casos_oficiales.json" if (ROOT / "config" / "casos_oficiales.json").exists()
+                       else "casos_estudio.json"),
+))
 RAW = ROOT / "data" / "raw"
-INFORMES = ROOT / "informes_ejecucion"
+INFORMES = ROOT / "outputs" / "informes" / "oficiales"
 ESTADO_DIR = ROOT / "results" / "casos_estudio"
 ESTADO_JSON = ESTADO_DIR / "estado_casos.json"
 WPS_DIR = ROOT / "wps_sanjuan"
 WPS_SH = WPS_DIR / "run_wps_sanjuan.sh"
-RUN_DIR = Path(os.environ.get("LOCAL_WRF_DIR", "/home/pgich/wrf-operativo/ejecutables/WRF"))
-PYTHON = ROOT / ".venv" / "bin" / "python"
+RUN_DIR = Path(os.environ.get("LOCAL_WRF_DIR", "/home/pgich/wrf-operativo/ejecutables/WRF_casos_24h"))
+PYTHON = Path(os.environ.get("PYTHON", sys.executable))
 PIPELINE = ROOT / "pipeline_wrf.py"
 GFS_URLS = {
     "aws": "https://noaa-gfs-bdp-pds.s3.amazonaws.com/gfs.{fecha}/{ciclo}/atmos/{file}",
@@ -107,14 +112,14 @@ def descargar_obs_historico(fecha: str) -> Path:
     return csv
 
 
-def cobertura_obs(csv_path: Path, fecha: str, ciclo: str = "00") -> Dict[str, Any]:
-    """Mide la cobertura de observaciones validas (dia completo y ventana 00-12Z)."""
+def cobertura_obs(csv_path: Path, fecha: str, ciclo: str = "00", run_hours: int = 12) -> Dict[str, Any]:
+    """Mide la cobertura de observaciones validas (dia completo y ventana del ciclo)."""
     df = pd.read_csv(csv_path)
     if df.empty or "temp_c" not in df.columns:
         return {"dia": 0, "ventana": 0, "estaciones": 0, "por_estacion": {}}
 
     ts_ini = int(datetime.strptime(f"{fecha} 00:00:00", "%Y-%m-%d %H:%M:%S").timestamp())
-    ts_fin = ts_ini + 12 * 3600
+    ts_fin = ts_ini + int(run_hours) * 3600
     df["ts"] = pd.to_numeric(df["hora_unix"], errors="coerce")
     df["temp_ok"] = df["temp_c"].apply(lambda v: _num(v) is not None and pd.notna(v))
 
@@ -211,13 +216,13 @@ def _tamano_esperado_gfs(fecha: str, ciclo: str, fhour: int) -> Optional[int]:
     return None
 
 
-def descargar_gfs(fecha: str, ciclo: str = "00") -> int:
-    """Descarga el ciclo GFS 00Z (0-12h) hacia wps_sanjuan/gfs_data/<fecha>_<ciclo>.
+def descargar_gfs(fecha: str, ciclo: str = "00", run_hours: int = 24) -> int:
+    """Descarga el ciclo GFS 00Z (0-run_hours) hacia wps_sanjuan/gfs_data/<fecha>_<ciclo>.
 
     Antes de descargar verifica tamano contra AWS y elimina archivos truncados
     (descargas interrumpidas) que el descargador consideraria completos."""
     out = WPS_DIR / "gfs_data" / f"{fecha}_{ciclo}"
-    for fhour in range(0, 13, 3):
+    for fhour in range(0, int(run_hours) + 1, 3):
         fname = f"gfs.t{ciclo}z.pgrb2.0p25.f{fhour:03d}"
         p = out / fname
         if not p.exists():
@@ -226,7 +231,7 @@ def descargar_gfs(fecha: str, ciclo: str = "00") -> int:
         if esperado and abs(p.stat().st_size - esperado) > 0.02 * esperado:
             logger.warning(f"GFS corrupto/truncado ({p.stat().st_size} vs {esperado} B): re-descargando {fname}")
             p.unlink()
-    desc = GFSDownloader(str(out)).descargar_ciclo(fecha, ciclo_hora=ciclo)
+    desc = GFSDownloader(str(out)).descargar_ciclo(fecha, ciclo_hora=ciclo, horas_pronostico=range(0, int(run_hours) + 1, 3))
     return len(list(out.glob(f"gfs.t{ciclo}z.pgrb2.0p25.f*")))
 
 
@@ -250,41 +255,73 @@ def ejecutar_wps(fecha: str, ciclo: str = "00", timeout: int = 3600) -> Tuple[bo
         return False, str(log)
 
 
-def propagar_metem(fecha: str) -> int:
-    """Copia los met_em de WPS al directorio de corrida de real.exe."""
+def propagar_metem(fecha: str, run_hours: int = 24) -> int:
+    """Copia los met_em de WPS al directorio de corrida de real.exe.
+
+    Construye los timestamps esperados cada 3 h desde 00Z hasta run_hours, de
+    modo que incluya el archivo del dia siguiente (p.ej. 2026-08-07_00:00:00
+    para un ciclo de 24 h que arranca el 2026-08-06)."""
+    base = datetime.strptime(fecha, "%Y-%m-%d")
     n = 0
-    for src in sorted(WPS_DIR.glob(f"met_em.d01.{fecha}_*")):
-        shutil.copy2(src, RUN_DIR / src.name)
-        n += 1
+    for h in range(0, int(run_hours) + 1, 3):
+        dt = base + timedelta(hours=h)
+        name = f"met_em.d01.{dt.strftime('%Y-%m-%d_%H:%M:%S')}.nc"
+        src = WPS_DIR / name
+        if src.exists():
+            shutil.copy2(src, RUN_DIR / name)
+            n += 1
     return n
 
 
 # --------------------------------------------------------------------------
 # Pipeline WRF
 # --------------------------------------------------------------------------
+def _valid_times_iso(fecha: str, valid_times: List[str]) -> List[str]:
+    """Convierte ['00:00:00','24:00:00',...] a fechas ISO completas (con rollover de día).
+
+    '24:00:00' -> '<fecha+1d>_00:00:00'."""
+    base = datetime.strptime(fecha, "%Y-%m-%d")
+    out = []
+    for t in valid_times:
+        p = [int(x) for x in str(t).split(":")]
+        while len(p) < 3:
+            p.append(0)
+        dt = base + timedelta(hours=p[0], minutes=p[1], seconds=p[2])
+        out.append(dt.strftime("%Y-%m-%d_%H:%M:%S"))
+    return out
+
+
 def ejecutar_pipeline(caso: Dict[str, Any], comun: Dict[str, Any], fecha: str,
-                      obs_flat: Path, ciclo: str = "00", timeout: int = 8 * 3600) -> Tuple[int, str]:
-    """Corre pipeline_wrf.py para el caso (nudged + control + validacion 00/06/12Z)."""
+                      obs_flat: Path, ciclo: str = "00", timeout: int = 12 * 3600) -> Tuple[int, str]:
+    """Corre pipeline_wrf.py para el caso (nudged + control + validacion multi-temporal)."""
     label = f"caso{int(caso['num'])}_NvC"
     run_case = Path(caso["resultados_dir"]).name  # directorio de resultados del caso
+    run_hours = int(comun.get("run_hours", 12))
+    valid_times = _valid_times_iso(fecha, list(comun.get("valid_times", ["00:00:00"])))
+    wrf_timeout = str(int(comun.get("wrf_timeout", 14400)))
     cmd = [
         str(PYTHON), str(PIPELINE),
         "--date", fecha, "--hour", f"{ciclo}:00",
         "--json", str(obs_flat),
         "--case", run_case,
         "--namelist", str(ROOT / comun.get("namelist_base", "namelist.input")),
+        "--run-dir", str(RUN_DIR),
         "--run-real",
         "--obs-coef-wind", str(comun.get("obs_coef_wind")),
         "--obs-coef-temp", str(comun.get("obs_coef_temp")),
         "--obs-coef-mois", str(comun.get("obs_coef_mois")),
-        "--valid-times", ",".join(comun.get("valid_times", ["00:00:00"])),
+        "--valid-times", ",".join(valid_times),
         "--label", label,
-        "--wrf-timeout", "7200",
+        "--wrf-timeout", wrf_timeout,
     ]
     log = ESTADO_DIR / f"pipeline_{caso['id']}.log"
-    logger.info(f"Pipeline: {' '.join(cmd)}")
+    logger.info(f"Pipeline: {' '.join(cmd)} (run_hours={run_hours})")
+    env = dict(os.environ)
+    # Los resultados deben caer en el directorio declarado por el caso
+    # (outputs/runs/...), que es donde el informe busca tabla_evolutiva.json.
+    env["RESULTS_DIR"] = str(ROOT / "outputs" / "runs")
     with open(log, "w", encoding="utf-8") as f:
-        r = subprocess.run(cmd, cwd=str(ROOT), stdout=f, stderr=subprocess.STDOUT, timeout=timeout)
+        r = subprocess.run(cmd, cwd=str(ROOT), env=env, stdout=f, stderr=subprocess.STDOUT, timeout=timeout)
     return r.returncode, str(log)
 
 
@@ -359,8 +396,66 @@ def _md_tabla_holdout(por_tiempo: List[Dict[str, Any]], variable: str) -> str:
     return "\n".join(lineas) + "\n"
 
 
+def _seccion_desempeno_flujo(L: List[str], caso: Dict[str, Any]) -> None:
+    """Agrega al informe la seccion de desempeno del flujo end-to-end
+    (tiempos por etapa) a partir de `evaluacion_flujo.json`."""
+    ruta = _ruta_resultados_caso(caso) / "evaluacion_flujo.json"
+    if not ruta.exists():
+        return
+    try:
+        data = json.loads(ruta.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return
+    orq = data.get("etapas_orquestador_s", {})
+    pipe = data.get("tiempos_etapa_s", {})
+    if not orq and not pipe:
+        return
+    etiquetas = {
+        "api_ecowitt_y_cobertura": "Ingesta API EcoWitt + cobertura",
+        "obs_flat_parseo_qc": "Parseo y QC -> obs_flat (Little_R)",
+        "gfs_descarga": "Descarga GFS 0.25 (AWS)",
+        "wps": "WPS (geogrid+ungrib+metgrid)",
+        "met_em_propagacion": "Propagacion met_em al run dir",
+        "pipeline_total": "Pipeline WRF completo (preflight+real+nudged+control+validacion)",
+        "obs_littler_obsdomain": "Little_R -> OBS_DOMAIN101",
+        "preflight": "Preflight (validacion obs/namelist)",
+        "real_exe": "real.exe",
+        "wrf_nudged": "wrf.exe nudged (24 h)",
+        "wrf_control": "wrf.exe control (24 h)",
+        "validacion": "Validacion multi-temporal + informe de evolucion",
+    }
+
+    def _fmt(s: float) -> str:
+        return f"{s / 60:.1f} min" if s >= 60 else f"{s:.2f} s"
+
+    L.append("## Desempeno del flujo (end-to-end)")
+    L.append("")
+    L.append("Tiempos por etapa medidos en la ejecucion (artefacto "
+             "`evaluacion_flujo.json`); cubre desde la llamada a la API EcoWitt "
+             "hasta el informe de validacion.")
+    L.append("")
+    if orq:
+        L.append("| Etapa (orquestador) | Tiempo |")
+        L.append("|---------------------|--------|")
+        for k, v in orq.items():
+            if isinstance(v, (int, float)):
+                L.append(f"| {etiquetas.get(k, k)} | {_fmt(v)} |")
+        L.append("")
+    if pipe:
+        L.append("| Etapa (pipeline WRF) | Tiempo |")
+        L.append("|----------------------|--------|")
+        for k, v in pipe.items():
+            if isinstance(v, (int, float)):
+                L.append(f"| {etiquetas.get(k, k)} | {_fmt(v)} |")
+        L.append("")
+    total = data.get("total_end_to_end_s")
+    if isinstance(total, (int, float)):
+        L.append(f"**Tiempo total end-to-end:** {_fmt(total)}.")
+        L.append("")
+
+
 def redactar_informe_caso(caso: Dict[str, Any], estado_entry: Dict[str, Any],
-                          cobertura: Optional[Dict[str, Any]] = None) -> Path:
+                          cobertura: Optional[Dict[str, Any]] = None, run_hours: int = 12) -> Path:
     """Escribe el informe .md de un caso."""
     ruta = ROOT / caso["informe"]
     ruta.parent.mkdir(parents=True, exist_ok=True)
@@ -372,7 +467,7 @@ def redactar_informe_caso(caso: Dict[str, Any], estado_entry: Dict[str, Any],
     L = []
     L.append(f"# {caso['titulo']}")
     L.append("")
-    L.append(f"**Fecha del evento:** {caso['fecha']} | **Ciclo:** 00Z -> 12Z | **Informe generado:** {ts}")
+    L.append(f"**Fecha del evento:** {caso['fecha']} | **Ciclo:** 00Z -> {run_hours:02d}Z | **Informe generado:** {ts}")
     L.append("")
     L.append("## Descripción del evento")
     L.append("")
@@ -395,11 +490,12 @@ def redactar_informe_caso(caso: Dict[str, Any], estado_entry: Dict[str, Any],
     L.append("| Parámetro | Valor |")
     L.append("|-----------|-------|")
     L.append("| Dominio | 1 dominio, 15 km, 80×60, mercator (-31.5°, -68.5°) |")
-    L.append("| Ciclo | 00Z–12Z (12 h) |")
+    L.append(f"| Ciclo | 00Z–{run_hours:02d}Z ({run_hours} h) |")
     L.append("| Forzante | GFS 0.25° (AWS) |")
     L.append("| Obs nudging | `obs_nudge_opt=1`, coef viento/temp/humedad=0.0001, `obs_twindo=1.0` |")
     L.append("| Nudged vs Control | misma inicialización; solo cambia `obs_nudge_opt` (1 vs 0) |")
-    L.append(f"| Validación | multi-temporal {' '.join(tabla['valid_times'] if tabla else ['00Z, 06Z, 12Z'])} vs observaciones de estaciones |")
+    vt_txt = ' '.join(tabla['valid_times']) if tabla else ', '.join(f"{h:02d}Z" for h in range(0, run_hours + 1, 6))
+    L.append(f"| Validación | multi-temporal {vt_txt} vs observaciones de estaciones |")
     L.append("")
     L.append("## Limitación conocida del dominio (relevant para el análisis)")
     L.append("")
@@ -414,18 +510,19 @@ def redactar_informe_caso(caso: Dict[str, Any], estado_entry: Dict[str, Any],
     if cobertura:
         L.append("## Observaciones disponibles")
         L.append("")
-        L.append(f"- Registros válidos: **{cobertura['dia']}** en el día, **{cobertura['ventana']}** en la ventana 00Z–12Z.")
+        L.append(f"- Registros válidos: **{cobertura['dia']}** en el día, **{cobertura['ventana']}** en la ventana 00Z–{run_hours:02d}Z.")
         L.append(f"- Estaciones con datos en ventana: **{cobertura['estaciones']}**")
         pe = cobertura.get("por_estacion", {})
         if pe:
             L.append("")
-            L.append("| Estación | Registros (00Z–12Z) |")
+            L.append(f"| Estación | Registros (00Z–{run_hours:02d}Z) |")
             L.append("|----------|--------------------|")
             for k, v in sorted(pe.items(), key=lambda kv: (-kv[1], kv[0])):
                 L.append(f"| {k} | {v} |")
         L.append("")
 
     if estado == "EJECUTADO":
+        _seccion_desempeno_flujo(L, caso)
         tabla = _leer_tabla_evolutiva(caso)
         if tabla:
             L.append("## Resultados: Nudged vs Control")
@@ -518,7 +615,7 @@ def redactar_informe_consolidado(casos: List[Dict[str, Any]], estado: Dict[str, 
     L.append("## Métricas por caso (RMSE y r del nudging vs control)")
     L.append("")
     L.append("Se reporta el RMSE y el coeficiente de correlación (r) de T2 (K) y RH (%) "
-             "en la ventana de mayor divergencia (06Z y 12Z).")
+             "en la ventana de mayor divergencia (06Z, 12Z y 18Z).")
     L.append("")
     for c in casos:
         e = estado.get(c["id"], {})
@@ -564,25 +661,65 @@ def redactar_informe_consolidado(casos: List[Dict[str, Any]], estado: Dict[str, 
 # --------------------------------------------------------------------------
 # Orquestacion
 # --------------------------------------------------------------------------
+def _ruta_resultados_caso(caso: Dict[str, Any]) -> Path:
+    p = Path(caso["resultados_dir"])
+    return p if p.is_absolute() else ROOT / p
+
+
+def _escribir_flujo_caso(caso: Dict[str, Any], fecha: str, ciclo: str,
+                         run_hours: int, flujo: Dict[str, float]) -> Path:
+    """Fusiona los tiempos por etapa del orquestador (API EcoWitt, obs_flat,
+    GFS, WPS, met_em, pipeline) con el desglose interno del pipeline WRF
+    (real/nudged/control/validacion) en un unico artefacto end-to-end."""
+    case_dir = _ruta_resultados_caso(caso)
+    case_dir.mkdir(parents=True, exist_ok=True)
+    ruta = case_dir / "evaluacion_flujo.json"
+    data: Dict[str, Any] = {}
+    if ruta.exists():
+        try:
+            data = json.loads(ruta.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            data = {}
+    data.update({
+        "caso": caso["id"],
+        "fecha": fecha,
+        "hora": f"{ciclo}:00",
+        "generado": datetime.now().isoformat(timespec="seconds"),
+        "run_hours_namelist": run_hours,
+        "etapas_orquestador_s": {k: round(v, 3) for k, v in flujo.items()},
+        "total_end_to_end_s": round(sum(flujo.values()), 3),
+    })
+    ruta.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+    logger.info(f"  Evaluacion de flujo end-to-end guardada: {ruta}")
+    return ruta
+
+
 def ejecutar_caso(caso: Dict[str, Any], comun: Dict[str, Any], estado: Dict[str, Any]) -> Dict[str, Any]:
     """Ejecuta un caso completo (obs -> GFS -> WPS -> pipeline). Actualiza estado."""
     cid = caso["id"]
     fecha = caso["fecha"]
     ciclo = comun.get("hora_ciclo", "00")
+    run_hours = int(comun.get("run_hours", 12))
     obs_min = int(comun.get("obs_min_registros", 60))
     obs_min_est = int(comun.get("obs_min_estaciones", 3))
 
     resultado: Dict[str, Any] = {"estado": "PENDIENTE", "detalle": "", "ts": datetime.now().isoformat(timespec="seconds")}
 
+    flujo: Dict[str, float] = {}
+    _t = time.perf_counter()
+
     # 1) Observaciones
     try:
         csv = descargar_obs_historico(fecha)
-        cov = cobertura_obs(csv, fecha, ciclo)
+        cov = cobertura_obs(csv, fecha, ciclo, run_hours)
     except Exception as e:
         logger.exception(f"{cid}: fallo al obtener observaciones")
         resultado = {"estado": "NO EJECUTADO - SIN DATOS (obs)", "detalle": f"fallo de descarga: {e}",
                      "ts": datetime.now().isoformat(timespec="seconds")}
         return resultado
+
+    flujo["api_ecowitt_y_cobertura"] = round(time.perf_counter() - _t, 3)
+    _t = time.perf_counter()
 
     if cov["ventana"] < obs_min or cov["estaciones"] < obs_min_est:
         detalle = f"cobertura insuficiente ({cov['ventana']} registros, {cov['estaciones']} estaciones en ventana)"
@@ -600,6 +737,9 @@ def ejecutar_caso(caso: Dict[str, Any], comun: Dict[str, Any], estado: Dict[str,
         estado[cid] = resultado
         return resultado
 
+    flujo["obs_flat_parseo_qc"] = round(time.perf_counter() - _t, 3)
+    _t = time.perf_counter()
+
     # 2) GFS
     fuente = gfs_disponible(fecha, ciclo)
     if fuente is None:
@@ -607,12 +747,16 @@ def ejecutar_caso(caso: Dict[str, Any], comun: Dict[str, Any], estado: Dict[str,
                      "ts": datetime.now().isoformat(timespec="seconds")}
         estado[cid] = resultado
         return resultado
-    n_gfs = descargar_gfs(fecha, ciclo)
-    if n_gfs < 5:
-        resultado = {"estado": "NO EJECUTADO - SIN DATOS (gfs)", "detalle": f"se bajaron {n_gfs} ficheros GFS",
+    n_gfs = descargar_gfs(fecha, ciclo, run_hours)
+    n_gfs_min = len(range(0, run_hours + 1, 3))
+    if n_gfs < n_gfs_min:
+        resultado = {"estado": "NO EJECUTADO - SIN DATOS (gfs)", "detalle": f"se bajaron {n_gfs}/{n_gfs_min} ficheros GFS",
                      "ts": datetime.now().isoformat(timespec="seconds")}
         estado[cid] = resultado
         return resultado
+
+    flujo["gfs_descarga"] = round(time.perf_counter() - _t, 3)
+    _t = time.perf_counter()
 
     # 3) WPS
     ok_wps, log_wps = ejecutar_wps(fecha, ciclo)
@@ -621,15 +765,22 @@ def ejecutar_caso(caso: Dict[str, Any], comun: Dict[str, Any], estado: Dict[str,
                      "ts": datetime.now().isoformat(timespec="seconds")}
         estado[cid] = resultado
         return resultado
-    n_metem = propagar_metem(fecha)
-    if n_metem < 5:
-        resultado = {"estado": "FALLIDO", "detalle": f"WPS no genero met_em suficientes ({n_metem})",
+    flujo["wps"] = round(time.perf_counter() - _t, 3)
+    _t = time.perf_counter()
+    n_metem = propagar_metem(fecha, run_hours)
+    n_metem_min = len(range(0, run_hours + 1, 3))
+    if n_metem < n_metem_min:
+        resultado = {"estado": "FALLIDO", "detalle": f"WPS no genero met_em suficientes ({n_metem}/{n_metem_min})",
                      "ts": datetime.now().isoformat(timespec="seconds")}
         estado[cid] = resultado
         return resultado
 
+    flujo["met_em_propagacion"] = round(time.perf_counter() - _t, 3)
+    _t = time.perf_counter()
+
     # 4) Pipeline WRF (nudged + control + validacion)
     rc, log_pipe = ejecutar_pipeline(caso, comun, fecha, obs_flat, ciclo)
+    flujo["pipeline_total"] = round(time.perf_counter() - _t, 3)
     if rc == 0:
         resultado = {"estado": "EJECUTADO", "detalle": f"fuente GFS {fuente}",
                      "ts": datetime.now().isoformat(timespec="seconds")}
@@ -637,6 +788,10 @@ def ejecutar_caso(caso: Dict[str, Any], comun: Dict[str, Any], estado: Dict[str,
         resultado = {"estado": "FALLIDO", "detalle": f"pipeline rc={rc} (ver {log_pipe})",
                      "ts": datetime.now().isoformat(timespec="seconds")}
     estado[cid] = resultado
+    try:
+        _escribir_flujo_caso(caso, fecha, ciclo, run_hours, flujo)
+    except Exception as e:
+        logger.warning(f"{cid}: no se pudo escribir evaluacion de flujo: {e}")
     return resultado
 
 
@@ -669,7 +824,7 @@ def main():
             # Solo disponibilidad: obs + GFS, sin WRF
             try:
                 csv = descargar_obs_historico(caso["fecha"])
-                cov = cobertura_obs(csv, caso["fecha"], comun.get("hora_ciclo", "00"))
+                cov = cobertura_obs(csv, caso["fecha"], comun.get("hora_ciclo", "00"), comun.get("run_hours", 12))
             except Exception as e:
                 cov = {"dia": 0, "ventana": 0, "estaciones": 0, "por_estacion": {}}
                 logger.error(f"{cid}: obs fallo: {e}")
@@ -685,10 +840,10 @@ def main():
             # Solo preparar obs/GFS/WPS sin correr el pipeline
             try:
                 csv = descargar_obs_historico(caso["fecha"])
-                cov = cobertura_obs(csv, caso["fecha"], comun.get("hora_ciclo", "00"))
+                cov = cobertura_obs(csv, caso["fecha"], comun.get("hora_ciclo", "00"), comun.get("run_hours", 12))
                 obs_flat = generar_obs_flat(csv, caso["fecha"])
                 fuente = gfs_disponible(caso["fecha"], comun.get("hora_ciclo", "00"))
-                n_gfs = descargar_gfs(caso["fecha"], comun.get("hora_ciclo", "00")) if fuente else 0
+                n_gfs = descargar_gfs(caso["fecha"], comun.get("hora_ciclo", "00"), comun.get("run_hours", 12)) if fuente else 0
                 estado[cid] = {"estado": "PREPARADO", "detalle": f"obs {cov['ventana']}, gfs {n_gfs}, obs_flat {obs_flat.name}",
                                "ts": datetime.now().isoformat(timespec="seconds")}
             except Exception as e:
@@ -709,10 +864,10 @@ def main():
                 try:
                     csv = csv_historico(caso["fecha"])
                     if csv.exists():
-                        cobertura = cobertura_obs(csv, caso["fecha"], comun.get("hora_ciclo", "00"))
+                        cobertura = cobertura_obs(csv, caso["fecha"], comun.get("hora_ciclo", "00"), comun.get("run_hours", 12))
                 except Exception:
                     cobertura = None
-            redactar_informe_caso(caso, entry, cobertura)
+            redactar_informe_caso(caso, entry, cobertura, run_hours=int(comun.get("run_hours", 12)))
         redactar_informe_consolidado(todos_casos, estado)
     return 0
 

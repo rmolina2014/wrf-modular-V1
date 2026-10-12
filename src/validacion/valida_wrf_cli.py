@@ -660,11 +660,29 @@ def main():
     multi = len(valid_times) > 1
     evolution = []
 
+    def _parse_vt(v):
+        b = v.replace("wrfout_d01_", "")
+        for fmt in ("%Y-%m-%d_%H:%M:%S", "%Y-%m-%d_%H:%M"):
+            try:
+                return datetime.strptime(b, fmt)
+            except ValueError:
+                continue
+        return None
+
+    # Etiqueta relativa al primer tiempo (00Z, 06Z, ..., 24Z) para evitar la
+    # colision de "00Z" cuando el fin del ciclo (24Z) cae en el dia siguiente
+    # a las 00:00 (misma hora que el inicio).
+    _t0 = next((t for t in (_parse_vt(x) for x in valid_times) if t is not None), None)
+
     for vt in valid_times:
         if not vt.startswith("wrfout_d01_"):
             vt = f"wrfout_d01_{vt}"
         vt_clean = vt.replace("wrfout_d01_", "")
-        hora = vt_clean.split("_")[-1][:2] if "_" in vt_clean else ""
+        _dtv = _parse_vt(vt)
+        if _t0 is not None and _dtv is not None:
+            hora = f"{int(round((_dtv - _t0).total_seconds() / 3600)):02d}"
+        else:
+            hora = vt_clean.split("_")[-1][:2] if "_" in vt_clean else ""
         sub_dir = output_dir / f"{hora}Z" if multi else output_dir
         sub_dir.mkdir(parents=True, exist_ok=True)
 

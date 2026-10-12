@@ -52,10 +52,18 @@ class WRFRunner:
         """
         import tempfile
         env_load = f"source {self.env_bash} && " if Path(self.env_bash).exists() else ""
-        # LD_LIBRARY_PATH vacío + unset de OMP: entorno operativo de esta PC
+        # LD_LIBRARY_PATH vacío + unset de OMP: entorno operativo de esta PC.
+        # IMPORTANTE: este wrf.exe (WRF-Chem 4.5, build OpenMP/serial de pgich)
+        # aborta (SIGSEGV en RRTMG-MCICA con tiles 1x8, o 'Bad value during integer
+        # read' en wrf_fddaobs_in / geth_idts con OMP>1) salvo que se ejecute en
+        # modo un solo hilo y un solo tile. Verificado end-to-end: con
+        # OMP_NUM_THREADS=1 y WRF_NUM_TILES_X=WRF_NUM_TILES_Y=1 completa las 24 h
+        # ('SUCCESS COMPLETE WRF'). env.bash fija tiles 1x8 y OMP=12, hay que
+        # sobreescribirlos DESPUES de source.
         full_cmd = ("export LD_LIBRARY_PATH='' "
                     "&& unset OMP_NUM_THREADS OMP_STACKSIZE KMP_STACKSIZE 2>/dev/null || true "
-                    f"&& {env_load}export OMP_NUM_THREADS=1 "
+                    f"&& {env_load}"
+                    "export OMP_NUM_THREADS=1 WRF_NUM_TILES_X=1 WRF_NUM_TILES_Y=1 "
                     f"&& {{ {cmd} ; }} > {_BASH_LOG} 2>&1")
 
         log_file.parent.mkdir(parents=True, exist_ok=True)

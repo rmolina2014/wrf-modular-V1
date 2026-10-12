@@ -32,6 +32,7 @@ import re
 import shutil
 import subprocess
 import sys
+import time
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -46,10 +47,41 @@ logging.basicConfig(
 )
 logger = logging.getLogger("pipeline_wrf")
 
+# Tiempos por etapa del flujo (evaluacion de desempe~no end-to-end).
+_TIEMPOS: dict = {}
+
+
+def _marcar(etapa: str, inicio: float) -> float:
+    """Registra el tiempo transcurrido de una etapa y devuelve un nuevo inicio."""
+    dt = time.perf_counter() - inicio
+    _TIEMPOS[etapa] = round(dt, 3)
+    logger.info(f"  [tiempo] {etapa}: {dt:.1f}s")
+    return time.perf_counter()
+
+
+def _param_namelist(namelist_path, nombre: str, default=None):
+    """Lee un parametro escalar de un namelist (regex tolerante)."""
+    try:
+        txt = Path(namelist_path).read_text(encoding="utf-8")
+    except OSError:
+        return default
+    m = re.search(rf"{re.escape(nombre)}\s*=\s*([-\d.]+)", txt)
+    return m.group(1) if m else default
+
+
+def _run_hours_del_namelist(namelist_path) -> int:
+    """run_hours declarado en el namelist (default 12 si no se puede leer)."""
+    v = _param_namelist(namelist_path, "run_hours")
+    try:
+        return int(float(v))
+    except (TypeError, ValueError):
+        return 12
+
+
 # Rutas fijas del proyecto
 DATA_RAW = Path(__file__).parent / "data" / "raw"
 DATA_PROCESSED = Path(__file__).parent / "data" / "processed"
-RESULTS_DIR = Path(__file__).parent / "results"
+RESULTS_DIR = Path(os.environ.get("RESULTS_DIR", Path(__file__).parent / "results"))
 # Metadatos de estaciones (archivo compartido por los modulares)
 ESTACIONES_JSON = Path(__file__).parent / "config" / "estaciones.json"
 
@@ -156,8 +188,11 @@ def preparar_namelist(namelist_src, obs_nudge_opt, output_path, start_dt=None, *
             end_day=end_dt.day, end_hour=end_dt.hour,
             run_hours=run_hours,
         )
-    # fdda_end = duracion del ciclo en minutos, no un valor fijo (ver mejora 3.4)
+    # fdda_end = duracion del ciclo en minutos, no un valor fijo (ver mejora 3.4).
+    # gfdda_end_h se mantiene coherente con run_hours (grid_fdda=0, no afecta,
+    # pero evita un namelist inconsistente).
     mgr.contenido = re.sub(r'fdda_end\s*=\s*\d+', f'fdda_end = {run_hours * 60}', mgr.contenido)
+    mgr.contenido = re.sub(r'gfdda_end_h\s*=\s*\d+', f'gfdda_end_h = {run_hours}', mgr.contenido)
     mgr.configurar_fdda(obs_nudge_opt=obs_nudge_opt, **kwargs)
     mgr.guardar(output_path)
     logger.info(f"Namelist preparado: {output_path} (obs_nudge_opt={obs_nudge_opt})")
@@ -299,11 +334,25 @@ def _escribir_manifest_control(case_dir, namelist_control, start_dt, run_hours=1
     """Registra el manifest del control generado (nombre del caso en case_dir)."""
     case_dir = Path(case_dir)
     case_dir.mkdir(parents=True, exist_ok=True)
+    def _f(name):
+        v = _param_namelist(namelist_control, name)
+        try:
+            return float(v)
+        except (TypeError, ValueError):
+            return None
+
     manifest = {
         "creado": datetime.now().isoformat(timespec="seconds"),
         "start": start_dt.strftime("%Y-%m-%d_%H:%M:%S") if start_dt else None,
         "run_hours": int(run_hours),
+        "end": (start_dt + timedelta(hours=int(run_hours))).strftime("%Y-%m-%d_%H:%M:%S") if start_dt else None,
+        "obs_coef_wind": _f("obs_coef_wind"),
+        "obs_coef_temp": _f("obs_coef_temp"),
+        "obs_coef_mois": _f("obs_coef_mois"),
+        "fdda_end": _f("fdda_end"),
+        "gfdda_end_h": _f("gfdda_end_h"),
         "namelist_sha256": _sha256(namelist_control),
+        "tiempos_etapa_s": dict(_TIEMPOS),
     }
     ruta = case_dir / "control_manifest.json"
     with open(ruta, "w", encoding="utf-8") as f:
@@ -427,10 +476,14 @@ def pipeline(args):
     if run_ok:
         logger.info(f"Directorio de corrida OK: {run_dir}")
 
+    _TIEMPOS.clear()
+    _t = time.perf_counter()
+
     # === PASOS 1-3: Generar OBS_DOMAIN101 ===
     if not args.validate_only:
         littler_path, timestamp, df = generar_littler_desde_json(args.json, obsdomain_dir)
         obsdomain = generar_obsdomain(df, obsdomain_dir, run_dir, args.prepare_only)
+        _t = _marcar("obs_littler_obsdomain", _t)
 
         if obsdomain is None and not args.prepare_only:
             logger.error("Fallo la generacion de OBS_DOMAIN101")
@@ -464,11 +517,13 @@ def pipeline(args):
 
         # === PREFLIGHT: validar OBS_DOMAIN101 y namelist antes de ejecutar wrf.exe ===
         if not args.skip_preflight:
+            _t = time.perf_counter()
             informe_preflight, preflight_ok = ejecutar_preflight(
                 args.json, obsdomain_dir / "OBS_DOMAIN101", namelist_nudged,
                 start_dt=start_dt, caso=case,
                 config_path=args.preflight_config,
             )
+            _t = _marcar("preflight", _t)
             informe_preflight.guardar(case_dir / f"preflight_{case}.json")
             if not preflight_ok:
                 logger.error("PREFLIGHT BLOQUEANTE: no se ejecuta wrf.exe. Corregir los chequeos indicados.")
@@ -480,13 +535,17 @@ def pipeline(args):
         copiar_namelist(namelist_nudged, run_dir)
 
         if args.run_real:
+            _t = time.perf_counter()
             if not ejecutar_real(run_dir, args.wrf_timeout, args.mpirun, args.np):
                 logger.error("real.exe fallido")
                 return 1
+            _t = _marcar("real_exe", _t)
 
+        _t = time.perf_counter()
         if not ejecutar_wrf(run_dir, "nudged", args.wrf_timeout, args.mpirun, args.np):
             logger.error("Corrida nudged fallida")
             return 1
+        _t = _marcar("wrf_nudged", _t)
         copiar_wrfout(run_dir, nudged_dir, valid_time)
 
         # Copiar wrfout al subdirectorio nudged/ del directorio de corrida para validacion
@@ -504,7 +563,7 @@ def pipeline(args):
 
         # Reutilizar el control solo si coincide con la config actual
         # (mismo namelist_control y periodo). Ver hallazgo H6 del analisis.
-        run_hours_control = 12
+        run_hours_control = _run_hours_del_namelist(args.namelist)
         namelist_control = case_dir / "namelist_control.input"
         if _control_reutilizable(case_dir, control_dir, namelist_control,
                                  start_dt, run_hours=run_hours_control):
@@ -524,9 +583,11 @@ def pipeline(args):
                 capture_output=True, text=True, timeout=30,
             )
 
+            _t = time.perf_counter()
             if not ejecutar_wrf(run_dir, "control", args.wrf_timeout, args.mpirun, args.np):
                 logger.error("Corrida control fallida")
                 return 1
+            _t = _marcar("wrf_control", _t)
             copiar_wrfout(run_dir, control_dir, valid_time)
             subprocess.run(
                 ["bash", "-lc",
@@ -564,16 +625,51 @@ def pipeline(args):
                     t if "_" in t else f"{date_str}_{t}" for t in tiempos
                 ]
             valid_times = tiempos
+        _t = time.perf_counter()
         valid_ok = run_valida_wrf(
             nudged_dir, control_dir, case_dir,
             valid_time, args.json, args.label, run_dir, valid_times,
         )
+        _t = _marcar("validacion", _t)
+
+    _escribir_evaluacion_flujo(case_dir, case, date_str, hour_str, args)
+
     if valid_ok:
         logger.info(f"Pipeline completo. Resultados en {case_dir}")
     else:
         logger.warning(f"Validacion con errores. Resultados parciales en {case_dir}")
 
     return 0 if valid_ok else 1
+
+
+def _escribir_evaluacion_flujo(case_dir, case, date_str, hour_str, args):
+    """Persiste los tiempos por etapa del flujo (evaluacion de desempeno)."""
+    total = round(sum(v for v in _TIEMPOS.values()), 3)
+    evaluacion = {
+        "caso": case,
+        "fecha": date_str,
+        "hora": hour_str,
+        "generado": datetime.now().isoformat(timespec="seconds"),
+        "run_dir": str(args.run_dir),
+        "run_hours_namelist": _run_hours_del_namelist(args.namelist),
+        "valid_times": args.valid_times,
+        "obs_coef": {
+            "wind": args.obs_coef_wind,
+            "temp": args.obs_coef_temp,
+            "mois": args.obs_coef_mois,
+        },
+        "tiempos_etapa_s": dict(_TIEMPOS),
+        "total_pipeline_s": total,
+    }
+    ruta = Path(case_dir) / "evaluacion_flujo.json"
+    try:
+        ruta.parent.mkdir(parents=True, exist_ok=True)
+        with open(ruta, "w", encoding="utf-8") as f:
+            json.dump(evaluacion, f, indent=2, ensure_ascii=False)
+        logger.info(f"  Evaluacion de flujo guardada: {ruta}")
+    except OSError as e:
+        logger.warning(f"  No se pudo guardar evaluacion_flujo.json: {e}")
+    return ruta
 
 
 def main():

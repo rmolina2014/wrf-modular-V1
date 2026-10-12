@@ -1,6 +1,6 @@
 {
   "caso": "caso3_frentefrio",
-  "fecha": "2026-09-13 00:51:09",
+  "fecha": "2026-10-11 23:42:17",
   "ejecutar_wrf": true,
   "chequeos": [
     {
@@ -19,25 +19,25 @@
       "id": "2.2.3",
       "descripcion": "Identificador de plataforma (SYNOP)",
       "estado": "OK",
-      "detalle": "'SYNOP' presente en 287 registros"
+      "detalle": "'SYNOP' presente en 239 registros"
     },
     {
       "id": "2.2.4",
       "descripcion": "Timestamps de las observaciones",
       "estado": "OK",
-      "detalle": "287 timestamps válidos, orden cronológico OK, cadencia 5 min, segundos en [0]"
+      "detalle": "239 timestamps válidos, orden cronológico OK, cadencia 5 min, segundos en [0]"
     },
     {
       "id": "2.2.5",
       "descripcion": "Cantidad de obs vs max_obs",
       "estado": "OK",
-      "detalle": "287 obs <= max_obs=10000"
+      "detalle": "239 obs <= max_obs=10000"
     },
     {
       "id": "2.2.6",
       "descripcion": "Cobertura temporal de las observaciones",
       "estado": "OK",
-      "detalle": "tercio1: 48 obs / tercio2: 48 obs / tercio3: 53 obs"
+      "detalle": "tercio1: 80 obs / tercio2: 79 obs / tercio3: 80 obs"
     }
   ]
 }

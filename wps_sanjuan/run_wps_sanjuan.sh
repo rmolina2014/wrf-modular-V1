@@ -22,7 +22,8 @@ if [ -z "$FECHA" ] || [ -z "$HORA" ]; then
 fi
 
 START_DATE="${FECHA}_${HORA}:00:00"
-END_DATE=$(date -d "${FECHA} ${HORA}:00:00 12 hours" +%Y-%m-%d_%H:00:00)
+RUN_HOURS=${RUN_HOURS:-24}
+END_DATE=$(date -d "${FECHA} ${HORA}:00:00 ${RUN_HOURS} hours" +%Y-%m-%d_%H:00:00)
 
 # PC pgich:  WRF_BASE=/home/pgich/Build_WRF / WPS_DIR=/home/pgich/Build_WRF/WPS
 #            WRF_EJECUTABLES=/home/pgich/wrf-operativo/ejecutables
@@ -70,7 +71,7 @@ echo "
 "
 # Enlazar GFS (link_grib.csh enlaza cualquier patrón de grib)
 ls gfs_data/${FECHA}_${HORA}/ > /dev/null 2>&1 || { echo "No hay GFS en gfs_data/${FECHA}_${HORA}/"; exit 1; }
-./link_grib.csh gfs_data/${FECHA}_${HORA}/
+./link_grib.csh gfs_data/${FECHA}_${HORA}/gfs.*
 ./ungrib.exe
 
 echo "

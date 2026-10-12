@@ -1,0 +1,32 @@
+{
+  "caso": "sanjuan_0806",
+  "fecha": "2026-08-06",
+  "hora": "00:00",
+  "generado": "2026-10-11T22:19:53",
+  "run_dir": "/home/pgich/wrf-operativo/ejecutables/WRF_casos_24h",
+  "run_hours_namelist": 24,
+  "valid_times": "2026-08-06_00:00:00,2026-08-06_06:00:00,2026-08-06_12:00:00,2026-08-06_18:00:00,2026-08-07_00:00:00",
+  "obs_coef": {
+    "wind": 0.0001,
+    "temp": 0.0001,
+    "mois": 0.0001
+  },
+  "tiempos_etapa_s": {
+    "obs_littler_obsdomain": 0.17,
+    "real_exe": 1.789,
+    "wrf_nudged": 715.074,
+    "wrf_control": 673.829,
+    "validacion": 12.019
+  },
+  "total_pipeline_s": 1402.881,
+  "etapas_orquestador_s": {
+    "api_ecowitt_y_cobertura": 56.568,
+    "obs_flat_parseo_qc": 0.072,
+    "gfs_descarga": 0.0,
+    "wps": 152.975,
+    "met_em_propagacion": 0.025,
+    "pipeline_total": 1404.0
+  },
+  "total_end_to_end_s": 1613.64,
+  "notas_orquestador": "api/obs medidos en cache en frio (API EcoWitt real); gfs/wps/pipeline de la corrida oficial."
+}

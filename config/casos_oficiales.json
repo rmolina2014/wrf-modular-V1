@@ -2,17 +2,20 @@
   "descripcion": "Casos oficiales (4) - datos más completos",
   "configuracion_comun": {
     "hora_ciclo": "00",
-    "run_hours": 12,
+    "run_hours": 24,
     "valid_times": [
       "00:00:00",
       "06:00:00",
-      "12:00:00"
+      "12:00:00",
+      "18:00:00",
+      "24:00:00"
     ],
     "obs_coef_wind": 0.0001,
     "obs_coef_temp": 0.0001,
     "obs_coef_mois": 0.0001,
     "obs_twindo": 1.0,
     "namelist_base": "namelist.input",
+    "wrf_timeout": 14400,
     "obs_min_registros": 60,
     "obs_min_estaciones": 3
   },
