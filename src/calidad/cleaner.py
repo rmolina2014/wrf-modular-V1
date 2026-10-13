@@ -70,7 +70,17 @@ class ObservacionesCleaner:
         }
         df = df.rename(columns=columnas_map)
 
-        if "fecha_hora" in df.columns:
+# Fuente de verdad temporal: hora_unix (epoch, UTC). fecha_hora en los CSV
+        # históricos quedó como etiqueta local ART hasta la corrección de huso
+        # horario (ingesta ahora emite fecha_hora en UTC); por robustez se prefiere
+        # siempre el epoch y se respeta como fallback la etiqueta de fecha_hora.
+        if "hora_unix" in df.columns:
+            df["timestamp"] = pd.to_datetime(
+                df["hora_unix"].astype(int), unit="s", errors="coerce"
+            )
+            df["fecha"] = df["timestamp"].dt.strftime("%Y-%m-%d")
+            df["hora"] = df["timestamp"].dt.strftime("%H:%M")
+        elif "fecha_hora" in df.columns:
             df["timestamp"] = pd.to_datetime(df["fecha_hora"], errors="coerce")
             df["fecha"] = df["timestamp"].dt.strftime("%Y-%m-%d")
             df["hora"] = df["timestamp"].dt.strftime("%H:%M")

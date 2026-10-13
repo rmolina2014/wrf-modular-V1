@@ -1,13 +1,13 @@
 {
   "caso": "caso3_frentefrio",
-  "fecha": "2026-10-11 23:42:17",
+  "fecha": "2026-10-12 21:05:46",
   "ejecutar_wrf": true,
   "chequeos": [
     {
       "id": "2.2.1",
       "descripcion": "Existencia del JSON de observaciones",
       "estado": "OK",
-      "detalle": "287 registros"
+      "detalle": "606 registros"
     },
     {
       "id": "2.2.2",
@@ -38,6 +38,12 @@
       "descripcion": "Cobertura temporal de las observaciones",
       "estado": "OK",
       "detalle": "tercio1: 80 obs / tercio2: 79 obs / tercio3: 80 obs"
+    },
+    {
+      "id": "2.2.7",
+      "descripcion": "Huso horario de observaciones",
+      "estado": "OK",
+      "detalle": "606 obs con fecha_hora == hora_unix (UTC), delta 0 s"
     }
   ]
 }

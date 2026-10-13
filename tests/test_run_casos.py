@@ -3,7 +3,7 @@
 import json
 import tempfile
 import unittest
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from unittest import mock
 
@@ -17,15 +17,19 @@ from src.casos.run_casos import (
 
 
 def _csv_historico(path: Path, fecha: str = "2026-07-31"):
-    """CSV historico minimo (esquema de ecowitt_client._convertir_a_csv)."""
+    """CSV historico minimo (esquema de ecowitt_client._convertir_a_csv).
+
+    fecha_hora se emite en UTC (corrección de huso: hora_unix como fuente de
+    verdad); el CSV del día cubre 00Z-24Z UTC.
+    """
     rows = [("estacion", "fecha", "hora_unix", "fecha_hora", "temp_c", "humedad_pct",
              "viento_kmh", "viento_rafaga_kmh", "direcc_grados", "presion_relativa_hpa",
              "presion_absoluta_hpa", "lluvia_diaria_mm", "solar_wm2")]
-    base = datetime.strptime(f"{fecha} 00:00:00", "%Y-%m-%d %H:%M:%S").timestamp()
+    base = int(datetime.strptime(f"{fecha} 00:00:00", "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc).timestamp())
     for i, est in enumerate(["INTA_POCITO", "CARACOLES"]):
         for k in range(5):
-            ts = int(base + k * 300)
-            rows.append((est, fecha, str(ts), datetime.fromtimestamp(ts).strftime("%Y-%m-%d %H:%M:%S"),
+            ts = base + k * 300
+            rows.append((est, fecha, str(ts), datetime.fromtimestamp(ts, timezone.utc).strftime("%Y-%m-%d %H:%M:%S"),
                          f"{20 + k}.0", "40", "5", "7", "180", "1010", "930", "0", "100"))
     with open(path, "w", newline="", encoding="utf-8") as f:
         for row in rows:
@@ -48,7 +52,7 @@ class TestObs(unittest.TestCase):
             csv = _csv_historico(Path(tmp) / "hist.csv", "2026-07-31")
             # La ventana 00-12Z termina a las 12Z; los registros son de 00:00-00:20: entran todos.
             # Usamos una ventana ad-hoc de 00:00 a 00:05 para verificar el filtrado.
-            ts_ini = int(datetime.strptime("2026-07-31 00:00:00", "%Y-%m-%d %H:%M:%S").timestamp())
+            ts_ini = int(datetime.strptime("2026-07-31 00:00:00", "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc).timestamp())
             df = __import__("pandas").read_csv(csv)
             df["ts"] = __import__("pandas").to_numeric(df["hora_unix"], errors="coerce")
             # La ventana ad-hoc 00:00-00:10 cubre k=0,1,2 (00:00, 00:05, 00:10) => 3 por estacion.

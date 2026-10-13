@@ -1,0 +1,49 @@
+{
+  "caso": "sanjuan_0924",
+  "fecha": "2026-10-12 21:26:55",
+  "ejecutar_wrf": true,
+  "chequeos": [
+    {
+      "id": "2.2.1",
+      "descripcion": "Existencia del JSON de observaciones",
+      "estado": "OK",
+      "detalle": "4123 registros"
+    },
+    {
+      "id": "2.2.2",
+      "descripcion": "Formato de superficie (FORMAT 105)",
+      "estado": "OK",
+      "detalle": "9 pares por línea"
+    },
+    {
+      "id": "2.2.3",
+      "descripcion": "Identificador de plataforma (SYNOP)",
+      "estado": "OK",
+      "detalle": "'SYNOP' presente en 1340 registros"
+    },
+    {
+      "id": "2.2.4",
+      "descripcion": "Timestamps de las observaciones",
+      "estado": "OK",
+      "detalle": "1340 timestamps válidos, orden cronológico OK, cadencia 5 min, segundos en [0]"
+    },
+    {
+      "id": "2.2.5",
+      "descripcion": "Cantidad de obs vs max_obs",
+      "estado": "OK",
+      "detalle": "1340 obs <= max_obs=10000"
+    },
+    {
+      "id": "2.2.6",
+      "descripcion": "Cobertura temporal de las observaciones",
+      "estado": "OK",
+      "detalle": "tercio1: 461 obs / tercio2: 399 obs / tercio3: 480 obs"
+    },
+    {
+      "id": "2.2.7",
+      "descripcion": "Huso horario de observaciones",
+      "estado": "OK",
+      "detalle": "4123 obs con fecha_hora == hora_unix (UTC), delta 0 s"
+    }
+  ]
+}

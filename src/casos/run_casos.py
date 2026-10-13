@@ -24,7 +24,7 @@ import shutil
 import subprocess
 import sys
 import time
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -99,31 +99,61 @@ def csv_historico(fecha: str) -> Path:
     return RAW / f"ecowitt_historico_{fc}.csv"
 
 
+def csv_caso(fecha: str) -> Path:
+    """CSV del caso: fusion de fecha-1 + fecha (dias locales) en hora UTC."""
+    fc = fecha.replace("-", "")
+    return RAW / f"ecowitt_historico_{fc}_ventana.csv"
+
+
 def descargar_obs_historico(fecha: str) -> Path:
-    """Descarga el historico diario si no existe y devuelve la ruta del CSV."""
-    csv = csv_historico(fecha)
-    if csv.exists() and csv.stat().st_size > 100:
-        logger.info(f"Historico ya descargado: {csv.name}")
-        return csv
-    logger.info(f"Descargando historico EcoWitt de {fecha}...")
-    EcowittIngestor().descargar_historico(fecha, output_dir=str(RAW))
-    if not csv.exists():
-        raise RuntimeError(f"No se genero el CSV historico para {fecha}")
-    return csv
+    """Descarga el historico local de fecha-1 y fecha y los fusiona.
+
+    El dia simulado 00Z-24Z (UTC) de `fecha` abarca desde las 21:00 locales del
+    dia anterior hasta las 21:00 locales de `fecha` (ART = UTC-3), por lo que se
+    requieren observaciones de ambos dias locales. Devuelve el CSV del caso
+    (ecowitt_historico_<fecha>_ventana.csv) con ambos dias fusionados y ordenados
+    por `hora_unix` (epoch UTC), que es la fuente de verdad temporal del flujo.
+    Los archivos diarios quedan intactos (el merge es idempotente).
+    """
+    previo = (datetime.strptime(fecha, "%Y-%m-%d") - timedelta(days=1)).strftime("%Y-%m-%d")
+    for dia in (previo, fecha):
+        csv = csv_historico(dia)
+        if csv.exists() and csv.stat().st_size > 100:
+            logger.info(f"Historico ya descargado: {csv.name}")
+            continue
+        logger.info(f"Descargando historico EcoWitt de {dia}...")
+        EcowittIngestor().descargar_historico(dia, output_dir=str(RAW))
+        if not csv.exists():
+            raise RuntimeError(f"No se genero el CSV historico para {dia}")
+
+    csv_prev = csv_historico(previo)
+    csv_dia = csv_historico(fecha)
+    csv_out = csv_caso(fecha)
+    df_prev = pd.read_csv(csv_prev)
+    df_dia = pd.read_csv(csv_dia)
+    df_merged = pd.concat([df_prev, df_dia], ignore_index=True)
+    if "hora_unix" in df_merged.columns:
+        df_merged = df_merged.sort_values("hora_unix")
+    df_merged.to_csv(csv_out, index=False, encoding="utf-8")
+    logger.info(
+        f"Fusion {df_prev.shape[0]}+{df_dia.shape[0]} registros -> {csv_out.name}"
+    )
+    return csv_out
 
 
 def cobertura_obs(csv_path: Path, fecha: str, ciclo: str = "00", run_hours: int = 12) -> Dict[str, Any]:
-    """Mide la cobertura de observaciones validas (dia completo y ventana del ciclo)."""
+    """Mide la cobertura de observaciones validas en la ventana UTC 00Z-24Z del caso."""
     df = pd.read_csv(csv_path)
     if df.empty or "temp_c" not in df.columns:
         return {"dia": 0, "ventana": 0, "estaciones": 0, "por_estacion": {}}
 
-    ts_ini = int(datetime.strptime(f"{fecha} 00:00:00", "%Y-%m-%d %H:%M:%S").timestamp())
+    ts_ini = int(datetime.strptime(f"{fecha} 00:00:00", "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc).timestamp())
     ts_fin = ts_ini + int(run_hours) * 3600
+    ts_dia_fin = ts_ini + 24 * 3600
     df["ts"] = pd.to_numeric(df["hora_unix"], errors="coerce")
     df["temp_ok"] = df["temp_c"].apply(lambda v: _num(v) is not None and pd.notna(v))
 
-    dia = int(df["temp_ok"].sum())
+    dia = int((df["temp_ok"] & df["ts"].between(ts_ini, ts_dia_fin)).sum())
     ventana = int((df["temp_ok"] & df["ts"].between(ts_ini, ts_fin)).sum())
     por_estacion = (
         df[df["temp_ok"] & df["ts"].between(ts_ini, ts_fin)]
@@ -146,8 +176,10 @@ def generar_obs_flat(csv_path: Path, fecha: str, salida: Optional[Path] = None) 
     if salida is None:
         salida = RAW / f"obs_flat_{fecha.replace('-', '')}.json"
     if salida.exists() and salida.stat().st_size > 100:
-        logger.info(f"obs_flat ya existe: {salida.name}")
-        return salida
+        if csv_path.stat().st_mtime <= salida.stat().st_mtime:
+            logger.info(f"obs_flat ya existe y esta al dia: {salida.name}")
+            return salida
+        logger.info(f"obs_flat desactualizado (CSV mas nuevo); regenerando: {salida.name}")
 
     cleaner = ObservacionesCleaner(str(RAW))
     df = cleaner.procesar_csv_historico(str(csv_path))
@@ -862,7 +894,7 @@ def main():
             cobertura = None
             if entry.get("estado") == "EJECUTADO":
                 try:
-                    csv = csv_historico(caso["fecha"])
+                    csv = csv_caso(caso["fecha"])
                     if csv.exists():
                         cobertura = cobertura_obs(csv, caso["fecha"], comun.get("hora_ciclo", "00"), comun.get("run_hours", 12))
                 except Exception:

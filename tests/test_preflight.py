@@ -4,7 +4,7 @@ import json
 import shutil
 import tempfile
 import unittest
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 from src.preflight.preflight import (
@@ -124,6 +124,33 @@ class TestChequeosPreflight(unittest.TestCase):
         inf = correr_preflight_observaciones(Path("/no/existe.json"), od, _namelist(), self.start, caso="nojson")
         c = next(c for c in inf.chequeos if c.id == "2.2.1")
         self.assertEqual(c.estado, Estado.BLOQUEANTE)
+
+    def _obs_json_huso(self, fecha, hora, ts):
+        obs = Path(tempfile.mkdtemp()) / "obs.json"
+        obs.write_text(json.dumps(
+            [{"estacion": "A", "time_unix": ts, "fecha": fecha, "hora": hora}]
+        ), encoding="utf-8")
+        return obs
+
+    def test_huso_horario_ok(self):
+        # Etiqueta UTC coherente con el epoch (corrección de huso aplicada).
+        ts = int(datetime(2026, 8, 6, 0, 0, 0, tzinfo=timezone.utc).timestamp())
+        obs = self._obs_json_huso("2026-08-06", "00:00:00", ts)
+        od = _obsdomain([_bloque_obs("20260806000000")])
+        inf = correr_preflight_observaciones(obs, od, _namelist(), self.start, caso="huso_ok")
+        c = next(c for c in inf.chequeos if c.id == "2.2.7")
+        self.assertEqual(c.estado, Estado.OK)
+        self.assertIn("delta 0 s", c.detalle)
+
+    def test_huso_horario_desfase_bloquea(self):
+        # Bug ART vs UTC: etiqueta local 3 h antes del epoch -> desfase -10800 s.
+        ts = int(datetime(2026, 8, 6, 3, 0, 0, tzinfo=timezone.utc).timestamp())
+        obs = self._obs_json_huso("2026-08-06", "00:00:00", ts)
+        od = _obsdomain([_bloque_obs("20260806000000")])
+        inf = correr_preflight_observaciones(obs, od, _namelist(), self.start, caso="huso_bad")
+        c = next(c for c in inf.chequeos if c.id == "2.2.7")
+        self.assertEqual(c.estado, Estado.BLOQUEANTE)
+        self.assertIn("desfase", c.detalle.lower())
 
     def test_guardar_informe_json(self):
         informe = InformePreflight(caso="test")

@@ -1,13 +1,13 @@
 {
   "caso": "caso2_calor",
-  "fecha": "2026-10-11 23:10:08",
+  "fecha": "2026-10-12 20:51:32",
   "ejecutar_wrf": true,
   "chequeos": [
     {
       "id": "2.2.1",
       "descripcion": "Existencia del JSON de observaciones",
       "estado": "OK",
-      "detalle": "290 registros"
+      "detalle": "624 registros"
     },
     {
       "id": "2.2.2",
@@ -19,25 +19,31 @@
       "id": "2.2.3",
       "descripcion": "Identificador de plataforma (SYNOP)",
       "estado": "OK",
-      "detalle": "'SYNOP' presente en 194 registros"
+      "detalle": "'SYNOP' presente en 199 registros"
     },
     {
       "id": "2.2.4",
       "descripcion": "Timestamps de las observaciones",
       "estado": "OK",
-      "detalle": "194 timestamps válidos, orden cronológico OK, cadencia 5 min, segundos en [0]"
+      "detalle": "199 timestamps válidos, orden cronológico OK, cadencia 5 min, segundos en [0]"
     },
     {
       "id": "2.2.5",
       "descripcion": "Cantidad de obs vs max_obs",
       "estado": "OK",
-      "detalle": "194 obs <= max_obs=10000"
+      "detalle": "199 obs <= max_obs=10000"
     },
     {
       "id": "2.2.6",
       "descripcion": "Cobertura temporal de las observaciones",
       "estado": "OK",
-      "detalle": "tercio1: 66 obs / tercio2: 64 obs / tercio3: 64 obs"
+      "detalle": "tercio1: 71 obs / tercio2: 64 obs / tercio3: 64 obs"
+    },
+    {
+      "id": "2.2.7",
+      "descripcion": "Huso horario de observaciones",
+      "estado": "OK",
+      "detalle": "624 obs con fecha_hora == hora_unix (UTC), delta 0 s"
     }
   ]
 }

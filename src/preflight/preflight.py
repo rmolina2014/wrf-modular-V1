@@ -341,6 +341,66 @@ class ChequeosObservaciones:
             informe.agregar("2.2.6", "Cobertura temporal de las observaciones",
                             Estado.OK, detalle)
 
+    # 2.2.7 Huso horario
+    def check_2227_huso_horario(self, informe: InformePreflight) -> None:
+        """Verifica que la etiqueta fecha+hora de cada obs coincida con su epoch UTC.
+
+        Tras la corrección de huso (hora_unix como fuente de verdad y fecha_hora
+        emitida en UTC), la etiqueta de cada observación debe coincidir con
+        datetime.utcfromtimestamp(time_unix). Un desfase distinto de cero indica
+        el bug ART vs UTC (etiquetas locales interpretadas como UTC, -3 h) que
+        corrompe nudging y validación.
+        """
+        if not self.obs_json.exists():
+            informe.agregar("2.2.7", "Huso horario de observaciones",
+                            Estado.BLOQUEANTE, f"No existe: {self.obs_json}")
+            return
+        try:
+            with open(self.obs_json, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception as e:
+            informe.agregar("2.2.7", "Huso horario de observaciones",
+                            Estado.BLOQUEANTE, f"JSON ilegible: {e}")
+            return
+        if not isinstance(data, list):
+            informe.agregar("2.2.7", "Huso horario de observaciones",
+                            Estado.ADVERTENCIA, "Formato inesperado; no se verifica")
+            return
+        desfases = []
+        n_con_time = 0
+        for obs in data:
+            if not isinstance(obs, dict) or "error" in obs:
+                continue
+            ts_u = obs.get("time_unix")
+            fecha, hora = obs.get("fecha"), obs.get("hora")
+            if ts_u is None or not fecha or not hora:
+                continue
+            n_con_time += 1
+            try:
+                etiqueta = datetime.strptime(f"{fecha} {hora}", "%Y-%m-%d %H:%M:%S")
+                verdadero = datetime.utcfromtimestamp(int(ts_u))
+                delta = (etiqueta - verdadero).total_seconds()
+            except (ValueError, TypeError, OverflowError):
+                continue
+            if delta != 0:
+                desfases.append((obs.get("estacion"), fecha, hora, int(delta)))
+        if not n_con_time:
+            informe.agregar("2.2.7", "Huso horario de observaciones",
+                            Estado.ADVERTENCIA, "Sin obs con time_unix para verificar")
+            return
+        if desfases:
+            ejemplos = ", ".join(
+                f"{e}: {f} {h} en {d} s" for e, f, h, d in desfases[:3]
+            )
+            informe.agregar("2.2.7", "Huso horario de observaciones",
+                            Estado.BLOQUEANTE,
+                            f"{len(desfases)} obs con desfase etiqueta vs hora_unix (UTC): {ejemplos}; "
+                            "revisar ingesta/cleaner (bug ART vs UTC)")
+            return
+        informe.agregar("2.2.7", "Huso horario de observaciones",
+                        Estado.OK,
+                        f"{n_con_time} obs con fecha_hora == hora_unix (UTC), delta 0 s")
+
 
 class PreflightRunner:
     """Orquesta los chequeos de secciones activas y devuelve el informe."""
@@ -377,4 +437,5 @@ def correr_preflight_observaciones(
     runner.registrar(chequeos.check_2224_timestamps)
     runner.registrar(chequeos.check_2225_max_obs)
     runner.registrar(chequeos.check_2226_cobertura)
+    runner.registrar(chequeos.check_2227_huso_horario)
     return runner.correr(informe)

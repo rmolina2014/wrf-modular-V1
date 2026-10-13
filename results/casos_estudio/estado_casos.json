@@ -1,22 +1,22 @@
 {
-  "caso4_sanjuan_0806": {
-    "estado": "EJECUTADO",
-    "detalle": "fuente GFS aws",
-    "ts": "2026-10-11T22:19:53"
-  },
   "caso1_zonda": {
     "estado": "EJECUTADO",
     "detalle": "fuente GFS aws",
-    "ts": "2026-10-11T22:57:12"
+    "ts": "2026-10-12T20:48:19"
   },
   "caso2_calor": {
     "estado": "EJECUTADO",
     "detalle": "fuente GFS aws",
-    "ts": "2026-10-11T23:29:34"
+    "ts": "2026-10-12T21:03:01"
   },
   "caso3_frentefrio": {
     "estado": "EJECUTADO",
     "detalle": "fuente GFS aws",
-    "ts": "2026-10-12T00:02:58"
+    "ts": "2026-10-12T21:18:02"
+  },
+  "caso4_sanjuan_0924": {
+    "estado": "EJECUTADO",
+    "detalle": "fuente GFS aws",
+    "ts": "2026-10-12T21:51:29"
   }
 }

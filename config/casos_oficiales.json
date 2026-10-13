@@ -54,15 +54,15 @@
       "informe": "outputs/informes/oficiales/informe_caso3_frentefrio_20260516.md"
     },
     {
-      "id": "caso4_sanjuan_0806",
+      "id": "caso4_sanjuan_0924",
       "num": 4,
-      "fecha": "2026-08-06",
-      "evento": "caso_sanjuan_0806",
-      "titulo": "Caso 4 - San Juan 2026-08-06",
-      "descripcion": "Caso oficial San Juan 2026-08-06",
+      "fecha": "2026-09-24",
+      "evento": "caso_sanjuan_0924",
+      "titulo": "Caso 4 - San Juan 2026-09-24",
+      "descripcion": "Caso oficial San Juan 2026-09-24 (todas las estaciones operativas con datos)",
       "fuente": "gfs_aws",
-      "resultados_dir": "outputs/runs/2026-08-06_0000z/sanjuan_0806",
-      "informe": "outputs/informes/oficiales/informe_caso4_sanjuan_0806_20260806.md"
+      "resultados_dir": "outputs/runs/2026-09-24_0000z/sanjuan_0924",
+      "informe": "outputs/informes/oficiales/informe_caso4_sanjuan_0924_20260924.md"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "fechaconsulta": "2026-10-11 23:30:29",
+  "fechaconsulta": "2026-10-12 20:28:36",
   "fechadatos": "2026-05-16",
   "estaciones": {
     "INTA_POCITO": {
@@ -5409,12 +5409,6 @@
           }
         }
       }
-    },
-    "LOS_PIONEROS": {
-      "mac": "30:83:98:A7:09:CD",
-      "registros_validos": 0,
-      "registros_total": 0,
-      "error": "Sin datos"
     },
     "CUESTA_Viento": {
       "mac": "30:83:98:A5:52:40",

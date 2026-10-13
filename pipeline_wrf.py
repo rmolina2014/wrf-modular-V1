@@ -199,12 +199,26 @@ def preparar_namelist(namelist_src, obs_nudge_opt, output_path, start_dt=None, *
     return Path(output_path)
 
 
-def generar_littler_desde_json(json_path, output_dir):
-    """Ejecuta el pipeline de limpieza + generacion Little_R (modulos modulares)."""
+def generar_littler_desde_json(json_path, output_dir, start_dt=None, run_hours=24):
+    """Ejecuta el pipeline de limpieza + generacion Little_R (modulos modulares).
+
+    Si se indica `start_dt` (UTC, naive), el DataFrame se filtra a la ventana
+    [start_dt, start_dt+run_hours) antes de escribir Little_R y OBS_DOMAIN101,
+    de modo que solo asimilen las observaciones contenidas en el dia simulado
+    (los CSVs historicos fusionados incluyen 2 dias locales para cubrir el
+    desfase ART = UTC-3).
+    """
     logger.info(f"Paso 1: Procesando JSON: {json_path}")
 
     cleaner = ObservacionesCleaner(str(output_dir))
     df = cleaner.procesar_json(str(json_path))
+    if start_dt is not None:
+        fin = start_dt + timedelta(hours=int(run_hours))
+        n_antes = len(df)
+        df = df[(df["timestamp"] >= start_dt) & (df["timestamp"] < fin)]
+        logger.info(
+            f"Ventana UTC [{start_dt} -> {fin}): {len(df)}/{n_antes} observaciones retenidas"
+        )
     fecha = df["fecha"].iloc[0].replace("-", "")
     hora = df["hora"].iloc[0].replace(":", "")
     timestamp = f"{fecha}_{hora}"
@@ -481,7 +495,10 @@ def pipeline(args):
 
     # === PASOS 1-3: Generar OBS_DOMAIN101 ===
     if not args.validate_only:
-        littler_path, timestamp, df = generar_littler_desde_json(args.json, obsdomain_dir)
+        littler_path, timestamp, df = generar_littler_desde_json(
+            args.json, obsdomain_dir, start_dt=start_dt,
+            run_hours=_run_hours_del_namelist(args.namelist),
+        )
         obsdomain = generar_obsdomain(df, obsdomain_dir, run_dir, args.prepare_only)
         _t = _marcar("obs_littler_obsdomain", _t)
 

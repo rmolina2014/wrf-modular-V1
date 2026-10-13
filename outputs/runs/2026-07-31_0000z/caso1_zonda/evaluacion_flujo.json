@@ -2,7 +2,7 @@
   "caso": "caso1_zonda",
   "fecha": "2026-07-31",
   "hora": "00:00",
-  "generado": "2026-10-11T22:57:12",
+  "generado": "2026-10-12T20:48:19",
   "run_dir": "/home/pgich/wrf-operativo/ejecutables/WRF_casos_24h",
   "run_hours_namelist": 24,
   "valid_times": "2026-07-31_00:00:00,2026-07-31_06:00:00,2026-07-31_12:00:00,2026-07-31_18:00:00,2026-08-01_00:00:00",
@@ -12,22 +12,20 @@
     "mois": 0.0001
   },
   "tiempos_etapa_s": {
-    "obs_littler_obsdomain": 0.182,
-    "preflight": 0.025,
-    "real_exe": 1.386,
-    "wrf_nudged": 624.25,
-    "wrf_control": 611.356,
-    "validacion": 10.157
+    "obs_littler_obsdomain": 0.217,
+    "preflight": 0.054,
+    "real_exe": 1.633,
+    "wrf_nudged": 713.564,
+    "validacion": 12.178
   },
-  "total_pipeline_s": 1247.356,
+  "total_pipeline_s": 727.646,
   "etapas_orquestador_s": {
-    "api_ecowitt_y_cobertura": 61.73,
-    "obs_flat_parseo_qc": 0.104,
-    "gfs_descarga": 688.0,
-    "wps": 192.933,
-    "met_em_propagacion": 0.067,
-    "pipeline_total": 1248.0
+    "api_ecowitt_y_cobertura": 0.034,
+    "obs_flat_parseo_qc": 0.202,
+    "gfs_descarga": 5.429,
+    "wps": 143.887,
+    "met_em_propagacion": 0.064,
+    "pipeline_total": 728.655
   },
-  "total_end_to_end_s": 2190.834,
-  "notas_orquestador": "api/obs medidos en cache en frio (API EcoWitt real); gfs/wps/pipeline de la corrida oficial."
+  "total_end_to_end_s": 878.271
 }

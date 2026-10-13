@@ -1,13 +1,13 @@
 {
   "caso": "caso1_zonda",
-  "fecha": "2026-10-11 22:36:24",
+  "fecha": "2026-10-12 20:36:11",
   "ejecutar_wrf": true,
   "chequeos": [
     {
       "id": "2.2.1",
       "descripcion": "Existencia del JSON de observaciones",
       "estado": "OK",
-      "detalle": "2166 registros"
+      "detalle": "4428 registros"
     },
     {
       "id": "2.2.2",
@@ -19,25 +19,31 @@
       "id": "2.2.3",
       "descripcion": "Identificador de plataforma (SYNOP)",
       "estado": "OK",
-      "detalle": "'SYNOP' presente en 1416 registros"
+      "detalle": "'SYNOP' presente en 1417 registros"
     },
     {
       "id": "2.2.4",
       "descripcion": "Timestamps de las observaciones",
       "estado": "OK",
-      "detalle": "1416 timestamps válidos, orden cronológico OK, cadencia 5 min, segundos en [0]"
+      "detalle": "1417 timestamps válidos, orden cronológico OK, cadencia 5 min, segundos en [0]"
     },
     {
       "id": "2.2.5",
       "descripcion": "Cantidad de obs vs max_obs",
       "estado": "OK",
-      "detalle": "1416 obs <= max_obs=10000"
+      "detalle": "1417 obs <= max_obs=10000"
     },
     {
       "id": "2.2.6",
       "descripcion": "Cobertura temporal de las observaciones",
       "estado": "OK",
-      "detalle": "tercio1: 480 obs / tercio2: 457 obs / tercio3: 479 obs"
+      "detalle": "tercio1: 480 obs / tercio2: 460 obs / tercio3: 477 obs"
+    },
+    {
+      "id": "2.2.7",
+      "descripcion": "Huso horario de observaciones",
+      "estado": "OK",
+      "detalle": "4428 obs con fecha_hora == hora_unix (UTC), delta 0 s"
     }
   ]
 }
