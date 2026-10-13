@@ -167,18 +167,26 @@ def copiar_archivo(src, dst, timeout=60):
         return False
 
 
-def preparar_namelist(namelist_src, obs_nudge_opt, output_path, start_dt=None, **kwargs):
+def preparar_namelist(namelist_src, obs_nudge_opt, output_path, start_dt=None,
+                      run_hours=None, asim_hours=None, fdda_end_min=None, **kwargs):
     """
     Prepara un namelist final delegando en src/modelo/namelist_manager.py.
-    - Parchea las fechas de inicio/fin si se pasa start_dt (run_hours se lee del namelist).
+    - Parchea las fechas de inicio/fin si se pasa start_dt.
+    - run_hours: si se indica, sobreescribe el del namelist (protocolo temporal: 36).
     - Fija obs_nudge_opt y parametros de sensibilidad (obs_coef_*, obs_twindo).
-    - Ajusta fdda_end = run_hours*60 (minutos de integracion) para que el obs nudging
-      este activo durante todo el ciclo, cualquiera sea su duracion (mejora 3.4 del
-      informe_mejoras_f4). Con run_hours=12 queda 720, como antes.
+    - fdda_end: minutos de integracion con nudging activo (mejora 3.4). En el
+      protocolo de separacion temporal debe ser `asim_hours*60` para que el
+      nudging se apague al terminar la asimilacion (no contamine el pronostico
+      libre). Precedencia: fdda_end_min > asim_hours*60 > run_hours*60.
+    - gfdda_end_h se mantiene coherente con run_hours (grid_fdda=0, no afecta).
     """
     mgr = NamelistManager(template_path=str(namelist_src))
-    m = re.search(r'run_hours\s*=\s*(\d+)', mgr.contenido)
-    run_hours = int(m.group(1)) if m else 12
+    if run_hours is None:
+        m = re.search(r'run_hours\s*=\s*(\d+)', mgr.contenido)
+        run_hours = int(m.group(1)) if m else 12
+    else:
+        run_hours = int(run_hours)
+        mgr.contenido = re.sub(r'run_hours\s*=\s*\d+', f'run_hours = {run_hours}', mgr.contenido)
     if start_dt is not None:
         end_dt = start_dt + timedelta(hours=run_hours)
         mgr.actualizar_fechas(
@@ -188,36 +196,45 @@ def preparar_namelist(namelist_src, obs_nudge_opt, output_path, start_dt=None, *
             end_day=end_dt.day, end_hour=end_dt.hour,
             run_hours=run_hours,
         )
-    # fdda_end = duracion del ciclo en minutos, no un valor fijo (ver mejora 3.4).
-    # gfdda_end_h se mantiene coherente con run_hours (grid_fdda=0, no afecta,
-    # pero evita un namelist inconsistente).
-    mgr.contenido = re.sub(r'fdda_end\s*=\s*\d+', f'fdda_end = {run_hours * 60}', mgr.contenido)
+    # fdda_end = minutos con nudging activo. En el protocolo temporal el nudging
+    # solo corre durante la ventana de asimilacion (asim_hours*60), no durante el
+    # pronostico libre.
+    if fdda_end_min is not None:
+        _fdda_min = int(fdda_end_min)
+    elif asim_hours is not None:
+        _fdda_min = int(asim_hours) * 60
+    else:
+        _fdda_min = run_hours * 60
+    mgr.contenido = re.sub(r'fdda_end\s*=\s*\d+', f'fdda_end = {_fdda_min}', mgr.contenido)
     mgr.contenido = re.sub(r'gfdda_end_h\s*=\s*\d+', f'gfdda_end_h = {run_hours}', mgr.contenido)
     mgr.configurar_fdda(obs_nudge_opt=obs_nudge_opt, **kwargs)
     mgr.guardar(output_path)
-    logger.info(f"Namelist preparado: {output_path} (obs_nudge_opt={obs_nudge_opt})")
+    logger.info(f"Namelist preparado: {output_path} (obs_nudge_opt={obs_nudge_opt}, "
+                f"run_hours={run_hours}, fdda_end={_fdda_min})")
     return Path(output_path)
 
 
-def generar_littler_desde_json(json_path, output_dir, start_dt=None, run_hours=24):
+def generar_littler_desde_json(json_path, output_dir, start_dt=None, run_hours=24, asim_hours=None):
     """Ejecuta el pipeline de limpieza + generacion Little_R (modulos modulares).
 
     Si se indica `start_dt` (UTC, naive), el DataFrame se filtra a la ventana
-    [start_dt, start_dt+run_hours) antes de escribir Little_R y OBS_DOMAIN101,
-    de modo que solo asimilen las observaciones contenidas en el dia simulado
-    (los CSVs historicos fusionados incluyen 2 dias locales para cubrir el
-    desfase ART = UTC-3).
+    [start_dt, start_dt+ventana) antes de escribir Little_R y OBS_DOMAIN101.
+    `ventana` = asim_hours si se indica (protocolo de separacion temporal: la
+    asimilacion termina en t0), si no run_hours. Los CSVs historicos fusionados
+    incluyen 2 dias locales para cubrir el desfase ART = UTC-3.
     """
     logger.info(f"Paso 1: Procesando JSON: {json_path}")
 
     cleaner = ObservacionesCleaner(str(output_dir))
     df = cleaner.procesar_json(str(json_path))
     if start_dt is not None:
-        fin = start_dt + timedelta(hours=int(run_hours))
+        ventana = int(asim_hours) if asim_hours is not None else int(run_hours)
+        fin = start_dt + timedelta(hours=ventana)
         n_antes = len(df)
         df = df[(df["timestamp"] >= start_dt) & (df["timestamp"] < fin)]
         logger.info(
-            f"Ventana UTC [{start_dt} -> {fin}): {len(df)}/{n_antes} observaciones retenidas"
+            f"Ventana UTC [{start_dt} -> {fin}): {len(df)}/{n_antes} observaciones retenidas "
+            f"({'asimilacion' if asim_hours is not None else 'ciclo'})"
         )
     fecha = df["fecha"].iloc[0].replace("-", "")
     hora = df["hora"].iloc[0].replace(":", "")
@@ -237,13 +254,21 @@ def generar_littler_desde_json(json_path, output_dir, start_dt=None, run_hours=2
     return littler_path, timestamp, df
 
 
-def generar_obsdomain(df, output_dir, run_dir, no_copiar=False):
-    """Convierte el DataFrame validado a OBS_DOMAIN101 y lo copia al directorio de corrida."""
+def generar_obsdomain(df, output_dir, run_dir, no_copiar=False,
+                       asimilar_todas=True, t_max=None):
+    """Convierte el DataFrame validado a OBS_DOMAIN101 y lo copia al directorio de corrida.
+
+    `asimilar_todas=True` (protocolo de separacion temporal, D3): se asimilan las
+    estaciones activas sin hold-out. Con `asimilar_todas=False` se conserva el
+    hold-out espacial previo (estaciones con rol='evaluacion' no se asimilan).
+    `t_max` (UTC): ninguna observacion posterior a t0 entra a OBS_DOMAIN101.
+    """
     logger.info("Paso 3: Generando OBS_DOMAIN101...")
     obsdomain_path = str(output_dir / "OBS_DOMAIN101")
 
     writer = ObsNudWriter(config_estaciones_path=str(ESTACIONES_JSON))
-    writer.generar_desde_dataframe(df, output_path=obsdomain_path)
+    writer.generar_desde_dataframe(df, output_path=obsdomain_path,
+                                   usar_roles=not asimilar_todas, t_max=t_max)
     logger.info(f"  OBS_DOMAIN101 generado: {obsdomain_path}")
 
     if not no_copiar:
@@ -267,7 +292,8 @@ def copiar_namelist(namelist_path, run_dir):
     return copiar_archivo(namelist_path, run_dir / "namelist.input")
 
 
-def ejecutar_preflight(obs_json, obsdomain, namelist, start_dt=None, caso="", config_path=None):
+def ejecutar_preflight(obs_json, obsdomain, namelist, start_dt=None, caso="", config_path=None,
+                       t0=None, asim_horas=None, horizonte_h=None):
     """Ejecuta los chequeos previos a WRF (Sección 2.2) y los registra en el log.
 
     Devuelve (informe, ok): ok=False si existe algún chequeo BLOQUEANTE,
@@ -279,6 +305,7 @@ def ejecutar_preflight(obs_json, obsdomain, namelist, start_dt=None, caso="", co
         start_dt=start_dt,
         caso=caso,
         config_path=Path(config_path) if config_path else None,
+        t0=t0, asim_horas=asim_horas, horizonte_h=horizonte_h,
     )
     logger.info("=== PREFLIGHT ===")
     for line in informe.resumen_log().splitlines():
@@ -344,8 +371,13 @@ def _tiempos_wrfout(control_dir):
     return sorted(p.name for p in d.glob("wrfout_d01_*"))
 
 
-def _escribir_manifest_control(case_dir, namelist_control, start_dt, run_hours=12):
-    """Registra el manifest del control generado (nombre del caso en case_dir)."""
+def _escribir_manifest_control(case_dir, namelist_control, start_dt, run_hours=12,
+                               t0=None, asim_horas=None):
+    """Registra el manifest del control generado (nombre del caso en case_dir).
+
+    Incluye, cuando se informan, t0 y la ventana de asimilacion para dejar
+    constancia del protocolo de separacion temporal (asimilacion [start,t0] +
+    pronostico libre [t0, end])."""
     case_dir = Path(case_dir)
     case_dir.mkdir(parents=True, exist_ok=True)
     def _f(name):
@@ -360,6 +392,10 @@ def _escribir_manifest_control(case_dir, namelist_control, start_dt, run_hours=1
         "start": start_dt.strftime("%Y-%m-%d_%H:%M:%S") if start_dt else None,
         "run_hours": int(run_hours),
         "end": (start_dt + timedelta(hours=int(run_hours))).strftime("%Y-%m-%d_%H:%M:%S") if start_dt else None,
+        "t0": t0.strftime("%Y-%m-%d_%H:%M:%S") if t0 else None,
+        "asim_horas": float(asim_horas) if asim_horas is not None else None,
+        "asim_end": (start_dt + timedelta(hours=float(asim_horas))).strftime("%Y-%m-%d_%H:%M:%S")
+                    if (start_dt and asim_horas is not None) else None,
         "obs_coef_wind": _f("obs_coef_wind"),
         "obs_coef_temp": _f("obs_coef_temp"),
         "obs_coef_mois": _f("obs_coef_mois"),
@@ -421,11 +457,13 @@ def _control_reutilizable(case_dir, control_dir, namelist_control, start_dt=None
 
 
 def run_valida_wrf(nudged_dir, control_dir, output_dir, valid_time, obs_json, label="",
-                   run_dir=None, valid_times=None):
+                   run_dir=None, valid_times=None, t0=None, horizon_h=None):
     """Ejecuta valida_wrf.py localmente con el python del entorno de validacion.
 
     Si valid_times tiene mas de un tiempo, genera el informe de evolucion del
-    nudging (gráfico 00Z-06Z-12Z) ademas de las tablas por horario."""
+    nudging (gráfico 00Z-06Z-12Z) ademas de las tablas por horario.
+    `t0` (UTC, ISO) y `horizon_h` activan el modo de separacion temporal: errores
+    por horizonte, metricas por tramo y linea base de persistencia."""
     logger.info("Paso: Ejecutando validacion (local)...")
 
     valida_script_local = str(Path(__file__).parent / "src" / "validacion" / "valida_wrf_cli.py")
@@ -446,6 +484,10 @@ def run_valida_wrf(nudged_dir, control_dir, output_dir, valid_time, obs_json, la
         cmd += ["--obs-json", str(obs_json)]
     if label:
         cmd += ["--label", label]
+    if t0:
+        cmd += ["--t0", str(t0)]
+    if horizon_h is not None:
+        cmd += ["--horizon-h", str(int(horizon_h))]
 
     logger.info(f"  Ejecutando: {' '.join(cmd)}")
     result = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
@@ -474,8 +516,33 @@ def pipeline(args):
         start_dt = None
         logger.warning("No se pudo parsear la fecha de inicio, se usan fechas del namelist")
 
-    # Directorios
-    case_dir = RESULTS_DIR / f"{date_str}_{hour_str.replace(':', '')}z" / case
+    # === Protocolo de separacion temporal ===
+    # t0 = fin de la asimilacion / inicio del pronostico libre. Precedencia:
+    # --t0 explicito > start_dt + asim_hours. asim_hours None = sin protocolo.
+    asim_horas = getattr(args, "asim_hours", None)
+    horizonte_h = getattr(args, "horizon_h", None)
+    t0 = None
+    if getattr(args, "t0", None):
+        try:
+            t0 = datetime.strptime(args.t0.replace("Z", ""), "%Y-%m-%dT%H:%M:%S")
+        except ValueError:
+            try:
+                t0 = datetime.strptime(args.t0.replace("Z", ""), "%Y-%m-%d %H:%M:%S")
+            except ValueError:
+                logger.warning(f"t0 no parseable: {args.t0}; se ignora")
+    if t0 is None and start_dt is not None and asim_horas is not None:
+        t0 = start_dt + timedelta(hours=float(asim_horas))
+    if t0 is not None:
+        logger.info(f"Protocolo temporal: start={start_dt}, t0={t0} (asim={asim_horas} h, "
+                    f"horizonte={horizonte_h} h)")
+
+    # Directorios. --case-dir (opcional) permite fijar el directorio de salida del
+    # caso (necesario con el protocolo temporal, donde el start ya no coincide con
+    # la fecha del evento).
+    if getattr(args, "case_dir", None):
+        case_dir = Path(args.case_dir)
+    else:
+        case_dir = RESULTS_DIR / f"{date_str}_{hour_str.replace(':', '')}z" / case
     nudged_dir = case_dir / "nudged"
     control_dir = case_dir / "control"
     obsdomain_dir = case_dir / "input"
@@ -497,9 +564,13 @@ def pipeline(args):
     if not args.validate_only:
         littler_path, timestamp, df = generar_littler_desde_json(
             args.json, obsdomain_dir, start_dt=start_dt,
-            run_hours=_run_hours_del_namelist(args.namelist),
+            run_hours=args.run_hours or _run_hours_del_namelist(args.namelist),
+            asim_hours=asim_horas,
         )
-        obsdomain = generar_obsdomain(df, obsdomain_dir, run_dir, args.prepare_only)
+        obsdomain = generar_obsdomain(
+            df, obsdomain_dir, run_dir, args.prepare_only,
+            asimilar_todas=not getattr(args, "holdout", False), t_max=t0,
+        )
         _t = _marcar("obs_littler_obsdomain", _t)
 
         if obsdomain is None and not args.prepare_only:
@@ -507,9 +578,25 @@ def pipeline(args):
             return 1
 
         if args.prepare_only:
+            # Preparar tambien los namelists (sin correr WRF) para que el
+            # verificador del protocolo temporal pueda validar T1-T8 antes de
+            # gastar horas de computo.
+            run_hours_prep = args.run_hours or _run_hours_del_namelist(args.namelist)
+            coefs_prep = {"obs_coef_wind": args.obs_coef_wind,
+                          "obs_coef_temp": args.obs_coef_temp,
+                          "obs_coef_mois": args.obs_coef_mois,
+                          "obs_twindo": args.obs_twindo}
+            coefs_prep = {k: v for k, v in coefs_prep.items() if v is not None}
+            preparar_namelist(args.namelist, 1, case_dir / "namelist_nudged.input",
+                              start_dt=start_dt, run_hours=run_hours_prep,
+                              asim_hours=asim_horas, **coefs_prep)
+            preparar_namelist(args.namelist, 0, case_dir / "namelist_control.input",
+                              start_dt=start_dt, run_hours=run_hours_prep,
+                              asim_hours=asim_horas, **coefs_prep)
             logger.info(f"Material listo en {obsdomain_dir}")
             logger.info(f"  Little_R: {littler_path}")
             logger.info(f"  OBS_DOMAIN101: {obsdomain}")
+            logger.info(f"  namelists: {case_dir / 'namelist_nudged.input'}, {case_dir / 'namelist_control.input'}")
             logger.info("Modo --prepare-only: fin.")
             return 0
 
@@ -530,7 +617,8 @@ def pipeline(args):
         if args.obs_twindo is not None:
             coefs["obs_twindo"] = args.obs_twindo
 
-        preparar_namelist(args.namelist, 1, namelist_nudged, start_dt=start_dt, **coefs)
+        preparar_namelist(args.namelist, 1, namelist_nudged, start_dt=start_dt,
+                          run_hours=args.run_hours, asim_hours=asim_horas, **coefs)
 
         # === PREFLIGHT: validar OBS_DOMAIN101 y namelist antes de ejecutar wrf.exe ===
         if not args.skip_preflight:
@@ -539,6 +627,7 @@ def pipeline(args):
                 args.json, obsdomain_dir / "OBS_DOMAIN101", namelist_nudged,
                 start_dt=start_dt, caso=case,
                 config_path=args.preflight_config,
+                t0=t0, asim_horas=asim_horas, horizonte_h=horizonte_h,
             )
             _t = _marcar("preflight", _t)
             informe_preflight.guardar(case_dir / f"preflight_{case}.json")
@@ -580,7 +669,7 @@ def pipeline(args):
 
         # Reutilizar el control solo si coincide con la config actual
         # (mismo namelist_control y periodo). Ver hallazgo H6 del analisis.
-        run_hours_control = _run_hours_del_namelist(args.namelist)
+        run_hours_control = args.run_hours or _run_hours_del_namelist(args.namelist)
         namelist_control = case_dir / "namelist_control.input"
         if _control_reutilizable(case_dir, control_dir, namelist_control,
                                  start_dt, run_hours=run_hours_control):
@@ -590,7 +679,8 @@ def pipeline(args):
             # (WRF ignora la relajacion cuando el nudging esta apagado), pero asi
             # el namelist de control difiere del nudged unicamente en obs_nudge_opt,
             # como documentan los informes de casos de estudio.
-            preparar_namelist(args.namelist, 0, namelist_control, start_dt=start_dt, **coefs)
+            preparar_namelist(args.namelist, 0, namelist_control, start_dt=start_dt,
+                              run_hours=args.run_hours, asim_hours=asim_horas, **coefs)
             copiar_namelist(namelist_control, run_dir)
 
             # Si venimos de nudged, reiniciar con wrfinput (sin nudging previo)
@@ -611,7 +701,9 @@ def pipeline(args):
                  f"mkdir -p {run_dir}/control && cp {run_dir}/wrfout_d01* {run_dir}/control/"],
                 capture_output=True, text=True, timeout=60,
             )
-            _escribir_manifest_control(case_dir, namelist_control, start_dt, run_hours=run_hours_control)
+            _escribir_manifest_control(case_dir, namelist_control, start_dt,
+                                       run_hours=run_hours_control,
+                                       t0=t0, asim_horas=asim_horas)
 
     # === PASO 12: Validacion ===
     if args.validate_only:
@@ -646,6 +738,7 @@ def pipeline(args):
         valid_ok = run_valida_wrf(
             nudged_dir, control_dir, case_dir,
             valid_time, args.json, args.label, run_dir, valid_times,
+            t0=t0.strftime("%Y-%m-%dT%H:%M:%S") if t0 else None, horizon_h=horizonte_h,
         )
         _t = _marcar("validacion", _t)
 
@@ -759,6 +852,22 @@ Ejemplos:
                         help="obs_coef_mois (default: usar valor del namelist)")
     parser.add_argument("--obs-twindo", type=float, default=None,
                         help="obs_twindo en horas (default: usar valor del namelist)")
+
+    # Protocolo de separacion temporal (asimilacion previa a t0 + pronostico libre)
+    parser.add_argument("--case-dir", default=None,
+                        help="Directorio de salida del caso (default: RESULTS_DIR/<fecha>_<hora>z/<case>)")
+    parser.add_argument("--run-hours", type=int, default=None,
+                        help="run_hours del ciclo (default: valor del namelist). "
+                             "Protocolo temporal: asim_hours + horizonte_h (ej. 36)")
+    parser.add_argument("--asim-hours", type=float, default=None,
+                        help="Horas de asimilacion desde start hasta t0 (default: sin protocolo; se asimila run_hours)")
+    parser.add_argument("--horizon-h", type=float, default=None,
+                        help="Horizonte de pronostico libre desde t0 (h); para validacion por horizonte/tramo")
+    parser.add_argument("--t0", default=None,
+                        help="ISO8601 del fin de asimilacion (default: start + asim_hours). Ej: 2026-07-31T00:00:00Z")
+    parser.add_argument("--holdout", action="store_true",
+                        help="Mantener hold-out espacial (rol='evaluacion' no se asimila). "
+                             "Default: asimilar todas las estaciones (protocolo temporal, D3)")
 
     # Timeout
     parser.add_argument("--wrf-timeout", type=int, default=7200,

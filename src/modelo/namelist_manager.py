@@ -54,6 +54,32 @@ class NamelistManager:
         self.contenido = c
         return self
 
+    @staticmethod
+    def _fmt_val(val) -> str:
+        if isinstance(val, float):
+            val_str = f"{val:.6f}".rstrip("0").rstrip(".") if "." in f"{val}" else f"{val}"
+            if "." not in val_str:
+                val_str += "."
+            return val_str
+        return str(val)
+
+    def _insertar_en_fdda(self, c: str, param: str, val) -> str:
+        """Inserta (o reemplaza) `param` dentro del bloque &fdda del namelist.
+
+        Si el parámetro ya existe se reemplaza; si no, se agrega antes del cierre
+        del bloque &fdda. Necesario para parámetros de fin de nudging
+        (obs_idynin, obs_dtramp) que la plantilla puede no declarar explícitamente.
+        """
+        patron = rf"({param}\s*=\s*)[^,;\n]+"
+        if re.search(patron, c):
+            return re.sub(patron, rf"\g<1>{self._fmt_val(val)}", c)
+        m = re.search(r"(&fdda\b.*?)(\n\s*/\s*)", c, flags=re.DOTALL)
+        if not m:
+            return c
+        ins = f" {param:<35} = {self._fmt_val(val)},\n"
+        pos = m.start(2)
+        return c[:pos] + ins + c[pos:]
+
     def configurar_fdda(
         self,
         obs_nudge_opt: int = 1,
@@ -66,8 +92,17 @@ class NamelistManager:
         obs_npfi: int = 30,
         obs_ionf: int = 1,
         max_obs: int = 10000,
+        obs_idynin: Optional[int] = None,
+        obs_dtramp: Optional[float] = None,
     ) -> "NamelistManager":
-        """Configura los parámetros del namelist &fdda para Observational Nudging."""
+        """Configura los parámetros del namelist &fdda para Observational Nudging.
+
+        `obs_idynin` (inicialización dinámica) y `obs_dtramp` (rampa de salida del
+        nudging, en minutos) son opcionales: por defecto (None) no se tocan y se
+        mantiene el valor de la plantilla. En la guía de WRF, para el protocolo de
+        separación temporal conviene revisar `obs_idynin=1` y una rampa `obs_dtramp`
+        para que el nudging no siga pesando en el inicio del pronóstico libre.
+        """
         c = self.contenido
 
         reemplazos = {
@@ -84,16 +119,15 @@ class NamelistManager:
         }
 
         for param, val in reemplazos.items():
-            if isinstance(val, float):
-                val_str = f"{val:.6f}".rstrip("0").rstrip(".") if "." in f"{val}" else f"{val}"
-                if "." not in val_str:
-                    val_str += "."
-            else:
-                val_str = str(val)
-
+            val_str = self._fmt_val(val)
             patron = rf"({param}\s*=\s*)[^,;\n]+"
             if re.search(patron, c):
                 c = re.sub(patron, rf"\g<1>{val_str}", c)
+
+        if obs_idynin is not None:
+            c = self._insertar_en_fdda(c, "obs_idynin", int(obs_idynin))
+        if obs_dtramp is not None:
+            c = self._insertar_en_fdda(c, "obs_dtramp", float(obs_dtramp))
 
         self.contenido = c
         return self

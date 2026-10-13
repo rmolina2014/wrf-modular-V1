@@ -37,7 +37,8 @@ class ObsNudWriter:
         """
         return {est: timedelta(seconds=0) for est in set(estaciones)}
 
-    def escribir_obsnud(self, observaciones: List[Dict[str, Any]], output_path: str = "data/processed/OBS_DOMAIN101") -> Path:
+    def escribir_obsnud(self, observaciones: List[Dict[str, Any]], output_path: str = "data/processed/OBS_DOMAIN101",
+                        t_max: Optional[datetime] = None) -> Path:
         """Escribe la lista de observaciones en el archivo destino con formato estricto FORMAT 105 de WRF.
 
         Las observaciones se ordenan cronológicamente por timestamp antes de escribir:
@@ -71,6 +72,7 @@ class ObsNudWriter:
 
         # Pre-procesar y ordenar por timestamp (formato YYYYMMDDHHMMSS, orden lexicográfico = temporal)
         prep = []
+        descartadas_tmax = 0
         desfases = self._desfase_por_estacion([str(o.get("estacion", "UNKNOWN")) for o in observaciones])
         for obs in observaciones:
             try:
@@ -113,8 +115,21 @@ class ObsNudWriter:
             # Desfase per-estación = 0 s (ver _desfase_por_estacion); se conserva la suma
             # para que quede explícito que no hay manipulación de timestamps (mejora 3.6).
             dt_str = (datetime.strptime(dt_str, "%Y%m%d%H%M%S") + desfases[nombre]).strftime("%Y%m%d%H%M%S")
+            # Defensa del protocolo de separación temporal: ninguna observación
+            # posterior a t0 puede entrar al archivo asimilado (el corazón del
+            # protocolo asimilación-previo + pronóstico libre).
+            if t_max is not None:
+                if datetime.strptime(dt_str, "%Y%m%d%H%M%S") > t_max:
+                    descartadas_tmax += 1
+                    continue
             prep.append((dt_str, nombre, lat, lon, elev, t_k, t_qc, rh, rh_qc,
                          psfc_pa, psfc_qc, u, u_qc, v, v_qc))
+
+        if descartadas_tmax:
+            logger.warning(
+                f"Separación temporal: {descartadas_tmax} observaciones posteriores a "
+                f"t_max={t_max} descartadas de {output_path}."
+            )
 
         prep.sort(key=lambda r: r[0])
 
@@ -158,8 +173,17 @@ class ObsNudWriter:
         logger.info(f"OBS_DOMAIN101 generado en {dst_path} con {escritas} observaciones (orden cronológico).")
         return dst_path
 
-    def generar_desde_dataframe(self, df: pd.DataFrame, config_estaciones: Optional[Dict[str, Any]] = None, output_path: str = "data/processed/OBS_DOMAIN101") -> Path:
-        """Convierte directamente un DataFrame validado a OBS_DOMAIN101."""
+    def generar_desde_dataframe(self, df: pd.DataFrame, config_estaciones: Optional[Dict[str, Any]] = None,
+                                output_path: str = "data/processed/OBS_DOMAIN101",
+                                usar_roles: bool = False, t_max: Optional[datetime] = None) -> Path:
+        """Convierte directamente un DataFrame validado a OBS_DOMAIN101.
+
+        `usar_roles=False` (default): no filtra por rol; todas las estaciones
+        activas se asimilan (protocolo de separación temporal, D3). Con
+        `usar_roles=True` se conserva el hold-out espacial previo (las estaciones
+        con rol='evaluacion' no entran a OBS_DOMAIN101).
+        `t_max` (UTC): ninguna observación posterior a t_max entra al archivo.
+        """
         if config_estaciones is None and self.config_path.exists():
             import json
             with open(self.config_path, "r", encoding="utf-8") as f:
@@ -168,20 +192,35 @@ class ObsNudWriter:
 
         obs_list = []
         omitidas_holdout = 0
+        descartadas_tmax = 0
         for _, row in df.iterrows():
             nombre = str(row.get("estacion", "UNKNOWN"))
             meta = config_estaciones.get(nombre, {})
-            # Hold-out espacial: las estaciones con rol "evaluacion" en
-            # config/estaciones.json se reservan para validar generalizacion
-            # y nunca se asimilan (no entran a OBS_DOMAIN101).
-            if meta.get("rol") == "evaluacion":
+            # Hold-out espacial (opt-in): las estaciones con rol "evaluacion" se
+            # reservan para validar generalización y nunca se asimilan.
+            if usar_roles and meta.get("rol") == "evaluacion":
                 omitidas_holdout += 1
                 continue
+            dt_row = None
+            if t_max is not None:
+                ts = row.get("timestamp")
+                if ts is not None and not pd.isna(ts):
+                    dt_row = pd.to_datetime(ts).to_pydatetime()
+                else:
+                    try:
+                        dt_row = datetime.strptime(
+                            f"{row.get('fecha')} {row.get('hora')}", "%Y-%m-%d %H:%M:%S")
+                    except (TypeError, ValueError):
+                        dt_row = None
+                if dt_row is not None and dt_row > t_max:
+                    descartadas_tmax += 1
+                    continue
             obs_list.append({
                 "estacion": nombre,
                 "lat": meta.get("lat", row.get("lat", 0.0)),
                 "lon": meta.get("lon", row.get("lon", 0.0)),
                 "elev": meta.get("elev", row.get("elev", 0.0)),
+                "timestamp": row.get("timestamp"),
                 "fecha": row.get("fecha"),
                 "hora": row.get("hora"),
                 "temp": row.get("temp"),
@@ -197,5 +236,10 @@ class ObsNudWriter:
                 f"Hold-out espacial: {omitidas_holdout} observaciones de estaciones "
                 f"'evaluacion' omitidas de la asimilacion (no van a {output_path})."
             )
+        if descartadas_tmax:
+            logger.warning(
+                f"Separación temporal: {descartadas_tmax} observaciones posteriores a "
+                f"t_max={t_max} omitidas de la asimilacion (no van a {output_path})."
+            )
 
-        return self.escribir_obsnud(obs_list, output_path)
+        return self.escribir_obsnud(obs_list, output_path, t_max=t_max)

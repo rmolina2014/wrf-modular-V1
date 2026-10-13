@@ -7,13 +7,84 @@ import matplotlib.ticker as mticker
 from pathlib import Path
 from math import radians, sin, cos, atan2, sqrt
 from datetime import datetime
+import csv
 import json
 import argparse
 
 try:
-    from .metrics import metricas_par
+    from .metrics import metricas_par, metricas_par_bloques
 except ImportError:  # invocación como script (python src/validacion/valida_wrf_cli.py)
-    from metrics import metricas_par
+    from metrics import metricas_par, metricas_par_bloques
+
+# Tramos de horizonte del protocolo de separación temporal (D5).
+TRAMOS_HORIZONTE = [(1, 6, "+1-6h"), (7, 12, "+7-12h"),
+                    (13, 18, "+13-18h"), (19, 24, "+19-24h")]
+
+
+def tramo_de(horizonte_h):
+    """Etiqueta de tramo (D5) para un horizonte entero de horas."""
+    for lo, hi, lab in TRAMOS_HORIZONTE:
+        if lo <= horizonte_h <= hi:
+            return lab
+    return "fuera"
+
+
+def _parse_iso(valor):
+    """Parsea ISO8601 tolerante: 'YYYY-MM-DDTHH:MM:SS[Z]' o con espacio."""
+    if not valor:
+        return None
+    base = str(valor).replace("Z", "").strip()
+    for fmt in ("%Y-%m-%dT%H:%M:%S", "%Y-%m-%d %H:%M:%S", "%Y-%m-%dT%H:%M", "%Y-%m-%d %H:%M"):
+        try:
+            return datetime.strptime(base, fmt)
+        except ValueError:
+            continue
+    return None
+
+
+def cargar_series_obs(ruta_json):
+    """Serie de observaciones por estación (para la línea base de persistencia).
+
+    Devuelve {estacion: [(datetime, temp_K, rh_%, psfc_Pa, speed_ms), ...]} ordenado
+    por tiempo, con las mismas conversiones de unidades que la validación.
+    """
+    with open(ruta_json, encoding="utf-8") as f:
+        raw = json.load(f)
+    series = {}
+    for obs in raw:
+        nombre = obs.get("estacion")
+        if not nombre or "error" in obs:
+            continue
+        dt = _parse_obs_dt(obs)
+        if dt is None:
+            continue
+        temp = float(obs["temp"]) + 273.15 if obs.get("temp") is not None else None
+        rh = float(obs["humedad"]) if obs.get("humedad") is not None else None
+        psfc = float(obs["presion_absoluta"]) * 100 if obs.get("presion_absoluta") is not None else None
+        speed = None
+        if obs.get("viento") is not None:
+            speed = float(obs["viento"]) / 3.6
+        series.setdefault(nombre, []).append((dt, temp, rh, psfc, speed))
+    for nombre in series:
+        series[nombre].sort(key=lambda r: r[0])
+    return series
+
+
+def valor_persistencia(serie, t0, indice, ventana_min=90):
+    """Último valor observado en/antes de t0 (ventana hacia atrás) para persistir."""
+    if not serie or t0 is None:
+        return None
+    candidatos = [vals for dt, *vals in serie
+                  if 0 <= (t0 - dt).total_seconds() / 60.0 <= ventana_min]
+    if candidatos:
+        return candidatos[-1][indice]
+    # Sin obs antes de t0 dentro de la ventana: usar la más cercana posterior.
+    posteriores = [(dt, vals) for dt, *vals in serie
+                   if 0 < (dt - t0).total_seconds() / 60.0 <= ventana_min]
+    if posteriores:
+        return posteriores[0][1][indice]
+    return None
+
 
 def ruta_estaciones_json(estaciones_json=None):
     """Devuelve la ruta al catálogo unificado de estaciones (config/estaciones.json)."""
@@ -619,6 +690,106 @@ def write_tabla_evolutiva(evolution, output_dir, label=""):
     print(f"  -> {out / 'tabla_evolutiva.json'}")
     return lines
 
+def escribir_metricas_temporales(registros, obs_series, t0, output_dir,
+                                 block_size=6, nombre_largo="errores_largo.csv"):
+    """Escribe el detalle de errores y las métricas por horizonte/tramo (D5).
+
+    - errores_largo.csv: una fila por (tiempo, horizonte, estación, variable) con
+      obs, nudged, control.
+    - metricas_por_horizonte.csv: bias/RMSE (nudged, control, persistencia) por
+      variable y horizonte, con IC bootstrap por bloques sobre la serie completa.
+    - metricas_por_tramo.csv: idem agregado en los tramos +1-6, +7-12, +13-18, +19-24.
+    """
+    out = Path(output_dir)
+    variables = ["t2", "rh", "psfc", "wspd"]
+    idx_var = {"t2": 1, "rh": 2, "psfc": 3, "wspd": 4}
+
+    with open(str(out / nombre_largo), "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["hora", "horizonte_h", "tramo", "estacion", "variable",
+                    "obs", "nudged", "control"])
+        for r in registros:
+            w.writerow([r["hora"], r["horizonte_h"], r["tramo"], r["estacion"],
+                        r["variable"], r["obs"], r["nudged"], r["control"]])
+    print(f"  -> {out / nombre_largo}")
+
+    # Persistencia por estación/variable (valor observado sostenido desde t0).
+    persist = {}
+    for est, serie in (obs_series or {}).items():
+        persist[est] = {v: valor_persistencia(serie, t0, idx_var[v]) for v in variables}
+
+    def _resumen(subset, etiqueta):
+        filas = []
+        for var in variables:
+            regs = [r for r in subset if r["variable"] == var]
+            if not regs:
+                continue
+            obs = np.array([r["obs"] for r in regs], dtype=float)
+            nud = np.array([r["nudged"] for r in regs], dtype=float)
+            ctl = np.array([r["control"] for r in regs], dtype=float)
+            # Persistencia: error (valor en t0 - obs) por registro.
+            pers = np.array([persist.get(r["estacion"], {}).get(var, np.nan) for r in regs], dtype=float)
+            m_n = metricas_par(nud, obs)
+            m_c = metricas_par(ctl, obs)
+            m_p = metricas_par(pers, obs)
+            filas.append({
+                "variable": var, **etiqueta, "n": m_n["n"],
+                "nudged_bias": m_n["bias"], "nudged_rmse": m_n["rmse"],
+                "nudged_rmse_lo": m_n["rmse_ci"][0], "nudged_rmse_hi": m_n["rmse_ci"][1],
+                "control_bias": m_c["bias"], "control_rmse": m_c["rmse"],
+                "control_rmse_lo": m_c["rmse_ci"][0], "control_rmse_hi": m_c["rmse_ci"][1],
+                "persist_rmse": m_p["rmse"],
+            })
+        return filas
+
+    horizontes = sorted({r["horizonte_h"] for r in registros})
+    filas_h = []
+    for h in horizontes:
+        filas_h.extend(_resumen([r for r in registros if r["horizonte_h"] == h],
+                                {"horizonte_h": h, "tramo": tramo_de(h)}))
+
+    campos = ["variable", "horizonte_h", "tramo", "n", "nudged_bias", "nudged_rmse",
+              "nudged_rmse_lo", "nudged_rmse_hi", "control_bias", "control_rmse",
+              "control_rmse_lo", "control_rmse_hi", "persist_rmse"]
+    with open(str(out / "metricas_por_horizonte.csv"), "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=campos)
+        w.writeheader()
+        w.writerows(filas_h)
+    print(f"  -> {out / 'metricas_por_horizonte.csv'}")
+
+    # Agregado por tramo: RMSE con IC bootstrap por bloques (serie ordenada por horizonte).
+    filas_t = []
+    for var in variables:
+        for lo, hi, lab in TRAMOS_HORIZONTE:
+            regs = [r for r in registros if r["variable"] == var and lo <= r["horizonte_h"] <= hi]
+            if not regs:
+                continue
+            regs.sort(key=lambda r: (r["horizonte_h"], r["estacion"]))
+            obs = np.array([r["obs"] for r in regs], dtype=float)
+            nud = np.array([r["nudged"] for r in regs], dtype=float)
+            ctl = np.array([r["control"] for r in regs], dtype=float)
+            pers = np.array([persist.get(r["estacion"], {}).get(var, np.nan) for r in regs], dtype=float)
+            m_n = metricas_par_bloques(nud, obs, block_size=block_size)
+            m_c = metricas_par_bloques(ctl, obs, block_size=block_size)
+            m_p = metricas_par(pers, obs, block_size=block_size)
+            filas_t.append({
+                "variable": var, "tramo": lab, "n": m_n["n"],
+                "nudged_bias": m_n["bias"], "nudged_rmse": m_n["rmse"],
+                "nudged_rmse_lo": m_n["rmse_ci"][0], "nudged_rmse_hi": m_n["rmse_ci"][1],
+                "control_bias": m_c["bias"], "control_rmse": m_c["rmse"],
+                "control_rmse_lo": m_c["rmse_ci"][0], "control_rmse_hi": m_c["rmse_ci"][1],
+                "persist_rmse": m_p["rmse"],
+            })
+    campos_t = ["variable", "tramo", "n", "nudged_bias", "nudged_rmse",
+                "nudged_rmse_lo", "nudged_rmse_hi", "control_bias", "control_rmse",
+                "control_rmse_lo", "control_rmse_hi", "persist_rmse"]
+    with open(str(out / "metricas_por_tramo.csv"), "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=campos_t)
+        w.writeheader()
+        w.writerows(filas_t)
+    print(f"  -> {out / 'metricas_por_tramo.csv'}")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Valida WRF vs observaciones de estaciones")
     parser.add_argument("--nudged-dir", required=True,
@@ -641,6 +812,13 @@ def main():
                         help="Ruta a config/estaciones.json (opcional, busca por defecto)")
     parser.add_argument("--ventana-min", type=int, default=30,
                         help="Ventana temporal (± minutos) para filtrar observaciones (default: 30)")
+    parser.add_argument("--t0", default=None,
+                        help="ISO8601 del fin de asimilacion / inicio del pronostico libre. "
+                             "Activa el protocolo temporal (errores_largo + metricas por horizonte/tramo).")
+    parser.add_argument("--horizon-h", type=int, default=None,
+                        help="Horizonte de pronostico libre en horas (ej. 24). Requerido con --t0.")
+    parser.add_argument("--block-size", type=int, default=6,
+                        help="Tamano de bloque (h) para el bootstrap por bloques de las metricas por tramo (default: 6)")
 
     args = parser.parse_args()
 
@@ -659,6 +837,34 @@ def main():
 
     multi = len(valid_times) > 1
     evolution = []
+
+    # === Protocolo de separación temporal (D5): errores por horizonte/tramo ===
+    t0_dt = _parse_iso(args.t0)
+    temporal = t0_dt is not None and args.horizon_h is not None
+    obs_series = cargar_series_obs(args.obs_json) if (temporal and args.obs_json) else {}
+    registros_largos = []
+    if temporal:
+        print(f"Protocolo temporal: t0={t0_dt}, horizonte={args.horizon_h} h")
+
+    def _registros_tiempo(hora, horizonte, tramo, stations, nudged_data, control_data):
+        var_defs = [
+            ("t2", lambda s, d: (s.get("temp"), d["t2"])),
+            ("psfc", lambda s, d: (s["psfc"] / 100.0 if s.get("psfc") is not None else None,
+                                   d["psfc"] / 100.0)),
+            ("rh", lambda s, d: (s.get("rh"), d["rh"])),
+            ("wspd", lambda s, d: (s.get("speed"), d["wspd"])),
+        ]
+        for i, s in enumerate(stations):
+            for var, fun in var_defs:
+                obs, mod = fun(s, nudged_data[i])
+                _, ctl = fun(s, control_data[i])
+                registros_largos.append({
+                    "hora": hora, "horizonte_h": horizonte, "tramo": tramo,
+                    "estacion": s["name"], "variable": var,
+                    "obs": float("nan") if obs is None else float(obs),
+                    "nudged": float("nan") if mod is None else float(mod),
+                    "control": float("nan") if ctl is None else float(ctl),
+                })
 
     def _parse_vt(v):
         b = v.replace("wrfout_d01_", "")
@@ -716,6 +922,11 @@ def main():
 
         rows = build_tables(nudged_data, control_data, stations)
 
+        if temporal and _dtv is not None:
+            horizonte = int(round((_dtv - t0_dt).total_seconds() / 3600))
+            _registros_tiempo(f"{hora}Z", horizonte, tramo_de(horizonte),
+                              stations, nudged_data, control_data)
+
         plot_scatter(nudged_data, control_data, stations, sub_dir, vt, args.label)
         plot_map(nudged_data, control_data, stations, sub_dir, vt, nudged_dir, args.label)
         plot_metrics_table(rows, sub_dir, vt, args.label)
@@ -729,7 +940,7 @@ def main():
         idx_eval = [i for i, s in enumerate(stations) if s.get("rol") == "evaluacion"]
         idx_asim = [i for i in range(len(stations)) if i not in idx_eval]
         rows_asim = rows_eval = None
-        if idx_eval and idx_asim:
+        if idx_eval and idx_asim and not temporal:
             st_asim = [stations[i] for i in idx_asim]
             st_eval = [stations[i] for i in idx_eval]
             rows_asim = build_tables([nudged_data[i] for i in idx_asim],
@@ -759,6 +970,10 @@ def main():
         plot_evolucion(evolution, output_dir, args.label)
         write_tabla_evolutiva(evolution, output_dir, args.label)
         print(f"\nInforme de evolución del nudging en {output_dir}")
+
+    if temporal and registros_largos:
+        escribir_metricas_temporales(registros_largos, obs_series, t0_dt, output_dir,
+                                     block_size=args.block_size)
 
     print("Validacion completa.")
     return 0

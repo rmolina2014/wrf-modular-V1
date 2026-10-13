@@ -108,9 +108,61 @@ def metricas_par(
     }
 
 
+def metricas_par_bloques(
+    modelado: np.ndarray,
+    observado: np.ndarray,
+    block_size: int = 6,
+    n_bootstrap: int = 1000,
+    semilla: int = 42,
+    alpha: float = 0.95,
+) -> Dict[str, Any]:
+    """Bias/MAE/RMSE con IC bootstrap por bloques móviles (block bootstrap).
+
+    Usado en el protocolo de separación temporal: los errores a lo largo del
+    horizonte de pronóstico están temporalmente autocorrelacionados, por lo que
+    el bootstrap i.i.d. de `metricas_par` subestima el ancho de los intervalos.
+    Aquí se remuestrean bloques contiguos de errores (de tamaño `block_size`),
+    respetando la autocorrelación temporal. El orden de entrada debe ser temporal
+    (p. ej. ordenado por horizonte).
+    """
+    mask = (~np.isnan(modelado)) & (~np.isnan(observado))
+    m = np.asarray(modelado, dtype=float)[mask]
+    o = np.asarray(observado, dtype=float)[mask]
+    n = len(m)
+    nan = float("nan")
+    if n < 1:
+        return {"bias": nan, "mae": nan, "rmse": nan, "n": 0,
+                "bias_ci": [nan, nan], "mae_ci": [nan, nan], "rmse_ci": [nan, nan]}
+    err = m - o
+    bias = float(np.mean(err))
+    mae = float(np.mean(np.abs(err)))
+    rmse = float(np.sqrt(np.mean(err ** 2)))
+    if n <= block_size or n < 2:
+        return {"bias": bias, "mae": mae, "rmse": rmse, "n": int(n),
+                "bias_ci": [nan, nan], "mae_ci": [nan, nan], "rmse_ci": [nan, nan]}
+
+    rng = np.random.default_rng(semilla)
+    n_bloques = int(np.ceil(n / block_size))
+    inicios_max = n - block_size
+    bias_b, mae_b, rmse_b = [], [], []
+    for _ in range(n_bootstrap):
+        inicios = rng.integers(0, inicios_max + 1, size=n_bloques)
+        muestra = np.concatenate([err[i:i + block_size] for i in inicios])[:n]
+        bias_b.append(float(np.mean(muestra)))
+        mae_b.append(float(np.mean(np.abs(muestra))))
+        rmse_b.append(float(np.sqrt(np.mean(muestra ** 2))))
+    ci_lo = (1.0 - alpha) / 2.0 * 100
+    ci_hi = (1.0 + alpha) / 2.0 * 100
+    return {
+        "bias": bias, "mae": mae, "rmse": rmse, "n": int(n),
+        "bias_ci": [_percentil(bias_b, ci_lo), _percentil(bias_b, ci_hi)],
+        "mae_ci": [_percentil(mae_b, ci_lo), _percentil(mae_b, ci_hi)],
+        "rmse_ci": [_percentil(rmse_b, ci_lo), _percentil(rmse_b, ci_hi)],
+    }
+
+
 class MetricsCalculator:
     """Calculador de estadísticas de rendimiento de modelos meteorológicos."""
-
     @staticmethod
     def calcular_metricas_par(modelado: np.ndarray, observado: np.ndarray) -> Dict[str, Optional[float]]:
         """Calcula Bias, MAE, RMSE, Pearson r y N para un par de series coincidentes

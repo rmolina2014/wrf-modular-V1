@@ -141,19 +141,30 @@ def descargar_obs_historico(fecha: str) -> Path:
     return csv_out
 
 
-def cobertura_obs(csv_path: Path, fecha: str, ciclo: str = "00", run_hours: int = 12) -> Dict[str, Any]:
-    """Mide la cobertura de observaciones validas en la ventana UTC 00Z-24Z del caso."""
+def cobertura_obs(csv_path: Path, fecha: str, ciclo: str = "00", run_hours: int = 12,
+                  t0_iso: Optional[str] = None, asim_horas: Optional[int] = None) -> Dict[str, Any]:
+    """Mide la cobertura de observaciones validas.
+
+    Sin protocolo temporal: ventana UTC 00Z-<run_hours>Z del dia `fecha`.
+    Con protocolo (t0_iso + asim_horas): ventana de asimilacion [t0-asim, t0],
+    que es la unica que debe nutrir OBS_DOMAIN101."""
     df = pd.read_csv(csv_path)
     if df.empty or "temp_c" not in df.columns:
         return {"dia": 0, "ventana": 0, "estaciones": 0, "por_estacion": {}}
 
-    ts_ini = int(datetime.strptime(f"{fecha} 00:00:00", "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc).timestamp())
-    ts_fin = ts_ini + int(run_hours) * 3600
-    ts_dia_fin = ts_ini + 24 * 3600
+    ts_dia_ini = int(datetime.strptime(f"{fecha} 00:00:00", "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc).timestamp())
+    ts_dia_fin = ts_dia_ini + 24 * 3600
+    if t0_iso and asim_horas:
+        t0 = datetime.strptime(t0_iso.replace("Z", ""), "%Y-%m-%dT%H:%M:%S").replace(tzinfo=timezone.utc)
+        ts_fin = int(t0.timestamp())
+        ts_ini = ts_fin - int(asim_horas) * 3600
+    else:
+        ts_ini = ts_dia_ini
+        ts_fin = ts_ini + int(run_hours) * 3600
     df["ts"] = pd.to_numeric(df["hora_unix"], errors="coerce")
     df["temp_ok"] = df["temp_c"].apply(lambda v: _num(v) is not None and pd.notna(v))
 
-    dia = int((df["temp_ok"] & df["ts"].between(ts_ini, ts_dia_fin)).sum())
+    dia = int((df["temp_ok"] & df["ts"].between(ts_dia_ini, ts_dia_fin)).sum())
     ventana = int((df["temp_ok"] & df["ts"].between(ts_ini, ts_fin)).sum())
     por_estacion = (
         df[df["temp_ok"] & df["ts"].between(ts_ini, ts_fin)]
@@ -270,11 +281,13 @@ def descargar_gfs(fecha: str, ciclo: str = "00", run_hours: int = 24) -> int:
 # --------------------------------------------------------------------------
 # WPS + run dir
 # --------------------------------------------------------------------------
-def ejecutar_wps(fecha: str, ciclo: str = "00", timeout: int = 3600) -> Tuple[bool, str]:
+def ejecutar_wps(fecha: str, ciclo: str = "00", timeout: int = 3600,
+                 run_hours: int = 24) -> Tuple[bool, str]:
     """Corre WPS (geogrid+ungrib+metgrid) para el caso. Devuelve (ok, log)."""
     log = ESTADO_DIR / f"wps_{fecha.replace('-', '')}_{ciclo}.log"
     env = dict(os.environ)
     env.update(PC_PGICH_ENV)
+    env["RUN_HOURS"] = str(int(run_hours))
     try:
         with open(log, "w", encoding="utf-8") as f:
             r = subprocess.run(
@@ -287,13 +300,13 @@ def ejecutar_wps(fecha: str, ciclo: str = "00", timeout: int = 3600) -> Tuple[bo
         return False, str(log)
 
 
-def propagar_metem(fecha: str, run_hours: int = 24) -> int:
+def propagar_metem(fecha: str, run_hours: int = 24, hora: str = "00") -> int:
     """Copia los met_em de WPS al directorio de corrida de real.exe.
 
-    Construye los timestamps esperados cada 3 h desde 00Z hasta run_hours, de
-    modo que incluya el archivo del dia siguiente (p.ej. 2026-08-07_00:00:00
-    para un ciclo de 24 h que arranca el 2026-08-06)."""
-    base = datetime.strptime(fecha, "%Y-%m-%d")
+    Construye los timestamps esperados cada 3 h desde `fecha` `hora`Z hasta
+    start+run_hours, de modo que incluya el archivo del dia siguiente cuando el
+    ciclo cruza la medianoche (protocolo temporal: start=12Z, t0+24h=12Z)."""
+    base = datetime.strptime(f"{fecha} {hora}:00:00", "%Y-%m-%d %H:%M:%S")
     n = 0
     for h in range(0, int(run_hours) + 1, 3):
         dt = base + timedelta(hours=h)
@@ -323,22 +336,67 @@ def _valid_times_iso(fecha: str, valid_times: List[str]) -> List[str]:
     return out
 
 
+def _programa_temporal(comun: Dict[str, Any], caso: Dict[str, Any]) -> Dict[str, Any]:
+    """Deriva el programa del protocolo de separacion temporal para un caso.
+
+    t0 = fin de asimilacion / inicio del pronostico libre (del campo `t0` del caso,
+    o `fecha`T00:00:00Z). start = t0 - ventana_asimilacion_h. run_hours = asim + horizonte.
+    Si la config no define el protocolo, cae al comportamiento clasico (ciclo 00Z,
+    run_hours de configuracion_comun)."""
+    asim_h = comun.get("ventana_asimilacion_h")
+    horizonte_h = comun.get("horizonte_h")
+    t0_txt = caso.get("t0")
+    t0 = None
+    if t0_txt:
+        for fmt in ("%Y-%m-%dT%H:%M:%S", "%Y-%m-%dT%H:%M", "%Y-%m-%d %H:%M:%S"):
+            try:
+                t0 = datetime.strptime(str(t0_txt).replace("Z", ""), fmt)
+                break
+            except ValueError:
+                continue
+    if asim_h and t0 is not None:
+        start = t0 - timedelta(hours=int(asim_h))
+        run_hours = int(asim_h) + int(horizonte_h or 0)
+        return {"protocolo": True, "start": start, "t0": t0,
+                "asim_h": int(asim_h), "horizonte_h": int(horizonte_h or 0),
+                "run_hours": run_hours}
+    fecha = caso["fecha"]
+    start = datetime.strptime(f"{fecha} {comun.get('hora_ciclo', '00')}:00:00", "%Y-%m-%d %H:%M:%S")
+    rh = int(comun.get("run_hours", 12))
+    return {"protocolo": False, "start": start, "t0": start + timedelta(hours=rh),
+            "asim_h": rh, "horizonte_h": 0, "run_hours": rh}
+
+
+def _valid_times_protocolo(t0: datetime, horizonte_h: int) -> List[str]:
+    """Instantes de validacion t0+1h .. t0+horizonte_h (formato YYYY-MM-DD_HH:MM:SS)."""
+    return [(t0 + timedelta(hours=h)).strftime("%Y-%m-%d_%H:%M:%S")
+            for h in range(1, int(horizonte_h) + 1)]
+
+
 def ejecutar_pipeline(caso: Dict[str, Any], comun: Dict[str, Any], fecha: str,
-                      obs_flat: Path, ciclo: str = "00", timeout: int = 12 * 3600) -> Tuple[int, str]:
+                      obs_flat: Path, ciclo: str = "00", timeout: int = 12 * 3600,
+                      programa: Optional[Dict[str, Any]] = None) -> Tuple[int, str]:
     """Corre pipeline_wrf.py para el caso (nudged + control + validacion multi-temporal)."""
+    programa = programa or _programa_temporal(comun, caso)
+    start = programa["start"]
     label = f"caso{int(caso['num'])}_NvC"
     run_case = Path(caso["resultados_dir"]).name  # directorio de resultados del caso
-    run_hours = int(comun.get("run_hours", 12))
-    valid_times = _valid_times_iso(fecha, list(comun.get("valid_times", ["00:00:00"])))
+    run_hours = int(programa["run_hours"])
+    if programa["protocolo"]:
+        valid_times = _valid_times_protocolo(programa["t0"], programa["horizonte_h"])
+    else:
+        valid_times = _valid_times_iso(fecha, list(comun.get("valid_times", ["00:00:00"])))
     wrf_timeout = str(int(comun.get("wrf_timeout", 14400)))
     cmd = [
         str(PYTHON), str(PIPELINE),
-        "--date", fecha, "--hour", f"{ciclo}:00",
+        "--date", start.strftime("%Y-%m-%d"), "--hour", f"{start.hour:02d}:00",
         "--json", str(obs_flat),
         "--case", run_case,
+        "--case-dir", str(_ruta_resultados_caso(caso)),
         "--namelist", str(ROOT / comun.get("namelist_base", "namelist.input")),
         "--run-dir", str(RUN_DIR),
         "--run-real",
+        "--run-hours", str(run_hours),
         "--obs-coef-wind", str(comun.get("obs_coef_wind")),
         "--obs-coef-temp", str(comun.get("obs_coef_temp")),
         "--obs-coef-mois", str(comun.get("obs_coef_mois")),
@@ -346,6 +404,12 @@ def ejecutar_pipeline(caso: Dict[str, Any], comun: Dict[str, Any], fecha: str,
         "--label", label,
         "--wrf-timeout", wrf_timeout,
     ]
+    if programa["protocolo"]:
+        cmd += [
+            "--asim-hours", str(programa["asim_h"]),
+            "--horizon-h", str(programa["horizonte_h"]),
+            "--t0", programa["t0"].strftime("%Y-%m-%dT%H:%M:%S"),
+        ]
     log = ESTADO_DIR / f"pipeline_{caso['id']}.log"
     logger.info(f"Pipeline: {' '.join(cmd)} (run_hours={run_hours})")
     env = dict(os.environ)
@@ -428,6 +492,39 @@ def _md_tabla_holdout(por_tiempo: List[Dict[str, Any]], variable: str) -> str:
     return "\n".join(lineas) + "\n"
 
 
+VARS_HORIZONTE = {"t2": "T2 (K)", "psfc": "PSFC (hPa)", "rh": "RH (%)", "wspd": "Wind (m/s)"}
+TRAMOS_ORDEN = ["+1-6h", "+7-12h", "+13-18h", "+19-24h"]
+
+
+def _leer_metricas_horizonte(caso: Dict[str, Any]) -> Optional[List[Dict[str, Any]]]:
+    ruta = _ruta_resultados_caso(caso) / "metricas_por_horizonte.csv"
+    if not ruta.exists():
+        return None
+    import csv as _csv
+    with open(ruta, encoding="utf-8") as f:
+        return list(_csv.DictReader(f))
+
+
+def _md_tabla_horizonte(rows: List[Dict[str, Any]], variable: str) -> str:
+    """Tabla markdown de RMSE/bias por horizonte de pronostico libre (protocolo temporal)."""
+    sub = [r for r in rows if r["variable"] == variable]
+    if not sub:
+        return "_Sin métricas por horizonte para esta variable._\n"
+    lineas = ["| Horizonte | Tramo | N | RMSE N | RMSE C | RMSE Pers | Bias N | Bias C |",
+              "|-----------|-------|---|--------|--------|-----------|--------|--------|"]
+    for r in sorted(sub, key=lambda x: int(x["horizonte_h"])):
+        def _f(k):
+            try:
+                v = float(r[k])
+            except (TypeError, ValueError):
+                return "n/d"
+            return f"{v:+.2f}" if k.endswith("bias") else f"{v:.2f}"
+        lineas.append(
+            f"| +{r['horizonte_h']} h | {r['tramo']} | {r['n']} | {_f('nudged_rmse')} | "
+            f"{_f('control_rmse')} | {_f('persist_rmse')} | {_f('nudged_bias')} | {_f('control_bias')} |")
+    return "\n".join(lineas) + "\n"
+
+
 def _seccion_desempeno_flujo(L: List[str], caso: Dict[str, Any]) -> None:
     """Agrega al informe la seccion de desempeno del flujo end-to-end
     (tiempos por etapa) a partir de `evaluacion_flujo.json`."""
@@ -499,7 +596,12 @@ def redactar_informe_caso(caso: Dict[str, Any], estado_entry: Dict[str, Any],
     L = []
     L.append(f"# {caso['titulo']}")
     L.append("")
-    L.append(f"**Fecha del evento:** {caso['fecha']} | **Ciclo:** 00Z -> {run_hours:02d}Z | **Informe generado:** {ts}")
+    if caso.get("t0"):
+        L.append(f"**Fecha del evento:** {caso['fecha']} | **Protocolo temporal:** "
+                 f"asimilación previa a t0={caso.get('t0')} (12 h) + pronóstico libre "
+                 f"24 h (run_hours={run_hours}) | **Informe generado:** {ts}")
+    else:
+        L.append(f"**Fecha del evento:** {caso['fecha']} | **Ciclo:** 00Z -> {run_hours:02d}Z | **Informe generado:** {ts}")
     L.append("")
     L.append("## Descripción del evento")
     L.append("")
@@ -542,12 +644,16 @@ def redactar_informe_caso(caso: Dict[str, Any], estado_entry: Dict[str, Any],
     if cobertura:
         L.append("## Observaciones disponibles")
         L.append("")
-        L.append(f"- Registros válidos: **{cobertura['dia']}** en el día, **{cobertura['ventana']}** en la ventana 00Z–{run_hours:02d}Z.")
+        if caso.get("t0"):
+            L.append(f"- Registros válidos: **{cobertura['dia']}** en el día, **{cobertura['ventana']}** "
+                     f"en la ventana de asimilación (t0−12 h → t0 = {caso['t0']}).")
+        else:
+            L.append(f"- Registros válidos: **{cobertura['dia']}** en el día, **{cobertura['ventana']}** en la ventana 00Z–{run_hours:02d}Z.")
         L.append(f"- Estaciones con datos en ventana: **{cobertura['estaciones']}**")
         pe = cobertura.get("por_estacion", {})
         if pe:
             L.append("")
-            L.append(f"| Estación | Registros (00Z–{run_hours:02d}Z) |")
+            L.append(f"| Estación | Registros en ventana |")
             L.append("|----------|--------------------|")
             for k, v in sorted(pe.items(), key=lambda kv: (-kv[1], kv[0])):
                 L.append(f"| {k} | {v} |")
@@ -561,7 +667,10 @@ def redactar_informe_caso(caso: Dict[str, Any], estado_entry: Dict[str, Any],
             L.append("")
             L.append("RMSE/Bias de la corrida nudgada (N) y de control (C) por tiempo de validación. "
                      "dRMSE = RMSE(C) - RMSE(N) (positivo ⇒ mejora con nudging; negativo ⇒ degrada). "
-                     "00Z: N≡C por construcción.")
+                     + ("La comparación N vs C es válida en la ventana de asimilación; a partir de t0 "
+                        "ambas corridas tienen el nudging apagado y solo difieren por el estado inicial "
+                        "(ver resultados por horizonte más abajo)."
+                        if caso.get("t0") else "00Z: N≡C por construcción."))
             L.append("")
             for var in tabla.get("variables", []):
                 L.append(f"### {var}")
@@ -574,20 +683,37 @@ def redactar_informe_caso(caso: Dict[str, Any], estado_entry: Dict[str, Any],
                         rows.append(rr)
                 L.append(_md_tabla_variable(rows, var))
                 L.append("")
-            L.append("### Ajuste vs. Generalización (hold-out espacial)")
-            L.append("")
-            L.append("Las estaciones con `rol='evaluacion'` en `config/estaciones.json` "
-                     "nunca se asimilan (quedan fuera de `OBS_DOMAIN101`); sus métricas miden "
-                     "si el nudging **generaliza** a lugares sin datos, no solo si reproduce "
-                     "lo que ya se le dio (estaciones 'asimiladas').")
-            L.append("")
-            for var in tabla.get("variables", []):
-                L.append(f"#### {var}")
+            if not caso.get("t0"):
+                L.append("### Ajuste vs. Generalización (hold-out espacial)")
                 L.append("")
-                rows_ht = []
-                for t in tabla.get("por_tiempo", []):
-                    rows_ht.append(t)
-                L.append(_md_tabla_holdout(rows_ht, var))
+                L.append("Las estaciones con `rol='evaluacion'` en `config/estaciones.json` "
+                         "nunca se asimilan (quedan fuera de `OBS_DOMAIN101`); sus métricas miden "
+                         "si el nudging **generaliza** a lugares sin datos, no solo si reproduce "
+                         "lo que ya se le dio (estaciones 'asimiladas').")
+                L.append("")
+                for var in tabla.get("variables", []):
+                    L.append(f"#### {var}")
+                    L.append("")
+                    rows_ht = []
+                    for t in tabla.get("por_tiempo", []):
+                        rows_ht.append(t)
+                    L.append(_md_tabla_holdout(rows_ht, var))
+                    L.append("")
+            L.append("### Resultados por horizonte de pronóstico (protocolo temporal)")
+            L.append("")
+            L.append("RMSE/Bias vs horizonte desde t0 (fin de asimilación) y línea base de "
+                     "**persistencia** (último valor observado en t0 sostenido). Nudged y Control "
+                     "solo difieren en `obs_nudge_opt`; tras `fdda_end` el nudging está apagado.")
+            L.append("")
+            mh = _leer_metricas_horizonte(caso)
+            if mh:
+                for key, etiqueta in VARS_HORIZONTE.items():
+                    L.append(f"#### {etiqueta}")
+                    L.append("")
+                    L.append(_md_tabla_horizonte(mh, key))
+                    L.append("")
+            else:
+                L.append("_Sin `metricas_por_horizonte.csv` (revisar la corrida)._")
                 L.append("")
             L.append("### Conclusiones del caso")
             L.append("")
@@ -730,10 +856,18 @@ def ejecutar_caso(caso: Dict[str, Any], comun: Dict[str, Any], estado: Dict[str,
     """Ejecuta un caso completo (obs -> GFS -> WPS -> pipeline). Actualiza estado."""
     cid = caso["id"]
     fecha = caso["fecha"]
-    ciclo = comun.get("hora_ciclo", "00")
-    run_hours = int(comun.get("run_hours", 12))
+    programa = _programa_temporal(comun, caso)
+    start = programa["start"]
+    gfs_fecha = start.strftime("%Y-%m-%d")
+    gfs_ciclo = f"{start.hour:02d}"
+    ciclo = gfs_ciclo
+    run_hours = int(programa["run_hours"])
+    asim_h = int(programa["asim_h"])
     obs_min = int(comun.get("obs_min_registros", 60))
     obs_min_est = int(comun.get("obs_min_estaciones", 3))
+    if programa["protocolo"]:
+        logger.info(f"{cid}: protocolo temporal start={start} t0={programa['t0']} "
+                    f"run_hours={run_hours} (asim={asim_h} h, horizonte={programa['horizonte_h']} h)")
 
     resultado: Dict[str, Any] = {"estado": "PENDIENTE", "detalle": "", "ts": datetime.now().isoformat(timespec="seconds")}
 
@@ -743,7 +877,8 @@ def ejecutar_caso(caso: Dict[str, Any], comun: Dict[str, Any], estado: Dict[str,
     # 1) Observaciones
     try:
         csv = descargar_obs_historico(fecha)
-        cov = cobertura_obs(csv, fecha, ciclo, run_hours)
+        cov = cobertura_obs(csv, fecha, ciclo, run_hours,
+                            t0_iso=caso.get("t0"), asim_horas=asim_h if programa["protocolo"] else None)
     except Exception as e:
         logger.exception(f"{cid}: fallo al obtener observaciones")
         resultado = {"estado": "NO EJECUTADO - SIN DATOS (obs)", "detalle": f"fallo de descarga: {e}",
@@ -773,13 +908,14 @@ def ejecutar_caso(caso: Dict[str, Any], comun: Dict[str, Any], estado: Dict[str,
     _t = time.perf_counter()
 
     # 2) GFS
-    fuente = gfs_disponible(fecha, ciclo)
+    fuente = gfs_disponible(gfs_fecha, gfs_ciclo)
     if fuente is None:
-        resultado = {"estado": "NO EJECUTADO - SIN DATOS (gfs)", "detalle": "GFS 00Z no disponible en AWS/NOMADS",
+        resultado = {"estado": "NO EJECUTADO - SIN DATOS (gfs)",
+                     "detalle": f"GFS {gfs_fecha} {gfs_ciclo}Z no disponible en AWS/NOMADS",
                      "ts": datetime.now().isoformat(timespec="seconds")}
         estado[cid] = resultado
         return resultado
-    n_gfs = descargar_gfs(fecha, ciclo, run_hours)
+    n_gfs = descargar_gfs(gfs_fecha, gfs_ciclo, run_hours)
     n_gfs_min = len(range(0, run_hours + 1, 3))
     if n_gfs < n_gfs_min:
         resultado = {"estado": "NO EJECUTADO - SIN DATOS (gfs)", "detalle": f"se bajaron {n_gfs}/{n_gfs_min} ficheros GFS",
@@ -791,7 +927,7 @@ def ejecutar_caso(caso: Dict[str, Any], comun: Dict[str, Any], estado: Dict[str,
     _t = time.perf_counter()
 
     # 3) WPS
-    ok_wps, log_wps = ejecutar_wps(fecha, ciclo)
+    ok_wps, log_wps = ejecutar_wps(gfs_fecha, gfs_ciclo, run_hours=run_hours)
     if not ok_wps:
         resultado = {"estado": "FALLIDO", "detalle": f"WPS fallo (ver {log_wps})",
                      "ts": datetime.now().isoformat(timespec="seconds")}
@@ -799,7 +935,7 @@ def ejecutar_caso(caso: Dict[str, Any], comun: Dict[str, Any], estado: Dict[str,
         return resultado
     flujo["wps"] = round(time.perf_counter() - _t, 3)
     _t = time.perf_counter()
-    n_metem = propagar_metem(fecha, run_hours)
+    n_metem = propagar_metem(gfs_fecha, run_hours, hora=gfs_ciclo)
     n_metem_min = len(range(0, run_hours + 1, 3))
     if n_metem < n_metem_min:
         resultado = {"estado": "FALLIDO", "detalle": f"WPS no genero met_em suficientes ({n_metem}/{n_metem_min})",
@@ -811,7 +947,7 @@ def ejecutar_caso(caso: Dict[str, Any], comun: Dict[str, Any], estado: Dict[str,
     _t = time.perf_counter()
 
     # 4) Pipeline WRF (nudged + control + validacion)
-    rc, log_pipe = ejecutar_pipeline(caso, comun, fecha, obs_flat, ciclo)
+    rc, log_pipe = ejecutar_pipeline(caso, comun, fecha, obs_flat, gfs_ciclo, programa=programa)
     flujo["pipeline_total"] = round(time.perf_counter() - _t, 3)
     if rc == 0:
         resultado = {"estado": "EJECUTADO", "detalle": f"fuente GFS {fuente}",
@@ -852,17 +988,23 @@ def main():
             logger.info(f"{cid}: ya fue EJECUTADO, salteando (--force para re-ejecutar)")
             continue
 
+        prog = _programa_temporal(comun, caso)
+        gfs_fecha = prog["start"].strftime("%Y-%m-%d")
+        gfs_ciclo = f"{prog['start'].hour:02d}"
+
         if args.dry_run:
             # Solo disponibilidad: obs + GFS, sin WRF
             try:
                 csv = descargar_obs_historico(caso["fecha"])
-                cov = cobertura_obs(csv, caso["fecha"], comun.get("hora_ciclo", "00"), comun.get("run_hours", 12))
+                cov = cobertura_obs(csv, caso["fecha"], gfs_ciclo, prog["run_hours"],
+                                    t0_iso=caso.get("t0"),
+                                    asim_horas=int(prog["asim_h"]) if prog["protocolo"] else None)
             except Exception as e:
                 cov = {"dia": 0, "ventana": 0, "estaciones": 0, "por_estacion": {}}
                 logger.error(f"{cid}: obs fallo: {e}")
-            fuente = gfs_disponible(caso["fecha"], comun.get("hora_ciclo", "00"))
+            fuente = gfs_disponible(gfs_fecha, gfs_ciclo)
             logger.info(f"[DRY] {cid} {caso['fecha']}: obs dia={cov['dia']} ventana={cov['ventana']} "
-                        f"estaciones={cov['estaciones']} | GFS={fuente or 'NO DISPONIBLE'}")
+                        f"estaciones={cov['estaciones']} | GFS {gfs_fecha} {gfs_ciclo}Z={fuente or 'NO DISPONIBLE'}")
             estado[cid] = {"estado": "DRY_RUN",
                            "detalle": f"obs ventana {cov['ventana']} / {cov['estaciones']} est; gfs {fuente or 'no'}",
                            "ts": datetime.now().isoformat(timespec="seconds")}
@@ -872,10 +1014,12 @@ def main():
             # Solo preparar obs/GFS/WPS sin correr el pipeline
             try:
                 csv = descargar_obs_historico(caso["fecha"])
-                cov = cobertura_obs(csv, caso["fecha"], comun.get("hora_ciclo", "00"), comun.get("run_hours", 12))
+                cov = cobertura_obs(csv, caso["fecha"], gfs_ciclo, prog["run_hours"],
+                                    t0_iso=caso.get("t0"),
+                                    asim_horas=int(prog["asim_h"]) if prog["protocolo"] else None)
                 obs_flat = generar_obs_flat(csv, caso["fecha"])
-                fuente = gfs_disponible(caso["fecha"], comun.get("hora_ciclo", "00"))
-                n_gfs = descargar_gfs(caso["fecha"], comun.get("hora_ciclo", "00"), comun.get("run_hours", 12)) if fuente else 0
+                fuente = gfs_disponible(gfs_fecha, gfs_ciclo)
+                n_gfs = descargar_gfs(gfs_fecha, gfs_ciclo, prog["run_hours"]) if fuente else 0
                 estado[cid] = {"estado": "PREPARADO", "detalle": f"obs {cov['ventana']}, gfs {n_gfs}, obs_flat {obs_flat.name}",
                                "ts": datetime.now().isoformat(timespec="seconds")}
             except Exception as e:
@@ -892,14 +1036,18 @@ def main():
         for caso in casos:
             entry = estado.get(caso["id"], {})
             cobertura = None
+            prog = _programa_temporal(comun, caso)
             if entry.get("estado") == "EJECUTADO":
                 try:
                     csv = csv_caso(caso["fecha"])
                     if csv.exists():
-                        cobertura = cobertura_obs(csv, caso["fecha"], comun.get("hora_ciclo", "00"), comun.get("run_hours", 12))
+                        cobertura = cobertura_obs(csv, caso["fecha"],
+                                                  f"{prog['start'].hour:02d}", prog["run_hours"],
+                                                  t0_iso=caso.get("t0"),
+                                                  asim_horas=int(prog["asim_h"]) if prog["protocolo"] else None)
                 except Exception:
                     cobertura = None
-            redactar_informe_caso(caso, entry, cobertura, run_hours=int(comun.get("run_hours", 12)))
+            redactar_informe_caso(caso, entry, cobertura, run_hours=int(prog["run_hours"]))
         redactar_informe_consolidado(todos_casos, estado)
     return 0
 

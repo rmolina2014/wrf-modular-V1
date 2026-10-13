@@ -16,7 +16,11 @@
   },
   "gfs": {
     "viento_extremo_ms": 80.0,
-    "run_hours_max": 12
+    "run_hours_max": 36
+  },
+  "separacion_temporal": {
+    "ventana_asimilacion_h": 12,
+    "horizonte_h": 24
   },
   "recursos": {
     "espacio_min_gb": 20.0

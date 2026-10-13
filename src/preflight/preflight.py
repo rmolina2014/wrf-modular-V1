@@ -143,12 +143,17 @@ class ChequeosObservaciones:
     """Chequeos 2.2.x sobre el JSON crudo y el OBS_DOMAIN101 generado."""
 
     def __init__(self, obs_json: Path, obsdomain: Path, namelist: Path,
-                 start_dt: Optional[datetime] = None, config: Optional[Dict] = None):
+                 start_dt: Optional[datetime] = None, config: Optional[Dict] = None,
+                 t0: Optional[datetime] = None, asim_horas: Optional[float] = None,
+                 horizonte_h: Optional[float] = None):
         self.obs_json = Path(obs_json)
         self.obsdomain = Path(obsdomain)
         self.namelist = namelist
         self.start_dt = start_dt
         self.cfg = config or {}
+        self.t0 = t0
+        self.asim_horas = asim_horas
+        self.horizonte_h = horizonte_h
 
     def _n_registros_json(self) -> int:
         try:
@@ -315,7 +320,10 @@ class ChequeosObservaciones:
             return
         run_hours = _leer_namelist_valor(self.namelist, "run_hours") or 12
         inicio = self.start_dt.replace(minute=0, second=0, microsecond=0)
-        fin = inicio + timedelta(hours=run_hours)
+        # Protocolo de separación temporal: la ventana asimilada es [start, t0], no
+        # [start, start+run_hours]. Si se informa t0 se evalúa la cobertura ahí.
+        fin = self.t0.replace(minute=0, second=0, microsecond=0) if self.t0 is not None \
+            else inicio + timedelta(hours=run_hours)
         n_tercios = self.cfg.get("cobertura_temporal", {}).get("n_tercios", 3)
         obs_min = self.cfg.get("cobertura_temporal", {}).get("obs_min_por_tercio", 5)
         bordes = []
@@ -401,6 +409,85 @@ class ChequeosObservaciones:
                         Estado.OK,
                         f"{n_con_time} obs con fecha_hora == hora_unix (UTC), delta 0 s")
 
+    # 2.2.8 Separación temporal (protocolo de asimilación previa + pronóstico libre)
+    def check_2228_separacion_temporal(self, informe: InformePreflight) -> None:
+        """Verifica el corazón del protocolo temporal.
+
+        (a) Ninguna observación de OBS_DOMAIN101 puede tener timestamp > t0
+            (fuga de información del intervalo de validación a la asimilación).
+        (b) Todas las observaciones deben estar dentro de [start, t0].
+        (c) El nudging debe apagarse al terminar la asimilación:
+            fdda_end (min) == asim_horas * 60.
+        (d) run_hours == asim_horas + horizonte_h.
+        """
+        if self.t0 is None or self.asim_horas is None:
+            informe.agregar("2.2.8", "Separación temporal asimilación/pronóstico",
+                            Estado.ADVERTENCIA, "t0/asim_horas no informados; no se verifica")
+            return
+
+        t0 = self.t0.replace(minute=0, second=0, microsecond=0)
+        t0_limite = t0
+        problemas_blk = []
+        problems_adv = []
+
+        regs = _parsear_obsdomain(self.obsdomain)
+        if not regs:
+            problems_adv.append("OBS_DOMAIN101 sin registros parseables")
+        else:
+            fuera = []
+            inicio = self.start_dt.replace(minute=0, second=0, microsecond=0) if self.start_dt else None
+            for r in regs:
+                try:
+                    dt = datetime.strptime(r["timestamp"], "%Y%m%d%H%M%S")
+                except ValueError:
+                    continue
+                if dt > t0_limite:
+                    fuera.append(dt)
+                elif inicio is not None and dt < inicio:
+                    fuera.append(dt)
+            if fuera:
+                ejemplos = ", ".join(sorted({d.strftime("%Y%m%d%H%M") for d in fuera})[:5])
+                msg = (f"{len(fuera)} obs fuera de [start, t0] (t0={t0.strftime('%Y%m%d%H%M')}): {ejemplos}")
+                if any(d > t0_limite for d in fuera):
+                    problemas_blk.append(msg + "; FUGA de información del intervalo de pronóstico libre")
+                else:
+                    problems_adv.append(msg)
+
+        # fdda_end (min) == asim_horas * 60
+        fdda_end = _leer_namelist_valor(self.namelist, "fdda_end")
+        esperado = self.asim_horas * 60
+        if fdda_end is None:
+            problems_adv.append("No se pudo leer fdda_end del namelist")
+        elif abs(fdda_end - esperado) > 1:
+            problems_blk.append(
+                f"fdda_end={fdda_end:.0f} min != asim_horas*60={esperado:.0f} min "
+                "(el nudging seguiría activo durante el pronóstico libre)")
+
+        # run_hours == asim + horizonte
+        if self.horizonte_h is not None:
+            run_hours = _leer_namelist_valor(self.namelist, "run_hours")
+            esperado_rh = self.asim_horas + self.horizonte_h
+            if run_hours is not None and abs(run_hours - esperado_rh) > 0.5:
+                problems_adv.append(
+                    f"run_hours={run_hours:.0f} != asim+horizonte={esperado_rh:.0f}")
+
+        if problemas_blk:
+            informe.agregar("2.2.8", "Separación temporal asimilación/pronóstico",
+                            Estado.BLOQUEANTE, " ; ".join(problemas_blk + problems_adv))
+            return
+        if not regs:
+            informe.agregar("2.2.8", "Separación temporal asimilación/pronóstico",
+                            Estado.ADVERTENCIA, " ; ".join(problems_adv))
+            return
+        detalle = (f"obs en [{self.start_dt.strftime('%Y%m%d%H%M') if self.start_dt else '?'}, "
+                   f"{t0.strftime('%Y%m%d%H%M')}], fdda_end={fdda_end:.0f} min = asim {self.asim_horas:.0f} h")
+        if problems_adv:
+            informe.agregar("2.2.8", "Separación temporal asimilación/pronóstico",
+                            Estado.ADVERTENCIA, detalle + " ; " + " ; ".join(problems_adv))
+        else:
+            informe.agregar("2.2.8", "Separación temporal asimilación/pronóstico",
+                            Estado.OK, detalle)
+
 
 class PreflightRunner:
     """Orquesta los chequeos de secciones activas y devuelve el informe."""
@@ -426,10 +513,14 @@ class PreflightRunner:
 def correr_preflight_observaciones(
     obs_json: Path, obsdomain: Path, namelist: Path, start_dt: Optional[datetime] = None,
     caso: str = "", config_path: Optional[Path] = None,
+    t0: Optional[datetime] = None, asim_horas: Optional[float] = None,
+    horizonte_h: Optional[float] = None,
 ) -> InformePreflight:
     """Ejecuta la Sección 2.2 (observaciones/OBS_DOMAIN101) y devuelve el informe."""
     informe = InformePreflight(caso=caso or str(Path(obsdomain).parent.name))
-    chequeos = ChequeosObservaciones(obs_json, obsdomain, namelist, start_dt, _cargar_config(config_path))
+    chequeos = ChequeosObservaciones(obs_json, obsdomain, namelist, start_dt,
+                                     _cargar_config(config_path),
+                                     t0=t0, asim_horas=asim_horas, horizonte_h=horizonte_h)
     runner = PreflightRunner(config_path=config_path)
     runner.registrar(chequeos.check_2221_archivo_json)
     runner.registrar(chequeos.check_2222_formato105)
@@ -438,4 +529,5 @@ def correr_preflight_observaciones(
     runner.registrar(chequeos.check_2225_max_obs)
     runner.registrar(chequeos.check_2226_cobertura)
     runner.registrar(chequeos.check_2227_huso_horario)
+    runner.registrar(chequeos.check_2228_separacion_temporal)
     return runner.correr(informe)

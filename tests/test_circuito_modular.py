@@ -114,12 +114,35 @@ class TestFormatosAsimilacion(unittest.TestCase):
         ])
         writer = ObsNudWriter(config_estaciones_path=str(config_holdout))
         out_file = self.test_dir / "OBS_DOMAIN101_holdout"
-        writer.generar_desde_dataframe(df, output_path=str(out_file))
+        writer.generar_desde_dataframe(df, output_path=str(out_file), usar_roles=True)
 
         content = out_file.read_text(encoding="utf-8")
         self.assertIn("INTA_POCITO", content)
         self.assertNotIn("ULLUM_EMBALSE", content)
         self.assertIn("FM-12 SYNOP", content)
+
+    def test_obsnud_writer_default_asimila_todas(self):
+        """Protocolo temporal (D3): por defecto se asimilan todas las estaciones (sin hold-out)."""
+        config_holdout = self.test_dir / "estaciones_holdout.json"
+        config_holdout.write_text(json.dumps({
+            "INTA_POCITO": {"lat": -31.6500, "lon": -68.5833, "elev": 615.0, "rol": "asimilacion"},
+            "ULLUM_EMBALSE": {"lat": -31.4667, "lon": -68.6667, "elev": 768.0, "rol": "evaluacion"},
+        }))
+        df = pd.DataFrame([
+            {"estacion": "INTA_POCITO", "fecha": "2026-08-12", "hora": "00:00",
+             "temp": 15.0, "humedad": 50.0, "presion_absoluta": 940.0,
+             "viento": 10.0, "direcc": 180.0},
+            {"estacion": "ULLUM_EMBALSE", "fecha": "2026-08-12", "hora": "00:00",
+             "temp": 16.0, "humedad": 55.0, "presion_absoluta": 942.0,
+             "viento": 8.0, "direcc": 170.0},
+        ])
+        writer = ObsNudWriter(config_estaciones_path=str(config_holdout))
+        out_file = self.test_dir / "OBS_DOMAIN101_todas"
+        writer.generar_desde_dataframe(df, output_path=str(out_file))
+
+        content = out_file.read_text(encoding="utf-8")
+        self.assertIn("INTA_POCITO", content)
+        self.assertIn("ULLUM_EMBALSE", content)
 
 
 class TestNamelistManager(unittest.TestCase):
