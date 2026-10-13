@@ -690,6 +690,19 @@ def write_tabla_evolutiva(evolution, output_dir, label=""):
     print(f"  -> {out / 'tabla_evolutiva.json'}")
     return lines
 
+def _persistencia_array(regs, persist, var):
+    """Persistencia del último valor observado en t0 por registro (mismas unidades
+    que `obs`/`nudged`/`control` de los registros: temp K, rh %, psfc hPa, wspd m/s).
+
+    `cargar_series_obs` guarda psfc en Pa, por lo que se convierte a hPa para
+    alinear con el resto de la validación."""
+    pers = np.array([persist.get(r["estacion"], {}).get(var, np.nan) for r in regs],
+                    dtype=float)
+    if var == "psfc":
+        pers = pers / 100.0
+    return pers
+
+
 def escribir_metricas_temporales(registros, obs_series, t0, output_dir,
                                  block_size=6, nombre_largo="errores_largo.csv"):
     """Escribe el detalle de errores y las métricas por horizonte/tramo (D5).
@@ -702,7 +715,9 @@ def escribir_metricas_temporales(registros, obs_series, t0, output_dir,
     """
     out = Path(output_dir)
     variables = ["t2", "rh", "psfc", "wspd"]
-    idx_var = {"t2": 1, "rh": 2, "psfc": 3, "wspd": 4}
+    # `cargar_series_obs` guarda (dt, temp_K, rh_%, psfc_Pa, speed_ms); tras
+    # separar el tiempo, los valores quedan 0-indexados: temp=0, rh=1, psfc=2, speed=3.
+    idx_var = {"t2": 0, "rh": 1, "psfc": 2, "wspd": 3}
 
     with open(str(out / nombre_largo), "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
@@ -728,7 +743,7 @@ def escribir_metricas_temporales(registros, obs_series, t0, output_dir,
             nud = np.array([r["nudged"] for r in regs], dtype=float)
             ctl = np.array([r["control"] for r in regs], dtype=float)
             # Persistencia: error (valor en t0 - obs) por registro.
-            pers = np.array([persist.get(r["estacion"], {}).get(var, np.nan) for r in regs], dtype=float)
+            pers = _persistencia_array(regs, persist, var)
             m_n = metricas_par(nud, obs)
             m_c = metricas_par(ctl, obs)
             m_p = metricas_par(pers, obs)
@@ -768,10 +783,10 @@ def escribir_metricas_temporales(registros, obs_series, t0, output_dir,
             obs = np.array([r["obs"] for r in regs], dtype=float)
             nud = np.array([r["nudged"] for r in regs], dtype=float)
             ctl = np.array([r["control"] for r in regs], dtype=float)
-            pers = np.array([persist.get(r["estacion"], {}).get(var, np.nan) for r in regs], dtype=float)
+            pers = _persistencia_array(regs, persist, var)
             m_n = metricas_par_bloques(nud, obs, block_size=block_size)
             m_c = metricas_par_bloques(ctl, obs, block_size=block_size)
-            m_p = metricas_par(pers, obs, block_size=block_size)
+            m_p = metricas_par_bloques(pers, obs, block_size=block_size)
             filas_t.append({
                 "variable": var, "tramo": lab, "n": m_n["n"],
                 "nudged_bias": m_n["bias"], "nudged_rmse": m_n["rmse"],
@@ -940,7 +955,10 @@ def main():
         idx_eval = [i for i, s in enumerate(stations) if s.get("rol") == "evaluacion"]
         idx_asim = [i for i in range(len(stations)) if i not in idx_eval]
         rows_asim = rows_eval = None
-        if idx_eval and idx_asim and not temporal:
+        if temporal:
+            print("\n  Protocolo temporal: todas las estaciones con datos se asimilan (D3); "
+                  "sin hold-out espacial.")
+        elif idx_eval and idx_asim:
             st_asim = [stations[i] for i in idx_asim]
             st_eval = [stations[i] for i in idx_eval]
             rows_asim = build_tables([nudged_data[i] for i in idx_asim],

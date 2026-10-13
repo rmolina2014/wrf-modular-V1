@@ -624,7 +624,11 @@ def redactar_informe_caso(caso: Dict[str, Any], estado_entry: Dict[str, Any],
     L.append("| Parámetro | Valor |")
     L.append("|-----------|-------|")
     L.append("| Dominio | 1 dominio, 15 km, 80×60, mercator (-31.5°, -68.5°) |")
-    L.append(f"| Ciclo | 00Z–{run_hours:02d}Z ({run_hours} h) |")
+    if caso.get("t0"):
+        L.append(f"| Ciclo | asimilación previa [t0−12h, t0={caso['t0']}] + pronóstico libre "
+                 f"({run_hours - 12} h), run_hours={run_hours} |")
+    else:
+        L.append(f"| Ciclo | 00Z–{run_hours:02d}Z ({run_hours} h) |")
     L.append("| Forzante | GFS 0.25° (AWS) |")
     L.append("| Obs nudging | `obs_nudge_opt=1`, coef viento/temp/humedad=0.0001, `obs_twindo=1.0` |")
     L.append("| Nudged vs Control | misma inicialización; solo cambia `obs_nudge_opt` (1 vs 0) |")

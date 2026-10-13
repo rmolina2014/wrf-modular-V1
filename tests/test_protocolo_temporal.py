@@ -10,6 +10,11 @@ from src.asimilacion.obsnud_writer import ObsNudWriter
 from src.casos.run_casos import _programa_temporal, _valid_times_protocolo, cobertura_obs
 from src.modelo.namelist_manager import NamelistManager
 from src.preflight.preflight import Estado, correr_preflight_observaciones
+from src.validacion.valida_wrf_cli import (
+    _persistencia_array,
+    escribir_metricas_temporales,
+    valor_persistencia,
+)
 from pipeline_wrf import preparar_namelist
 
 
@@ -135,6 +140,49 @@ class TestPreflightSeparacion(unittest.TestCase):
             )
             chequeo = [c for c in informe.chequeos if c.id == "2.2.8"][0]
             self.assertEqual(chequeo.estado, Estado.OK)
+
+
+class TestPersistenciaYMetricas(unittest.TestCase):
+    def _serie(self, t0):
+        from datetime import timedelta
+        # (dt, temp_K, rh_%, psfc_Pa, speed_ms)
+        return [
+            (t0 - timedelta(minutes=30), 288.0, 40.0, 94000.0, 3.0),
+            (t0 - timedelta(minutes=10), 290.0, 45.0, 94100.0, 4.0),
+            (t0 + timedelta(minutes=10), 292.0, 50.0, 94200.0, 5.0),
+        ]
+
+    def test_valor_persistencia_indices(self):
+        t0 = datetime(2026, 7, 31, 0, 0, 0)
+        serie = self._serie(t0)
+        self.assertEqual(valor_persistencia(serie, t0, 0), 290.0)  # temp
+        self.assertEqual(valor_persistencia(serie, t0, 1), 45.0)   # rh
+        self.assertEqual(valor_persistencia(serie, t0, 2), 94100.0)  # psfc
+        self.assertEqual(valor_persistencia(serie, t0, 3), 4.0)    # speed
+
+    def test_escribir_metricas_temporales_todas_las_variables(self):
+        t0 = datetime(2026, 7, 31, 0, 0, 0)
+        obs_series = {"EST_A": self._serie(t0), "EST_B": self._serie(t0)}
+        base = {"nudged": 1.0, "control": 1.5}
+        registros = []
+        for h in range(1, 25):
+            for est, obs in (("EST_A", 2.0), ("EST_B", 2.5)):
+                for var in ("t2", "rh", "psfc", "wspd"):
+                    registros.append({"hora": f"{h:02d}Z", "horizonte_h": h,
+                                      "tramo": "+1-6h", "estacion": est,
+                                      "variable": var, "obs": obs, **base})
+        with tempfile.TemporaryDirectory() as tmp:
+            escribir_metricas_temporales(registros, obs_series, t0, tmp, block_size=6)
+            for nombre in ("errores_largo.csv", "metricas_por_horizonte.csv",
+                           "metricas_por_tramo.csv"):
+                self.assertTrue((Path(tmp) / nombre).exists(), nombre)
+
+    def test_persistencia_psfc_convertida_a_hpa(self):
+        # persist.psfc en Pa (94100) => 941.0 hPa, alineado con los registros.
+        regs = [{"estacion": "EST_A", "variable": "psfc"}]
+        persist = {"EST_A": {"psfc": 94100.0}}
+        arr = _persistencia_array(regs, persist, "psfc")
+        self.assertAlmostEqual(arr[0], 941.0)
 
 
 if __name__ == "__main__":
