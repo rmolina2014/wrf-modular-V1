@@ -1,0 +1,22 @@
+{
+  "creado": "2026-10-13T10:02:39",
+  "start": "2026-07-30_12:00:00",
+  "run_hours": 36,
+  "end": "2026-08-01_00:00:00",
+  "t0": "2026-07-31_00:00:00",
+  "asim_horas": 12.0,
+  "asim_end": "2026-07-31_00:00:00",
+  "obs_coef_wind": 0.0001,
+  "obs_coef_temp": 0.0001,
+  "obs_coef_mois": 0.0001,
+  "fdda_end": 720.0,
+  "gfdda_end_h": 36.0,
+  "namelist_sha256": "b1e4ef5c4ed53e190e2f223cd858aea318efca7c102454d3e1eec8ace7bbdabe",
+  "tiempos_etapa_s": {
+    "obs_littler_obsdomain": 0.13,
+    "preflight": 0.048,
+    "real_exe": 1.875,
+    "wrf_nudged": 937.936,
+    "wrf_control": 926.521
+  }
+}

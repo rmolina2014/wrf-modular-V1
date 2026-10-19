@@ -1,6 +1,6 @@
 # Caso 1 - Viento Zonda
 
-**Fecha del evento:** 2026-07-31 | **Protocolo temporal:** asimilación previa a t0=2026-07-31T00:00:00Z (12 h) + pronóstico libre 24 h (run_hours=36) | **Informe generado:** 2026-10-13 10:11
+**Fecha del evento:** 2026-07-31 | **Protocolo temporal:** asimilación previa a t0=2026-07-31T00:00:00Z (12 h) + pronóstico libre 24 h (run_hours=36) | **Informe generado:** 2026-10-13 13:55
 
 ## Descripción del evento
 

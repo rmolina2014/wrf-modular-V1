@@ -1,0 +1,55 @@
+{
+  "caso": "caso2_calor",
+  "fecha": "2026-10-13 11:36:49",
+  "ejecutar_wrf": true,
+  "chequeos": [
+    {
+      "id": "2.2.1",
+      "descripcion": "Existencia del JSON de observaciones",
+      "estado": "OK",
+      "detalle": "624 registros"
+    },
+    {
+      "id": "2.2.2",
+      "descripcion": "Formato de superficie (FORMAT 105)",
+      "estado": "OK",
+      "detalle": "9 pares por línea"
+    },
+    {
+      "id": "2.2.3",
+      "descripcion": "Identificador de plataforma (SYNOP)",
+      "estado": "OK",
+      "detalle": "'SYNOP' presente en 168 registros"
+    },
+    {
+      "id": "2.2.4",
+      "descripcion": "Timestamps de las observaciones",
+      "estado": "OK",
+      "detalle": "168 timestamps válidos, orden cronológico OK, cadencia 5 min, segundos en [0]"
+    },
+    {
+      "id": "2.2.5",
+      "descripcion": "Cantidad de obs vs max_obs",
+      "estado": "OK",
+      "detalle": "168 obs <= max_obs=10000"
+    },
+    {
+      "id": "2.2.6",
+      "descripcion": "Cobertura temporal de las observaciones",
+      "estado": "OK",
+      "detalle": "tercio1: 56 obs / tercio2: 56 obs / tercio3: 56 obs"
+    },
+    {
+      "id": "2.2.7",
+      "descripcion": "Huso horario de observaciones",
+      "estado": "OK",
+      "detalle": "624 obs con fecha_hora == hora_unix (UTC), delta 0 s"
+    },
+    {
+      "id": "2.2.8",
+      "descripcion": "Separación temporal asimilación/pronóstico",
+      "estado": "OK",
+      "detalle": "obs en [202512311200, 202601010000], fdda_end=720 min = asim 12 h"
+    }
+  ]
+}
