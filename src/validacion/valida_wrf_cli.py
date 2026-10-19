@@ -21,6 +21,16 @@ TRAMOS_HORIZONTE = [(1, 6, "+1-6h"), (7, 12, "+7-12h"),
                     (13, 18, "+13-18h"), (19, 24, "+19-24h")]
 
 
+def etiqueta_hora(dtv, referencia, vt_clean=""):
+    """Etiqueta 'NN' (horas) de un tiempo de validacion respecto de `referencia`.
+
+    Con el protocolo temporal `referencia` es t0, de modo que NN es el horizonte de
+    pronostico (+1 h -> '01'). Sin referencia o sin fecha parseable, usa la hora del nombre."""
+    if referencia is not None and dtv is not None:
+        return f"{int(round((dtv - referencia).total_seconds() / 3600)):02d}"
+    return vt_clean.split("_")[-1][:2] if "_" in vt_clean else ""
+
+
 def tramo_de(horizonte_h):
     """Etiqueta de tramo (D5) para un horizonte entero de horas."""
     for lo, hi, lab in TRAMOS_HORIZONTE:
@@ -890,9 +900,11 @@ def main():
                 continue
         return None
 
-    # Etiqueta relativa al primer tiempo (00Z, 06Z, ..., 24Z) para evitar la
-    # colision de "00Z" cuando el fin del ciclo (24Z) cae en el dia siguiente
-    # a las 00:00 (misma hora que el inicio).
+    # Etiqueta de cada tiempo de validacion (NNZ).
+    #  - Protocolo temporal (--t0): NN = horizonte en horas desde t0 (01Z = +1 h ... 24Z = +24 h).
+    #    t0 es el instante de emision; el primer tiempo validado es t0+1 h.
+    #  - Sin protocolo: NN = horas desde el primer tiempo validado (comportamiento previo);
+    #    evita la colision de "00Z" cuando el fin del ciclo cae a las 00:00 del dia siguiente.
     _t0 = next((t for t in (_parse_vt(x) for x in valid_times) if t is not None), None)
 
     for vt in valid_times:
@@ -900,10 +912,7 @@ def main():
             vt = f"wrfout_d01_{vt}"
         vt_clean = vt.replace("wrfout_d01_", "")
         _dtv = _parse_vt(vt)
-        if _t0 is not None and _dtv is not None:
-            hora = f"{int(round((_dtv - _t0).total_seconds() / 3600)):02d}"
-        else:
-            hora = vt_clean.split("_")[-1][:2] if "_" in vt_clean else ""
+        hora = etiqueta_hora(_dtv, t0_dt if temporal else _t0, vt_clean)
         sub_dir = output_dir / f"{hora}Z" if multi else output_dir
         sub_dir.mkdir(parents=True, exist_ok=True)
 

@@ -187,3 +187,18 @@ class TestPersistenciaYMetricas(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestEtiquetaHorizonte(unittest.TestCase):
+    """El rotulo NNZ debe ser el horizonte desde t0 (no desde el primer tiempo validado)."""
+
+    def test_horizonte_relativo_a_t0(self):
+        from datetime import datetime
+        from src.validacion.valida_wrf_cli import etiqueta_hora
+        t0 = datetime(2026, 7, 31, 0, 0)
+        self.assertEqual(etiqueta_hora(datetime(2026, 7, 31, 1, 0), t0), "01")
+        self.assertEqual(etiqueta_hora(datetime(2026, 8, 1, 0, 0), t0), "24")
+
+    def test_sin_referencia_usa_nombre(self):
+        from src.validacion.valida_wrf_cli import etiqueta_hora
+        self.assertEqual(etiqueta_hora(None, None, "2026-07-31_06:00:00"), "06")

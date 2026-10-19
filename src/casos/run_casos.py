@@ -776,8 +776,9 @@ def redactar_informe_consolidado(casos: List[Dict[str, Any]], estado: Dict[str, 
     L.append("")
     L.append("## Métricas por caso (RMSE y r del nudging vs control)")
     L.append("")
-    L.append("Se reporta el RMSE y el coeficiente de correlación (r) de T2 (K) y RH (%) "
-             "en la ventana de mayor divergencia (06Z, 12Z y 18Z).")
+    L.append("Se reporta el RMSE y el coeficiente de correlación (r) de T2 (K) y RH (%) en cada "
+             "tiempo de validación. En los casos con protocolo temporal, 'NNZ' significa "
+             "horizonte de pronóstico en horas desde t0 (01Z = +1 h, 24Z = +24 h).")
     L.append("")
     for c in casos:
         e = estado.get(c["id"], {})

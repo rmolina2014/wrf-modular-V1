@@ -761,7 +761,7 @@ def _escribir_evaluacion_flujo(case_dir, case, date_str, hour_str, args):
         "hora": hour_str,
         "generado": datetime.now().isoformat(timespec="seconds"),
         "run_dir": str(args.run_dir),
-        "run_hours_namelist": _run_hours_del_namelist(args.namelist),
+        "run_hours_namelist": args.run_hours or _run_hours_del_namelist(args.namelist),
         "valid_times": args.valid_times,
         "obs_coef": {
             "wind": args.obs_coef_wind,
