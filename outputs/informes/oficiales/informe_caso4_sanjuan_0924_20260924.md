@@ -1,6 +1,6 @@
 # Caso 4 - San Juan 2026-09-24
 
-**Fecha del evento:** 2026-09-24 | **Protocolo temporal:** asimilación previa a t0=2026-09-24T00:00:00Z (12 h) + pronóstico libre 24 h (run_hours=36) | **Informe generado:** 2026-10-13 13:55
+**Fecha del evento:** 2026-09-24 | **Protocolo temporal:** asimilación previa a t0=2026-09-24T00:00:00Z (12 h) + pronóstico libre 24 h (run_hours=36) | **Informe generado:** 2026-10-19 16:18
 
 ## Descripción del evento
 
@@ -50,22 +50,21 @@ Tiempos por etapa medidos en la ejecucion (artefacto `evaluacion_flujo.json`); c
 | Etapa (orquestador) | Tiempo |
 |---------------------|--------|
 | Ingesta API EcoWitt + cobertura | 0.03 s |
-| Parseo y QC -> obs_flat (Little_R) | 0.17 s |
-| Descarga GFS 0.25 (AWS) | 17.3 min |
-| WPS (geogrid+ungrib+metgrid) | 3.2 min |
-| Propagacion met_em al run dir | 0.05 s |
-| Pipeline WRF completo (preflight+real+nudged+control+validacion) | 33.4 min |
+| Parseo y QC -> obs_flat (Little_R) | 0.19 s |
+| Descarga GFS 0.25 (AWS) | 7.87 s |
+| WPS (geogrid+ungrib+metgrid) | 3.8 min |
+| Propagacion met_em al run dir | 0.09 s |
+| Pipeline WRF completo (preflight+real+nudged+control+validacion) | 19.9 min |
 
 | Etapa (pipeline WRF) | Tiempo |
 |----------------------|--------|
-| Little_R -> OBS_DOMAIN101 | 0.12 s |
+| Little_R -> OBS_DOMAIN101 | 0.15 s |
 | Preflight (validacion obs/namelist) | 0.05 s |
-| real.exe | 1.84 s |
-| wrf.exe nudged (24 h) | 16.4 min |
-| wrf.exe control (24 h) | 16.3 min |
-| Validacion multi-temporal + informe de evolucion | 42.82 s |
+| real.exe | 2.50 s |
+| wrf.exe nudged (24 h) | 19.0 min |
+| Validacion multi-temporal + informe de evolucion | 50.33 s |
 
-**Tiempo total end-to-end:** 53.9 min.
+**Tiempo total end-to-end:** 23.9 min.
 
 ## Resultados: Nudged vs Control
 
