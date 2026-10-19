@@ -36,3 +36,6 @@ GRIBFILE.*
 # Outputs - avoid committing large artifacts
 outputs/runs/*/control/wrfout*
 outputs/runs/*/nudged/wrfout*
+
+# Respaldos locales (no versionar)
+backups/

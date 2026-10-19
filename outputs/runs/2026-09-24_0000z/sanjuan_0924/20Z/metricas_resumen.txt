@@ -1,5 +1,5 @@
 ================================================================================
-VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-09-24_21:00:00 caso4_NvC
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-09-24_20:00:00 caso4_NvC
 ================================================================================
 
 Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
@@ -7,23 +7,23 @@ Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      M
 IC95 (95% bootstrap) del RMSE por corrida (caso4_NvC):
 Variable           N          IC95 RMSE N          IC95 RMSE C
 --------------------------------------------------------------------------------------------------------------------------------------------
-T2 (K)             8      -3.60       3.64       4.67    0.753      -3.48       3.58       4.60    0.757
-T2 (K)             8         [2.40, 6.74]         [2.34, 6.67]
-PSFC (hPa)         8     -34.52      34.52      43.03    0.855     -34.54      34.54      43.05    0.855
-PSFC (hPa)         8       [23.63, 61.95]       [23.65, 61.98]
-RH (%)             8      -2.73       2.99       3.55    0.771      -2.76       3.04       3.59    0.762
-RH (%)             8         [2.00, 4.82]         [2.01, 4.89]
-Wind (m/s)         8      +8.23       8.23       9.49    0.286      +7.60       7.60       8.95    0.285
-Wind (m/s)         8        [5.69, 12.47]        [5.19, 11.88]
+T2 (K)             8      -3.00       3.36       4.26    0.764      -2.94       3.32       4.18    0.768
+T2 (K)             8         [2.21, 6.20]         [2.21, 6.08]
+PSFC (hPa)         8     -34.45      34.45      43.04    0.854     -34.47      34.47      43.06    0.854
+PSFC (hPa)         8       [23.82, 62.68]       [23.85, 62.69]
+RH (%)             8      -3.43       3.43       4.01    0.826      -3.47       3.47       4.05    0.822
+RH (%)             8         [2.47, 5.25]         [2.49, 5.31]
+Wind (m/s)         8      +6.77       6.81       8.43    0.233      +6.25       6.41       7.99    0.232
+Wind (m/s)         8        [5.11, 11.15]        [4.86, 10.59]
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
 
-  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
-  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
-  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
-  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
-  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
-  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
-  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
   INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
