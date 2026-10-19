@@ -1,7 +1,6 @@
 {
   "caso": "caso1_NvC",
   "valid_times": [
-    "00Z",
     "01Z",
     "02Z",
     "03Z",
@@ -24,7 +23,8 @@
     "20Z",
     "21Z",
     "22Z",
-    "23Z"
+    "23Z",
+    "24Z"
   ],
   "variables": [
     "T2 (K)",
@@ -34,7 +34,7 @@
   ],
   "por_tiempo": [
     {
-      "tiempo": "00Z",
+      "tiempo": "01Z",
       "rows": [
         {
           "var": "T2 (K)",
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "tiempo": "01Z",
+      "tiempo": "02Z",
       "rows": [
         {
           "var": "T2 (K)",
@@ -332,7 +332,7 @@
       ]
     },
     {
-      "tiempo": "02Z",
+      "tiempo": "03Z",
       "rows": [
         {
           "var": "T2 (K)",
@@ -481,7 +481,7 @@
       ]
     },
     {
-      "tiempo": "03Z",
+      "tiempo": "04Z",
       "rows": [
         {
           "var": "T2 (K)",
@@ -630,7 +630,7 @@
       ]
     },
     {
-      "tiempo": "04Z",
+      "tiempo": "05Z",
       "rows": [
         {
           "var": "T2 (K)",
@@ -779,7 +779,7 @@
       ]
     },
     {
-      "tiempo": "05Z",
+      "tiempo": "06Z",
       "rows": [
         {
           "var": "T2 (K)",
@@ -928,7 +928,7 @@
       ]
     },
     {
-      "tiempo": "06Z",
+      "tiempo": "07Z",
       "rows": [
         {
           "var": "T2 (K)",
@@ -1077,7 +1077,7 @@
       ]
     },
     {
-      "tiempo": "07Z",
+      "tiempo": "08Z",
       "rows": [
         {
           "var": "T2 (K)",
@@ -1226,7 +1226,7 @@
       ]
     },
     {
-      "tiempo": "08Z",
+      "tiempo": "09Z",
       "rows": [
         {
           "var": "T2 (K)",
@@ -1375,7 +1375,7 @@
       ]
     },
     {
-      "tiempo": "09Z",
+      "tiempo": "10Z",
       "rows": [
         {
           "var": "T2 (K)",
@@ -1524,7 +1524,7 @@
       ]
     },
     {
-      "tiempo": "10Z",
+      "tiempo": "11Z",
       "rows": [
         {
           "var": "T2 (K)",
@@ -1673,7 +1673,7 @@
       ]
     },
     {
-      "tiempo": "11Z",
+      "tiempo": "12Z",
       "rows": [
         {
           "var": "T2 (K)",
@@ -1822,7 +1822,7 @@
       ]
     },
     {
-      "tiempo": "12Z",
+      "tiempo": "13Z",
       "rows": [
         {
           "var": "T2 (K)",
@@ -1971,7 +1971,7 @@
       ]
     },
     {
-      "tiempo": "13Z",
+      "tiempo": "14Z",
       "rows": [
         {
           "var": "T2 (K)",
@@ -2120,7 +2120,7 @@
       ]
     },
     {
-      "tiempo": "14Z",
+      "tiempo": "15Z",
       "rows": [
         {
           "var": "T2 (K)",
@@ -2269,7 +2269,7 @@
       ]
     },
     {
-      "tiempo": "15Z",
+      "tiempo": "16Z",
       "rows": [
         {
           "var": "T2 (K)",
@@ -2418,7 +2418,7 @@
       ]
     },
     {
-      "tiempo": "16Z",
+      "tiempo": "17Z",
       "rows": [
         {
           "var": "T2 (K)",
@@ -2567,7 +2567,7 @@
       ]
     },
     {
-      "tiempo": "17Z",
+      "tiempo": "18Z",
       "rows": [
         {
           "var": "T2 (K)",
@@ -2716,7 +2716,7 @@
       ]
     },
     {
-      "tiempo": "18Z",
+      "tiempo": "19Z",
       "rows": [
         {
           "var": "T2 (K)",
@@ -2865,7 +2865,7 @@
       ]
     },
     {
-      "tiempo": "19Z",
+      "tiempo": "20Z",
       "rows": [
         {
           "var": "T2 (K)",
@@ -3014,7 +3014,7 @@
       ]
     },
     {
-      "tiempo": "20Z",
+      "tiempo": "21Z",
       "rows": [
         {
           "var": "T2 (K)",
@@ -3163,7 +3163,7 @@
       ]
     },
     {
-      "tiempo": "21Z",
+      "tiempo": "22Z",
       "rows": [
         {
           "var": "T2 (K)",
@@ -3312,7 +3312,7 @@
       ]
     },
     {
-      "tiempo": "22Z",
+      "tiempo": "23Z",
       "rows": [
         {
           "var": "T2 (K)",
@@ -3461,7 +3461,7 @@
       ]
     },
     {
-      "tiempo": "23Z",
+      "tiempo": "24Z",
       "rows": [
         {
           "var": "T2 (K)",

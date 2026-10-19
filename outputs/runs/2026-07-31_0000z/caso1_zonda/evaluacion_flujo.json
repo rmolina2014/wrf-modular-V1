@@ -1,18 +1,31 @@
 {
   "caso": "caso1_zonda",
-  "fecha": "2026-07-30",
+  "fecha": "2026-07-31",
   "hora": "12:00",
-  "generado": "2026-10-13T10:10:55",
+  "generado": "2026-10-19T18:51:50",
   "run_dir": "/home/pgich/wrf-operativo/ejecutables/WRF_casos_24h",
-  "run_hours_namelist": 24,
+  "run_hours_namelist": 36,
   "valid_times": "2026-07-31_01:00:00,2026-07-31_02:00:00,2026-07-31_03:00:00,2026-07-31_04:00:00,2026-07-31_05:00:00,2026-07-31_06:00:00,2026-07-31_07:00:00,2026-07-31_08:00:00,2026-07-31_09:00:00,2026-07-31_10:00:00,2026-07-31_11:00:00,2026-07-31_12:00:00,2026-07-31_13:00:00,2026-07-31_14:00:00,2026-07-31_15:00:00,2026-07-31_16:00:00,2026-07-31_17:00:00,2026-07-31_18:00:00,2026-07-31_19:00:00,2026-07-31_20:00:00,2026-07-31_21:00:00,2026-07-31_22:00:00,2026-07-31_23:00:00,2026-08-01_00:00:00",
   "obs_coef": {
-    "wind": null,
-    "temp": null,
-    "mois": null
+    "wind": 0.0001,
+    "temp": 0.0001,
+    "mois": 0.0001
   },
   "tiempos_etapa_s": {
-    "validacion": 48.364
+    "obs_littler_obsdomain": 0.159,
+    "preflight": 0.056,
+    "real_exe": 2.098,
+    "wrf_nudged": 1010.237,
+    "validacion": 47.193
   },
-  "total_pipeline_s": 48.364
+  "total_pipeline_s": 1059.743,
+  "etapas_orquestador_s": {
+    "api_ecowitt_y_cobertura": 0.034,
+    "obs_flat_parseo_qc": 0.201,
+    "gfs_descarga": 7.427,
+    "wps": 223.407,
+    "met_em_propagacion": 0.091,
+    "pipeline_total": 1060.937
+  },
+  "total_end_to_end_s": 1292.097
 }
