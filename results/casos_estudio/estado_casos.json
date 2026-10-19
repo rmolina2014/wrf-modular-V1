@@ -7,7 +7,7 @@
   "caso2_calor": {
     "estado": "EJECUTADO",
     "detalle": "fuente GFS aws",
-    "ts": "2026-10-13T12:08:48"
+    "ts": "2026-10-19T20:03:42"
   },
   "caso3_frentefrio": {
     "estado": "EJECUTADO",

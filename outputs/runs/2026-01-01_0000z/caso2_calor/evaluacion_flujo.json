@@ -2,7 +2,7 @@
   "caso": "caso2_calor",
   "fecha": "2026-01-01",
   "hora": "12:00",
-  "generado": "2026-10-13T12:08:48",
+  "generado": "2026-10-19T20:03:42",
   "run_dir": "/home/pgich/wrf-operativo/ejecutables/WRF_casos_24h",
   "run_hours_namelist": 36,
   "valid_times": "2026-01-01_01:00:00,2026-01-01_02:00:00,2026-01-01_03:00:00,2026-01-01_04:00:00,2026-01-01_05:00:00,2026-01-01_06:00:00,2026-01-01_07:00:00,2026-01-01_08:00:00,2026-01-01_09:00:00,2026-01-01_10:00:00,2026-01-01_11:00:00,2026-01-01_12:00:00,2026-01-01_13:00:00,2026-01-01_14:00:00,2026-01-01_15:00:00,2026-01-01_16:00:00,2026-01-01_17:00:00,2026-01-01_18:00:00,2026-01-01_19:00:00,2026-01-01_20:00:00,2026-01-01_21:00:00,2026-01-01_22:00:00,2026-01-01_23:00:00,2026-01-02_00:00:00",
@@ -12,21 +12,20 @@
     "mois": 0.0001
   },
   "tiempos_etapa_s": {
-    "obs_littler_obsdomain": 0.028,
+    "obs_littler_obsdomain": 0.03,
     "preflight": 0.008,
-    "real_exe": 1.889,
-    "wrf_nudged": 942.97,
-    "wrf_control": 930.49,
-    "validacion": 42.114
+    "real_exe": 1.937,
+    "wrf_nudged": 1007.092,
+    "validacion": 45.649
   },
-  "total_pipeline_s": 1917.499,
+  "total_pipeline_s": 1054.716,
   "etapas_orquestador_s": {
-    "api_ecowitt_y_cobertura": 0.014,
-    "obs_flat_parseo_qc": 0.038,
-    "gfs_descarga": 1126.407,
-    "wps": 195.379,
-    "met_em_propagacion": 0.046,
-    "pipeline_total": 1918.583
+    "api_ecowitt_y_cobertura": 0.012,
+    "obs_flat_parseo_qc": 0.035,
+    "gfs_descarga": 7.388,
+    "wps": 241.523,
+    "met_em_propagacion": 0.056,
+    "pipeline_total": 1055.707
   },
-  "total_end_to_end_s": 3240.467
+  "total_end_to_end_s": 1304.721
 }
