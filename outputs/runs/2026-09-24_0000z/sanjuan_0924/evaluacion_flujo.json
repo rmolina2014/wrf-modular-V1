@@ -2,7 +2,7 @@
   "caso": "caso4_sanjuan_0924",
   "fecha": "2026-09-24",
   "hora": "12:00",
-  "generado": "2026-10-19T17:04:54",
+  "generado": "2026-10-20T11:12:06",
   "run_dir": "/home/pgich/wrf-operativo/ejecutables/WRF_casos_24h",
   "run_hours_namelist": 36,
   "valid_times": "2026-09-24_01:00:00,2026-09-24_02:00:00,2026-09-24_03:00:00,2026-09-24_04:00:00,2026-09-24_05:00:00,2026-09-24_06:00:00,2026-09-24_07:00:00,2026-09-24_08:00:00,2026-09-24_09:00:00,2026-09-24_10:00:00,2026-09-24_11:00:00,2026-09-24_12:00:00,2026-09-24_13:00:00,2026-09-24_14:00:00,2026-09-24_15:00:00,2026-09-24_16:00:00,2026-09-24_17:00:00,2026-09-24_18:00:00,2026-09-24_19:00:00,2026-09-24_20:00:00,2026-09-24_21:00:00,2026-09-24_22:00:00,2026-09-24_23:00:00,2026-09-25_00:00:00",
@@ -12,21 +12,21 @@
     "mois": 0.0001
   },
   "tiempos_etapa_s": {
-    "obs_littler_obsdomain": 0.134,
-    "preflight": 0.051,
-    "real_exe": 2.24,
-    "wrf_nudged": 1145.374,
-    "wrf_control": 1071.014,
-    "validacion": 42.854
+    "obs_littler_obsdomain": 0.139,
+    "preflight": 0.05,
+    "real_exe": 2.041,
+    "wrf_nudged": 1050.275,
+    "wrf_control": 1043.528,
+    "validacion": 45.13
   },
-  "total_pipeline_s": 2261.667,
+  "total_pipeline_s": 2141.163,
   "etapas_orquestador_s": {
-    "api_ecowitt_y_cobertura": 0.034,
-    "obs_flat_parseo_qc": 0.2,
-    "gfs_descarga": 8.26,
-    "wps": 228.711,
-    "met_em_propagacion": 0.079,
-    "pipeline_total": 2263.203
+    "api_ecowitt_y_cobertura": 0.036,
+    "obs_flat_parseo_qc": 0.186,
+    "gfs_descarga": 7.424,
+    "wps": 226.533,
+    "met_em_propagacion": 0.085,
+    "pipeline_total": 2142.909
   },
-  "total_end_to_end_s": 2500.487
+  "total_end_to_end_s": 2377.173
 }

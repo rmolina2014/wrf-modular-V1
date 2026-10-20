@@ -1,6 +1,6 @@
 # Caso 2 - Calor de verano (Año Nuevo)
 
-**Fecha del evento:** 2026-01-01 | **Protocolo temporal:** asimilación previa a t0=2026-01-01T00:00:00Z (12 h) + pronóstico libre 24 h (run_hours=36) | **Informe generado:** 2026-10-19 20:03
+**Fecha del evento:** 2026-01-01 | **Protocolo temporal:** asimilación previa a t0=2026-01-01T00:00:00Z (12 h) + pronóstico libre 24 h (run_hours=36) | **Informe generado:** 2026-10-20 09:52
 
 ## Descripción del evento
 
@@ -50,20 +50,21 @@ Tiempos por etapa medidos en la ejecucion (artefacto `evaluacion_flujo.json`); c
 |---------------------|--------|
 | Ingesta API EcoWitt + cobertura | 0.01 s |
 | Parseo y QC -> obs_flat (Little_R) | 0.04 s |
-| Descarga GFS 0.25 (AWS) | 7.39 s |
-| WPS (geogrid+ungrib+metgrid) | 4.0 min |
-| Propagacion met_em al run dir | 0.06 s |
-| Pipeline WRF completo (preflight+real+nudged+control+validacion) | 17.6 min |
+| Descarga GFS 0.25 (AWS) | 7.40 s |
+| WPS (geogrid+ungrib+metgrid) | 3.8 min |
+| Propagacion met_em al run dir | 0.08 s |
+| Pipeline WRF completo (preflight+real+nudged+control+validacion) | 34.7 min |
 
 | Etapa (pipeline WRF) | Tiempo |
 |----------------------|--------|
 | Little_R -> OBS_DOMAIN101 | 0.03 s |
 | Preflight (validacion obs/namelist) | 0.01 s |
-| real.exe | 1.94 s |
-| wrf.exe nudged (24 h) | 16.8 min |
-| Validacion multi-temporal + informe de evolucion | 45.65 s |
+| real.exe | 2.13 s |
+| wrf.exe nudged (24 h) | 17.1 min |
+| wrf.exe control (24 h) | 16.7 min |
+| Validacion multi-temporal + informe de evolucion | 46.59 s |
 
-**Tiempo total end-to-end:** 21.7 min.
+**Tiempo total end-to-end:** 38.7 min.
 
 ## Resultados: Nudged vs Control
 

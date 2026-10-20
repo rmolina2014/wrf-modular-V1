@@ -1,0 +1,7 @@
+Archivos comparados: 37
+  T2    celdas distintas=         0  |dif| max=0.000e+00
+  Q2    celdas distintas=         0  |dif| max=0.000e+00
+  PSFC  celdas distintas=         0  |dif| max=0.000e+00
+  U10   celdas distintas=         0  |dif| max=0.000e+00
+  V10   celdas distintas=         0  |dif| max=0.000e+00
+RESULTADO: IDENTICOS (bit a bit)

@@ -2,7 +2,7 @@
   "caso": "caso3_frentefrio",
   "fecha": "2026-05-16",
   "hora": "12:00",
-  "generado": "2026-10-19T20:26:55",
+  "generado": "2026-10-20T10:32:19",
   "run_dir": "/home/pgich/wrf-operativo/ejecutables/WRF_casos_24h",
   "run_hours_namelist": 36,
   "valid_times": "2026-05-16_01:00:00,2026-05-16_02:00:00,2026-05-16_03:00:00,2026-05-16_04:00:00,2026-05-16_05:00:00,2026-05-16_06:00:00,2026-05-16_07:00:00,2026-05-16_08:00:00,2026-05-16_09:00:00,2026-05-16_10:00:00,2026-05-16_11:00:00,2026-05-16_12:00:00,2026-05-16_13:00:00,2026-05-16_14:00:00,2026-05-16_15:00:00,2026-05-16_16:00:00,2026-05-16_17:00:00,2026-05-16_18:00:00,2026-05-16_19:00:00,2026-05-16_20:00:00,2026-05-16_21:00:00,2026-05-16_22:00:00,2026-05-16_23:00:00,2026-05-17_00:00:00",
@@ -12,20 +12,21 @@
     "mois": 0.0001
   },
   "tiempos_etapa_s": {
-    "obs_littler_obsdomain": 0.03,
+    "obs_littler_obsdomain": 0.029,
     "preflight": 0.009,
-    "real_exe": 1.947,
-    "wrf_nudged": 1042.549,
-    "validacion": 45.562
+    "real_exe": 2.041,
+    "wrf_nudged": 1036.257,
+    "wrf_control": 1029.839,
+    "validacion": 45.277
   },
-  "total_pipeline_s": 1090.097,
+  "total_pipeline_s": 2113.452,
   "etapas_orquestador_s": {
-    "api_ecowitt_y_cobertura": 0.013,
-    "obs_flat_parseo_qc": 0.035,
-    "gfs_descarga": 7.379,
-    "wps": 234.594,
-    "met_em_propagacion": 0.058,
-    "pipeline_total": 1091.189
+    "api_ecowitt_y_cobertura": 0.012,
+    "obs_flat_parseo_qc": 0.041,
+    "gfs_descarga": 8.714,
+    "wps": 252.58,
+    "met_em_propagacion": 0.071,
+    "pipeline_total": 2115.081
   },
-  "total_end_to_end_s": 1333.268
+  "total_end_to_end_s": 2376.499
 }

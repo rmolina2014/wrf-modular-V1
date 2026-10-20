@@ -1,0 +1,30 @@
+== Test de reproducibilidad 20261020_0835 ==
+Equipo: Linux 6.1.0-13-amd64 x86_64 | nproc=10 | git=6f36c4e
+WRF run dir: /home/pgich/wrf-operativo/ejecutables/WRF_casos_24h
+wrf.exe sha256: d4e1c55913680000
+
+--- Caso 1 (outputs/runs/2026-07-31_0000z/caso1_zonda) ---
+Caso 1 re-ejecutado en 2286 s
+Control re-corrido (manifest creado 2026-10-20T09:12:55)
+Caso 1 nudged: IDENTICO
+Caso 1 control: IDENTICO
+
+--- Caso 2 (outputs/runs/2026-01-01_0000z/caso2_calor) ---
+Caso 2 re-ejecutado en 2319 s
+Control re-corrido (manifest creado 2026-10-20T09:51:45)
+Caso 2 nudged: IDENTICO
+Caso 2 control: IDENTICO
+
+--- Caso 3 (outputs/runs/2026-05-16_0000z/caso3_frentefrio) ---
+Caso 3 re-ejecutado en 2377 s
+Control re-corrido (manifest creado 2026-10-20T10:31:33)
+Caso 3 nudged: IDENTICO
+Caso 3 control: IDENTICO
+
+--- Caso 4 (outputs/runs/2026-09-24_0000z/sanjuan_0924) ---
+Caso 4 re-ejecutado en 2377 s
+Control re-corrido (manifest creado 2026-10-20T11:11:21)
+Caso 4 nudged: IDENTICO
+Caso 4 control: IDENTICO
+
+RESULTADO GLOBAL: REPRODUCIBLE

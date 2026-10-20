@@ -1,5 +1,5 @@
 {
-  "creado": "2026-10-13T10:02:39",
+  "creado": "2026-10-20T09:12:55",
   "start": "2026-07-30_12:00:00",
   "run_hours": 36,
   "end": "2026-08-01_00:00:00",
@@ -13,10 +13,10 @@
   "gfdda_end_h": 36.0,
   "namelist_sha256": "b1e4ef5c4ed53e190e2f223cd858aea318efca7c102454d3e1eec8ace7bbdabe",
   "tiempos_etapa_s": {
-    "obs_littler_obsdomain": 0.13,
-    "preflight": 0.048,
-    "real_exe": 1.875,
-    "wrf_nudged": 937.936,
-    "wrf_control": 926.521
+    "obs_littler_obsdomain": 0.149,
+    "preflight": 0.054,
+    "real_exe": 1.992,
+    "wrf_nudged": 996.412,
+    "wrf_control": 990.864
   }
 }

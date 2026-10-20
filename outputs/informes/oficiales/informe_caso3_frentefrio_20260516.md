@@ -1,6 +1,6 @@
 # Caso 3 - Ingreso de frente frio
 
-**Fecha del evento:** 2026-05-16 | **Protocolo temporal:** asimilación previa a t0=2026-05-16T00:00:00Z (12 h) + pronóstico libre 24 h (run_hours=36) | **Informe generado:** 2026-10-19 20:26
+**Fecha del evento:** 2026-05-16 | **Protocolo temporal:** asimilación previa a t0=2026-05-16T00:00:00Z (12 h) + pronóstico libre 24 h (run_hours=36) | **Informe generado:** 2026-10-20 10:32
 
 ## Descripción del evento
 
@@ -50,20 +50,21 @@ Tiempos por etapa medidos en la ejecucion (artefacto `evaluacion_flujo.json`); c
 |---------------------|--------|
 | Ingesta API EcoWitt + cobertura | 0.01 s |
 | Parseo y QC -> obs_flat (Little_R) | 0.04 s |
-| Descarga GFS 0.25 (AWS) | 7.38 s |
-| WPS (geogrid+ungrib+metgrid) | 3.9 min |
-| Propagacion met_em al run dir | 0.06 s |
-| Pipeline WRF completo (preflight+real+nudged+control+validacion) | 18.2 min |
+| Descarga GFS 0.25 (AWS) | 8.71 s |
+| WPS (geogrid+ungrib+metgrid) | 4.2 min |
+| Propagacion met_em al run dir | 0.07 s |
+| Pipeline WRF completo (preflight+real+nudged+control+validacion) | 35.3 min |
 
 | Etapa (pipeline WRF) | Tiempo |
 |----------------------|--------|
 | Little_R -> OBS_DOMAIN101 | 0.03 s |
 | Preflight (validacion obs/namelist) | 0.01 s |
-| real.exe | 1.95 s |
-| wrf.exe nudged (24 h) | 17.4 min |
-| Validacion multi-temporal + informe de evolucion | 45.56 s |
+| real.exe | 2.04 s |
+| wrf.exe nudged (24 h) | 17.3 min |
+| wrf.exe control (24 h) | 17.2 min |
+| Validacion multi-temporal + informe de evolucion | 45.28 s |
 
-**Tiempo total end-to-end:** 22.2 min.
+**Tiempo total end-to-end:** 39.6 min.
 
 ## Resultados: Nudged vs Control
 

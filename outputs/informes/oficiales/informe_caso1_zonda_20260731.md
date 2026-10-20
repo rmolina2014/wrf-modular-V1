@@ -1,6 +1,6 @@
 # Caso 1 - Viento Zonda
 
-**Fecha del evento:** 2026-07-31 | **Protocolo temporal:** asimilación previa a t0=2026-07-31T00:00:00Z (12 h) + pronóstico libre 24 h (run_hours=36) | **Informe generado:** 2026-10-19 18:51
+**Fecha del evento:** 2026-07-31 | **Protocolo temporal:** asimilación previa a t0=2026-07-31T00:00:00Z (12 h) + pronóstico libre 24 h (run_hours=36) | **Informe generado:** 2026-10-20 09:13
 
 ## Descripción del evento
 
@@ -49,21 +49,22 @@ Tiempos por etapa medidos en la ejecucion (artefacto `evaluacion_flujo.json`); c
 | Etapa (orquestador) | Tiempo |
 |---------------------|--------|
 | Ingesta API EcoWitt + cobertura | 0.03 s |
-| Parseo y QC -> obs_flat (Little_R) | 0.20 s |
-| Descarga GFS 0.25 (AWS) | 7.43 s |
-| WPS (geogrid+ungrib+metgrid) | 3.7 min |
-| Propagacion met_em al run dir | 0.09 s |
-| Pipeline WRF completo (preflight+real+nudged+control+validacion) | 17.7 min |
+| Parseo y QC -> obs_flat (Little_R) | 0.21 s |
+| Descarga GFS 0.25 (AWS) | 7.48 s |
+| WPS (geogrid+ungrib+metgrid) | 4.0 min |
+| Propagacion met_em al run dir | 0.07 s |
+| Pipeline WRF completo (preflight+real+nudged+control+validacion) | 34.0 min |
 
 | Etapa (pipeline WRF) | Tiempo |
 |----------------------|--------|
-| Little_R -> OBS_DOMAIN101 | 0.16 s |
-| Preflight (validacion obs/namelist) | 0.06 s |
-| real.exe | 2.10 s |
-| wrf.exe nudged (24 h) | 16.8 min |
-| Validacion multi-temporal + informe de evolucion | 47.19 s |
+| Little_R -> OBS_DOMAIN101 | 0.15 s |
+| Preflight (validacion obs/namelist) | 0.05 s |
+| real.exe | 1.99 s |
+| wrf.exe nudged (24 h) | 16.6 min |
+| wrf.exe control (24 h) | 16.5 min |
+| Validacion multi-temporal + informe de evolucion | 46.42 s |
 
-**Tiempo total end-to-end:** 21.5 min.
+**Tiempo total end-to-end:** 38.1 min.
 
 ## Resultados: Nudged vs Control
 
