@@ -1,0 +1,114 @@
+caso,estacion,variable,horas,pares
+1 Zonda,CARACOLES,psfc,19,19
+1 Zonda,CARACOLES,rh,19,19
+1 Zonda,CARACOLES,t2,19,19
+1 Zonda,CARACOLES,wspd,19,19
+1 Zonda,CUESTA_Viento,psfc,24,24
+1 Zonda,CUESTA_Viento,rh,24,24
+1 Zonda,CUESTA_Viento,t2,24,24
+1 Zonda,CUESTA_Viento,wspd,24,24
+1 Zonda,ECOHUMUS,psfc,24,24
+1 Zonda,ECOHUMUS,rh,24,24
+1 Zonda,ECOHUMUS,t2,24,24
+1 Zonda,ECOHUMUS,wspd,24,24
+1 Zonda,INTA_POCITO,psfc,24,24
+1 Zonda,INTA_POCITO,rh,24,24
+1 Zonda,INTA_POCITO,t2,24,24
+1 Zonda,INTA_POCITO,wspd,24,24
+1 Zonda,INTA_SANMARTIN,psfc,24,24
+1 Zonda,PUNTA_NEGRA,psfc,24,24
+1 Zonda,PUNTA_NEGRA,rh,24,24
+1 Zonda,PUNTA_NEGRA,t2,24,24
+1 Zonda,PUNTA_NEGRA,wspd,24,24
+1 Zonda,ULLUM_EMBALSE,psfc,24,24
+1 Zonda,ULLUM_EMBALSE,rh,24,24
+1 Zonda,ULLUM_EMBALSE,t2,24,24
+1 Zonda,ULLUM_EMBALSE,wspd,24,24
+1 Zonda,VALLE_FERTIL,psfc,24,24
+1 Zonda,VALLE_FERTIL,rh,24,24
+1 Zonda,VALLE_FERTIL,t2,24,24
+1 Zonda,VALLE_FERTIL,wspd,24,24
+2 Calor,CARACOLES,psfc,24,24
+2 Calor,CARACOLES,rh,24,24
+2 Calor,CARACOLES,t2,24,24
+2 Calor,CARACOLES,wspd,24,24
+2 Calor,CUESTA_Viento,psfc,24,24
+2 Calor,CUESTA_Viento,rh,24,24
+2 Calor,CUESTA_Viento,t2,24,24
+2 Calor,CUESTA_Viento,wspd,24,24
+2 Calor,ECOHUMUS,psfc,24,24
+2 Calor,ECOHUMUS,rh,24,24
+2 Calor,ECOHUMUS,t2,24,24
+2 Calor,ECOHUMUS,wspd,24,24
+2 Calor,INTA_POCITO,psfc,4,4
+2 Calor,INTA_POCITO,rh,4,4
+2 Calor,INTA_POCITO,t2,4,4
+2 Calor,INTA_POCITO,wspd,4,4
+2 Calor,PUNTA_NEGRA,psfc,24,24
+2 Calor,PUNTA_NEGRA,rh,24,24
+2 Calor,PUNTA_NEGRA,t2,24,24
+2 Calor,PUNTA_NEGRA,wspd,24,24
+2 Calor,ULLUM_EMBALSE,psfc,24,24
+2 Calor,ULLUM_EMBALSE,rh,24,24
+2 Calor,ULLUM_EMBALSE,t2,24,24
+2 Calor,ULLUM_EMBALSE,wspd,24,24
+2 Calor,VALLE_FERTIL,psfc,24,24
+2 Calor,VALLE_FERTIL,rh,24,24
+2 Calor,VALLE_FERTIL,t2,24,24
+2 Calor,VALLE_FERTIL,wspd,24,24
+3 Frente frío,CARACOLES,psfc,24,24
+3 Frente frío,CARACOLES,rh,24,24
+3 Frente frío,CARACOLES,t2,24,24
+3 Frente frío,CARACOLES,wspd,24,24
+3 Frente frío,CUESTA_Viento,psfc,24,24
+3 Frente frío,CUESTA_Viento,rh,24,24
+3 Frente frío,CUESTA_Viento,t2,24,24
+3 Frente frío,CUESTA_Viento,wspd,24,24
+3 Frente frío,ECOHUMUS,psfc,24,24
+3 Frente frío,ECOHUMUS,rh,24,24
+3 Frente frío,ECOHUMUS,t2,24,24
+3 Frente frío,ECOHUMUS,wspd,24,24
+3 Frente frío,INTA_POCITO,psfc,24,24
+3 Frente frío,INTA_POCITO,rh,24,24
+3 Frente frío,INTA_POCITO,t2,24,24
+3 Frente frío,INTA_POCITO,wspd,24,24
+3 Frente frío,PUNTA_NEGRA,psfc,24,24
+3 Frente frío,PUNTA_NEGRA,rh,24,24
+3 Frente frío,PUNTA_NEGRA,t2,24,24
+3 Frente frío,PUNTA_NEGRA,wspd,24,24
+3 Frente frío,VALLE_FERTIL,psfc,24,24
+3 Frente frío,VALLE_FERTIL,rh,24,24
+3 Frente frío,VALLE_FERTIL,t2,24,24
+3 Frente frío,VALLE_FERTIL,wspd,24,24
+4 San Juan 24/09,CARACOLES,psfc,24,24
+4 San Juan 24/09,CARACOLES,rh,24,24
+4 San Juan 24/09,CARACOLES,t2,24,24
+4 San Juan 24/09,CARACOLES,wspd,24,24
+4 San Juan 24/09,CUESTA_Viento,psfc,24,24
+4 San Juan 24/09,CUESTA_Viento,rh,24,24
+4 San Juan 24/09,CUESTA_Viento,t2,24,24
+4 San Juan 24/09,CUESTA_Viento,wspd,24,24
+4 San Juan 24/09,ECOHUMUS,psfc,24,24
+4 San Juan 24/09,ECOHUMUS,rh,24,24
+4 San Juan 24/09,ECOHUMUS,t2,24,24
+4 San Juan 24/09,ECOHUMUS,wspd,24,24
+4 San Juan 24/09,INTA_POCITO,psfc,17,17
+4 San Juan 24/09,INTA_POCITO,rh,17,17
+4 San Juan 24/09,INTA_POCITO,t2,17,17
+4 San Juan 24/09,INTA_POCITO,wspd,17,17
+4 San Juan 24/09,INTA_SANMARTIN,psfc,24,24
+4 San Juan 24/09,INTA_SANMARTIN,rh,24,24
+4 San Juan 24/09,INTA_SANMARTIN,t2,24,24
+4 San Juan 24/09,INTA_SANMARTIN,wspd,24,24
+4 San Juan 24/09,PUNTA_NEGRA,psfc,24,24
+4 San Juan 24/09,PUNTA_NEGRA,rh,24,24
+4 San Juan 24/09,PUNTA_NEGRA,t2,24,24
+4 San Juan 24/09,PUNTA_NEGRA,wspd,24,24
+4 San Juan 24/09,ULLUM_EMBALSE,psfc,24,24
+4 San Juan 24/09,ULLUM_EMBALSE,rh,24,24
+4 San Juan 24/09,ULLUM_EMBALSE,t2,24,24
+4 San Juan 24/09,ULLUM_EMBALSE,wspd,24,24
+4 San Juan 24/09,VALLE_FERTIL,psfc,24,24
+4 San Juan 24/09,VALLE_FERTIL,rh,24,24
+4 San Juan 24/09,VALLE_FERTIL,t2,24,24
+4 San Juan 24/09,VALLE_FERTIL,wspd,24,24
