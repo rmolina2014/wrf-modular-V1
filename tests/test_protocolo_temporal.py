@@ -202,3 +202,33 @@ class TestEtiquetaHorizonte(unittest.TestCase):
     def test_sin_referencia_usa_nombre(self):
         from src.validacion.valida_wrf_cli import etiqueta_hora
         self.assertEqual(etiqueta_hora(None, None, "2026-07-31_06:00:00"), "06")
+
+
+class TestVerificacionFddaEnd(unittest.TestCase):
+    """Parametros para verificar el fin del nudging (obs_idynin, obs_dtramp, obs_ipf_nudob)."""
+
+    def test_namelist_ipf_nudob_y_rampa(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tpl = Path(tmp) / "nl.input"
+            tpl.write_text("&fdda\n obs_nudge_opt = 1,\n /\n", encoding="utf-8")
+            mgr = NamelistManager(template_path=str(tpl))
+            mgr.configurar_fdda(obs_nudge_opt=1, obs_idynin=1, obs_dtramp=-60, obs_ipf_nudob=True)
+            self.assertRegex(mgr.contenido, r"obs_idynin\s*=\s*1")
+            self.assertRegex(mgr.contenido, r"obs_dtramp\s*=\s*-60")
+            self.assertRegex(mgr.contenido, r"obs_ipf_nudob\s*=\s*\.true\.")
+
+    def test_namelist_sin_opciones_no_agrega_nada(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tpl = Path(tmp) / "nl.input"
+            tpl.write_text("&fdda\n obs_nudge_opt = 1,\n /\n", encoding="utf-8")
+            mgr = NamelistManager(template_path=str(tpl))
+            mgr.configurar_fdda(obs_nudge_opt=1)
+            for p in ("obs_idynin", "obs_dtramp", "obs_ipf_nudob"):
+                self.assertNotIn(p, mgr.contenido)
+
+    def test_pipeline_args_exige_variante(self):
+        import sys
+        from unittest import mock
+        from src.casos import run_casos
+        with mock.patch.object(sys, "argv", ["run_casos", "--pipeline-args=--obs-ipf-nudob"]):
+            self.assertEqual(run_casos.main(), 1)
