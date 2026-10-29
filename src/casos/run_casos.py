@@ -17,6 +17,7 @@ Uso:
 """
 
 import argparse
+import shlex
 import json
 import logging
 import os
@@ -57,6 +58,7 @@ WPS_SH = WPS_DIR / "run_wps_sanjuan.sh"
 RUN_DIR = Path(os.environ.get("LOCAL_WRF_DIR", "/home/pgich/wrf-operativo/ejecutables/WRF_casos_24h"))
 PYTHON = Path(os.environ.get("PYTHON", sys.executable))
 PIPELINE = ROOT / "pipeline_wrf.py"
+EXTRA_PIPELINE_ARGS: List[str] = []   # opciones extra para pipeline_wrf.py (modo --variante)
 GFS_URLS = {
     "aws": "https://noaa-gfs-bdp-pds.s3.amazonaws.com/gfs.{fecha}/{ciclo}/atmos/{file}",
     "nomads": "https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.{fecha}/{ciclo}/atmos/{file}",
@@ -410,6 +412,7 @@ def ejecutar_pipeline(caso: Dict[str, Any], comun: Dict[str, Any], fecha: str,
             "--horizon-h", str(programa["horizonte_h"]),
             "--t0", programa["t0"].strftime("%Y-%m-%dT%H:%M:%S"),
         ]
+    cmd += EXTRA_PIPELINE_ARGS
     log = ESTADO_DIR / f"pipeline_{caso['id']}.log"
     logger.info(f"Pipeline: {' '.join(cmd)} (run_hours={run_hours})")
     env = dict(os.environ)
@@ -974,9 +977,30 @@ def main():
     parser.add_argument("--solo", type=int, default=None, help="Ejecutar solo el caso con ese numero.")
     parser.add_argument("--force", action="store_true", help="Re-ejecutar aunque existan resultados.")
     parser.add_argument("--skip-wrf", action="store_true", help="No correr WRF (solo obs/GFS/informes).")
+    parser.add_argument("--variante", default=None,
+                        help="Nombre de una variante experimental (ej. rampa). Los resultados van a "
+                             "<resultados_dir>__<variante>, el estado y los informes a archivos aparte; "
+                             "no se tocan los resultados oficiales.")
+    parser.add_argument("--pipeline-args", default="",
+                        help="Opciones extra para pipeline_wrf.py, entre comillas "
+                             "(ej. \"--obs-idynin 1 --obs-dtramp -60 --obs-ipf-nudob\").")
     args = parser.parse_args()
 
+    if args.pipeline_args and not args.variante:
+        logger.error("--pipeline-args exige --variante (para no mezclar con los resultados oficiales)")
+        return 1
+    EXTRA_PIPELINE_ARGS[:] = shlex.split(args.pipeline_args)
+
     comun, casos = _leer_casos()
+    if args.variante:
+        g = globals()
+        g["ESTADO_JSON"] = ESTADO_DIR / f"estado_casos__{args.variante}.json"
+        g["INFORMES"] = INFORMES / "variantes" / args.variante
+        casos = [dict(c, id=f"{c['id']}__{args.variante}",
+                      resultados_dir=f"{c['resultados_dir']}__{args.variante}",
+                      informe=str(Path(c["informe"]).parent / "variantes" / args.variante / Path(c["informe"]).name)
+                      if c.get("informe") else c.get("informe"))
+                 for c in casos]
     todos_casos = casos
     if args.solo:
         casos = [c for c in casos if c["num"] == args.solo]

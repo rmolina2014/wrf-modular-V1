@@ -1,0 +1,143 @@
+== Verificacion del fin del nudging 20261028_0946 ==
+Equipo: Linux 6.1.0-13-amd64 x86_64 | nproc=10 | git=628399f
+
+--- Caso 1, variante rampa (--obs-idynin 1 --obs-dtramp -60 --obs-ipf-nudob) ---
+Caso 1/rampa ejecutado en 2118 s
+fdda_end=720 min | obs_idynin=1 | obs_dtramp=-60. | obs_ipf_nudob=.true.
+Sin rsl_nudged.out.0000: la corrida no guardo el log.
+8     0.485072
+9     0.709388
+10    0.741188
+11    0.709162
+12    1.281390
+13    1.483304
+14    1.164125
+15    0.832801
+16    0.664407
+17    0.343479
+18    0.485097
+19    0.641934
+20    0.508193
+21    0.355134
+22    0.285156
+23    0.243266
+24    0.251547
+3) RMSE por variable y tramo; Mejora % = (RMSE_C - RMSE_N)/RMSE_C*100:
+variable   tramo   n  rmse_control  rmse_nudged_oficial  rmse_nudged_variante  mejora_oficial_pct  mejora_variante_pct
+    psfc   +1-6h  48        43.130               43.086                43.097               0.101                0.076
+    psfc  +7-12h  48        43.609               43.580                43.580               0.065                0.066
+    psfc +13-18h  48        42.990               42.990                42.999              -0.001               -0.022
+    psfc +19-24h  43        33.432               33.427                33.415               0.015                0.050
+    psfc  +1-24h 187        41.195               41.174                41.177               0.049                0.042
+      rh   +1-6h  42        27.753               26.004                25.971               6.301                6.418
+      rh  +7-12h  42        31.406               31.118                30.992               0.915                1.318
+      rh +13-18h  42        13.968               13.886                13.818               0.590                1.076
+      rh +19-24h  37         5.020                5.036                 5.030              -0.328               -0.204
+      rh  +1-24h 163        22.552               21.890                21.823               2.934                3.234
+      t2   +1-6h  42         4.945                4.734                 4.771               4.260                3.512
+      t2  +7-12h  42         6.764                6.703                 6.704               0.894                0.879
+      t2 +13-18h  42         4.223                4.219                 4.214               0.099                0.222
+      t2 +19-24h  37         2.408                2.405                 2.401               0.134                0.314
+      t2  +1-24h 163         4.899                4.822                 4.830               1.570                1.405
+    wspd   +1-6h  42         2.653                2.542                 2.522               4.195                4.938
+    wspd  +7-12h  42         2.867                2.915                 2.874              -1.681               -0.266
+    wspd +13-18h  42         5.434                5.303                 5.284               2.425                2.766
+    wspd +19-24h  37        10.091               10.027                 9.992               0.642                0.988
+    wspd  +1-24h 163         5.887                5.824                 5.799               1.070                1.502
+Guardado: outputs/runs/2026-07-31_0000z/caso1_zonda__rampa/comparacion_con_oficial.csv
+
+--- Caso 2, variante rampa (--obs-idynin 1 --obs-dtramp -60 --obs-ipf-nudob) ---
+Caso 2/rampa ejecutado en 2138 s
+fdda_end=720 min | obs_idynin=1 | obs_dtramp=-60. | obs_ipf_nudob=.true.
+Sin rsl_nudged.out.0000: la corrida no guardo el log.
+8     0.378249
+9     0.289203
+10    0.239678
+11    0.247034
+12    0.247448
+13    0.149857
+14    0.128930
+15    0.162777
+16    0.126001
+17    0.059254
+18    0.070092
+19    0.112385
+20    0.158221
+21    0.296639
+22    0.987673
+23    0.888630
+24    0.475931
+3) RMSE por variable y tramo; Mejora % = (RMSE_C - RMSE_N)/RMSE_C*100:
+variable   tramo   n  rmse_control  rmse_nudged_oficial  rmse_nudged_variante  mejora_oficial_pct  mejora_variante_pct
+    psfc   +1-6h  40        44.644               44.531                44.536               0.253                0.242
+    psfc  +7-12h  36        46.242               46.185                46.188               0.124                0.119
+    psfc +13-18h  36        45.872               45.761                45.765               0.241                0.233
+    psfc +19-24h  36        45.226               45.195                45.194               0.067                0.070
+    psfc  +1-24h 148        45.477               45.398                45.401               0.173                0.167
+      rh   +1-6h  40        27.369               22.769                22.938              16.806               16.188
+      rh  +7-12h  36        29.845               26.916                27.005               9.813                9.514
+      rh +13-18h  36        10.709                8.545                 8.596              20.208               19.734
+      rh +19-24h  36         8.392                7.806                 7.840               6.993                6.583
+      rh  +1-24h 148        21.544               18.679                18.776              13.295               12.849
+      t2   +1-6h  40         4.318                4.217                 4.250               2.346                1.569
+      t2  +7-12h  36         4.131                4.084                 4.094               1.120                0.890
+      t2 +13-18h  36         2.754                2.959                 2.956              -7.458               -7.351
+      t2 +19-24h  36         3.245                3.446                 3.447              -6.175               -6.218
+      t2  +1-24h 148         3.687                3.726                 3.738              -1.044               -1.385
+    wspd   +1-6h  40         1.554                2.028                 2.054             -30.485              -32.121
+    wspd  +7-12h  36         1.646                1.808                 1.818              -9.851              -10.470
+    wspd +13-18h  36         2.317                2.110                 2.117               8.925                8.604
+    wspd +19-24h  36         3.188                3.231                 3.105              -1.337                2.610
+    wspd  +1-24h 148         2.256                2.351                 2.319              -4.222               -2.806
+Guardado: outputs/runs/2026-01-01_0000z/caso2_calor__rampa/comparacion_con_oficial.csv
+
+--- Caso 4, variante rampa (--obs-idynin 1 --obs-dtramp -60 --obs-ipf-nudob) ---
+Caso 4/rampa ejecutado en 2239 s
+fdda_end=720 min | obs_idynin=1 | obs_dtramp=-60. | obs_ipf_nudob=.true.
+Sin rsl_nudged.out.0000: la corrida no guardo el log.
+8     1.564700
+9     0.341492
+10    0.170132
+11    0.381001
+12    0.615385
+13    0.294969
+14    0.198681
+15    0.107049
+16    0.098656
+17    0.248540
+18    0.366113
+19    0.363237
+20    0.296591
+21    0.249344
+22    0.185302
+23    0.231425
+24    0.342709
+3) RMSE por variable y tramo; Mejora % = (RMSE_C - RMSE_N)/RMSE_C*100:
+variable   tramo   n  rmse_control  rmse_nudged_oficial  rmse_nudged_variante  mejora_oficial_pct  mejora_variante_pct
+    psfc   +1-6h  48        41.631               41.586                41.594               0.107                0.089
+    psfc  +7-12h  42        43.944               43.941                43.932               0.008                0.028
+    psfc +13-18h  47        42.732               42.723                42.731               0.021                0.001
+    psfc +19-24h  48        42.727               42.717                42.714               0.024                0.030
+    psfc  +1-24h 185        42.728               42.711                42.712               0.040                0.037
+      rh   +1-6h  48        15.848               12.542                12.748              20.860               19.561
+      rh  +7-12h  42        16.407               14.804                14.863               9.769                9.406
+      rh +13-18h  47         6.557                6.244                 6.268               4.770                4.405
+      rh +19-24h  48         4.109                4.071                 4.069               0.932                0.968
+      rh  +1-24h 185        11.899               10.236                10.325              13.975               13.229
+      t2   +1-6h  48         5.958                6.076                 6.036              -1.969               -1.297
+      t2  +7-12h  42         5.894                5.884                 5.899               0.173               -0.089
+      t2 +13-18h  47         4.750                4.770                 4.763              -0.433               -0.285
+      t2 +19-24h  48         4.822                4.864                 4.859              -0.878               -0.783
+      t2  +1-24h 185         5.372                5.418                 5.408              -0.854               -0.660
+    wspd   +1-6h  48         3.274                3.197                 3.185               2.353                2.718
+    wspd  +7-12h  42         3.774                3.891                 3.837              -3.122               -1.670
+    wspd +13-18h  47         5.445                5.439                 5.449               0.116               -0.078
+    wspd +19-24h  48         8.226                8.545                 8.555              -3.879               -3.998
+    wspd  +1-24h 185         5.577                5.705                 5.702              -2.299               -2.231
+Guardado: outputs/runs/2026-09-24_0000z/sanjuan_0924__rampa/comparacion_con_oficial.csv
+
+Resultados en outputs/verificacion_fdda/20261028_0946. Interpretacion:
+ - diag: si 'lineas con XTIME > fdda_end' = 0, fdda_end corta el nudging en t0 aun sin obs_idynin.
+         Si hay lineas posteriores, el nudging sigue actuando (como maximo hasta t0 + obs_twindo).
+ - diag: el nudged debe ser identico al oficial (max |dif| = 0 en todos los horizontes).
+ - rampa: las diferencias con el oficial muestran cuanto depende el resultado de la forma de cortar el nudging.

@@ -94,6 +94,7 @@ class NamelistManager:
         max_obs: int = 10000,
         obs_idynin: Optional[int] = None,
         obs_dtramp: Optional[float] = None,
+        obs_ipf_nudob: Optional[bool] = None,
     ) -> "NamelistManager":
         """Configura los parámetros del namelist &fdda para Observational Nudging.
 
@@ -128,6 +129,9 @@ class NamelistManager:
             c = self._insertar_en_fdda(c, "obs_idynin", int(obs_idynin))
         if obs_dtramp is not None:
             c = self._insertar_en_fdda(c, "obs_dtramp", float(obs_dtramp))
+        if obs_ipf_nudob is not None:
+            # diagnostico de la guia de Reen: imprime en rsl.out.* cuando el nudging esta activo
+            c = self._insertar_en_fdda(c, "obs_ipf_nudob", ".true." if obs_ipf_nudob else ".false.")
 
         self.contenido = c
         return self

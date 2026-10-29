@@ -585,7 +585,10 @@ def pipeline(args):
             coefs_prep = {"obs_coef_wind": args.obs_coef_wind,
                           "obs_coef_temp": args.obs_coef_temp,
                           "obs_coef_mois": args.obs_coef_mois,
-                          "obs_twindo": args.obs_twindo}
+                          "obs_twindo": args.obs_twindo,
+                          "obs_idynin": args.obs_idynin,
+                          "obs_dtramp": args.obs_dtramp,
+                          "obs_ipf_nudob": True if args.obs_ipf_nudob else None}
             coefs_prep = {k: v for k, v in coefs_prep.items() if v is not None}
             preparar_namelist(args.namelist, 1, case_dir / "namelist_nudged.input",
                               start_dt=start_dt, run_hours=run_hours_prep,
@@ -616,6 +619,12 @@ def pipeline(args):
             coefs["obs_coef_mois"] = args.obs_coef_mois
         if args.obs_twindo is not None:
             coefs["obs_twindo"] = args.obs_twindo
+        if args.obs_idynin is not None:
+            coefs["obs_idynin"] = args.obs_idynin
+        if args.obs_dtramp is not None:
+            coefs["obs_dtramp"] = args.obs_dtramp
+        if args.obs_ipf_nudob:
+            coefs["obs_ipf_nudob"] = True
 
         preparar_namelist(args.namelist, 1, namelist_nudged, start_dt=start_dt,
                           run_hours=args.run_hours, asim_hours=asim_horas, **coefs)
@@ -653,6 +662,18 @@ def pipeline(args):
             return 1
         _t = _marcar("wrf_nudged", _t)
         copiar_wrfout(run_dir, nudged_dir, valid_time)
+        # Conservar el log del nudged: la corrida de control borra rsl.* y no se podria
+        # comprobar despues cuando dejo de actuar el nudging (revisa_rsl_nudging.py)
+        try:
+            _rsl = Path(run_dir) / "rsl.out.0000"
+            if _rsl.exists():
+                shutil.copy2(_rsl, case_dir / "rsl_nudged.out.0000")
+            # Con wrf.exe serial/OpenMP (np=1) no hay rsl.*: la salida va a wrf_nudged.log
+            _wlog = Path(run_dir) / "wrf_nudged.log"
+            if _wlog.exists():
+                shutil.copy2(_wlog, case_dir / "wrf_nudged.log")
+        except Exception as _e:
+            logger.warning(f"No se pudo guardar rsl.out.0000 del nudged: {_e}")
 
         # Copiar wrfout al subdirectorio nudged/ del directorio de corrida para validacion
         subprocess.run(
@@ -852,6 +873,15 @@ Ejemplos:
                         help="obs_coef_mois (default: usar valor del namelist)")
     parser.add_argument("--obs-twindo", type=float, default=None,
                         help="obs_twindo en horas (default: usar valor del namelist)")
+
+    # Fin del nudging (guia de Reen, 2016): rampa de desactivacion y diagnostico
+    parser.add_argument("--obs-idynin", type=int, default=None, choices=[0, 1],
+                        help="obs_idynin: 1 = el nudging termina antes que el modelo (necesario para fdda_end)")
+    parser.add_argument("--obs-dtramp", type=float, default=None,
+                        help="obs_dtramp (min): rampa de desactivacion que termina en fdda_end; "
+                             "<=0 usa las observaciones de la rampa, >0 no las usa")
+    parser.add_argument("--obs-ipf-nudob", action="store_true",
+                        help="Activa obs_ipf_nudob: imprime en rsl.out.* mientras el nudging esta activo")
 
     # Protocolo de separacion temporal (asimilacion previa a t0 + pronostico libre)
     parser.add_argument("--case-dir", default=None,
