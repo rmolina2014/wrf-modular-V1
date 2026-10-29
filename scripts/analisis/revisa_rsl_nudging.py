@@ -1,7 +1,7 @@
 """Comprueba en el log de WRF hasta cuando actuo el nudging (guia de Reen, 2016).
 
 Uso: python scripts/analisis/revisa_rsl_nudging.py <dir_del_caso>
-Lee <dir>/namelist_nudged.input y <dir>/rsl_nudged.out.0000 (copiado por pipeline_wrf.py).
+Lee <dir>/namelist_nudged.input y <dir>/rsl_nudged.out.0000 o <dir>/wrf_nudged.log (copiados por pipeline_wrf.py).
 Con obs_ipf_nudob = .true. WRF imprime 'OBS NUDGING FOR IN,J,KTAU,XTIME,...' mientras el
 nudging esta activo; si hay lineas con XTIME > fdda_end, siguio actuando despues del fin previsto.
 Salida: 0 = sin nudging despues de fdda_end; 1 = hay nudging posterior; 2 = sin diagnostico."""
@@ -21,10 +21,12 @@ def main(d):
     fdda_end = float(val("fdda_end"))
     print(f"fdda_end={fdda_end:g} min | obs_idynin={val('obs_idynin') or '(no fijado)'} | "
           f"obs_dtramp={val('obs_dtramp') or '(no fijado)'} | obs_ipf_nudob={val('obs_ipf_nudob') or '(no fijado)'}")
-    rsl = d / "rsl_nudged.out.0000"
-    if not rsl.exists():
-        print("Sin rsl_nudged.out.0000: la corrida no guardo el log.")
+    # Con wrf.exe serial/OpenMP no se generan rsl.*: la salida queda en wrf_nudged.log
+    rsl = next((d / f for f in ("rsl_nudged.out.0000", "wrf_nudged.log") if (d / f).exists()), None)
+    if rsl is None:
+        print("Sin rsl_nudged.out.0000 ni wrf_nudged.log: la corrida no guardo el log.")
         return 2
+    print(f"Log analizado: {rsl.name}")
     xs, dyn = [], []
     for l in rsl.read_text(errors="replace").splitlines():
         m = re.search(r"OBS NUDGING FOR IN,J,KTAU,XTIME,IVAR,IPL:\s+\d+\s+\d+\s+\d+\s+([\d.]+)", l)

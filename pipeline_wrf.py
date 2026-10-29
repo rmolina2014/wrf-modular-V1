@@ -668,6 +668,10 @@ def pipeline(args):
             _rsl = Path(run_dir) / "rsl.out.0000"
             if _rsl.exists():
                 shutil.copy2(_rsl, case_dir / "rsl_nudged.out.0000")
+            # Con wrf.exe serial/OpenMP (np=1) no hay rsl.*: la salida va a wrf_nudged.log
+            _wlog = Path(run_dir) / "wrf_nudged.log"
+            if _wlog.exists():
+                shutil.copy2(_wlog, case_dir / "wrf_nudged.log")
         except Exception as _e:
             logger.warning(f"No se pudo guardar rsl.out.0000 del nudged: {_e}")
 
