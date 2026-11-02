@@ -1,0 +1,149 @@
+== Verificacion del fin del nudging 20261102_0926 ==
+Equipo: Linux 6.1.0-13-amd64 x86_64 | nproc=10 | git=e01ff4b
+
+--- Caso 1, variante diag (--obs-ipf-nudob) ---
+Caso 1/diag ejecutado en 2215 s
+fdda_end=720 min | obs_idynin=(no fijado) | obs_dtramp=(no fijado) | obs_ipf_nudob=.true.
+Log analizado: wrf_nudged.log
+Lineas de nudging: 3844 | XTIME maximo con nudging: 720 min | lineas con XTIME > fdda_end: 0
+RESULTADO: el nudging no actuo despues de fdda_end.
+8     0.0
+9     0.0
+10    0.0
+11    0.0
+12    0.0
+13    0.0
+14    0.0
+15    0.0
+16    0.0
+17    0.0
+18    0.0
+19    0.0
+20    0.0
+21    0.0
+22    0.0
+23    0.0
+24    0.0
+3) RMSE por variable y tramo; Mejora % = (RMSE_C - RMSE_N)/RMSE_C*100:
+variable   tramo   n  rmse_control  rmse_nudged_oficial  rmse_nudged_variante  mejora_oficial_pct  mejora_variante_pct
+    psfc   +1-6h  48        43.130               43.086                43.086               0.101                0.101
+    psfc  +7-12h  48        43.609               43.580                43.580               0.065                0.065
+    psfc +13-18h  48        42.990               42.990                42.990              -0.001               -0.001
+    psfc +19-24h  43        33.432               33.427                33.427               0.015                0.015
+    psfc  +1-24h 187        41.195               41.174                41.174               0.049                0.049
+      rh   +1-6h  42        27.753               26.004                26.004               6.301                6.301
+      rh  +7-12h  42        31.406               31.118                31.118               0.915                0.915
+      rh +13-18h  42        13.968               13.886                13.886               0.590                0.590
+      rh +19-24h  37         5.020                5.036                 5.036              -0.328               -0.328
+      rh  +1-24h 163        22.552               21.890                21.890               2.934                2.934
+      t2   +1-6h  42         4.945                4.734                 4.734               4.260                4.260
+      t2  +7-12h  42         6.764                6.703                 6.703               0.894                0.894
+      t2 +13-18h  42         4.223                4.219                 4.219               0.099                0.099
+      t2 +19-24h  37         2.408                2.405                 2.405               0.134                0.134
+      t2  +1-24h 163         4.899                4.822                 4.822               1.570                1.570
+    wspd   +1-6h  42         2.653                2.542                 2.542               4.195                4.195
+    wspd  +7-12h  42         2.867                2.915                 2.915              -1.681               -1.681
+    wspd +13-18h  42         5.434                5.303                 5.303               2.425                2.425
+    wspd +19-24h  37        10.091               10.027                10.027               0.642                0.642
+    wspd  +1-24h 163         5.887                5.824                 5.824               1.070                1.070
+Guardado: outputs/runs/2026-07-31_0000z/caso1_zonda__diag/comparacion_con_oficial.csv
+
+--- Caso 2, variante diag (--obs-ipf-nudob) ---
+Caso 2/diag ejecutado en 2160 s
+fdda_end=720 min | obs_idynin=(no fijado) | obs_dtramp=(no fijado) | obs_ipf_nudob=.true.
+Log analizado: wrf_nudged.log
+Lineas de nudging: 3844 | XTIME maximo con nudging: 720 min | lineas con XTIME > fdda_end: 0
+RESULTADO: el nudging no actuo despues de fdda_end.
+8     0.0
+9     0.0
+10    0.0
+11    0.0
+12    0.0
+13    0.0
+14    0.0
+15    0.0
+16    0.0
+17    0.0
+18    0.0
+19    0.0
+20    0.0
+21    0.0
+22    0.0
+23    0.0
+24    0.0
+3) RMSE por variable y tramo; Mejora % = (RMSE_C - RMSE_N)/RMSE_C*100:
+variable   tramo   n  rmse_control  rmse_nudged_oficial  rmse_nudged_variante  mejora_oficial_pct  mejora_variante_pct
+    psfc   +1-6h  40        44.644               44.531                44.531               0.253                0.253
+    psfc  +7-12h  36        46.242               46.185                46.185               0.124                0.124
+    psfc +13-18h  36        45.872               45.761                45.761               0.241                0.241
+    psfc +19-24h  36        45.226               45.195                45.195               0.067                0.067
+    psfc  +1-24h 148        45.477               45.398                45.398               0.173                0.173
+      rh   +1-6h  40        27.369               22.769                22.769              16.806               16.806
+      rh  +7-12h  36        29.845               26.916                26.916               9.813                9.813
+      rh +13-18h  36        10.709                8.545                 8.545              20.208               20.208
+      rh +19-24h  36         8.392                7.806                 7.806               6.993                6.993
+      rh  +1-24h 148        21.544               18.679                18.679              13.295               13.295
+      t2   +1-6h  40         4.318                4.217                 4.217               2.346                2.346
+      t2  +7-12h  36         4.131                4.084                 4.084               1.120                1.120
+      t2 +13-18h  36         2.754                2.959                 2.959              -7.458               -7.458
+      t2 +19-24h  36         3.245                3.446                 3.446              -6.175               -6.175
+      t2  +1-24h 148         3.687                3.726                 3.726              -1.044               -1.044
+    wspd   +1-6h  40         1.554                2.028                 2.028             -30.485              -30.485
+    wspd  +7-12h  36         1.646                1.808                 1.808              -9.851               -9.851
+    wspd +13-18h  36         2.317                2.110                 2.110               8.925                8.925
+    wspd +19-24h  36         3.188                3.231                 3.231              -1.337               -1.337
+    wspd  +1-24h 148         2.256                2.351                 2.351              -4.222               -4.222
+Guardado: outputs/runs/2026-01-01_0000z/caso2_calor__diag/comparacion_con_oficial.csv
+
+--- Caso 4, variante diag (--obs-ipf-nudob) ---
+Caso 4/diag ejecutado en 2233 s
+fdda_end=720 min | obs_idynin=(no fijado) | obs_dtramp=(no fijado) | obs_ipf_nudob=.true.
+Log analizado: wrf_nudged.log
+Lineas de nudging: 3844 | XTIME maximo con nudging: 720 min | lineas con XTIME > fdda_end: 0
+RESULTADO: el nudging no actuo despues de fdda_end.
+8     0.0
+9     0.0
+10    0.0
+11    0.0
+12    0.0
+13    0.0
+14    0.0
+15    0.0
+16    0.0
+17    0.0
+18    0.0
+19    0.0
+20    0.0
+21    0.0
+22    0.0
+23    0.0
+24    0.0
+3) RMSE por variable y tramo; Mejora % = (RMSE_C - RMSE_N)/RMSE_C*100:
+variable   tramo   n  rmse_control  rmse_nudged_oficial  rmse_nudged_variante  mejora_oficial_pct  mejora_variante_pct
+    psfc   +1-6h  48        41.631               41.586                41.586               0.107                0.107
+    psfc  +7-12h  42        43.944               43.941                43.941               0.008                0.008
+    psfc +13-18h  47        42.732               42.723                42.723               0.021                0.021
+    psfc +19-24h  48        42.727               42.717                42.717               0.024                0.024
+    psfc  +1-24h 185        42.728               42.711                42.711               0.040                0.040
+      rh   +1-6h  48        15.848               12.542                12.542              20.860               20.860
+      rh  +7-12h  42        16.407               14.804                14.804               9.769                9.769
+      rh +13-18h  47         6.557                6.244                 6.244               4.770                4.770
+      rh +19-24h  48         4.109                4.071                 4.071               0.932                0.932
+      rh  +1-24h 185        11.899               10.236                10.236              13.975               13.975
+      t2   +1-6h  48         5.958                6.076                 6.076              -1.969               -1.969
+      t2  +7-12h  42         5.894                5.884                 5.884               0.173                0.173
+      t2 +13-18h  47         4.750                4.770                 4.770              -0.433               -0.433
+      t2 +19-24h  48         4.822                4.864                 4.864              -0.878               -0.878
+      t2  +1-24h 185         5.372                5.418                 5.418              -0.854               -0.854
+    wspd   +1-6h  48         3.274                3.197                 3.197               2.353                2.353
+    wspd  +7-12h  42         3.774                3.891                 3.891              -3.122               -3.122
+    wspd +13-18h  47         5.445                5.439                 5.439               0.116                0.116
+    wspd +19-24h  48         8.226                8.545                 8.545              -3.879               -3.879
+    wspd  +1-24h 185         5.577                5.705                 5.705              -2.299               -2.299
+Guardado: outputs/runs/2026-09-24_0000z/sanjuan_0924__diag/comparacion_con_oficial.csv
+
+Resultados en outputs/verificacion_fdda/20261102_0926. Interpretacion:
+ - diag: si 'lineas con XTIME > fdda_end' = 0, fdda_end corta el nudging en t0 aun sin obs_idynin.
+         Si hay lineas posteriores, el nudging sigue actuando (como maximo hasta t0 + obs_twindo).
+ - diag: el nudged debe ser identico al oficial (max |dif| = 0 en todos los horizontes).
+ - rampa: las diferencias con el oficial muestran cuanto depende el resultado de la forma de cortar el nudging.
