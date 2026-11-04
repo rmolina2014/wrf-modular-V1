@@ -1,0 +1,13 @@
+{
+  "proceso": "wrf.exe",
+  "cwd": "/home/pgich/wrf-modular-V1/outputs/prueba_costo_1km/d300/wrf_v3/omp4",
+  "pico_rss_total_kB": 11577580,
+  "pico_rss_total_GB": 11.04,
+  "momento_pico": "2026-11-04 13:24:15",
+  "min_memavailable_kB": 26976708,
+  "cortado_por_watchdog": null,
+  "limites": {
+    "rss_max_GB": 34.0,
+    "memavail_min_GB": 3.0
+  }
+}

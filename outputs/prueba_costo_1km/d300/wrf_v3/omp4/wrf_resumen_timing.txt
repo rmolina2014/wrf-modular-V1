@@ -1,0 +1,65 @@
+# Resumen de /home/pgich/wrf-modular-V1/outputs/prueba_costo_1km/d300/wrf_v3/omp4/wrf_stdout.log (mtime 2026-11-04 13:25:11.664625069 -0300, 24240323 bytes; no se sube por pesar > 5 MB)
+# Encabezado:
+ Ntasks in X            1 , ntasks in Y            1
+WRF V4.5 MODEL
+WRF NUMBER OF TILES FROM OMP_GET_MAX_THREADS =   4
+WRF NUMBER OF TILES X FROM ENV WRF_NUM_TILES_X =   1
+WRF NUMBER OF TILES Y FROM ENV WRF_NUM_TILES_Y =   4
+WRF TILE   1 IS      1 IE    300 JS      1 JE     75
+WRF TILE   2 IS      1 IE    300 JS     76 JE    150
+WRF TILE   3 IS      1 IE    300 JS    151 JE    225
+WRF TILE   4 IS      1 IE    300 JS    226 JE    300
+WRF NUMBER OF TILES =   4
+# Avisos CFL (con nro de linea):
+492:           7  points exceeded v_cfl = 2 in domain d01 at time 2026-09-23_12:00:18 hours
+493:Max   W:     12     23      5 W:   -8.12  w-cfl:    2.42  dETA:    0.02
+494:          14  points exceeded v_cfl = 2 in domain d01 at time 2026-09-23_12:00:18 hours
+495:Max   W:     12     24      3 W:  -20.97  w-cfl:    3.82  dETA:    0.01
+497:          52  points exceeded v_cfl = 2 in domain d01 at time 2026-09-23_12:00:24 hours
+498:Max   W:     12     23      3 W: -205.96  w-cfl:   16.42  dETA:    0.01
+499:         115  points exceeded v_cfl = 2 in domain d01 at time 2026-09-23_12:00:24 hours
+500:Max   W:     12     22      3 W: -774.63  w-cfl:   27.58  dETA:    0.01
+# Lineas 'Flerchinger': 417552
+# Lineas SIGSEGV: 4
+# Timing for main:
+Timing for main: time 2026-09-23_12:00:06 on domain   1:   18.64930 elapsed seconds
+Timing for main: time 2026-09-23_12:00:12 on domain   1:    1.48043 elapsed seconds
+Timing for main: time 2026-09-23_12:00:18 on domain   1:    1.46686 elapsed seconds
+Timing for main: time 2026-09-23_12:00:24 on domain   1:    1.43457 elapsed seconds
+Timing for main: time 2026-09-23_12:00:30 on domain   1:    1.41563 elapsed seconds
+Timing for main: time 2026-09-23_12:00:36 on domain   1:    1.41180 elapsed seconds
+Timing for main: time 2026-09-23_12:00:42 on domain   1:    1.42450 elapsed seconds
+Timing for main: time 2026-09-23_12:00:48 on domain   1:    1.42807 elapsed seconds
+Timing for main: time 2026-09-23_12:00:54 on domain   1:    1.44055 elapsed seconds
+Timing for main: time 2026-09-23_12:01:00 on domain   1:    1.43817 elapsed seconds
+Timing for main: time 2026-09-23_12:01:06 on domain   1:    1.43596 elapsed seconds
+Timing for main: time 2026-09-23_12:01:12 on domain   1:    1.46135 elapsed seconds
+Timing for main: time 2026-09-23_12:01:18 on domain   1:    1.43267 elapsed seconds
+Timing for main: time 2026-09-23_12:01:24 on domain   1:    1.45409 elapsed seconds
+Timing for main: time 2026-09-23_12:01:30 on domain   1:    1.46143 elapsed seconds
+Timing for main: time 2026-09-23_12:01:36 on domain   1:    1.44857 elapsed seconds
+Timing for main: time 2026-09-23_12:01:42 on domain   1:    1.47611 elapsed seconds
+Timing for main: time 2026-09-23_12:01:48 on domain   1:    1.43684 elapsed seconds
+Timing for main: time 2026-09-23_12:01:54 on domain   1:    1.44121 elapsed seconds
+Timing for main: time 2026-09-23_12:02:00 on domain   1:    1.44000 elapsed seconds
+Timing for main: time 2026-09-23_12:02:06 on domain   1:    1.46382 elapsed seconds
+Timing for main: time 2026-09-23_12:02:12 on domain   1:    1.49251 elapsed seconds
+Timing for main: time 2026-09-23_12:02:18 on domain   1:    1.44940 elapsed seconds
+Timing for main: time 2026-09-23_12:02:24 on domain   1:    1.46058 elapsed seconds
+Timing for main: time 2026-09-23_12:02:30 on domain   1:    1.47885 elapsed seconds
+Timing for main: time 2026-09-23_12:02:36 on domain   1:    1.45439 elapsed seconds
+Timing for main: time 2026-09-23_12:02:42 on domain   1:    1.47189 elapsed seconds
+Timing for main: time 2026-09-23_12:02:48 on domain   1:    1.45535 elapsed seconds
+Timing for main: time 2026-09-23_12:02:54 on domain   1:    1.43407 elapsed seconds
+Timing for main: time 2026-09-23_12:03:00 on domain   1:    1.44357 elapsed seconds
+Timing for main: time 2026-09-23_12:03:06 on domain   1:    1.41906 elapsed seconds
+Timing for main: time 2026-09-23_12:03:12 on domain   1:    1.44569 elapsed seconds
+Timing for main: time 2026-09-23_12:03:18 on domain   1:    1.42171 elapsed seconds
+Timing for main: time 2026-09-23_12:03:24 on domain   1:    1.42641 elapsed seconds
+Timing for main: time 2026-09-23_12:03:30 on domain   1:    1.45930 elapsed seconds
+Timing for main: time 2026-09-23_12:03:36 on domain   1:    1.43864 elapsed seconds
+Timing for main: time 2026-09-23_12:03:42 on domain   1:    1.44503 elapsed seconds
+Timing for main: time 2026-09-23_12:03:48 on domain   1:    1.42088 elapsed seconds
+Timing for main: time 2026-09-23_12:03:54 on domain   1:    1.44766 elapsed seconds
+# Estadistica (LC_ALL=C):
+pasos=39 | con 1er: prom=1.8874 min=1.4118 max=18.6493 suma=73.61 | sin 1er: prom=1.4463 min=1.4118 max=1.4925 suma=54.96

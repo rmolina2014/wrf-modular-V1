@@ -1,0 +1,12 @@
+3,4c3,4
+<  run_hours                           = 1,
+<  run_minutes                         = 0,
+---
+>  run_hours                           = 0,
+>  run_minutes                         = 20,
+15,16c15,16
+<  end_hour                            = 13, 13,   12,
+<  end_minute                          = 00, 00,   00,
+---
+>  end_hour                            = 12, 12,   12,
+>  end_minute                          = 20, 20,   00,

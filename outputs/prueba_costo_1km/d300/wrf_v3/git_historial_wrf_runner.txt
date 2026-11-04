@@ -1,0 +1,69 @@
+$ git log -L56,62:src/modelo/wrf_runner.py --format='COMMIT %H%nAutor: %an%nFecha: %ad%n%n%B' --date=iso
+COMMIT 57afb944f654f2db912e032ada7d6c8c1d39a7e1
+Autor: Roberto Molina
+Fecha: 2026-10-12 10:49:00 -0300
+
+feat: 4 casos de estudio 24h (nudging coef 0.0001) + evaluacion de flujo end-to-end
+
+- Casos 1-3 (zonda 07-31, calor 01-01, frente frio 05-16) completados a 24h con/sin obs nudging
+- Fix de estabilidad: time_step=45 fijo, adaptive_time_step off (evita segfault RRTMG)
+- Instrumentacion de tiempos por etapa (API EcoWitt, QC, GFS, WPS, preflight, real, wrf, validacion)
+- evaluacion_flujo.json por caso + seccion 'Desempeno del flujo' en informes
+- informes oficiales con hold-out espacial (N_asim/N_eval)
+
+
+diff --git a/src/modelo/wrf_runner.py b/src/modelo/wrf_runner.py
+--- a/src/modelo/wrf_runner.py
++++ b/src/modelo/wrf_runner.py
+@@ -55,1 +56,7 @@
+-        # LD_LIBRARY_PATH vacío + unset de OMP: entorno operativo de esta PC
++        # IMPORTANTE: este wrf.exe (WRF-Chem 4.5, build OpenMP/serial de pgich)
++        # aborta (SIGSEGV en RRTMG-MCICA con tiles 1x8, o 'Bad value during integer
++        # read' en wrf_fddaobs_in / geth_idts con OMP>1) salvo que se ejecute en
++        # modo un solo hilo y un solo tile. Verificado end-to-end: con
++        # OMP_NUM_THREADS=1 y WRF_NUM_TILES_X=WRF_NUM_TILES_Y=1 completa las 24 h
++        # ('SUCCESS COMPLETE WRF'). env.bash fija tiles 1x8 y OMP=12, hay que
++        # sobreescribirlos DESPUES de source.
+COMMIT f841bbd6c843af58024d112ee299350f2dc0f251
+Autor: Dev
+Fecha: 2026-10-04 23:14:04 -0300
+
+Refactor estructura: CLI unificado, orquestador único, 4 casos oficiales, informes en español, legacy archivado, outputs centralizados
+
+
+diff --git a/src/modelo/wrf_runner.py b/src/modelo/wrf_runner.py
+--- /dev/null
++++ b/src/modelo/wrf_runner.py
+@@ -0,0 +55,1 @@
++        # LD_LIBRARY_PATH vacío + unset de OMP: entorno operativo de esta PC
+
+$ git show -s --format='COMMIT %H%nAutor: %an%nFecha: %ad%n%n%B' --date=iso 57afb94
+COMMIT 57afb944f654f2db912e032ada7d6c8c1d39a7e1
+Autor: Roberto Molina
+Fecha: 2026-10-12 10:49:00 -0300
+
+feat: 4 casos de estudio 24h (nudging coef 0.0001) + evaluacion de flujo end-to-end
+
+- Casos 1-3 (zonda 07-31, calor 01-01, frente frio 05-16) completados a 24h con/sin obs nudging
+- Fix de estabilidad: time_step=45 fijo, adaptive_time_step off (evita segfault RRTMG)
+- Instrumentacion de tiempos por etapa (API EcoWitt, QC, GFS, WPS, preflight, real, wrf, validacion)
+- evaluacion_flujo.json por caso + seccion 'Desempeno del flujo' en informes
+- informes oficiales con hold-out espacial (N_asim/N_eval)
+
+$ git show --stat --format= 57afb94 | tail -16
+ .../mapa_errores_t2.png                            |   Bin
+ .../metricas_resumen.txt                           |     0
+ .../sanjuan_0806_12h_ref/namelist_control.input    |   129 +
+ .../sanjuan_0806_12h_ref/namelist_nudged.input     |   129 +
+ .../scatter_4panels.png                            |   Bin
+ .../tabla_metricas.png                             |   Bin
+ pipeline_wrf.py                                    |   102 +-
+ results/casos_estudio/estado_casos.json            |    22 +
+ scripts/regenerar_obs_flat_historico.py            |   106 +
+ src/casos/run_casos.py                             |   243 +-
+ src/modelo/wrf_runner.py                           |    12 +-
+ src/validacion/valida_wrf_cli.py                   |    20 +-
+ wps_sanjuan/METGRID.TBL                            |     2 +-
+ wps_sanjuan/namelist.wps                           |     6 +-
+ wps_sanjuan/run_wps_sanjuan.sh                     |     5 +-
+ 194 files changed, 60646 insertions(+), 28135 deletions(-)

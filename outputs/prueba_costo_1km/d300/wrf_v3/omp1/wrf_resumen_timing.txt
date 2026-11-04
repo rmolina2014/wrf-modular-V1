@@ -1,0 +1,74 @@
+# Resumen de /home/pgich/wrf-modular-V1/outputs/prueba_costo_1km/d300/wrf_v3/omp1/wrf_stdout.log (mtime 2026-11-04 13:16:09.032596090 -0300, 24239930 bytes; no se sube por pesar > 5 MB)
+# Encabezado:
+ Ntasks in X            1 , ntasks in Y            1
+WRF V4.5 MODEL
+WRF NUMBER OF TILES FROM OMP_GET_MAX_THREADS =   1
+WRF NUMBER OF TILES X FROM ENV WRF_NUM_TILES_X =   1
+WRF NUMBER OF TILES Y FROM ENV WRF_NUM_TILES_Y =   1
+WRF TILE   1 IS      1 IE    300 JS      1 JE    300
+WRF NUMBER OF TILES =   1
+# Avisos CFL (con nro de linea):
+489:           7  points exceeded v_cfl = 2 in domain d01 at time 2026-09-23_12:00:18 hours
+490:Max   W:     12     23      5 W:   -8.12  w-cfl:    2.42  dETA:    0.02
+491:          14  points exceeded v_cfl = 2 in domain d01 at time 2026-09-23_12:00:18 hours
+492:Max   W:     12     24      3 W:  -20.97  w-cfl:    3.82  dETA:    0.01
+494:          52  points exceeded v_cfl = 2 in domain d01 at time 2026-09-23_12:00:24 hours
+495:Max   W:     12     23      3 W: -205.96  w-cfl:   16.42  dETA:    0.01
+496:         115  points exceeded v_cfl = 2 in domain d01 at time 2026-09-23_12:00:24 hours
+497:Max   W:     12     22      3 W: -774.63  w-cfl:   27.58  dETA:    0.01
+7864:          12  points exceeded v_cfl = 2 in domain d01 at time 2026-09-23_12:00:48 hours
+7865:Max   W:     18    289      3 W:   21.63  w-cfl:    4.03  dETA:    0.01
+7866:          17  points exceeded v_cfl = 2 in domain d01 at time 2026-09-23_12:00:48 hours
+7867:Max   W:     18    290      4 W:  -29.47  w-cfl:    5.21  dETA:    0.01
+7868:          20  points exceeded v_cfl = 2 in domain d01 at time 2026-09-23_12:00:48 hours
+7869:Max   W:     19    290      3 W:    3.67  w-cfl:    6.16  dETA:    0.01
+13006:          90  points exceeded v_cfl = 2 in domain d01 at time 2026-09-23_12:00:54 hours
+13007:Max   W:     17    290      3 W:  417.28  w-cfl:   31.58  dETA:    0.01
+13008:         251  points exceeded v_cfl = 2 in domain d01 at time 2026-09-23_12:00:54 hours
+13009:Max   W:     17    289     11 W: *******  w-cfl:  919.93  dETA:    0.04
+13010:          23  points exceeded v_cfl = 2 in domain d01 at time 2026-09-23_12:00:54 hours
+13011:Max   W:      2     98      3 W:   33.19  w-cfl:    3.75  dETA:    0.01
+# Lineas 'Flerchinger': 417537
+# Lineas SIGSEGV: 1
+# Timing for main:
+Timing for main: time 2026-09-23_12:00:06 on domain   1:   61.13849 elapsed seconds
+Timing for main: time 2026-09-23_12:00:12 on domain   1:    3.03266 elapsed seconds
+Timing for main: time 2026-09-23_12:00:18 on domain   1:    3.02234 elapsed seconds
+Timing for main: time 2026-09-23_12:00:24 on domain   1:    3.01540 elapsed seconds
+Timing for main: time 2026-09-23_12:00:30 on domain   1:    3.01286 elapsed seconds
+Timing for main: time 2026-09-23_12:00:36 on domain   1:    3.00091 elapsed seconds
+Timing for main: time 2026-09-23_12:00:42 on domain   1:    3.00695 elapsed seconds
+Timing for main: time 2026-09-23_12:00:48 on domain   1:    3.00651 elapsed seconds
+Timing for main: time 2026-09-23_12:00:54 on domain   1:    3.00046 elapsed seconds
+Timing for main: time 2026-09-23_12:01:00 on domain   1:    3.00319 elapsed seconds
+Timing for main: time 2026-09-23_12:01:06 on domain   1:    3.01772 elapsed seconds
+Timing for main: time 2026-09-23_12:01:12 on domain   1:    2.98906 elapsed seconds
+Timing for main: time 2026-09-23_12:01:18 on domain   1:    2.98340 elapsed seconds
+Timing for main: time 2026-09-23_12:01:24 on domain   1:    2.99946 elapsed seconds
+Timing for main: time 2026-09-23_12:01:30 on domain   1:    2.97887 elapsed seconds
+Timing for main: time 2026-09-23_12:01:36 on domain   1:    3.03089 elapsed seconds
+Timing for main: time 2026-09-23_12:01:42 on domain   1:    3.08840 elapsed seconds
+Timing for main: time 2026-09-23_12:01:48 on domain   1:    3.00945 elapsed seconds
+Timing for main: time 2026-09-23_12:01:54 on domain   1:    2.98440 elapsed seconds
+Timing for main: time 2026-09-23_12:02:00 on domain   1:    2.99590 elapsed seconds
+Timing for main: time 2026-09-23_12:02:06 on domain   1:    2.98505 elapsed seconds
+Timing for main: time 2026-09-23_12:02:12 on domain   1:    2.97854 elapsed seconds
+Timing for main: time 2026-09-23_12:02:18 on domain   1:    2.99233 elapsed seconds
+Timing for main: time 2026-09-23_12:02:24 on domain   1:    2.97451 elapsed seconds
+Timing for main: time 2026-09-23_12:02:30 on domain   1:    2.99813 elapsed seconds
+Timing for main: time 2026-09-23_12:02:36 on domain   1:    2.99269 elapsed seconds
+Timing for main: time 2026-09-23_12:02:42 on domain   1:    2.95929 elapsed seconds
+Timing for main: time 2026-09-23_12:02:48 on domain   1:    2.99560 elapsed seconds
+Timing for main: time 2026-09-23_12:02:54 on domain   1:    2.99469 elapsed seconds
+Timing for main: time 2026-09-23_12:03:00 on domain   1:    2.96953 elapsed seconds
+Timing for main: time 2026-09-23_12:03:06 on domain   1:    2.95809 elapsed seconds
+Timing for main: time 2026-09-23_12:03:12 on domain   1:    2.97607 elapsed seconds
+Timing for main: time 2026-09-23_12:03:18 on domain   1:    2.98696 elapsed seconds
+Timing for main: time 2026-09-23_12:03:24 on domain   1:    3.00588 elapsed seconds
+Timing for main: time 2026-09-23_12:03:30 on domain   1:    3.01580 elapsed seconds
+Timing for main: time 2026-09-23_12:03:36 on domain   1:    3.03199 elapsed seconds
+Timing for main: time 2026-09-23_12:03:42 on domain   1:    3.20161 elapsed seconds
+Timing for main: time 2026-09-23_12:03:48 on domain   1:    3.19156 elapsed seconds
+Timing for main: time 2026-09-23_12:03:54 on domain   1:    3.08332 elapsed seconds
+# Estadistica (LC_ALL=C):
+pasos=39 | con 1er: prom=4.5028 min=2.9581 max=61.1385 suma=175.61 | sin 1er: prom=3.0124 min=2.9581 max=3.2016 suma=114.47
