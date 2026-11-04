@@ -1,0 +1,13 @@
+{
+  "proceso": "real.exe",
+  "cwd": "/home/pgich/wrf-modular-V1/outputs/prueba_costo_1km/d300/wrf",
+  "pico_rss_total_kB": 3543064,
+  "pico_rss_total_GB": 3.38,
+  "momento_pico": "2026-11-04 12:51:28",
+  "min_memavailable_kB": 35125524,
+  "cortado_por_watchdog": null,
+  "limites": {
+    "rss_max_GB": 34.0,
+    "memavail_min_GB": 3.0
+  }
+}

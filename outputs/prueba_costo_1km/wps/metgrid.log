@@ -1,0 +1,914 @@
+2026-11-04 12:38:04.036 ---  *** Starting program metgrid.exe ***
+2026-11-04 12:38:04.036 --- Using the following namelist variables:
+2026-11-04 12:38:04.036 --- &SHARE
+2026-11-04 12:38:04.036 ---   WRF_CORE         = ARW
+2026-11-04 12:38:04.036 ---   MAX_DOM          = 1
+2026-11-04 12:38:04.036 ---   START_YEAR       = 0
+2026-11-04 12:38:04.036 ---   START_MONTH      = 0
+2026-11-04 12:38:04.036 ---   START_DAY        = 0
+2026-11-04 12:38:04.036 ---   START_HOUR       = 0
+2026-11-04 12:38:04.037 ---   START_MINUTE     = 0
+2026-11-04 12:38:04.037 ---   START_SECOND     = 0
+2026-11-04 12:38:04.037 ---   END_YEAR         = 0
+2026-11-04 12:38:04.037 ---   END_MONTH        = 0
+2026-11-04 12:38:04.037 ---   END_DAY          = 0
+2026-11-04 12:38:04.037 ---   END_HOUR         = 0
+2026-11-04 12:38:04.037 ---   END_MINUTE       = 0
+2026-11-04 12:38:04.037 ---   END_SECOND       = 0
+2026-11-04 12:38:04.037 ---   START_DATE       = 2026-09-23_12:00:00
+2026-11-04 12:38:04.037 ---   END_DATE         = 2026-09-23_15:00:00
+2026-11-04 12:38:04.037 ---   INTERVAL_SECONDS = 10800
+2026-11-04 12:38:04.037 ---   IO_FORM_GEOGRID  = 2
+2026-11-04 12:38:04.037 ---   OPT_OUTPUT_FROM_GEOGRID_PATH = ./
+2026-11-04 12:38:04.037 ---   SUBGRID_RATIO_X  = 1
+2026-11-04 12:38:04.037 ---   SUBGRID_RATIO_Y  = 1
+2026-11-04 12:38:04.037 ---   DEBUG_LEVEL      = 0
+2026-11-04 12:38:04.037 ---   ACTIVE_GRID      = .TRUE.
+2026-11-04 12:38:04.037 ---   NOCOLONS         = .FALSE.
+2026-11-04 12:38:04.037 --- /
+2026-11-04 12:38:04.037 --- &METGRID
+2026-11-04 12:38:04.037 ---   FG_NAME               = GFS
+2026-11-04 12:38:04.037 ---   CONSTANTS_NAME        =
+2026-11-04 12:38:04.037 ---   IO_FORM_METGRID       = 2
+2026-11-04 12:38:04.037 ---   PROCESS_ONLY_BDY      = 0
+2026-11-04 12:38:04.037 ---   OPT_OUTPUT_FROM_METGRID_PATH = ./
+2026-11-04 12:38:04.037 ---   OPT_METGRID_TBL_PATH  = metgrid/
+2026-11-04 12:38:04.037 --- /
+2026-11-04 12:38:04.040 --- Processing domain 1 of 1
+2026-11-04 12:38:04.040 --- Initializing storage module
+2026-11-04 12:38:04.040 --- Opening static input file.
+2026-11-04 12:38:04.049 --- Reading static global attributes.
+2026-11-04 12:38:04.055 --- Read in static field XLAT_M.
+2026-11-04 12:38:04.061 --- Read in static field XLONG_M.
+2026-11-04 12:38:04.067 --- Read in static field XLAT_V.
+2026-11-04 12:38:04.073 --- Read in static field XLONG_V.
+2026-11-04 12:38:04.080 --- Read in static field XLAT_U.
+2026-11-04 12:38:04.085 --- Read in static field XLONG_U.
+2026-11-04 12:38:04.091 --- Read in static field CLAT.
+2026-11-04 12:38:04.096 --- Read in static field CLONG.
+2026-11-04 12:38:04.101 --- Read in static field MAPFAC_M.
+2026-11-04 12:38:04.106 --- Read in static field MAPFAC_V.
+2026-11-04 12:38:04.111 --- Read in static field MAPFAC_U.
+2026-11-04 12:38:04.116 --- Read in static field MAPFAC_MX.
+2026-11-04 12:38:04.121 --- Read in static field MAPFAC_VX.
+2026-11-04 12:38:04.125 --- Read in static field MAPFAC_UX.
+2026-11-04 12:38:04.130 --- Read in static field MAPFAC_MY.
+2026-11-04 12:38:04.135 --- Read in static field MAPFAC_VY.
+2026-11-04 12:38:04.140 --- Read in static field MAPFAC_UY.
+2026-11-04 12:38:04.146 --- Read in static field E.
+2026-11-04 12:38:04.152 --- Read in static field F.
+2026-11-04 12:38:04.158 --- Read in static field SINALPHA.
+2026-11-04 12:38:04.163 --- Read in static field COSALPHA.
+2026-11-04 12:38:04.167 --- Read in static field LANDMASK.
+2026-11-04 12:38:04.173 --- Read in static field XLAT_C.
+2026-11-04 12:38:04.178 --- Read in static field XLONG_C.
+2026-11-04 12:38:04.185 --- Read in static field SINALPHA_U.
+2026-11-04 12:38:04.190 --- Read in static field COSALPHA_U.
+2026-11-04 12:38:04.198 --- Read in static field SINALPHA_V.
+2026-11-04 12:38:04.203 --- Read in static field COSALPHA_V.
+2026-11-04 12:38:04.262 --- Read in static field LANDUSEF.
+2026-11-04 12:38:04.285 --- Read in static field LU_INDEX.
+2026-11-04 12:38:04.292 --- Read in static field HGT_M.
+2026-11-04 12:38:04.298 --- Read in static field SOILTEMP.
+2026-11-04 12:38:04.338 --- Read in static field SOILCTOP.
+2026-11-04 12:38:04.353 --- Read in static field SCT_DOM.
+2026-11-04 12:38:04.393 --- Read in static field SOILCBOT.
+2026-11-04 12:38:04.408 --- Read in static field SCB_DOM.
+2026-11-04 12:38:04.485 --- Read in static field ALBEDO12M.
+2026-11-04 12:38:04.578 --- Read in static field GREENFRAC.
+2026-11-04 12:38:04.657 --- Read in static field LAI12M.
+2026-11-04 12:38:04.672 --- Read in static field SNOALB.
+2026-11-04 12:38:04.675 --- Read in static field CON.
+2026-11-04 12:38:04.678 --- Read in static field VAR.
+2026-11-04 12:38:04.681 --- Read in static field OA1.
+2026-11-04 12:38:04.685 --- Read in static field OA2.
+2026-11-04 12:38:04.689 --- Read in static field OA3.
+2026-11-04 12:38:04.693 --- Read in static field OA4.
+2026-11-04 12:38:04.697 --- Read in static field OL1.
+2026-11-04 12:38:04.701 --- Read in static field OL2.
+2026-11-04 12:38:04.705 --- Read in static field OL3.
+2026-11-04 12:38:04.708 --- Read in static field OL4.
+2026-11-04 12:38:04.714 --- Read in static field VAR_SSO.
+2026-11-04 12:38:04.716 --- Preparing to process output time 2026-09-23_12
+2026-11-04 12:38:04.716 --- Getting input fields from GFS
+2026-11-04 12:38:06.947 --- Processing PMSL at level 201300.000000.
+2026-11-04 12:38:06.988 --- Processing TT at level 200100.000000.
+2026-11-04 12:38:07.031 --- Processing UU at level 200100.000000.
+2026-11-04 12:38:07.072 --- Processing VV at level 200100.000000.
+2026-11-04 12:38:07.112 --- Processing RH at level 200100.000000.
+2026-11-04 12:38:07.155 --- Processing PSFC at level 200100.000000.
+2026-11-04 12:38:07.179 --- Processing SM000010 at level 200100.000000.
+2026-11-04 12:38:07.230 --- Processing SM010040 at level 200100.000000.
+2026-11-04 12:38:07.278 --- Processing SM040100 at level 200100.000000.
+2026-11-04 12:38:07.329 --- Processing SM100200 at level 200100.000000.
+2026-11-04 12:38:07.380 --- Processing ST000010 at level 200100.000000.
+2026-11-04 12:38:07.430 --- Processing ST010040 at level 200100.000000.
+2026-11-04 12:38:07.482 --- Processing ST040100 at level 200100.000000.
+2026-11-04 12:38:07.531 --- Processing ST100200 at level 200100.000000.
+2026-11-04 12:38:07.580 --- Processing SEAICE at level 200100.000000.
+2026-11-04 12:38:07.598 --- Processing LANDSEA at level 200100.000000.
+2026-11-04 12:38:07.620 --- Processing SOILHGT at level 200100.000000.
+2026-11-04 12:38:07.644 --- Processing SKINTEMP at level 200100.000000.
+2026-11-04 12:38:07.722 --- Processing SNOW at level 200100.000000.
+2026-11-04 12:38:07.749 --- Processing SNOWH at level 200100.000000.
+2026-11-04 12:38:07.775 --- Processing UMAXW at level 200100.000000.
+2026-11-04 12:38:07.797 --- Processing VMAXW at level 200100.000000.
+2026-11-04 12:38:07.822 --- Processing PMAXW at level 200100.000000.
+2026-11-04 12:38:07.845 --- Processing PMAXWNN at level 200100.000000.
+2026-11-04 12:38:07.867 --- Processing TMAXW at level 200100.000000.
+2026-11-04 12:38:07.890 --- Processing HGTMAXW at level 200100.000000.
+2026-11-04 12:38:07.913 --- Processing UTROP at level 200100.000000.
+2026-11-04 12:38:07.936 --- Processing VTROP at level 200100.000000.
+2026-11-04 12:38:07.959 --- Processing PTROP at level 200100.000000.
+2026-11-04 12:38:07.983 --- Processing PTROPNN at level 200100.000000.
+2026-11-04 12:38:08.005 --- Processing TTROP at level 200100.000000.
+2026-11-04 12:38:08.032 --- Processing HGTTROP at level 200100.000000.
+2026-11-04 12:38:08.057 --- Processing TT at level 100000.000000.
+2026-11-04 12:38:08.098 --- Processing UU at level 100000.000000.
+2026-11-04 12:38:08.138 --- Processing VV at level 100000.000000.
+2026-11-04 12:38:08.178 --- Processing RH at level 100000.000000.
+2026-11-04 12:38:08.220 --- Processing GHT at level 100000.000000.
+2026-11-04 12:38:08.262 --- Processing TT at level 97500.000000.
+2026-11-04 12:38:08.304 --- Processing UU at level 97500.000000.
+2026-11-04 12:38:08.346 --- Processing VV at level 97500.000000.
+2026-11-04 12:38:08.388 --- Processing RH at level 97500.000000.
+2026-11-04 12:38:08.429 --- Processing GHT at level 97500.000000.
+2026-11-04 12:38:08.469 --- Processing TT at level 95000.000000.
+2026-11-04 12:38:08.511 --- Processing UU at level 95000.000000.
+2026-11-04 12:38:08.552 --- Processing VV at level 95000.000000.
+2026-11-04 12:38:08.592 --- Processing RH at level 95000.000000.
+2026-11-04 12:38:08.634 --- Processing GHT at level 95000.000000.
+2026-11-04 12:38:08.677 --- Processing TT at level 92500.000000.
+2026-11-04 12:38:08.717 --- Processing UU at level 92500.000000.
+2026-11-04 12:38:08.757 --- Processing VV at level 92500.000000.
+2026-11-04 12:38:08.797 --- Processing RH at level 92500.000000.
+2026-11-04 12:38:08.839 --- Processing GHT at level 92500.000000.
+2026-11-04 12:38:08.879 --- Processing TT at level 90000.000000.
+2026-11-04 12:38:08.926 --- Processing UU at level 90000.000000.
+2026-11-04 12:38:08.967 --- Processing VV at level 90000.000000.
+2026-11-04 12:38:09.008 --- Processing RH at level 90000.000000.
+2026-11-04 12:38:09.049 --- Processing GHT at level 90000.000000.
+2026-11-04 12:38:09.091 --- Processing TT at level 85000.000000.
+2026-11-04 12:38:09.132 --- Processing UU at level 85000.000000.
+2026-11-04 12:38:09.173 --- Processing VV at level 85000.000000.
+2026-11-04 12:38:09.216 --- Processing RH at level 85000.000000.
+2026-11-04 12:38:09.258 --- Processing GHT at level 85000.000000.
+2026-11-04 12:38:09.299 --- Processing TT at level 80000.000000.
+2026-11-04 12:38:09.340 --- Processing UU at level 80000.000000.
+2026-11-04 12:38:09.384 --- Processing VV at level 80000.000000.
+2026-11-04 12:38:09.425 --- Processing RH at level 80000.000000.
+2026-11-04 12:38:09.467 --- Processing GHT at level 80000.000000.
+2026-11-04 12:38:09.507 --- Processing TT at level 75000.000000.
+2026-11-04 12:38:09.548 --- Processing UU at level 75000.000000.
+2026-11-04 12:38:09.589 --- Processing VV at level 75000.000000.
+2026-11-04 12:38:09.631 --- Processing RH at level 75000.000000.
+2026-11-04 12:38:09.671 --- Processing GHT at level 75000.000000.
+2026-11-04 12:38:09.713 --- Processing TT at level 70000.000000.
+2026-11-04 12:38:09.753 --- Processing UU at level 70000.000000.
+2026-11-04 12:38:09.794 --- Processing VV at level 70000.000000.
+2026-11-04 12:38:09.836 --- Processing RH at level 70000.000000.
+2026-11-04 12:38:09.878 --- Processing GHT at level 70000.000000.
+2026-11-04 12:38:09.921 --- Processing TT at level 65000.000000.
+2026-11-04 12:38:09.963 --- Processing UU at level 65000.000000.
+2026-11-04 12:38:10.004 --- Processing VV at level 65000.000000.
+2026-11-04 12:38:10.046 --- Processing RH at level 65000.000000.
+2026-11-04 12:38:10.088 --- Processing GHT at level 65000.000000.
+2026-11-04 12:38:10.129 --- Processing TT at level 60000.000000.
+2026-11-04 12:38:10.171 --- Processing UU at level 60000.000000.
+2026-11-04 12:38:10.213 --- Processing VV at level 60000.000000.
+2026-11-04 12:38:10.255 --- Processing RH at level 60000.000000.
+2026-11-04 12:38:10.297 --- Processing GHT at level 60000.000000.
+2026-11-04 12:38:10.338 --- Processing TT at level 55000.000000.
+2026-11-04 12:38:10.380 --- Processing UU at level 55000.000000.
+2026-11-04 12:38:10.422 --- Processing VV at level 55000.000000.
+2026-11-04 12:38:10.463 --- Processing RH at level 55000.000000.
+2026-11-04 12:38:10.505 --- Processing GHT at level 55000.000000.
+2026-11-04 12:38:10.547 --- Processing TT at level 50000.000000.
+2026-11-04 12:38:10.589 --- Processing UU at level 50000.000000.
+2026-11-04 12:38:10.631 --- Processing VV at level 50000.000000.
+2026-11-04 12:38:10.672 --- Processing RH at level 50000.000000.
+2026-11-04 12:38:10.713 --- Processing GHT at level 50000.000000.
+2026-11-04 12:38:10.755 --- Processing TT at level 45000.000000.
+2026-11-04 12:38:10.796 --- Processing UU at level 45000.000000.
+2026-11-04 12:38:10.839 --- Processing VV at level 45000.000000.
+2026-11-04 12:38:10.881 --- Processing RH at level 45000.000000.
+2026-11-04 12:38:10.923 --- Processing GHT at level 45000.000000.
+2026-11-04 12:38:10.965 --- Processing TT at level 40000.000000.
+2026-11-04 12:38:11.006 --- Processing UU at level 40000.000000.
+2026-11-04 12:38:11.046 --- Processing VV at level 40000.000000.
+2026-11-04 12:38:11.090 --- Processing RH at level 40000.000000.
+2026-11-04 12:38:11.134 --- Processing GHT at level 40000.000000.
+2026-11-04 12:38:11.175 --- Processing TT at level 35000.000000.
+2026-11-04 12:38:11.217 --- Processing UU at level 35000.000000.
+2026-11-04 12:38:11.258 --- Processing VV at level 35000.000000.
+2026-11-04 12:38:11.299 --- Processing RH at level 35000.000000.
+2026-11-04 12:38:11.340 --- Processing GHT at level 35000.000000.
+2026-11-04 12:38:11.380 --- Processing TT at level 30000.000000.
+2026-11-04 12:38:11.423 --- Processing UU at level 30000.000000.
+2026-11-04 12:38:11.465 --- Processing VV at level 30000.000000.
+2026-11-04 12:38:11.505 --- Processing RH at level 30000.000000.
+2026-11-04 12:38:11.546 --- Processing GHT at level 30000.000000.
+2026-11-04 12:38:11.588 --- Processing TT at level 25000.000000.
+2026-11-04 12:38:11.629 --- Processing UU at level 25000.000000.
+2026-11-04 12:38:11.671 --- Processing VV at level 25000.000000.
+2026-11-04 12:38:11.712 --- Processing RH at level 25000.000000.
+2026-11-04 12:38:11.753 --- Processing GHT at level 25000.000000.
+2026-11-04 12:38:11.794 --- Processing TT at level 20000.000000.
+2026-11-04 12:38:11.836 --- Processing UU at level 20000.000000.
+2026-11-04 12:38:11.876 --- Processing VV at level 20000.000000.
+2026-11-04 12:38:11.917 --- Processing RH at level 20000.000000.
+2026-11-04 12:38:11.958 --- Processing GHT at level 20000.000000.
+2026-11-04 12:38:11.998 --- Processing TT at level 15000.000000.
+2026-11-04 12:38:12.040 --- Processing UU at level 15000.000000.
+2026-11-04 12:38:12.081 --- Processing VV at level 15000.000000.
+2026-11-04 12:38:12.122 --- Processing RH at level 15000.000000.
+2026-11-04 12:38:12.163 --- Processing GHT at level 15000.000000.
+2026-11-04 12:38:12.206 --- Processing TT at level 10000.000000.
+2026-11-04 12:38:12.247 --- Processing UU at level 10000.000000.
+2026-11-04 12:38:12.288 --- Processing VV at level 10000.000000.
+2026-11-04 12:38:12.330 --- Processing RH at level 10000.000000.
+2026-11-04 12:38:12.371 --- Processing GHT at level 10000.000000.
+2026-11-04 12:38:12.414 --- Processing TT at level 7000.000000.
+2026-11-04 12:38:12.455 --- Processing UU at level 7000.000000.
+2026-11-04 12:38:12.495 --- Processing VV at level 7000.000000.
+2026-11-04 12:38:12.537 --- Processing RH at level 7000.000000.
+2026-11-04 12:38:12.578 --- Processing GHT at level 7000.000000.
+2026-11-04 12:38:12.619 --- Processing TT at level 5000.000000.
+2026-11-04 12:38:12.660 --- Processing UU at level 5000.000000.
+2026-11-04 12:38:12.700 --- Processing VV at level 5000.000000.
+2026-11-04 12:38:12.742 --- Processing RH at level 5000.000000.
+2026-11-04 12:38:12.782 --- Processing GHT at level 5000.000000.
+2026-11-04 12:38:12.822 --- Processing TT at level 4000.000000.
+2026-11-04 12:38:12.862 --- Processing UU at level 4000.000000.
+2026-11-04 12:38:12.903 --- Processing VV at level 4000.000000.
+2026-11-04 12:38:12.944 --- Processing RH at level 4000.000000.
+2026-11-04 12:38:12.985 --- Processing GHT at level 4000.000000.
+2026-11-04 12:38:13.027 --- Processing TT at level 3000.000000.
+2026-11-04 12:38:13.069 --- Processing UU at level 3000.000000.
+2026-11-04 12:38:13.112 --- Processing VV at level 3000.000000.
+2026-11-04 12:38:13.153 --- Processing RH at level 3000.000000.
+2026-11-04 12:38:13.195 --- Processing GHT at level 3000.000000.
+2026-11-04 12:38:13.236 --- Processing TT at level 2000.000000.
+2026-11-04 12:38:13.277 --- Processing UU at level 2000.000000.
+2026-11-04 12:38:13.319 --- Processing VV at level 2000.000000.
+2026-11-04 12:38:13.360 --- Processing RH at level 2000.000000.
+2026-11-04 12:38:13.400 --- Processing GHT at level 2000.000000.
+2026-11-04 12:38:13.442 --- Processing TT at level 1500.000000.
+2026-11-04 12:38:13.482 --- Processing UU at level 1500.000000.
+2026-11-04 12:38:13.523 --- Processing VV at level 1500.000000.
+2026-11-04 12:38:13.564 --- Processing RH at level 1500.000000.
+2026-11-04 12:38:13.604 --- Processing GHT at level 1500.000000.
+2026-11-04 12:38:13.645 --- Processing TT at level 1000.000000.
+2026-11-04 12:38:13.686 --- Processing UU at level 1000.000000.
+2026-11-04 12:38:13.726 --- Processing VV at level 1000.000000.
+2026-11-04 12:38:13.769 --- Processing RH at level 1000.000000.
+2026-11-04 12:38:13.814 --- Processing GHT at level 1000.000000.
+2026-11-04 12:38:13.854 --- Processing TT at level 700.000000.
+2026-11-04 12:38:13.895 --- Processing UU at level 700.000000.
+2026-11-04 12:38:13.936 --- Processing VV at level 700.000000.
+2026-11-04 12:38:13.977 --- Processing RH at level 700.000000.
+2026-11-04 12:38:14.140 --- Processing GHT at level 700.000000.
+2026-11-04 12:38:14.182 --- Processing TT at level 500.000000.
+2026-11-04 12:38:14.226 --- Processing UU at level 500.000000.
+2026-11-04 12:38:14.267 --- Processing VV at level 500.000000.
+2026-11-04 12:38:14.309 --- Processing RH at level 500.000000.
+2026-11-04 12:38:14.469 --- Processing GHT at level 500.000000.
+2026-11-04 12:38:14.509 --- Processing TT at level 300.000000.
+2026-11-04 12:38:14.550 --- Processing UU at level 300.000000.
+2026-11-04 12:38:14.592 --- Processing VV at level 300.000000.
+2026-11-04 12:38:14.632 --- Processing RH at level 300.000000.
+2026-11-04 12:38:14.790 --- Processing GHT at level 300.000000.
+2026-11-04 12:38:14.830 --- Processing TT at level 200.000000.
+2026-11-04 12:38:14.872 --- Processing UU at level 200.000000.
+2026-11-04 12:38:14.913 --- Processing VV at level 200.000000.
+2026-11-04 12:38:14.954 --- Processing RH at level 200.000000.
+2026-11-04 12:38:15.115 --- Processing GHT at level 200.000000.
+2026-11-04 12:38:15.156 --- Processing TT at level 100.000000.
+2026-11-04 12:38:15.197 --- Processing UU at level 100.000000.
+2026-11-04 12:38:15.238 --- Processing VV at level 100.000000.
+2026-11-04 12:38:15.279 --- Processing RH at level 100.000000.
+2026-11-04 12:38:15.444 --- Processing GHT at level 100.000000.
+2026-11-04 12:38:15.473 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.481 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.489 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.497 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.505 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.513 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.520 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.528 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.537 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.545 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.553 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.561 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.569 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.577 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.585 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.593 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.601 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.609 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.617 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.625 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.633 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.641 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.649 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.657 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.666 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.674 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.681 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.689 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.697 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.705 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.713 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.721 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.729 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.737 --- Rotating earth winds to grid winds
+2026-11-04 12:38:15.744 --- Filling missing levels.
+2026-11-04 12:38:15.746 --- INFORM: GHT at level 200100.000000 already exists; leaving it alone.
+2026-11-04 12:38:15.746 --- INFORM: LANDSEA at level 200100.000000 already exists; leaving it alone.
+2026-11-04 12:38:15.746 --- INFORM: PSFC at level 200100.000000 already exists; leaving it alone.
+2026-11-04 12:38:15.746 --- INFORM: RH at level 200100.000000 already exists; leaving it alone.
+2026-11-04 12:38:15.746 --- INFORM: VV at level 200100.000000 already exists; leaving it alone.
+2026-11-04 12:38:15.746 --- INFORM: UU at level 200100.000000 already exists; leaving it alone.
+2026-11-04 12:38:15.746 --- INFORM: TT at level 200100.000000 already exists; leaving it alone.
+2026-11-04 12:38:15.858 --- Creating derived fields.
+2026-11-04 12:38:15.858 --- INFORM: Going to create the field ST
+2026-11-04 12:38:15.864 --- INFORM: ST at level 10.000000 already exists; leaving it alone.
+2026-11-04 12:38:15.864 --- INFORM: Couldn't find ST010035 at level 200100.000000 to fill level 35.000000 of ST.
+2026-11-04 12:38:15.864 --- INFORM: ST at level 100.000000 already exists; leaving it alone.
+2026-11-04 12:38:15.864 --- INFORM: Couldn't find ST100300 at level 200100.000000 to fill level 300.000000 of ST.
+2026-11-04 12:38:15.864 --- INFORM: ST at level 10.000000 already exists; leaving it alone.
+2026-11-04 12:38:15.864 --- INFORM: ST at level 200.000000 already exists; leaving it alone.
+2026-11-04 12:38:15.864 --- INFORM: Couldn't find ST000007 at level 200100.000000 to fill level 7.000000 of ST.
+2026-11-04 12:38:15.864 --- INFORM: Couldn't find ST007028 at level 200100.000000 to fill level 28.000000 of ST.
+2026-11-04 12:38:15.864 --- INFORM: ST at level 100.000000 already exists; leaving it alone.
+2026-11-04 12:38:15.864 --- INFORM: Couldn't find ST100289 at level 200100.000000 to fill level 289.000000 of ST.
+2026-11-04 12:38:15.864 --- INFORM: Going to create the field SM
+2026-11-04 12:38:15.870 --- INFORM: SM at level 10.000000 already exists; leaving it alone.
+2026-11-04 12:38:15.870 --- INFORM: Couldn't find SM010035 at level 200100.000000 to fill level 35.000000 of SM.
+2026-11-04 12:38:15.870 --- INFORM: SM at level 100.000000 already exists; leaving it alone.
+2026-11-04 12:38:15.870 --- INFORM: Couldn't find SM100300 at level 200100.000000 to fill level 300.000000 of SM.
+2026-11-04 12:38:15.870 --- INFORM: SM at level 10.000000 already exists; leaving it alone.
+2026-11-04 12:38:15.870 --- INFORM: SM at level 200.000000 already exists; leaving it alone.
+2026-11-04 12:38:15.870 --- INFORM: Couldn't find SM000007 at level 200100.000000 to fill level 7.000000 of SM.
+2026-11-04 12:38:15.870 --- INFORM: Couldn't find SM007028 at level 200100.000000 to fill level 28.000000 of SM.
+2026-11-04 12:38:15.870 --- INFORM: SM at level 100.000000 already exists; leaving it alone.
+2026-11-04 12:38:15.870 --- INFORM: Couldn't find SM100289 at level 200100.000000 to fill level 289.000000 of SM.
+2026-11-04 12:38:15.870 --- INFORM: Going to create the field SW
+2026-11-04 12:38:15.870 --- INFORM: Couldn't find SW000010 at level 200100.000000 to fill level 1.000000 of SW.
+2026-11-04 12:38:15.870 --- INFORM: Couldn't find SW010040 at level 200100.000000 to fill level 2.000000 of SW.
+2026-11-04 12:38:15.871 --- INFORM: Couldn't find SW040100 at level 200100.000000 to fill level 3.000000 of SW.
+2026-11-04 12:38:15.871 --- INFORM: Couldn't find SW100200 at level 200100.000000 to fill level 4.000000 of SW.
+2026-11-04 12:38:15.871 --- INFORM: Couldn't find SW000010 at level 200100.000000 to fill level 1.000000 of SW.
+2026-11-04 12:38:15.871 --- INFORM: Couldn't find SW010200 at level 200100.000000 to fill level 2.000000 of SW.
+2026-11-04 12:38:15.871 --- INFORM: Going to create the field SOIL_LAYERS
+2026-11-04 12:38:15.875 --- INFORM: Going to create the field SOILM
+2026-11-04 12:38:15.875 --- INFORM: Couldn't find SOILM000 at level 200100.000000 to fill level 0.000000 of SOILM.
+2026-11-04 12:38:15.875 --- INFORM: Couldn't find SOILM005 at level 200100.000000 to fill level 5.000000 of SOILM.
+2026-11-04 12:38:15.875 --- INFORM: Couldn't find SOILM020 at level 200100.000000 to fill level 20.000000 of SOILM.
+2026-11-04 12:38:15.875 --- INFORM: Couldn't find SOILM040 at level 200100.000000 to fill level 40.000000 of SOILM.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILM160 at level 200100.000000 to fill level 160.000000 of SOILM.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILM300 at level 200100.000000 to fill level 300.000000 of SOILM.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILM001 at level 200100.000000 to fill level 1.000000 of SOILM.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILM004 at level 200100.000000 to fill level 4.000000 of SOILM.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILM010 at level 200100.000000 to fill level 10.000000 of SOILM.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILM030 at level 200100.000000 to fill level 30.000000 of SOILM.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILM060 at level 200100.000000 to fill level 60.000000 of SOILM.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILM100 at level 200100.000000 to fill level 100.000000 of SOILM.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILM000 at level 200100.000000 to fill level 0.000000 of SOILM.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILM002 at level 200100.000000 to fill level 2.000000 of SOILM.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILM006 at level 200100.000000 to fill level 6.000000 of SOILM.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILM018 at level 200100.000000 to fill level 18.000000 of SOILM.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILM054 at level 200100.000000 to fill level 54.000000 of SOILM.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILM162 at level 200100.000000 to fill level 162.000000 of SOILM.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILM486 at level 200100.000000 to fill level 486.000000 of SOILM.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILM999 at level 200100.000000 to fill level 1458.000000 of SOILM.
+2026-11-04 12:38:15.876 --- INFORM: Going to create the field SOILT
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILT000 at level 200100.000000 to fill level 0.000000 of SOILT.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILT005 at level 200100.000000 to fill level 5.000000 of SOILT.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILT020 at level 200100.000000 to fill level 20.000000 of SOILT.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILT040 at level 200100.000000 to fill level 40.000000 of SOILT.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILT160 at level 200100.000000 to fill level 160.000000 of SOILT.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILT300 at level 200100.000000 to fill level 300.000000 of SOILT.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILT050 at level 200100.000000 to fill level 49.000000 of SOILT.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILT050 at level 200100.000000 to fill level 51.000000 of SOILT.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILT001 at level 200100.000000 to fill level 1.000000 of SOILT.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILT004 at level 200100.000000 to fill level 4.000000 of SOILT.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILT010 at level 200100.000000 to fill level 10.000000 of SOILT.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILT030 at level 200100.000000 to fill level 30.000000 of SOILT.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILT060 at level 200100.000000 to fill level 60.000000 of SOILT.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILT100 at level 200100.000000 to fill level 100.000000 of SOILT.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILT000 at level 200100.000000 to fill level 0.000000 of SOILT.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILT002 at level 200100.000000 to fill level 2.000000 of SOILT.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILT006 at level 200100.000000 to fill level 6.000000 of SOILT.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILT018 at level 200100.000000 to fill level 18.000000 of SOILT.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILT054 at level 200100.000000 to fill level 54.000000 of SOILT.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILT162 at level 200100.000000 to fill level 162.000000 of SOILT.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILT486 at level 200100.000000 to fill level 486.000000 of SOILT.
+2026-11-04 12:38:15.876 --- INFORM: Couldn't find SOILT999 at level 200100.000000 to fill level 1458.000000 of SOILT.
+2026-11-04 12:38:15.876 --- INFORM: Going to create the field SOIL_LEVELS
+2026-11-04 12:38:15.876 --- INFORM: Going to create the field PRES
+2026-11-04 12:38:15.915 --- INFORM: PRES at level 200100.000000 already exists; leaving it alone.
+2026-11-04 12:38:16.067 --- INFORM: Field LANDSEA.mask does not have a valid mask and will not be checked for missing values
+2026-11-04 12:38:16.151 --- Initializing output module.
+2026-11-04 12:38:16.165 --- Writing global attributes to output.
+2026-11-04 12:38:16.179 --- Writing field PRES to output.
+2026-11-04 12:38:16.306 --- Writing field SOIL_LAYERS to output.
+2026-11-04 12:38:16.320 --- Writing field SM to output.
+2026-11-04 12:38:16.386 --- Writing field ST to output.
+2026-11-04 12:38:16.454 --- Writing field GHT to output.
+2026-11-04 12:38:16.881 --- Writing field HGTTROP to output.
+2026-11-04 12:38:16.897 --- Writing field TTROP to output.
+2026-11-04 12:38:16.911 --- Writing field PTROPNN to output.
+2026-11-04 12:38:16.915 --- Writing field PTROP to output.
+2026-11-04 12:38:16.931 --- Writing field VTROP to output.
+2026-11-04 12:38:16.948 --- Writing field UTROP to output.
+2026-11-04 12:38:16.963 --- Writing field HGTMAXW to output.
+2026-11-04 12:38:16.978 --- Writing field TMAXW to output.
+2026-11-04 12:38:16.993 --- Writing field PMAXWNN to output.
+2026-11-04 12:38:16.996 --- Writing field PMAXW to output.
+2026-11-04 12:38:17.012 --- Writing field VMAXW to output.
+2026-11-04 12:38:17.028 --- Writing field UMAXW to output.
+2026-11-04 12:38:17.044 --- Writing field SNOWH to output.
+2026-11-04 12:38:17.050 --- Writing field SNOW to output.
+2026-11-04 12:38:17.056 --- Writing field SKINTEMP to output.
+2026-11-04 12:38:17.071 --- Writing field SOILHGT to output.
+2026-11-04 12:38:17.089 --- Writing field LANDSEA to output.
+2026-11-04 12:38:17.092 --- Writing field SEAICE to output.
+2026-11-04 12:38:17.095 --- Writing field ST100200 to output.
+2026-11-04 12:38:17.108 --- Writing field ST040100 to output.
+2026-11-04 12:38:17.121 --- Writing field ST010040 to output.
+2026-11-04 12:38:17.137 --- Writing field ST000010 to output.
+2026-11-04 12:38:17.151 --- Writing field SM100200 to output.
+2026-11-04 12:38:17.167 --- Writing field SM040100 to output.
+2026-11-04 12:38:17.184 --- Writing field SM010040 to output.
+2026-11-04 12:38:17.201 --- Writing field SM000010 to output.
+2026-11-04 12:38:17.218 --- Writing field PSFC to output.
+2026-11-04 12:38:17.245 --- Writing field RH to output.
+2026-11-04 12:38:17.750 --- Writing field VV to output.
+2026-11-04 12:38:18.370 --- Writing field UU to output.
+2026-11-04 12:38:18.959 --- Writing field TT to output.
+2026-11-04 12:38:19.465 --- Writing field PMSL to output.
+2026-11-04 12:38:19.476 --- Writing field VAR_SSO to output.
+2026-11-04 12:38:19.495 --- Writing field OL4 to output.
+2026-11-04 12:38:19.498 --- Writing field OL3 to output.
+2026-11-04 12:38:19.502 --- Writing field OL2 to output.
+2026-11-04 12:38:19.505 --- Writing field OL1 to output.
+2026-11-04 12:38:19.509 --- Writing field OA4 to output.
+2026-11-04 12:38:19.513 --- Writing field OA3 to output.
+2026-11-04 12:38:19.517 --- Writing field OA2 to output.
+2026-11-04 12:38:19.521 --- Writing field OA1 to output.
+2026-11-04 12:38:19.525 --- Writing field VAR to output.
+2026-11-04 12:38:19.529 --- Writing field CON to output.
+2026-11-04 12:38:19.533 --- Writing field SNOALB to output.
+2026-11-04 12:38:19.550 --- Writing field LAI12M to output.
+2026-11-04 12:38:19.744 --- Writing field GREENFRAC to output.
+2026-11-04 12:38:20.021 --- Writing field ALBEDO12M to output.
+2026-11-04 12:38:20.271 --- Writing field SCB_DOM to output.
+2026-11-04 12:38:20.280 --- Writing field SOILCBOT to output.
+2026-11-04 12:38:20.346 --- Writing field SCT_DOM to output.
+2026-11-04 12:38:20.358 --- Writing field SOILCTOP to output.
+2026-11-04 12:38:20.420 --- Writing field SOILTEMP to output.
+2026-11-04 12:38:20.431 --- Writing field HGT_M to output.
+2026-11-04 12:38:20.451 --- Writing field LU_INDEX to output.
+2026-11-04 12:38:20.470 --- Writing field LANDUSEF to output.
+2026-11-04 12:38:20.570 --- Writing field COSALPHA_V to output.
+2026-11-04 12:38:20.577 --- Writing field SINALPHA_V to output.
+2026-11-04 12:38:20.592 --- Writing field COSALPHA_U to output.
+2026-11-04 12:38:20.599 --- Writing field SINALPHA_U to output.
+2026-11-04 12:38:20.623 --- Writing field XLONG_C to output.
+2026-11-04 12:38:20.630 --- Writing field XLAT_C to output.
+2026-11-04 12:38:20.646 --- Writing field LANDMASK to output.
+2026-11-04 12:38:20.649 --- Writing field COSALPHA to output.
+2026-11-04 12:38:20.661 --- Writing field SINALPHA to output.
+2026-11-04 12:38:20.675 --- Writing field F to output.
+2026-11-04 12:38:20.690 --- Writing field E to output.
+2026-11-04 12:38:20.701 --- Writing field MAPFAC_UY to output.
+2026-11-04 12:38:20.708 --- Writing field MAPFAC_VY to output.
+2026-11-04 12:38:20.716 --- Writing field MAPFAC_MY to output.
+2026-11-04 12:38:20.724 --- Writing field MAPFAC_UX to output.
+2026-11-04 12:38:20.731 --- Writing field MAPFAC_VX to output.
+2026-11-04 12:38:20.738 --- Writing field MAPFAC_MX to output.
+2026-11-04 12:38:20.745 --- Writing field MAPFAC_U to output.
+2026-11-04 12:38:20.753 --- Writing field MAPFAC_V to output.
+2026-11-04 12:38:20.760 --- Writing field MAPFAC_M to output.
+2026-11-04 12:38:20.767 --- Writing field CLONG to output.
+2026-11-04 12:38:20.773 --- Writing field CLAT to output.
+2026-11-04 12:38:20.785 --- Writing field XLONG_U to output.
+2026-11-04 12:38:20.791 --- Writing field XLAT_U to output.
+2026-11-04 12:38:20.803 --- Writing field XLONG_V to output.
+2026-11-04 12:38:20.810 --- Writing field XLAT_V to output.
+2026-11-04 12:38:20.821 --- Writing field XLONG_M to output.
+2026-11-04 12:38:20.828 --- Writing field XLAT_M to output.
+2026-11-04 12:38:20.839 --- Closing output file.
+2026-11-04 12:38:20.847 --- Preparing to process output time 2026-09-23_15
+2026-11-04 12:38:20.847 --- Getting input fields from GFS
+2026-11-04 12:38:23.237 --- Processing PMSL at level 201300.000000.
+2026-11-04 12:38:23.282 --- Processing TT at level 200100.000000.
+2026-11-04 12:38:23.326 --- Processing UU at level 200100.000000.
+2026-11-04 12:38:23.370 --- Processing VV at level 200100.000000.
+2026-11-04 12:38:23.414 --- Processing RH at level 200100.000000.
+2026-11-04 12:38:23.454 --- Processing PSFC at level 200100.000000.
+2026-11-04 12:38:23.477 --- Processing SM000010 at level 200100.000000.
+2026-11-04 12:38:23.525 --- Processing SM010040 at level 200100.000000.
+2026-11-04 12:38:23.575 --- Processing SM040100 at level 200100.000000.
+2026-11-04 12:38:23.626 --- Processing SM100200 at level 200100.000000.
+2026-11-04 12:38:23.675 --- Processing ST000010 at level 200100.000000.
+2026-11-04 12:38:23.724 --- Processing ST010040 at level 200100.000000.
+2026-11-04 12:38:23.773 --- Processing ST040100 at level 200100.000000.
+2026-11-04 12:38:23.824 --- Processing ST100200 at level 200100.000000.
+2026-11-04 12:38:23.873 --- Processing SEAICE at level 200100.000000.
+2026-11-04 12:38:23.889 --- Processing LANDSEA at level 200100.000000.
+2026-11-04 12:38:23.912 --- Processing SOILHGT at level 200100.000000.
+2026-11-04 12:38:23.936 --- Processing SKINTEMP at level 200100.000000.
+2026-11-04 12:38:24.013 --- Processing SNOW at level 200100.000000.
+2026-11-04 12:38:24.038 --- Processing SNOWH at level 200100.000000.
+2026-11-04 12:38:24.066 --- Processing UMAXW at level 200100.000000.
+2026-11-04 12:38:24.089 --- Processing VMAXW at level 200100.000000.
+2026-11-04 12:38:24.112 --- Processing PMAXW at level 200100.000000.
+2026-11-04 12:38:24.135 --- Processing PMAXWNN at level 200100.000000.
+2026-11-04 12:38:24.158 --- Processing TMAXW at level 200100.000000.
+2026-11-04 12:38:24.182 --- Processing HGTMAXW at level 200100.000000.
+2026-11-04 12:38:24.207 --- Processing UTROP at level 200100.000000.
+2026-11-04 12:38:24.231 --- Processing VTROP at level 200100.000000.
+2026-11-04 12:38:24.254 --- Processing PTROP at level 200100.000000.
+2026-11-04 12:38:24.277 --- Processing PTROPNN at level 200100.000000.
+2026-11-04 12:38:24.301 --- Processing TTROP at level 200100.000000.
+2026-11-04 12:38:24.324 --- Processing HGTTROP at level 200100.000000.
+2026-11-04 12:38:24.347 --- Processing TT at level 100000.000000.
+2026-11-04 12:38:24.388 --- Processing UU at level 100000.000000.
+2026-11-04 12:38:24.428 --- Processing VV at level 100000.000000.
+2026-11-04 12:38:24.468 --- Processing RH at level 100000.000000.
+2026-11-04 12:38:24.508 --- Processing GHT at level 100000.000000.
+2026-11-04 12:38:24.549 --- Processing TT at level 97500.000000.
+2026-11-04 12:38:24.590 --- Processing UU at level 97500.000000.
+2026-11-04 12:38:24.631 --- Processing VV at level 97500.000000.
+2026-11-04 12:38:24.672 --- Processing RH at level 97500.000000.
+2026-11-04 12:38:24.714 --- Processing GHT at level 97500.000000.
+2026-11-04 12:38:24.757 --- Processing TT at level 95000.000000.
+2026-11-04 12:38:24.800 --- Processing UU at level 95000.000000.
+2026-11-04 12:38:24.844 --- Processing VV at level 95000.000000.
+2026-11-04 12:38:24.888 --- Processing RH at level 95000.000000.
+2026-11-04 12:38:24.932 --- Processing GHT at level 95000.000000.
+2026-11-04 12:38:24.976 --- Processing TT at level 92500.000000.
+2026-11-04 12:38:25.021 --- Processing UU at level 92500.000000.
+2026-11-04 12:38:25.069 --- Processing VV at level 92500.000000.
+2026-11-04 12:38:25.114 --- Processing RH at level 92500.000000.
+2026-11-04 12:38:25.158 --- Processing GHT at level 92500.000000.
+2026-11-04 12:38:25.203 --- Processing TT at level 90000.000000.
+2026-11-04 12:38:25.249 --- Processing UU at level 90000.000000.
+2026-11-04 12:38:25.293 --- Processing VV at level 90000.000000.
+2026-11-04 12:38:25.338 --- Processing RH at level 90000.000000.
+2026-11-04 12:38:25.382 --- Processing GHT at level 90000.000000.
+2026-11-04 12:38:25.426 --- Processing TT at level 85000.000000.
+2026-11-04 12:38:25.471 --- Processing UU at level 85000.000000.
+2026-11-04 12:38:25.516 --- Processing VV at level 85000.000000.
+2026-11-04 12:38:25.562 --- Processing RH at level 85000.000000.
+2026-11-04 12:38:25.608 --- Processing GHT at level 85000.000000.
+2026-11-04 12:38:25.652 --- Processing TT at level 80000.000000.
+2026-11-04 12:38:25.695 --- Processing UU at level 80000.000000.
+2026-11-04 12:38:25.738 --- Processing VV at level 80000.000000.
+2026-11-04 12:38:25.780 --- Processing RH at level 80000.000000.
+2026-11-04 12:38:25.820 --- Processing GHT at level 80000.000000.
+2026-11-04 12:38:25.862 --- Processing TT at level 75000.000000.
+2026-11-04 12:38:25.905 --- Processing UU at level 75000.000000.
+2026-11-04 12:38:25.951 --- Processing VV at level 75000.000000.
+2026-11-04 12:38:26.000 --- Processing RH at level 75000.000000.
+2026-11-04 12:38:26.046 --- Processing GHT at level 75000.000000.
+2026-11-04 12:38:26.092 --- Processing TT at level 70000.000000.
+2026-11-04 12:38:26.136 --- Processing UU at level 70000.000000.
+2026-11-04 12:38:26.181 --- Processing VV at level 70000.000000.
+2026-11-04 12:38:26.227 --- Processing RH at level 70000.000000.
+2026-11-04 12:38:26.270 --- Processing GHT at level 70000.000000.
+2026-11-04 12:38:26.313 --- Processing TT at level 65000.000000.
+2026-11-04 12:38:26.355 --- Processing UU at level 65000.000000.
+2026-11-04 12:38:26.399 --- Processing VV at level 65000.000000.
+2026-11-04 12:38:26.441 --- Processing RH at level 65000.000000.
+2026-11-04 12:38:26.482 --- Processing GHT at level 65000.000000.
+2026-11-04 12:38:26.525 --- Processing TT at level 60000.000000.
+2026-11-04 12:38:26.568 --- Processing UU at level 60000.000000.
+2026-11-04 12:38:26.608 --- Processing VV at level 60000.000000.
+2026-11-04 12:38:26.650 --- Processing RH at level 60000.000000.
+2026-11-04 12:38:26.691 --- Processing GHT at level 60000.000000.
+2026-11-04 12:38:26.737 --- Processing TT at level 55000.000000.
+2026-11-04 12:38:26.782 --- Processing UU at level 55000.000000.
+2026-11-04 12:38:26.826 --- Processing VV at level 55000.000000.
+2026-11-04 12:38:26.870 --- Processing RH at level 55000.000000.
+2026-11-04 12:38:26.915 --- Processing GHT at level 55000.000000.
+2026-11-04 12:38:26.959 --- Processing TT at level 50000.000000.
+2026-11-04 12:38:27.004 --- Processing UU at level 50000.000000.
+2026-11-04 12:38:27.050 --- Processing VV at level 50000.000000.
+2026-11-04 12:38:27.095 --- Processing RH at level 50000.000000.
+2026-11-04 12:38:27.140 --- Processing GHT at level 50000.000000.
+2026-11-04 12:38:27.184 --- Processing TT at level 45000.000000.
+2026-11-04 12:38:27.231 --- Processing UU at level 45000.000000.
+2026-11-04 12:38:27.278 --- Processing VV at level 45000.000000.
+2026-11-04 12:38:27.324 --- Processing RH at level 45000.000000.
+2026-11-04 12:38:27.367 --- Processing GHT at level 45000.000000.
+2026-11-04 12:38:27.409 --- Processing TT at level 40000.000000.
+2026-11-04 12:38:27.453 --- Processing UU at level 40000.000000.
+2026-11-04 12:38:27.494 --- Processing VV at level 40000.000000.
+2026-11-04 12:38:27.538 --- Processing RH at level 40000.000000.
+2026-11-04 12:38:27.579 --- Processing GHT at level 40000.000000.
+2026-11-04 12:38:27.626 --- Processing TT at level 35000.000000.
+2026-11-04 12:38:27.689 --- Processing UU at level 35000.000000.
+2026-11-04 12:38:27.761 --- Processing VV at level 35000.000000.
+2026-11-04 12:38:27.806 --- Processing RH at level 35000.000000.
+2026-11-04 12:38:27.851 --- Processing GHT at level 35000.000000.
+2026-11-04 12:38:27.896 --- Processing TT at level 30000.000000.
+2026-11-04 12:38:27.943 --- Processing UU at level 30000.000000.
+2026-11-04 12:38:27.988 --- Processing VV at level 30000.000000.
+2026-11-04 12:38:28.035 --- Processing RH at level 30000.000000.
+2026-11-04 12:38:28.082 --- Processing GHT at level 30000.000000.
+2026-11-04 12:38:28.130 --- Processing TT at level 25000.000000.
+2026-11-04 12:38:28.176 --- Processing UU at level 25000.000000.
+2026-11-04 12:38:28.222 --- Processing VV at level 25000.000000.
+2026-11-04 12:38:28.266 --- Processing RH at level 25000.000000.
+2026-11-04 12:38:28.310 --- Processing GHT at level 25000.000000.
+2026-11-04 12:38:28.353 --- Processing TT at level 20000.000000.
+2026-11-04 12:38:28.396 --- Processing UU at level 20000.000000.
+2026-11-04 12:38:28.442 --- Processing VV at level 20000.000000.
+2026-11-04 12:38:28.484 --- Processing RH at level 20000.000000.
+2026-11-04 12:38:28.525 --- Processing GHT at level 20000.000000.
+2026-11-04 12:38:28.570 --- Processing TT at level 15000.000000.
+2026-11-04 12:38:28.612 --- Processing UU at level 15000.000000.
+2026-11-04 12:38:28.654 --- Processing VV at level 15000.000000.
+2026-11-04 12:38:28.696 --- Processing RH at level 15000.000000.
+2026-11-04 12:38:28.739 --- Processing GHT at level 15000.000000.
+2026-11-04 12:38:28.783 --- Processing TT at level 10000.000000.
+2026-11-04 12:38:28.826 --- Processing UU at level 10000.000000.
+2026-11-04 12:38:28.871 --- Processing VV at level 10000.000000.
+2026-11-04 12:38:28.916 --- Processing RH at level 10000.000000.
+2026-11-04 12:38:28.959 --- Processing GHT at level 10000.000000.
+2026-11-04 12:38:29.003 --- Processing TT at level 7000.000000.
+2026-11-04 12:38:29.047 --- Processing UU at level 7000.000000.
+2026-11-04 12:38:29.090 --- Processing VV at level 7000.000000.
+2026-11-04 12:38:29.134 --- Processing RH at level 7000.000000.
+2026-11-04 12:38:29.177 --- Processing GHT at level 7000.000000.
+2026-11-04 12:38:29.220 --- Processing TT at level 5000.000000.
+2026-11-04 12:38:29.262 --- Processing UU at level 5000.000000.
+2026-11-04 12:38:29.303 --- Processing VV at level 5000.000000.
+2026-11-04 12:38:29.346 --- Processing RH at level 5000.000000.
+2026-11-04 12:38:29.397 --- Processing GHT at level 5000.000000.
+2026-11-04 12:38:29.445 --- Processing TT at level 4000.000000.
+2026-11-04 12:38:29.497 --- Processing UU at level 4000.000000.
+2026-11-04 12:38:29.542 --- Processing VV at level 4000.000000.
+2026-11-04 12:38:29.584 --- Processing RH at level 4000.000000.
+2026-11-04 12:38:29.625 --- Processing GHT at level 4000.000000.
+2026-11-04 12:38:29.667 --- Processing TT at level 3000.000000.
+2026-11-04 12:38:29.708 --- Processing UU at level 3000.000000.
+2026-11-04 12:38:29.750 --- Processing VV at level 3000.000000.
+2026-11-04 12:38:29.791 --- Processing RH at level 3000.000000.
+2026-11-04 12:38:29.832 --- Processing GHT at level 3000.000000.
+2026-11-04 12:38:29.876 --- Processing TT at level 2000.000000.
+2026-11-04 12:38:29.920 --- Processing UU at level 2000.000000.
+2026-11-04 12:38:29.963 --- Processing VV at level 2000.000000.
+2026-11-04 12:38:30.007 --- Processing RH at level 2000.000000.
+2026-11-04 12:38:30.051 --- Processing GHT at level 2000.000000.
+2026-11-04 12:38:30.093 --- Processing TT at level 1500.000000.
+2026-11-04 12:38:30.137 --- Processing UU at level 1500.000000.
+2026-11-04 12:38:30.179 --- Processing VV at level 1500.000000.
+2026-11-04 12:38:30.224 --- Processing RH at level 1500.000000.
+2026-11-04 12:38:30.265 --- Processing GHT at level 1500.000000.
+2026-11-04 12:38:30.306 --- Processing TT at level 1000.000000.
+2026-11-04 12:38:30.350 --- Processing UU at level 1000.000000.
+2026-11-04 12:38:30.392 --- Processing VV at level 1000.000000.
+2026-11-04 12:38:30.434 --- Processing RH at level 1000.000000.
+2026-11-04 12:38:30.488 --- Processing GHT at level 1000.000000.
+2026-11-04 12:38:30.529 --- Processing TT at level 700.000000.
+2026-11-04 12:38:30.572 --- Processing UU at level 700.000000.
+2026-11-04 12:38:30.614 --- Processing VV at level 700.000000.
+2026-11-04 12:38:30.655 --- Processing RH at level 700.000000.
+2026-11-04 12:38:30.815 --- Processing GHT at level 700.000000.
+2026-11-04 12:38:30.856 --- Processing TT at level 500.000000.
+2026-11-04 12:38:30.896 --- Processing UU at level 500.000000.
+2026-11-04 12:38:30.940 --- Processing VV at level 500.000000.
+2026-11-04 12:38:30.981 --- Processing RH at level 500.000000.
+2026-11-04 12:38:31.145 --- Processing GHT at level 500.000000.
+2026-11-04 12:38:31.187 --- Processing TT at level 300.000000.
+2026-11-04 12:38:31.241 --- Processing UU at level 300.000000.
+2026-11-04 12:38:31.288 --- Processing VV at level 300.000000.
+2026-11-04 12:38:31.337 --- Processing RH at level 300.000000.
+2026-11-04 12:38:31.509 --- Processing GHT at level 300.000000.
+2026-11-04 12:38:31.553 --- Processing TT at level 200.000000.
+2026-11-04 12:38:31.598 --- Processing UU at level 200.000000.
+2026-11-04 12:38:31.641 --- Processing VV at level 200.000000.
+2026-11-04 12:38:31.687 --- Processing RH at level 200.000000.
+2026-11-04 12:38:31.848 --- Processing GHT at level 200.000000.
+2026-11-04 12:38:31.890 --- Processing TT at level 100.000000.
+2026-11-04 12:38:31.932 --- Processing UU at level 100.000000.
+2026-11-04 12:38:31.975 --- Processing VV at level 100.000000.
+2026-11-04 12:38:32.017 --- Processing RH at level 100.000000.
+2026-11-04 12:38:32.179 --- Processing GHT at level 100.000000.
+2026-11-04 12:38:32.210 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.218 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.227 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.235 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.244 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.252 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.260 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.269 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.277 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.285 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.293 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.302 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.310 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.318 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.326 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.334 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.344 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.353 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.362 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.371 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.380 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.388 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.397 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.405 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.414 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.422 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.430 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.439 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.447 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.455 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.466 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.475 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.484 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.492 --- Rotating earth winds to grid winds
+2026-11-04 12:38:32.504 --- Filling missing levels.
+2026-11-04 12:38:32.506 --- INFORM: GHT at level 200100.000000 already exists; leaving it alone.
+2026-11-04 12:38:32.506 --- INFORM: LANDSEA at level 200100.000000 already exists; leaving it alone.
+2026-11-04 12:38:32.506 --- INFORM: PSFC at level 200100.000000 already exists; leaving it alone.
+2026-11-04 12:38:32.506 --- INFORM: RH at level 200100.000000 already exists; leaving it alone.
+2026-11-04 12:38:32.506 --- INFORM: VV at level 200100.000000 already exists; leaving it alone.
+2026-11-04 12:38:32.506 --- INFORM: UU at level 200100.000000 already exists; leaving it alone.
+2026-11-04 12:38:32.506 --- INFORM: TT at level 200100.000000 already exists; leaving it alone.
+2026-11-04 12:38:32.637 --- Creating derived fields.
+2026-11-04 12:38:32.638 --- INFORM: Going to create the field ST
+2026-11-04 12:38:32.644 --- INFORM: ST at level 10.000000 already exists; leaving it alone.
+2026-11-04 12:38:32.644 --- INFORM: Couldn't find ST010035 at level 200100.000000 to fill level 35.000000 of ST.
+2026-11-04 12:38:32.644 --- INFORM: ST at level 100.000000 already exists; leaving it alone.
+2026-11-04 12:38:32.644 --- INFORM: Couldn't find ST100300 at level 200100.000000 to fill level 300.000000 of ST.
+2026-11-04 12:38:32.644 --- INFORM: ST at level 10.000000 already exists; leaving it alone.
+2026-11-04 12:38:32.644 --- INFORM: ST at level 200.000000 already exists; leaving it alone.
+2026-11-04 12:38:32.644 --- INFORM: Couldn't find ST000007 at level 200100.000000 to fill level 7.000000 of ST.
+2026-11-04 12:38:32.644 --- INFORM: Couldn't find ST007028 at level 200100.000000 to fill level 28.000000 of ST.
+2026-11-04 12:38:32.644 --- INFORM: ST at level 100.000000 already exists; leaving it alone.
+2026-11-04 12:38:32.644 --- INFORM: Couldn't find ST100289 at level 200100.000000 to fill level 289.000000 of ST.
+2026-11-04 12:38:32.644 --- INFORM: Going to create the field SM
+2026-11-04 12:38:32.653 --- INFORM: SM at level 10.000000 already exists; leaving it alone.
+2026-11-04 12:38:32.653 --- INFORM: Couldn't find SM010035 at level 200100.000000 to fill level 35.000000 of SM.
+2026-11-04 12:38:32.653 --- INFORM: SM at level 100.000000 already exists; leaving it alone.
+2026-11-04 12:38:32.653 --- INFORM: Couldn't find SM100300 at level 200100.000000 to fill level 300.000000 of SM.
+2026-11-04 12:38:32.653 --- INFORM: SM at level 10.000000 already exists; leaving it alone.
+2026-11-04 12:38:32.653 --- INFORM: SM at level 200.000000 already exists; leaving it alone.
+2026-11-04 12:38:32.653 --- INFORM: Couldn't find SM000007 at level 200100.000000 to fill level 7.000000 of SM.
+2026-11-04 12:38:32.653 --- INFORM: Couldn't find SM007028 at level 200100.000000 to fill level 28.000000 of SM.
+2026-11-04 12:38:32.653 --- INFORM: SM at level 100.000000 already exists; leaving it alone.
+2026-11-04 12:38:32.653 --- INFORM: Couldn't find SM100289 at level 200100.000000 to fill level 289.000000 of SM.
+2026-11-04 12:38:32.653 --- INFORM: Going to create the field SW
+2026-11-04 12:38:32.653 --- INFORM: Couldn't find SW000010 at level 200100.000000 to fill level 1.000000 of SW.
+2026-11-04 12:38:32.653 --- INFORM: Couldn't find SW010040 at level 200100.000000 to fill level 2.000000 of SW.
+2026-11-04 12:38:32.653 --- INFORM: Couldn't find SW040100 at level 200100.000000 to fill level 3.000000 of SW.
+2026-11-04 12:38:32.653 --- INFORM: Couldn't find SW100200 at level 200100.000000 to fill level 4.000000 of SW.
+2026-11-04 12:38:32.653 --- INFORM: Couldn't find SW000010 at level 200100.000000 to fill level 1.000000 of SW.
+2026-11-04 12:38:32.653 --- INFORM: Couldn't find SW010200 at level 200100.000000 to fill level 2.000000 of SW.
+2026-11-04 12:38:32.653 --- INFORM: Going to create the field SOIL_LAYERS
+2026-11-04 12:38:32.659 --- INFORM: Going to create the field SOILM
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILM000 at level 200100.000000 to fill level 0.000000 of SOILM.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILM005 at level 200100.000000 to fill level 5.000000 of SOILM.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILM020 at level 200100.000000 to fill level 20.000000 of SOILM.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILM040 at level 200100.000000 to fill level 40.000000 of SOILM.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILM160 at level 200100.000000 to fill level 160.000000 of SOILM.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILM300 at level 200100.000000 to fill level 300.000000 of SOILM.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILM001 at level 200100.000000 to fill level 1.000000 of SOILM.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILM004 at level 200100.000000 to fill level 4.000000 of SOILM.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILM010 at level 200100.000000 to fill level 10.000000 of SOILM.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILM030 at level 200100.000000 to fill level 30.000000 of SOILM.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILM060 at level 200100.000000 to fill level 60.000000 of SOILM.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILM100 at level 200100.000000 to fill level 100.000000 of SOILM.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILM000 at level 200100.000000 to fill level 0.000000 of SOILM.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILM002 at level 200100.000000 to fill level 2.000000 of SOILM.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILM006 at level 200100.000000 to fill level 6.000000 of SOILM.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILM018 at level 200100.000000 to fill level 18.000000 of SOILM.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILM054 at level 200100.000000 to fill level 54.000000 of SOILM.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILM162 at level 200100.000000 to fill level 162.000000 of SOILM.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILM486 at level 200100.000000 to fill level 486.000000 of SOILM.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILM999 at level 200100.000000 to fill level 1458.000000 of SOILM.
+2026-11-04 12:38:32.659 --- INFORM: Going to create the field SOILT
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILT000 at level 200100.000000 to fill level 0.000000 of SOILT.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILT005 at level 200100.000000 to fill level 5.000000 of SOILT.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILT020 at level 200100.000000 to fill level 20.000000 of SOILT.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILT040 at level 200100.000000 to fill level 40.000000 of SOILT.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILT160 at level 200100.000000 to fill level 160.000000 of SOILT.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILT300 at level 200100.000000 to fill level 300.000000 of SOILT.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILT050 at level 200100.000000 to fill level 49.000000 of SOILT.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILT050 at level 200100.000000 to fill level 51.000000 of SOILT.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILT001 at level 200100.000000 to fill level 1.000000 of SOILT.
+2026-11-04 12:38:32.659 --- INFORM: Couldn't find SOILT004 at level 200100.000000 to fill level 4.000000 of SOILT.
+2026-11-04 12:38:32.660 --- INFORM: Couldn't find SOILT010 at level 200100.000000 to fill level 10.000000 of SOILT.
+2026-11-04 12:38:32.660 --- INFORM: Couldn't find SOILT030 at level 200100.000000 to fill level 30.000000 of SOILT.
+2026-11-04 12:38:32.660 --- INFORM: Couldn't find SOILT060 at level 200100.000000 to fill level 60.000000 of SOILT.
+2026-11-04 12:38:32.660 --- INFORM: Couldn't find SOILT100 at level 200100.000000 to fill level 100.000000 of SOILT.
+2026-11-04 12:38:32.660 --- INFORM: Couldn't find SOILT000 at level 200100.000000 to fill level 0.000000 of SOILT.
+2026-11-04 12:38:32.660 --- INFORM: Couldn't find SOILT002 at level 200100.000000 to fill level 2.000000 of SOILT.
+2026-11-04 12:38:32.660 --- INFORM: Couldn't find SOILT006 at level 200100.000000 to fill level 6.000000 of SOILT.
+2026-11-04 12:38:32.660 --- INFORM: Couldn't find SOILT018 at level 200100.000000 to fill level 18.000000 of SOILT.
+2026-11-04 12:38:32.660 --- INFORM: Couldn't find SOILT054 at level 200100.000000 to fill level 54.000000 of SOILT.
+2026-11-04 12:38:32.660 --- INFORM: Couldn't find SOILT162 at level 200100.000000 to fill level 162.000000 of SOILT.
+2026-11-04 12:38:32.660 --- INFORM: Couldn't find SOILT486 at level 200100.000000 to fill level 486.000000 of SOILT.
+2026-11-04 12:38:32.660 --- INFORM: Couldn't find SOILT999 at level 200100.000000 to fill level 1458.000000 of SOILT.
+2026-11-04 12:38:32.660 --- INFORM: Going to create the field SOIL_LEVELS
+2026-11-04 12:38:32.660 --- INFORM: Going to create the field PRES
+2026-11-04 12:38:32.702 --- INFORM: PRES at level 200100.000000 already exists; leaving it alone.
+2026-11-04 12:38:32.860 --- INFORM: Field LANDSEA.mask does not have a valid mask and will not be checked for missing values
+2026-11-04 12:38:32.946 --- Initializing output module.
+2026-11-04 12:38:32.961 --- Writing global attributes to output.
+2026-11-04 12:38:32.976 --- Writing field PRES to output.
+2026-11-04 12:38:33.111 --- Writing field SOIL_LAYERS to output.
+2026-11-04 12:38:33.127 --- Writing field SM to output.
+2026-11-04 12:38:33.194 --- Writing field ST to output.
+2026-11-04 12:38:33.264 --- Writing field GHT to output.
+2026-11-04 12:38:33.704 --- Writing field HGTTROP to output.
+2026-11-04 12:38:33.719 --- Writing field TTROP to output.
+2026-11-04 12:38:33.734 --- Writing field PTROPNN to output.
+2026-11-04 12:38:33.737 --- Writing field PTROP to output.
+2026-11-04 12:38:33.754 --- Writing field VTROP to output.
+2026-11-04 12:38:33.771 --- Writing field UTROP to output.
+2026-11-04 12:38:33.787 --- Writing field HGTMAXW to output.
+2026-11-04 12:38:33.803 --- Writing field TMAXW to output.
+2026-11-04 12:38:33.818 --- Writing field PMAXWNN to output.
+2026-11-04 12:38:33.822 --- Writing field PMAXW to output.
+2026-11-04 12:38:33.838 --- Writing field VMAXW to output.
+2026-11-04 12:38:33.854 --- Writing field UMAXW to output.
+2026-11-04 12:38:33.870 --- Writing field SNOWH to output.
+2026-11-04 12:38:33.876 --- Writing field SNOW to output.
+2026-11-04 12:38:33.883 --- Writing field SKINTEMP to output.
+2026-11-04 12:38:33.898 --- Writing field SOILHGT to output.
+2026-11-04 12:38:33.916 --- Writing field LANDSEA to output.
+2026-11-04 12:38:33.919 --- Writing field SEAICE to output.
+2026-11-04 12:38:33.922 --- Writing field ST100200 to output.
+2026-11-04 12:38:33.936 --- Writing field ST040100 to output.
+2026-11-04 12:38:33.950 --- Writing field ST010040 to output.
+2026-11-04 12:38:33.964 --- Writing field ST000010 to output.
+2026-11-04 12:38:33.978 --- Writing field SM100200 to output.
+2026-11-04 12:38:33.994 --- Writing field SM040100 to output.
+2026-11-04 12:38:34.010 --- Writing field SM010040 to output.
+2026-11-04 12:38:34.026 --- Writing field SM000010 to output.
+2026-11-04 12:38:34.043 --- Writing field PSFC to output.
+2026-11-04 12:38:34.074 --- Writing field RH to output.
+2026-11-04 12:38:34.600 --- Writing field VV to output.
+2026-11-04 12:38:35.245 --- Writing field UU to output.
+2026-11-04 12:38:35.831 --- Writing field TT to output.
+2026-11-04 12:38:36.307 --- Writing field PMSL to output.
+2026-11-04 12:38:36.319 --- Writing field VAR_SSO to output.
+2026-11-04 12:38:36.339 --- Writing field OL4 to output.
+2026-11-04 12:38:36.343 --- Writing field OL3 to output.
+2026-11-04 12:38:36.347 --- Writing field OL2 to output.
+2026-11-04 12:38:36.350 --- Writing field OL1 to output.
+2026-11-04 12:38:36.354 --- Writing field OA4 to output.
+2026-11-04 12:38:36.358 --- Writing field OA3 to output.
+2026-11-04 12:38:36.362 --- Writing field OA2 to output.
+2026-11-04 12:38:36.367 --- Writing field OA1 to output.
+2026-11-04 12:38:36.372 --- Writing field VAR to output.
+2026-11-04 12:38:36.377 --- Writing field CON to output.
+2026-11-04 12:38:36.381 --- Writing field SNOALB to output.
+2026-11-04 12:38:36.395 --- Writing field LAI12M to output.
+2026-11-04 12:38:36.594 --- Writing field GREENFRAC to output.
+2026-11-04 12:38:36.870 --- Writing field ALBEDO12M to output.
+2026-11-04 12:38:37.113 --- Writing field SCB_DOM to output.
+2026-11-04 12:38:37.120 --- Writing field SOILCBOT to output.
+2026-11-04 12:38:37.179 --- Writing field SCT_DOM to output.
+2026-11-04 12:38:37.188 --- Writing field SOILCTOP to output.
+2026-11-04 12:38:37.255 --- Writing field SOILTEMP to output.
+2026-11-04 12:38:37.267 --- Writing field HGT_M to output.
+2026-11-04 12:38:37.288 --- Writing field LU_INDEX to output.
+2026-11-04 12:38:37.310 --- Writing field LANDUSEF to output.
+2026-11-04 12:38:37.426 --- Writing field COSALPHA_V to output.
+2026-11-04 12:38:37.433 --- Writing field SINALPHA_V to output.
+2026-11-04 12:38:37.448 --- Writing field COSALPHA_U to output.
+2026-11-04 12:38:37.455 --- Writing field SINALPHA_U to output.
+2026-11-04 12:38:37.470 --- Writing field XLONG_C to output.
+2026-11-04 12:38:37.477 --- Writing field XLAT_C to output.
+2026-11-04 12:38:37.496 --- Writing field LANDMASK to output.
+2026-11-04 12:38:37.501 --- Writing field COSALPHA to output.
+2026-11-04 12:38:37.508 --- Writing field SINALPHA to output.
+2026-11-04 12:38:37.522 --- Writing field F to output.
+2026-11-04 12:38:37.535 --- Writing field E to output.
+2026-11-04 12:38:37.548 --- Writing field MAPFAC_UY to output.
+2026-11-04 12:38:37.558 --- Writing field MAPFAC_VY to output.
+2026-11-04 12:38:37.566 --- Writing field MAPFAC_MY to output.
+2026-11-04 12:38:37.577 --- Writing field MAPFAC_UX to output.
+2026-11-04 12:38:37.586 --- Writing field MAPFAC_VX to output.
+2026-11-04 12:38:37.595 --- Writing field MAPFAC_MX to output.
+2026-11-04 12:38:37.604 --- Writing field MAPFAC_U to output.
+2026-11-04 12:38:37.611 --- Writing field MAPFAC_V to output.
+2026-11-04 12:38:37.619 --- Writing field MAPFAC_M to output.
+2026-11-04 12:38:37.627 --- Writing field CLONG to output.
+2026-11-04 12:38:37.634 --- Writing field CLAT to output.
+2026-11-04 12:38:37.646 --- Writing field XLONG_U to output.
+2026-11-04 12:38:37.653 --- Writing field XLAT_U to output.
+2026-11-04 12:38:37.666 --- Writing field XLONG_V to output.
+2026-11-04 12:38:37.673 --- Writing field XLAT_V to output.
+2026-11-04 12:38:37.686 --- Writing field XLONG_M to output.
+2026-11-04 12:38:37.694 --- Writing field XLAT_M to output.
+2026-11-04 12:38:37.707 --- Closing output file.
+2026-11-04 12:38:37.715 ---  *** Successful completion of program metgrid.exe ***

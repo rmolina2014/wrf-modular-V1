@@ -1,0 +1,14 @@
+{
+  "etiqueta": "metgrid",
+  "comando": "bash -c source /home/pgich/wrf-modular-V1/outputs/prueba_costo_1km/env_tesis.sh && exec ./metgrid.exe",
+  "cwd": "/home/pgich/wrf-modular-V1/outputs/prueba_costo_1km/wps",
+  "inicio": "2026-11-04 12:38:04",
+  "fin": "2026-11-04 12:38:38",
+  "elapsed_wall_s": 34.02,
+  "user_s": 32.43,
+  "system_s": 1.18,
+  "maximum_resident_set_size_kbytes": 925036,
+  "exit_status": 0,
+  "terminado_por_senal": null,
+  "cortado_por": null
+}

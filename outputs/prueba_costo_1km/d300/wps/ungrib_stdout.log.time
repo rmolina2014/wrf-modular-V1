@@ -1,0 +1,14 @@
+{
+  "etiqueta": "ungrib",
+  "comando": "bash -c source /home/pgich/wrf-modular-V1/outputs/prueba_costo_1km/env_operativo.sh && exec ./ungrib.exe",
+  "cwd": "/home/pgich/wrf-modular-V1/outputs/prueba_costo_1km/d300/wps",
+  "inicio": "2026-11-04 12:50:31",
+  "fin": "2026-11-04 12:50:53",
+  "elapsed_wall_s": 22.01,
+  "user_s": 18.4,
+  "system_s": 2.21,
+  "maximum_resident_set_size_kbytes": 819628,
+  "exit_status": 0,
+  "terminado_por_senal": null,
+  "cortado_por": null
+}

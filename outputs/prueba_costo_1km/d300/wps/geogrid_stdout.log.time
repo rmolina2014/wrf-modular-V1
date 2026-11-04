@@ -1,0 +1,14 @@
+{
+  "etiqueta": "geogrid",
+  "comando": "bash -c source /home/pgich/wrf-modular-V1/outputs/prueba_costo_1km/env_operativo.sh && exec ./geogrid.exe",
+  "cwd": "/home/pgich/wrf-modular-V1/outputs/prueba_costo_1km/d300/wps",
+  "inicio": "2026-11-04 12:50:23",
+  "fin": "2026-11-04 12:50:25",
+  "elapsed_wall_s": 2.0,
+  "user_s": 1.31,
+  "system_s": 0.16,
+  "maximum_resident_set_size_kbytes": 124500,
+  "exit_status": 0,
+  "terminado_por_senal": null,
+  "cortado_por": null
+}

@@ -1,0 +1,40 @@
+3c3
+<  run_hours                           = RUN_HOURS,
+---
+>  run_hours                           = 1,
+6,17c6,17
+<  start_year                          = START_YEAR, START_YEAR, 2000,
+<  start_month                         = START_MONTH, START_MONTH,   01,
+<  start_day                           = START_DAY, START_DAY,   24,
+<  start_hour                          = START_HOUR, START_HOUR,   12,
+<  start_minute                        = START_MINUTE, START_MINUTE,   00,
+<  start_second                        = START_SECOND, START_SECOND,   00,
+<  end_year                            = END_YEAR, END_YEAR, 2000,
+<  end_month                           = END_MONTH, END_MONTH,   01,
+<  end_day                             = END_DAY, END_DAY,   25,
+<  end_hour                            = END_HOUR, END_HOUR,   12,
+<  end_minute                          = END_MINUTE, END_MINUTE,   00,
+<  end_second                          = END_SECOND, END_SECOND,   00,
+---
+>  start_year                          = 2026, 2026, 2000,
+>  start_month                         = 09, 09,   01,
+>  start_day                           = 23, 23,   24,
+>  start_hour                          = 12, 12,   12,
+>  start_minute                        = 00, 00,   00,
+>  start_second                        = 00, 00,   00,
+>  end_year                            = 2026, 2026, 2000,
+>  end_month                           = 09, 09,   01,
+>  end_day                             = 23, 23,   25,
+>  end_hour                            = 13, 13,   12,
+>  end_minute                          = 00, 00,   00,
+>  end_second                          = 00, 00,   00,
+29c29
+<  history_outname                     = "HISTORY_OUTNAME"
+---
+>  history_outname                     = "wrfout_d<domain>_<date>"
+37,38c37,38
+<  e_we                                = 600,    112,   94,
+<  e_sn                                = 600,    97,    91,
+---
+>  e_we                                = 300,    112,   94,
+>  e_sn                                = 300,    97,    91,

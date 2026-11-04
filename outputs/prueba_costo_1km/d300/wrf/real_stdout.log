@@ -1,0 +1,24 @@
+ Ntasks in X            1 , ntasks in Y            1
+Domain # 1: dx =  1000.000 m
+REAL_EM V4.5 PREPROCESSOR
+No git found or not a git repository, git commit version not available.
+ *************************************
+ Parent domain
+ ids,ide,jds,jde            1         300           1         300
+ ims,ime,jms,jme           -4         305          -4         305
+ ips,ipe,jps,jpe            1         300           1         300
+ *************************************
+DYNAMICS OPTION: Eulerian Mass Coordinate
+ alloc_space_field: domain            1 ,           10525263144  bytes allocated
+Time period #   1 to process = 2026-09-23_12:00:00.
+Total analysis times to input =    1.
+ You might have set the end time in the namelist.input for the model
+ Regional domains require more than one time-period to process, for BC generation
+-------------- FATAL CALLED ---------------
+FATAL CALLED FROM FILE:  <stdin>  LINE:     641
+Make the end time at least one 'interval_seconds' beyond the start time
+-------------------------------------------
+-------------- FATAL CALLED ---------------
+FATAL CALLED FROM FILE:  <stdin>  LINE:     641
+Make the end time at least one 'interval_seconds' beyond the start time
+-------------------------------------------

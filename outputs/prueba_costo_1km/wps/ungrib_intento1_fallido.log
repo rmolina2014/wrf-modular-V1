@@ -1,0 +1,7 @@
+2026-11-04 12:35:44.773 ---  *** Starting program ungrib.exe ***
+2026-11-04 12:35:44.774 --- ERROR STOP IN READ_NAMELIST
+2026-11-04 12:35:44.774 --- INTERVAL must fit evenly between start time and end time:
+2026-11-04 12:35:44.775 --- Start time: 2026-09-23_12:00:00
+2026-11-04 12:35:44.775 --- End time:   2026-09-23_13:00:00
+2026-11-04 12:35:44.775 --- INTERVAL  : 10800 seconds,  3.000000 hours
+2026-11-04 12:35:44.775 --- ERROR: Change your namelist, and resubmit

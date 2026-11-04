@@ -1,0 +1,1 @@
+{"proceso": "real.exe", "cwd": "/home/pgich/wrf-modular-V1/outputs/prueba_costo_1km/wrf", "pico_rss_total_kB": 35611140, "pico_rss_total_GB": 33.96, "momento_pico": "2026-11-04 12:49:51", "min_memavailable_kB": 3029016, "cortado_por_watchdog": "MemAvailable<limite", "limites": {"rss_max_GB": 34.0, "memavail_min_GB": 3.0}}

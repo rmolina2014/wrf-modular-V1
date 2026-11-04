@@ -1,0 +1,20 @@
+4,5c4,5
+<  start_date = 'START_DATE','START_DATE' 
+<  end_date   = 'END_DATE','END_DATE'
+---
+>  start_date = '2026-09-23_12:00:00','2026-09-23_12:00:00' 
+>  end_date   = '2026-09-23_15:00:00','2026-09-23_15:00:00'
+36,41c36,41
+<  ref_lat   =  REF_LAT,
+<  ref_lon   =  REF_LON,
+<  truelat1  =  TRUELAT1,
+<  truelat2  =  TRUELAT2,
+<  stand_lon =  STAND_LON,
+<  geog_data_path = 'RUTA_GEOG_DATA'
+---
+>  ref_lat   =  -31.53,
+>  ref_lon   =  -68.53,
+>  truelat1  =  -31.53,
+>  truelat2  =  -31.53,
+>  stand_lon =  -68.53,
+>  geog_data_path = '/home/pgich/wrf-operativo/datos/WPS_GEOG'
