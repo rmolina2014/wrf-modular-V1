@@ -57,3 +57,24 @@ No se subieron wrfout, wrfinput ni wrfbdy.
 1. real.exe 300×300: 8,1 s, RSS máx 10,08 GiB, `SUCCESS COMPLETE REAL_EM INIT`.
 2. wrf.exe 300×300: **SIGSEGV** a los 259 s reales tras 39 pasos (hasta 12:03:54), RSS máx 11,06 GiB. Segundos por paso: 1,29 de promedio sin el primero (mín 1,19, máx 11,34). Hubo 4 avisos de CFL al inicio (w-cfl hasta 27,6). No llegó a `SUCCESS COMPLETE WRF`.
 3. Estimación lineal ×4 para 600×600: unos 3090 s por hora simulada según "Timing for main" (36 h ≈ 30,9 h y 48 h ≈ 41,2 h; con el reloj total, mucho más). Memoria ≈ 40–44 GiB, más que los 40,2 GiB de RAM de la PC.
+
+## 04-11-2026: Prueba de costo 1 km, dominio 300×300, tercer intento (`d300/wrf_v3/`): 1, 10 y 4 hilos OpenMP
+
+**Commit:** `a772ab8` (rama `verif_idynin`)
+
+**Qué se hizo**
+- wrf.exe con 20 min simulados (`run_minutes=20`, fin a las 12:20), usando los mismos wrfinput y wrfbdy de `wrf_v2`.
+- Lanzamiento de la tesis (`env_tesis.sh`) con tres configuraciones: OMP=1 y tiles 1×1; OMP=10 y tiles 1×10; OMP=4 y tiles 1×4.
+- Tope de 3 h reales por corrida y watchdog de memoria.
+- Se registró el historial de git del comentario en `wrf_runner.py:56-62`: lo introdujo el commit `57afb94` (2026-10-12).
+
+**Archivos subidos** (25, 97 KB)
+- `outputs/prueba_costo_1km/d300/wrf_v3/`: `prueba_costo_d300_v3.md`, namelist de 20 min con su diff, `correr_las_tres.sh/.out`, `git_historial_wrf_runner.txt`.
+- En cada `ompN/`: `*.time`, `memoria_wrf.csv` con su resumen, `wrf_resumen_timing.txt` y `wrf_stdout_ultimas200.txt`.
+- `outputs/prueba_costo_1km/`: `env_tesis_omp{1,4,10}.sh` y `etapa_env.sh`.
+- No se subieron wrfout, wrfinput, wrfbdy ni `wrf_stdout.log` (24 MB).
+
+**Resumen**
+1. Las tres corridas terminaron por **SIGSEGV después del paso 39** (último a las 12:03:54; `radt=4`). Ninguna completó los 20 min ni llegó a `SUCCESS COMPLETE WRF`. RSS máx ≈ 11,5 GB.
+2. Segundos por paso, sin el primero: 1 hilo 3,012; 10 hilos 1,278; 4 hilos 1,446. Speed-up contra 1 hilo: ×2,36 con 10 hilos y ×2,08 con 4.
+3. Avisos de CFL: 10 con 1 hilo (w-cfl hasta 919,9). Con 10 y con 4 hilos, 4 avisos idénticos a los de `wrf_v2` (w-cfl hasta 27,6).
