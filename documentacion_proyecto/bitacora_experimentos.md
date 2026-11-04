@@ -78,3 +78,8 @@ No se subieron wrfout, wrfinput ni wrfbdy.
 1. Las tres corridas terminaron por **SIGSEGV después del paso 39** (último a las 12:03:54; `radt=4`). Ninguna completó los 20 min ni llegó a `SUCCESS COMPLETE WRF`. RSS máx ≈ 11,5 GB.
 2. Segundos por paso, sin el primero: 1 hilo 3,012; 10 hilos 1,278; 4 hilos 1,446. Speed-up contra 1 hilo: ×2,36 con 10 hilos y ×2,08 con 4.
 3. Avisos de CFL: 10 con 1 hilo (w-cfl hasta 919,9). Con 10 y con 4 hilos, 4 avisos idénticos a los de `wrf_v2` (w-cfl hasta 27,6).
+
+## 04-11-2026: op15km PASO 1 - Configuración 15 km
+**Commit:** `30ea08c` (rama `op15km`)
+**Qué se hizo:** Se creó rama `op15km` desde `verif_idynin`. Templates del operativo San Juan llevados a 15 km: WPS (Lambert, -31.53/-68.53, geog_data_res=default, e_we=80,e_sn=60,dx/dy=15000) y namelist.input (física explícita sin physics_suite: mp=8,ra_lw=4,ra_sw=4,sfclay=2,sf=2,pbl=2,urban=2 BEP, cu_physics=6, radt=15, time_step=45; nudging mantenido con fdda_end=720). Se generó `outputs/op15km/diff_config.md`. Subido a GitHub.
+**Archivos subidos:** `wps_sanjuan/namelist.wps.template`, `namelist.input`, `outputs/op15km/diff_config.md`.
