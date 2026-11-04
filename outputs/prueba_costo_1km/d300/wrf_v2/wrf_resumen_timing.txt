@@ -1,0 +1,72 @@
+# Resumen de wrf_stdout.log (/home/pgich/wrf-modular-V1/outputs/prueba_costo_1km/d300/wrf_v2/wrf_stdout.log, mtime 2026-11-04 13:03:56.204556952 -0300, 24240554 bytes; no se sube por pesar > 5 MB)
+# Encabezado (Ntasks/tiles):
+ Ntasks in X            1 , ntasks in Y            1
+WRF V4.5 MODEL
+WRF NUMBER OF TILES FROM OMP_GET_MAX_THREADS =  12
+WRF NUMBER OF TILES X FROM ENV WRF_NUM_TILES_X =   1
+WRF NUMBER OF TILES Y FROM ENV WRF_NUM_TILES_Y =   8
+WRF TILE   1 IS      1 IE    300 JS      1 JE     38
+WRF TILE   2 IS      1 IE    300 JS     39 JE     76
+WRF TILE   3 IS      1 IE    300 JS     77 JE    113
+WRF TILE   4 IS      1 IE    300 JS    114 JE    150
+WRF TILE   5 IS      1 IE    300 JS    151 JE    187
+WRF TILE   6 IS      1 IE    300 JS    188 JE    224
+WRF TILE   7 IS      1 IE    300 JS    225 JE    262
+WRF TILE   8 IS      1 IE    300 JS    263 JE    300
+WRF NUMBER OF TILES =   8
+# Avisos CFL:
+493:           7  points exceeded v_cfl = 2 in domain d01 at time 2026-09-23_12:00:18 hours
+494:Max   W:     12     23      5 W:   -8.12  w-cfl:    2.42  dETA:    0.02
+495:          14  points exceeded v_cfl = 2 in domain d01 at time 2026-09-23_12:00:18 hours
+496:Max   W:     12     24      3 W:  -20.97  w-cfl:    3.82  dETA:    0.01
+498:          52  points exceeded v_cfl = 2 in domain d01 at time 2026-09-23_12:00:24 hours
+499:Max   W:     12     23      3 W: -205.96  w-cfl:   16.42  dETA:    0.01
+500:         115  points exceeded v_cfl = 2 in domain d01 at time 2026-09-23_12:00:24 hours
+501:Max   W:     12     22      3 W: -774.63  w-cfl:   27.58  dETA:    0.01
+# Lineas 'Flerchinger USEd in NEW version': 417551
+# Timing for main (todas):
+Timing for main: time 2026-09-23_12:00:06 on domain   1:   11.34319 elapsed seconds
+Timing for main: time 2026-09-23_12:00:12 on domain   1:    1.20400 elapsed seconds
+Timing for main: time 2026-09-23_12:00:18 on domain   1:    1.20533 elapsed seconds
+Timing for main: time 2026-09-23_12:00:24 on domain   1:    1.20634 elapsed seconds
+Timing for main: time 2026-09-23_12:00:30 on domain   1:    1.21727 elapsed seconds
+Timing for main: time 2026-09-23_12:00:36 on domain   1:    1.19608 elapsed seconds
+Timing for main: time 2026-09-23_12:00:42 on domain   1:    1.20072 elapsed seconds
+Timing for main: time 2026-09-23_12:00:48 on domain   1:    1.19449 elapsed seconds
+Timing for main: time 2026-09-23_12:00:54 on domain   1:    1.27427 elapsed seconds
+Timing for main: time 2026-09-23_12:01:00 on domain   1:    1.31754 elapsed seconds
+Timing for main: time 2026-09-23_12:01:06 on domain   1:    1.36733 elapsed seconds
+Timing for main: time 2026-09-23_12:01:12 on domain   1:    1.39322 elapsed seconds
+Timing for main: time 2026-09-23_12:01:18 on domain   1:    1.35164 elapsed seconds
+Timing for main: time 2026-09-23_12:01:24 on domain   1:    1.35256 elapsed seconds
+Timing for main: time 2026-09-23_12:01:30 on domain   1:    1.31842 elapsed seconds
+Timing for main: time 2026-09-23_12:01:36 on domain   1:    1.39752 elapsed seconds
+Timing for main: time 2026-09-23_12:01:42 on domain   1:    1.36971 elapsed seconds
+Timing for main: time 2026-09-23_12:01:48 on domain   1:    1.33611 elapsed seconds
+Timing for main: time 2026-09-23_12:01:54 on domain   1:    1.36049 elapsed seconds
+Timing for main: time 2026-09-23_12:02:00 on domain   1:    1.34367 elapsed seconds
+Timing for main: time 2026-09-23_12:02:06 on domain   1:    1.36668 elapsed seconds
+Timing for main: time 2026-09-23_12:02:12 on domain   1:    1.35995 elapsed seconds
+Timing for main: time 2026-09-23_12:02:18 on domain   1:    1.32031 elapsed seconds
+Timing for main: time 2026-09-23_12:02:24 on domain   1:    1.32942 elapsed seconds
+Timing for main: time 2026-09-23_12:02:30 on domain   1:    1.36681 elapsed seconds
+Timing for main: time 2026-09-23_12:02:36 on domain   1:    1.38286 elapsed seconds
+Timing for main: time 2026-09-23_12:02:42 on domain   1:    1.21985 elapsed seconds
+Timing for main: time 2026-09-23_12:02:48 on domain   1:    1.22649 elapsed seconds
+Timing for main: time 2026-09-23_12:02:54 on domain   1:    1.23756 elapsed seconds
+Timing for main: time 2026-09-23_12:03:00 on domain   1:    1.21162 elapsed seconds
+Timing for main: time 2026-09-23_12:03:06 on domain   1:    1.51724 elapsed seconds
+Timing for main: time 2026-09-23_12:03:12 on domain   1:    1.23432 elapsed seconds
+Timing for main: time 2026-09-23_12:03:18 on domain   1:    1.25375 elapsed seconds
+Timing for main: time 2026-09-23_12:03:24 on domain   1:    1.21235 elapsed seconds
+Timing for main: time 2026-09-23_12:03:30 on domain   1:    1.22090 elapsed seconds
+Timing for main: time 2026-09-23_12:03:36 on domain   1:    1.20977 elapsed seconds
+Timing for main: time 2026-09-23_12:03:42 on domain   1:    1.20984 elapsed seconds
+Timing for main: time 2026-09-23_12:03:48 on domain   1:    1.21115 elapsed seconds
+Timing for main: time 2026-09-23_12:03:54 on domain   1:    1.23085 elapsed seconds
+# Estadistica (LC_ALL=C awk):
+n=39 prom=1.5454 min=1.1945 max=11.3432 suma=60.27
+sin primer paso: n=38 prom=1.2876; primer paso=11.3432
+17:Timing for processing wrfinput file (stream 0) for domain        1:    0.81411 elapsed seconds
+472:Timing for Writing wrfout_d01_2026-09-23_12:00:00 for domain        1:    2.34394 elapsed seconds
+476:Timing for processing lateral boundary for domain        1:    0.07799 elapsed seconds

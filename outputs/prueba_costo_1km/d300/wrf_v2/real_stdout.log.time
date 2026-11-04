@@ -1,0 +1,14 @@
+{
+  "etiqueta": "real",
+  "comando": "bash -c source /home/pgich/wrf-modular-V1/outputs/prueba_costo_1km/env_operativo.sh && exec ./real.exe",
+  "cwd": "/home/pgich/wrf-modular-V1/outputs/prueba_costo_1km/d300/wrf_v2",
+  "inicio": "2026-11-04 12:59:18",
+  "fin": "2026-11-04 12:59:27",
+  "elapsed_wall_s": 8.13,
+  "user_s": 6.45,
+  "system_s": 1.67,
+  "maximum_resident_set_size_kbytes": 10574656,
+  "exit_status": 0,
+  "terminado_por_senal": null,
+  "cortado_por": null
+}

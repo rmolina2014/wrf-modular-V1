@@ -1,0 +1,14 @@
+{
+  "etiqueta": "wrf",
+  "comando": "bash -c source /home/pgich/wrf-modular-V1/outputs/prueba_costo_1km/env_operativo.sh && exec ./wrf.exe",
+  "cwd": "/home/pgich/wrf-modular-V1/outputs/prueba_costo_1km/d300/wrf_v2",
+  "inicio": "2026-11-04 12:59:37",
+  "fin": "2026-11-04 13:03:56",
+  "elapsed_wall_s": 259.14,
+  "user_s": 614.85,
+  "system_s": 24.52,
+  "maximum_resident_set_size_kbytes": 11598376,
+  "exit_status": null,
+  "terminado_por_senal": 11,
+  "cortado_por": null
+}

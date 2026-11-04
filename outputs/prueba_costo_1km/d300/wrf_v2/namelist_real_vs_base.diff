@@ -1,0 +1,8 @@
+3c3
+<  run_hours                           = 1,
+---
+>  run_hours                           = 3,
+15c15
+<  end_hour                            = 13, 13,   12,
+---
+>  end_hour                            = 15, 15,   12,
