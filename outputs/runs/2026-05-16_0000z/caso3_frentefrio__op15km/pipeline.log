@@ -1,0 +1,24 @@
+2026-11-05 12:07:00,431 [INFO] === Caso 3 - Ingreso de frente frio (2026-05-16) ===
+2026-11-05 12:07:00,431 [INFO] caso3_frentefrio__op15km: protocolo temporal start=2026-05-15 12:00:00 t0=2026-05-16 00:00:00 run_hours=36 (asim=12 h, horizonte=24 h)
+2026-11-05 12:07:00,431 [INFO] Historico ya descargado: ecowitt_historico_20260515.csv
+2026-11-05 12:07:00,431 [INFO] Historico ya descargado: ecowitt_historico_20260516.csv
+2026-11-05 12:07:00,441 [INFO] Fusion 319+287 registros -> ecowitt_historico_20260516_ventana.csv
+2026-11-05 12:07:00,445 [INFO] obs_flat desactualizado (CSV mas nuevo); regenerando: obs_flat_20260516.json
+2026-11-05 12:07:00,477 [INFO] obs_flat generado: obs_flat_20260516.json (606 registros)
+2026-11-05 12:07:07,801 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f000
+2026-11-05 12:07:07,801 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f003
+2026-11-05 12:07:07,801 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f006
+2026-11-05 12:07:07,801 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f009
+2026-11-05 12:07:07,801 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f012
+2026-11-05 12:07:07,801 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f015
+2026-11-05 12:07:07,801 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f018
+2026-11-05 12:07:07,801 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f021
+2026-11-05 12:07:07,801 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f024
+2026-11-05 12:07:07,801 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f027
+2026-11-05 12:07:07,801 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f030
+2026-11-05 12:07:07,801 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f033
+2026-11-05 12:07:07,801 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f036
+2026-11-05 12:10:43,260 [INFO] Pipeline: /home/pgich/anaconda3/bin/python /home/pgich/wrf-modular-V1/pipeline_wrf.py --date 2026-05-15 --hour 12:00 --json /home/pgich/wrf-modular-V1/data/raw/obs_flat_20260516.json --case caso3_frentefrio__op15km --case-dir /home/pgich/wrf-modular-V1/outputs/runs/2026-05-16_0000z/caso3_frentefrio__op15km --namelist /home/pgich/wrf-modular-V1/namelist.input --run-dir /home/pgich/wrf-operativo/ejecutables/WRF_casos_24h --run-real --run-hours 36 --obs-coef-wind 0.0001 --obs-coef-temp 0.0001 --obs-coef-mois 0.0001 --valid-times 2026-05-16_01:00:00,2026-05-16_02:00:00,2026-05-16_03:00:00,2026-05-16_04:00:00,2026-05-16_05:00:00,2026-05-16_06:00:00,2026-05-16_07:00:00,2026-05-16_08:00:00,2026-05-16_09:00:00,2026-05-16_10:00:00,2026-05-16_11:00:00,2026-05-16_12:00:00,2026-05-16_13:00:00,2026-05-16_14:00:00,2026-05-16_15:00:00,2026-05-16_16:00:00,2026-05-16_17:00:00,2026-05-16_18:00:00,2026-05-16_19:00:00,2026-05-16_20:00:00,2026-05-16_21:00:00,2026-05-16_22:00:00,2026-05-16_23:00:00,2026-05-17_00:00:00 --label caso3_NvC --wrf-timeout 14400 --asim-hours 12 --horizon-h 24 --t0 2026-05-16T00:00:00 (run_hours=36)
+2026-11-05 12:43:59,680 [INFO]   Evaluacion de flujo end-to-end guardada: /home/pgich/wrf-modular-V1/outputs/runs/2026-05-16_0000z/caso3_frentefrio__op15km/evaluacion_flujo.json
+2026-11-05 12:43:59,687 [INFO] Informe del caso escrito: /home/pgich/wrf-modular-V1/outputs/informes/oficiales/variantes/op15km/informe_caso3_frentefrio_20260516.md
+2026-11-05 12:43:59,689 [INFO] Informe consolidado escrito: /home/pgich/wrf-modular-V1/outputs/informes/oficiales/variantes/op15km/informe_casos_estudio_20261105.md
