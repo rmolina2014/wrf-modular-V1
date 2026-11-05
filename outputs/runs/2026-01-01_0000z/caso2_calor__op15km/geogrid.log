@@ -1,0 +1,269 @@
+2026-11-05 09:49:03.616 ---  *** Starting program geogrid.exe ***
+2026-11-05 09:49:03.616 --- Using the following namelist variables:
+2026-11-05 09:49:03.616 --- &SHARE
+2026-11-05 09:49:03.616 ---   WRF_CORE         = ARW
+2026-11-05 09:49:03.616 ---   MAX_DOM          = 1
+2026-11-05 09:49:03.616 ---   START_YEAR       = 0
+2026-11-05 09:49:03.616 ---   START_MONTH      = 0
+2026-11-05 09:49:03.616 ---   START_DAY        = 0
+2026-11-05 09:49:03.616 ---   START_HOUR       = 0
+2026-11-05 09:49:03.616 ---   START_MINUTE     = 0
+2026-11-05 09:49:03.616 ---   START_SECOND     = 0
+2026-11-05 09:49:03.616 ---   END_YEAR         = 0
+2026-11-05 09:49:03.616 ---   END_MONTH        = 0
+2026-11-05 09:49:03.616 ---   END_DAY          = 0
+2026-11-05 09:49:03.616 ---   END_HOUR         = 0
+2026-11-05 09:49:03.616 ---   END_MINUTE       = 0
+2026-11-05 09:49:03.616 ---   END_SECOND       = 0
+2026-11-05 09:49:03.616 ---   START_DATE       = 2025-12-31_12:00:00
+2026-11-05 09:49:03.616 ---   END_DATE         = 2026-01-02_00:00:00
+2026-11-05 09:49:03.616 ---   INTERVAL_SECONDS = 10800
+2026-11-05 09:49:03.616 ---   IO_FORM_GEOGRID  = 2
+2026-11-05 09:49:03.616 ---   OPT_OUTPUT_FROM_GEOGRID_PATH = ./
+2026-11-05 09:49:03.616 ---   SUBGRID_RATIO_X  = 1
+2026-11-05 09:49:03.616 ---   SUBGRID_RATIO_Y  = 1
+2026-11-05 09:49:03.616 ---   DEBUG_LEVEL      = 0
+2026-11-05 09:49:03.616 ---   ACTIVE_GRID      = .TRUE.
+2026-11-05 09:49:03.616 ---   NOCOLONS         = .FALSE.
+2026-11-05 09:49:03.616 --- /
+2026-11-05 09:49:03.616 --- &GEOGRID
+2026-11-05 09:49:03.616 ---   PARENT_ID         = 1
+2026-11-05 09:49:03.616 ---   PARENT_GRID_RATIO = 1
+2026-11-05 09:49:03.616 ---   I_PARENT_START    = 1
+2026-11-05 09:49:03.616 ---   J_PARENT_START    = 1
+2026-11-05 09:49:03.616 ---   S_WE              = 1
+2026-11-05 09:49:03.616 ---   E_WE              = 80
+2026-11-05 09:49:03.616 ---   S_SN              = 1
+2026-11-05 09:49:03.616 ---   E_SN              = 60
+2026-11-05 09:49:03.616 ---   GEOG_DATA_RES     = default
+2026-11-05 09:49:03.616 ---   DX                = 15000.000000
+2026-11-05 09:49:03.616 ---   DY                = 15000.000000
+2026-11-05 09:49:03.616 ---   MAP_PROJ          = lambert
+2026-11-05 09:49:03.616 ---   POLE_LAT          = 90.000000
+2026-11-05 09:49:03.616 ---   POLE_LON          = 0.000000
+2026-11-05 09:49:03.616 ---   REF_LAT           = -31.530001
+2026-11-05 09:49:03.616 ---   REF_LON           = -68.529999
+2026-11-05 09:49:03.616 ---   REF_X             = 100000002004087734272.000000
+2026-11-05 09:49:03.616 ---   REF_Y             = 100000002004087734272.000000
+2026-11-05 09:49:03.616 ---   TRUELAT1          = -31.530001
+2026-11-05 09:49:03.616 ---   TRUELAT2          = -31.530001
+2026-11-05 09:49:03.616 ---   STAND_LON         = -68.529999
+2026-11-05 09:49:03.616 ---   GEOG_DATA_PATH    = /home/pgich/wrf-operativo/datos/WPS_GEOG
+2026-11-05 09:49:03.616 ---   OPT_GEOGRID_TBL_PATH = ./
+2026-11-05 09:49:03.616 --- /
+2026-11-05 09:49:03.619 --- Processing domain 1 of 1
+2026-11-05 09:49:03.619 --- INFORM: Using default interpolator sequence for HGT_M.
+2026-11-05 09:49:03.619 --- INFORM: Using default data source for HGT_M.
+2026-11-05 09:49:03.619 --- INFORM: Using default interpolator sequence for LANDUSEF.
+2026-11-05 09:49:03.619 --- INFORM: Using default data source for LANDUSEF.
+2026-11-05 09:49:03.619 --- INFORM: Using default interpolator sequence for SOILTEMP.
+2026-11-05 09:49:03.619 --- INFORM: Using default data source for SOILTEMP.
+2026-11-05 09:49:03.619 --- INFORM: Using default interpolator sequence for SOILCTOP.
+2026-11-05 09:49:03.619 --- INFORM: Using default data source for SOILCTOP.
+2026-11-05 09:49:03.619 --- INFORM: Using default interpolator sequence for SOILCBOT.
+2026-11-05 09:49:03.619 --- INFORM: Using default data source for SOILCBOT.
+2026-11-05 09:49:03.619 --- INFORM: Using default interpolator sequence for ALBEDO12M.
+2026-11-05 09:49:03.619 --- INFORM: Using default data source for ALBEDO12M.
+2026-11-05 09:49:03.619 --- INFORM: Using default interpolator sequence for GREENFRAC.
+2026-11-05 09:49:03.619 --- INFORM: Using default data source for GREENFRAC.
+2026-11-05 09:49:03.620 --- INFORM: Using default interpolator sequence for LAI12M.
+2026-11-05 09:49:03.620 --- INFORM: Using default data source for LAI12M.
+2026-11-05 09:49:03.620 --- INFORM: Using default interpolator sequence for SNOALB.
+2026-11-05 09:49:03.620 --- INFORM: Using default data source for SNOALB.
+2026-11-05 09:49:03.620 --- INFORM: Using default interpolator sequence for CON.
+2026-11-05 09:49:03.620 --- INFORM: Using default data source for CON.
+2026-11-05 09:49:03.620 --- INFORM: Using default interpolator sequence for VAR.
+2026-11-05 09:49:03.620 --- INFORM: Using default data source for VAR.
+2026-11-05 09:49:03.620 --- INFORM: Using default interpolator sequence for OA1.
+2026-11-05 09:49:03.620 --- INFORM: Using default data source for OA1.
+2026-11-05 09:49:03.620 --- INFORM: Using default interpolator sequence for OA2.
+2026-11-05 09:49:03.620 --- INFORM: Using default data source for OA2.
+2026-11-05 09:49:03.620 --- INFORM: Using default interpolator sequence for OA3.
+2026-11-05 09:49:03.620 --- INFORM: Using default data source for OA3.
+2026-11-05 09:49:03.620 --- INFORM: Using default interpolator sequence for OA4.
+2026-11-05 09:49:03.620 --- INFORM: Using default data source for OA4.
+2026-11-05 09:49:03.620 --- INFORM: Using default interpolator sequence for OL1.
+2026-11-05 09:49:03.620 --- INFORM: Using default data source for OL1.
+2026-11-05 09:49:03.620 --- INFORM: Using default interpolator sequence for OL2.
+2026-11-05 09:49:03.620 --- INFORM: Using default data source for OL2.
+2026-11-05 09:49:03.620 --- INFORM: Using default interpolator sequence for OL3.
+2026-11-05 09:49:03.620 --- INFORM: Using default data source for OL3.
+2026-11-05 09:49:03.620 --- INFORM: Using default interpolator sequence for OL4.
+2026-11-05 09:49:03.620 --- INFORM: Using default data source for OL4.
+2026-11-05 09:49:03.620 --- INFORM: Using default interpolator sequence for VAR_SSO.
+2026-11-05 09:49:03.620 --- INFORM: Using default data source for VAR_SSO.
+2026-11-05 09:49:03.620 --- INFORM: Using default interpolator sequence for LAKE_DEPTH.
+2026-11-05 09:49:03.620 --- INFORM: Using default data source for LAKE_DEPTH.
+2026-11-05 09:49:03.620 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/lake_depth/index for field LAKE_DEPTH
+2026-11-05 09:49:03.620 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.620 --- INFORM: Using default interpolator sequence for URB_PARAM.
+2026-11-05 09:49:03.620 --- INFORM: Using default data source for URB_PARAM.
+2026-11-05 09:49:03.620 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/NUDAPT44_1km/index for field URB_PARAM
+2026-11-05 09:49:03.620 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.620 --- INFORM: Using default interpolator sequence for FRC_URB2D.
+2026-11-05 09:49:03.620 --- INFORM: Using default data source for FRC_URB2D.
+2026-11-05 09:49:03.620 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/urbfrac_nlcd2011/index for field FRC_URB2D
+2026-11-05 09:49:03.620 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.620 --- INFORM: Using default interpolator sequence for IMPERV.
+2026-11-05 09:49:03.620 --- INFORM: Using default data source for IMPERV.
+2026-11-05 09:49:03.620 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/nlcd2011_imp_ll_9s/index for field IMPERV
+2026-11-05 09:49:03.620 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.620 --- INFORM: Using default interpolator sequence for CANFRA.
+2026-11-05 09:49:03.620 --- INFORM: Using default data source for CANFRA.
+2026-11-05 09:49:03.620 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/nlcd2011_can_ll_9s/index for field CANFRA
+2026-11-05 09:49:03.620 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.620 --- INFORM: Using default interpolator sequence for EROD.
+2026-11-05 09:49:03.620 --- INFORM: Using default data source for EROD.
+2026-11-05 09:49:03.620 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/erod/index for field EROD
+2026-11-05 09:49:03.620 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.620 --- INFORM: Using default interpolator sequence for CLAYFRAC.
+2026-11-05 09:49:03.620 --- INFORM: Using default data source for CLAYFRAC.
+2026-11-05 09:49:03.620 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/clayfrac_5m/index for field CLAYFRAC
+2026-11-05 09:49:03.620 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.620 --- INFORM: Using default interpolator sequence for SANDFRAC.
+2026-11-05 09:49:03.620 --- INFORM: Using default data source for SANDFRAC.
+2026-11-05 09:49:03.620 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/sandfrac_5m/index for field SANDFRAC
+2026-11-05 09:49:03.621 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.621 --- INFORM: Using default interpolator sequence for IRRIGATION.
+2026-11-05 09:49:03.621 --- INFORM: Using default data source for IRRIGATION.
+2026-11-05 09:49:03.621 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/irrigation/fao/index for field IRRIGATION
+2026-11-05 09:49:03.621 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.621 --- INFORM: Using default interpolator sequence for CONLS.
+2026-11-05 09:49:03.621 --- INFORM: Using default data source for CONLS.
+2026-11-05 09:49:03.621 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/conls/index for field CONLS
+2026-11-05 09:49:03.621 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.621 --- INFORM: Using default interpolator sequence for VARLS.
+2026-11-05 09:49:03.621 --- INFORM: Using default data source for VARLS.
+2026-11-05 09:49:03.621 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/varls/index for field VARLS
+2026-11-05 09:49:03.621 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.621 --- INFORM: Using default interpolator sequence for OA1LS.
+2026-11-05 09:49:03.621 --- INFORM: Using default data source for OA1LS.
+2026-11-05 09:49:03.621 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/oa1ls/index for field OA1LS
+2026-11-05 09:49:03.621 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.621 --- INFORM: Using default interpolator sequence for OA2LS.
+2026-11-05 09:49:03.621 --- INFORM: Using default data source for OA2LS.
+2026-11-05 09:49:03.621 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/oa2ls/index for field OA2LS
+2026-11-05 09:49:03.621 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.621 --- INFORM: Using default interpolator sequence for OA3LS.
+2026-11-05 09:49:03.621 --- INFORM: Using default data source for OA3LS.
+2026-11-05 09:49:03.621 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/oa3ls/index for field OA3LS
+2026-11-05 09:49:03.621 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.621 --- INFORM: Using default interpolator sequence for OA4LS.
+2026-11-05 09:49:03.621 --- INFORM: Using default data source for OA4LS.
+2026-11-05 09:49:03.621 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/oa4ls/index for field OA4LS
+2026-11-05 09:49:03.621 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.621 --- INFORM: Using default interpolator sequence for OL1LS.
+2026-11-05 09:49:03.621 --- INFORM: Using default data source for OL1LS.
+2026-11-05 09:49:03.621 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/ol1ls/index for field OL1LS
+2026-11-05 09:49:03.621 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.621 --- INFORM: Using default interpolator sequence for OL2LS.
+2026-11-05 09:49:03.621 --- INFORM: Using default data source for OL2LS.
+2026-11-05 09:49:03.621 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/ol2ls/index for field OL2LS
+2026-11-05 09:49:03.621 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.621 --- INFORM: Using default interpolator sequence for OL3LS.
+2026-11-05 09:49:03.621 --- INFORM: Using default data source for OL3LS.
+2026-11-05 09:49:03.621 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/ol3ls/index for field OL3LS
+2026-11-05 09:49:03.621 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.621 --- INFORM: Using default interpolator sequence for OL4LS.
+2026-11-05 09:49:03.621 --- INFORM: Using default data source for OL4LS.
+2026-11-05 09:49:03.621 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/ol4ls/index for field OL4LS
+2026-11-05 09:49:03.621 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.621 --- INFORM: Using default interpolator sequence for CONSS.
+2026-11-05 09:49:03.621 --- INFORM: Using default data source for CONSS.
+2026-11-05 09:49:03.621 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/conss/index for field CONSS
+2026-11-05 09:49:03.621 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.621 --- INFORM: Using default interpolator sequence for VARSS.
+2026-11-05 09:49:03.621 --- INFORM: Using default data source for VARSS.
+2026-11-05 09:49:03.621 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/varss/index for field VARSS
+2026-11-05 09:49:03.621 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.621 --- INFORM: Using default interpolator sequence for OA1SS.
+2026-11-05 09:49:03.621 --- INFORM: Using default data source for OA1SS.
+2026-11-05 09:49:03.621 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/oa1ss/index for field OA1SS
+2026-11-05 09:49:03.621 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.621 --- INFORM: Using default interpolator sequence for OA2SS.
+2026-11-05 09:49:03.621 --- INFORM: Using default data source for OA2SS.
+2026-11-05 09:49:03.621 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/oa2ss/index for field OA2SS
+2026-11-05 09:49:03.621 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.621 --- INFORM: Using default interpolator sequence for OA3SS.
+2026-11-05 09:49:03.621 --- INFORM: Using default data source for OA3SS.
+2026-11-05 09:49:03.621 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/oa3ss/index for field OA3SS
+2026-11-05 09:49:03.621 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.621 --- INFORM: Using default interpolator sequence for OA4SS.
+2026-11-05 09:49:03.621 --- INFORM: Using default data source for OA4SS.
+2026-11-05 09:49:03.621 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/oa4ss/index for field OA4SS
+2026-11-05 09:49:03.621 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.621 --- INFORM: Using default interpolator sequence for OL1SS.
+2026-11-05 09:49:03.621 --- INFORM: Using default data source for OL1SS.
+2026-11-05 09:49:03.621 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/ol1ss/index for field OL1SS
+2026-11-05 09:49:03.621 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.621 --- INFORM: Using default interpolator sequence for OL2SS.
+2026-11-05 09:49:03.621 --- INFORM: Using default data source for OL2SS.
+2026-11-05 09:49:03.621 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/ol2ss/index for field OL2SS
+2026-11-05 09:49:03.621 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.621 --- INFORM: Using default interpolator sequence for OL3SS.
+2026-11-05 09:49:03.621 --- INFORM: Using default data source for OL3SS.
+2026-11-05 09:49:03.621 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/ol3ss/index for field OL3SS
+2026-11-05 09:49:03.621 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.621 --- INFORM: Using default interpolator sequence for OL4SS.
+2026-11-05 09:49:03.621 --- INFORM: Using default data source for OL4SS.
+2026-11-05 09:49:03.621 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/ol4ss/index for field OL4SS
+2026-11-05 09:49:03.621 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.621 --- INFORM: Using default interpolator sequence for BATHYMETRY.
+2026-11-05 09:49:03.621 --- INFORM: Using default data source for BATHYMETRY.
+2026-11-05 09:49:03.621 --- INFORM: Could not read 'index' file /home/pgich/wrf-operativo/datos/WPS_GEOG/topobath_30s/index for field BATHYMETRY
+2026-11-05 09:49:03.621 --- INFORM: This field is optional and will not be processed.
+2026-11-05 09:49:03.651 --- Processing field 1 of 23 (LANDUSEF)
+2026-11-05 09:49:03.936 --- Processing field 2 of 23 (LU_INDEX)
+2026-11-05 09:49:03.937 --- Processing field 3 of 23 (HGT_M)
+2026-11-05 09:49:04.222 --- Processing field 4 of 23 (SOILTEMP)
+2026-11-05 09:49:04.224 --- Processing field 5 of 23 (SOILCTOP)
+2026-11-05 09:49:04.498 --- Processing field 6 of 23 (SCT_DOM)
+2026-11-05 09:49:04.499 --- Processing field 7 of 23 (SOILCBOT)
+2026-11-05 09:49:04.778 --- Processing field 8 of 23 (SCB_DOM)
+2026-11-05 09:49:04.779 --- Processing field 9 of 23 (ALBEDO12M)
+2026-11-05 09:49:04.875 --- Processing field 10 of 23 (GREENFRAC)
+2026-11-05 09:49:05.321 --- Processing field 11 of 23 (LAI12M)
+2026-11-05 09:49:05.329 --- Processing field 12 of 23 (SNOALB)
+2026-11-05 09:49:05.339 --- Processing field 13 of 23 (CON)
+2026-11-05 09:49:05.344 --- Processing field 14 of 23 (VAR)
+2026-11-05 09:49:05.350 --- Processing field 15 of 23 (OA1)
+2026-11-05 09:49:05.357 --- Processing field 16 of 23 (OA2)
+2026-11-05 09:49:05.363 --- Processing field 17 of 23 (OA3)
+2026-11-05 09:49:05.369 --- Processing field 18 of 23 (OA4)
+2026-11-05 09:49:05.376 --- Processing field 19 of 23 (OL1)
+2026-11-05 09:49:05.381 --- Processing field 20 of 23 (OL2)
+2026-11-05 09:49:05.387 --- Processing field 21 of 23 (OL3)
+2026-11-05 09:49:05.393 --- Processing field 22 of 23 (OL4)
+2026-11-05 09:49:05.400 --- Processing field 23 of 23 (VAR_SSO)
+2026-11-05 09:49:05.403 --- Optional fields not processed by geogrid:
+2026-11-05 09:49:05.403 ---     LAKE_DEPTH (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/lake_depth/')
+2026-11-05 09:49:05.403 ---     URB_PARAM (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/NUDAPT44_1km/')
+2026-11-05 09:49:05.403 ---     FRC_URB2D (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/urbfrac_nlcd2011/')
+2026-11-05 09:49:05.403 ---     IMPERV (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/nlcd2011_imp_ll_9s/')
+2026-11-05 09:49:05.403 ---     CANFRA (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/nlcd2011_can_ll_9s/')
+2026-11-05 09:49:05.403 ---     EROD (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/erod/')
+2026-11-05 09:49:05.403 ---     CLAYFRAC (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/clayfrac_5m/')
+2026-11-05 09:49:05.403 ---     SANDFRAC (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/sandfrac_5m/')
+2026-11-05 09:49:05.403 ---     IRRIGATION (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/irrigation/fao/')
+2026-11-05 09:49:05.403 ---     CONLS (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/conls/')
+2026-11-05 09:49:05.403 ---     VARLS (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/varls/')
+2026-11-05 09:49:05.403 ---     OA1LS (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/oa1ls/')
+2026-11-05 09:49:05.403 ---     OA2LS (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/oa2ls/')
+2026-11-05 09:49:05.403 ---     OA3LS (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/oa3ls/')
+2026-11-05 09:49:05.403 ---     OA4LS (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/oa4ls/')
+2026-11-05 09:49:05.403 ---     OL1LS (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/ol1ls/')
+2026-11-05 09:49:05.403 ---     OL2LS (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/ol2ls/')
+2026-11-05 09:49:05.403 ---     OL3LS (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/ol3ls/')
+2026-11-05 09:49:05.403 ---     OL4LS (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/ol4ls/')
+2026-11-05 09:49:05.403 ---     CONSS (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/conss/')
+2026-11-05 09:49:05.403 ---     VARSS (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/varss/')
+2026-11-05 09:49:05.403 ---     OA1SS (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/oa1ss/')
+2026-11-05 09:49:05.403 ---     OA2SS (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/oa2ss/')
+2026-11-05 09:49:05.403 ---     OA3SS (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/oa3ss/')
+2026-11-05 09:49:05.403 ---     OA4SS (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/oa4ss/')
+2026-11-05 09:49:05.403 ---     OL1SS (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/ol1ss/')
+2026-11-05 09:49:05.403 ---     OL2SS (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/ol2ss/')
+2026-11-05 09:49:05.404 ---     OL3SS (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/ol3ss/')
+2026-11-05 09:49:05.404 ---     OL4SS (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/orogwd3_10m/ol4ss/')
+2026-11-05 09:49:05.404 ---     BATHYMETRY (priority=1, resolution='default', path='/home/pgich/wrf-operativo/datos/WPS_GEOG/topobath_30s/')
+2026-11-05 09:49:05.404 ---  *** Successful completion of program geogrid.exe ***

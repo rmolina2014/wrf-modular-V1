@@ -1,0 +1,24 @@
+2026-11-05 09:48:56,335 [INFO] === Caso 2 - Calor de verano (Año Nuevo) (2026-01-01) ===
+2026-11-05 09:48:56,335 [INFO] caso2_calor__op15km: protocolo temporal start=2025-12-31 12:00:00 t0=2026-01-01 00:00:00 run_hours=36 (asim=12 h, horizonte=24 h)
+2026-11-05 09:48:56,335 [INFO] Historico ya descargado: ecowitt_historico_20251231.csv
+2026-11-05 09:48:56,335 [INFO] Historico ya descargado: ecowitt_historico_20260101.csv
+2026-11-05 09:48:56,344 [INFO] Fusion 334+290 registros -> ecowitt_historico_20260101_ventana.csv
+2026-11-05 09:48:56,348 [INFO] obs_flat desactualizado (CSV mas nuevo); regenerando: obs_flat_20260101.json
+2026-11-05 09:48:56,380 [INFO] obs_flat generado: obs_flat_20260101.json (624 registros)
+2026-11-05 09:49:03,609 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f000
+2026-11-05 09:49:03,609 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f003
+2026-11-05 09:49:03,609 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f006
+2026-11-05 09:49:03,609 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f009
+2026-11-05 09:49:03,609 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f012
+2026-11-05 09:49:03,609 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f015
+2026-11-05 09:49:03,609 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f018
+2026-11-05 09:49:03,609 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f021
+2026-11-05 09:49:03,609 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f024
+2026-11-05 09:49:03,609 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f027
+2026-11-05 09:49:03,609 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f030
+2026-11-05 09:49:03,609 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f033
+2026-11-05 09:49:03,609 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f036
+2026-11-05 09:52:36,369 [INFO] Pipeline: /home/pgich/anaconda3/bin/python /home/pgich/wrf-modular-V1/pipeline_wrf.py --date 2025-12-31 --hour 12:00 --json /home/pgich/wrf-modular-V1/data/raw/obs_flat_20260101.json --case caso2_calor__op15km --case-dir /home/pgich/wrf-modular-V1/outputs/runs/2026-01-01_0000z/caso2_calor__op15km --namelist /home/pgich/wrf-modular-V1/namelist.input --run-dir /home/pgich/wrf-operativo/ejecutables/WRF_casos_24h --run-real --run-hours 36 --obs-coef-wind 0.0001 --obs-coef-temp 0.0001 --obs-coef-mois 0.0001 --valid-times 2026-01-01_01:00:00,2026-01-01_02:00:00,2026-01-01_03:00:00,2026-01-01_04:00:00,2026-01-01_05:00:00,2026-01-01_06:00:00,2026-01-01_07:00:00,2026-01-01_08:00:00,2026-01-01_09:00:00,2026-01-01_10:00:00,2026-01-01_11:00:00,2026-01-01_12:00:00,2026-01-01_13:00:00,2026-01-01_14:00:00,2026-01-01_15:00:00,2026-01-01_16:00:00,2026-01-01_17:00:00,2026-01-01_18:00:00,2026-01-01_19:00:00,2026-01-01_20:00:00,2026-01-01_21:00:00,2026-01-01_22:00:00,2026-01-01_23:00:00,2026-01-02_00:00:00 --label caso2_NvC --wrf-timeout 14400 --asim-hours 12 --horizon-h 24 --t0 2026-01-01T00:00:00 (run_hours=36)
+2026-11-05 10:24:49,306 [INFO]   Evaluacion de flujo end-to-end guardada: /home/pgich/wrf-modular-V1/outputs/runs/2026-01-01_0000z/caso2_calor__op15km/evaluacion_flujo.json
+2026-11-05 10:24:49,312 [INFO] Informe del caso escrito: /home/pgich/wrf-modular-V1/outputs/informes/oficiales/variantes/op15km/informe_caso2_calor_20260101.md
+2026-11-05 10:24:49,314 [INFO] Informe consolidado escrito: /home/pgich/wrf-modular-V1/outputs/informes/oficiales/variantes/op15km/informe_casos_estudio_20261105.md
