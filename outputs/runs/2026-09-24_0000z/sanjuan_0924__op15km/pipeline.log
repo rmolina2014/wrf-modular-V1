@@ -1,0 +1,54 @@
+2026-11-04 14:33:55,581 [INFO] Note: NumExpr detected 10 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2026-11-04 14:33:55,582 [INFO] NumExpr defaulting to 8 threads.
+2026-11-04 14:33:55,689 [INFO] Directorio de corrida OK: /home/pgich/wrf-operativo/ejecutables/WRF_casos_24h
+2026-11-04 14:33:55,689 [INFO] Paso 1: Procesando JSON: /home/pgich/wrf-modular-V1/data/raw/obs_flat_20260924.json
+2026-11-04 14:33:55,697 [INFO] Cargados 4123 registros de obs_flat_20260924.json
+2026-11-04 14:33:55,709 [INFO] Limpieza completada: 4123 registros procesados.
+2026-11-04 14:33:55,711 [INFO] Ventana UTC [2026-09-24 00:00:00 -> 2026-09-24 03:00:00): 288/4123 observaciones retenidas (ciclo)
+2026-11-04 14:33:55,714 [INFO]   CSV generado: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__op15km/input/datos_validados_20260924_000000.csv
+2026-11-04 14:33:55,715 [INFO] Paso 2: Generando Little_R...
+2026-11-04 14:33:55,728 [INFO] Archivo Little_R generado en /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__op15km/input/littler_20260924_000000.txt con 288 registros.
+2026-11-04 14:33:55,728 [INFO]   Little_R generado: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__op15km/input/littler_20260924_000000.txt (288 observaciones)
+2026-11-04 14:33:55,728 [INFO] Paso 3: Generando OBS_DOMAIN101...
+2026-11-04 14:33:55,742 [INFO] OBS_DOMAIN101 generado en /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__op15km/input/OBS_DOMAIN101 con 288 observaciones (orden cronológico).
+2026-11-04 14:33:55,742 [INFO]   OBS_DOMAIN101 generado: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__op15km/input/OBS_DOMAIN101
+2026-11-04 14:33:55,743 [INFO]   Copiado: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__op15km/input/OBS_DOMAIN101 -> /home/pgich/wrf-operativo/ejecutables/WRF_casos_24h/OBS_DOMAIN101
+2026-11-04 14:33:55,743 [INFO]   Copiado a /home/pgich/wrf-operativo/ejecutables/WRF_casos_24h/OBS_DOMAIN101
+2026-11-04 14:33:55,743 [INFO]   [tiempo] obs_littler_obsdomain: 0.1s
+2026-11-04 14:33:55,743 [INFO] ============================================================
+2026-11-04 14:33:55,743 [INFO] CORRIDA NUDGED (obs_nudge_opt=1)
+2026-11-04 14:33:55,743 [INFO] ============================================================
+2026-11-04 14:33:55,744 [INFO] Namelist guardado en /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__op15km/namelist_nudged.input
+2026-11-04 14:33:55,744 [INFO] Namelist preparado: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__op15km/namelist_nudged.input (obs_nudge_opt=1, run_hours=3, fdda_end=180)
+2026-11-04 14:33:55,777 [INFO] === PREFLIGHT ===
+2026-11-04 14:33:55,777 [INFO]   Preflight sanjuan_0924__op15km (2026-11-04 14:33:55) -> ejecutar_wrf=SI
+2026-11-04 14:33:55,777 [INFO]     [         OK] 2.2.1 Existencia del JSON de observaciones : 4123 registros
+2026-11-04 14:33:55,777 [INFO]     [         OK] 2.2.2 Formato de superficie (FORMAT 105) : 9 pares por línea
+2026-11-04 14:33:55,777 [INFO]     [         OK] 2.2.3 Identificador de plataforma (SYNOP) : 'SYNOP' presente en 288 registros
+2026-11-04 14:33:55,777 [INFO]     [         OK] 2.2.4 Timestamps de las observaciones : 288 timestamps válidos, orden cronológico OK, cadencia 5 min, segundos en [0]
+2026-11-04 14:33:55,777 [INFO]     [         OK] 2.2.5 Cantidad de obs vs max_obs : 288 obs <= max_obs=10000
+2026-11-04 14:33:55,777 [INFO]     [         OK] 2.2.6 Cobertura temporal de las observaciones : tercio1: 96 obs / tercio2: 96 obs / tercio3: 96 obs
+2026-11-04 14:33:55,777 [INFO]     [         OK] 2.2.7 Huso horario de observaciones : 4123 obs con fecha_hora == hora_unix (UTC), delta 0 s
+2026-11-04 14:33:55,777 [INFO]     [ADVERTENCIA] 2.2.8 Separación temporal asimilación/pronóstico : t0/asim_horas no informados; no se verifica
+2026-11-04 14:33:55,777 [INFO]     Resumen: 8 chequeos, 0 bloqueantes, 1 advertencias.
+2026-11-04 14:33:55,777 [INFO]   [tiempo] preflight: 0.0s
+2026-11-04 14:33:55,777 [INFO] Preflight guardado en /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__op15km/preflight_sanjuan_0924__op15km.json
+2026-11-04 14:33:55,777 [INFO] PREFLIGHT OK: se procede con la corrida nudgeada.
+2026-11-04 14:33:55,777 [INFO]   Copiando namelist a /home/pgich/wrf-operativo/ejecutables/WRF_casos_24h/namelist.input
+2026-11-04 14:33:55,778 [INFO]   Copiado: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__op15km/namelist_nudged.input -> /home/pgich/wrf-operativo/ejecutables/WRF_casos_24h/namelist.input
+2026-11-04 14:33:55,778 [INFO] Paso: Corriendo real.exe...
+2026-11-04 14:33:55,778 [INFO]   Ejecutando: ./real.exe (Log: real.log)
+2026-11-04 14:33:56,503 [INFO]   Turning off use of TROPOPAUSE level data in vertical interpolation
+2026-11-04 14:33:56,503 [INFO]   Using sfcprs3 to compute psfc
+2026-11-04 14:33:56,503 [INFO]   No average surface temperature for use with inland lakes
+2026-11-04 14:33:56,503 [INFO]    Assume Noah LSM input
+2026-11-04 14:33:56,503 [INFO]   forcing artificial silty clay loam at   15 points, out of   4661
+2026-11-04 14:33:56,503 [INFO]   Timing for processing          0 s.
+2026-11-04 14:33:56,503 [INFO]    LBC valid between these times 2026-09-24_00:00:00 and 2026-09-24_03:00:00
+2026-11-04 14:33:56,503 [INFO]   Timing for output          0 s.
+2026-11-04 14:33:56,503 [INFO]   Timing for loop #    2 =          0 s.
+2026-11-04 14:33:56,503 [INFO]   real_em: SUCCESS COMPLETE REAL_EM INIT
+2026-11-04 14:33:56,504 [INFO] real.exe finalizado exitosamente.
+2026-11-04 14:33:56,504 [INFO]   [tiempo] real_exe: 0.7s
+2026-11-04 14:33:56,526 [INFO] Paso: Corriendo wrf.exe (Nudged) [intento 1/6]...
+2026-11-04 14:33:56,526 [INFO]   Ejecutando: ./wrf.exe (Log: wrf_nudged.log)

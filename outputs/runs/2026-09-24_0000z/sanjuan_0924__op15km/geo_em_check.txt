@@ -1,0 +1,27 @@
+dimensions:
+	Time = UNLIMITED ; // (1 currently)
+	DateStrLen = 19 ;
+	west_east = 79 ;
+	south_north = 59 ;
+	south_north_stag = 60 ;
+	west_east_stag = 80 ;
+	land_cat = 21 ;
+	soil_cat = 16 ;
+	month = 12 ;
+variables:
+	char Times(Time, DateStrLen) ;
+	float XLAT_M(Time, south_north, west_east) ;
+		XLAT_M:FieldType = 104 ;
+		XLAT_M:MemoryOrder = "XY " ;
+		XLAT_M:units = "degrees latitude" ;
+		XLAT_M:description = "Latitude on mass grid" ;
+		XLAT_M:stagger = "M" ;
+		XLAT_M:sr_x = 1 ;
+		XLAT_M:sr_y = 1 ;
+	float XLONG_M(Time, south_north, west_east) ;
+
+=== Attributes ===
+		:CEN_LAT = -31.53f ;
+		:CEN_LON = -68.53f ;
+		:MOAD_CEN_LAT = -31.53f ;
+		:MAP_PROJ = 1 ;
