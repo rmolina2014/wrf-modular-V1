@@ -1,0 +1,25 @@
+2026-11-05 08:54:00,279 [INFO] === Caso 1 - Viento Zonda (2026-07-31) ===
+2026-11-05 08:54:00,279 [INFO] caso1_zonda__op15km: protocolo temporal start=2026-07-30 12:00:00 t0=2026-07-31 00:00:00 run_hours=36 (asim=12 h, horizonte=24 h)
+2026-11-05 08:54:00,280 [INFO] Historico ya descargado: ecowitt_historico_20260730.csv
+2026-11-05 08:54:00,280 [INFO] Historico ya descargado: ecowitt_historico_20260731.csv
+2026-11-05 08:54:00,301 [INFO] Fusion 2262+2166 registros -> ecowitt_historico_20260731_ventana.csv
+2026-11-05 08:54:00,308 [INFO] obs_flat desactualizado (CSV mas nuevo); regenerando: obs_flat_20260731.json
+2026-11-05 08:54:00,325 [WARNING] QC: Se anularon 1 valores fuera de rango en columna 'solar'
+2026-11-05 08:54:00,501 [INFO] obs_flat generado: obs_flat_20260731.json (4428 registros)
+2026-11-05 08:54:07,896 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f000
+2026-11-05 08:54:07,896 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f003
+2026-11-05 08:54:07,897 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f006
+2026-11-05 08:54:07,897 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f009
+2026-11-05 08:54:07,897 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f012
+2026-11-05 08:54:07,897 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f015
+2026-11-05 08:54:07,897 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f018
+2026-11-05 08:54:07,897 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f021
+2026-11-05 08:54:07,897 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f024
+2026-11-05 08:54:07,897 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f027
+2026-11-05 08:54:07,897 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f030
+2026-11-05 08:54:07,897 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f033
+2026-11-05 08:54:07,897 [INFO] Archivo GFS ya existe: gfs.t12z.pgrb2.0p25.f036
+2026-11-05 08:57:37,470 [INFO] Pipeline: /home/pgich/anaconda3/bin/python /home/pgich/wrf-modular-V1/pipeline_wrf.py --date 2026-07-30 --hour 12:00 --json /home/pgich/wrf-modular-V1/data/raw/obs_flat_20260731.json --case caso1_zonda__op15km --case-dir /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__op15km --namelist /home/pgich/wrf-modular-V1/namelist.input --run-dir /home/pgich/wrf-operativo/ejecutables/WRF_casos_24h --run-real --run-hours 36 --obs-coef-wind 0.0001 --obs-coef-temp 0.0001 --obs-coef-mois 0.0001 --valid-times 2026-07-31_01:00:00,2026-07-31_02:00:00,2026-07-31_03:00:00,2026-07-31_04:00:00,2026-07-31_05:00:00,2026-07-31_06:00:00,2026-07-31_07:00:00,2026-07-31_08:00:00,2026-07-31_09:00:00,2026-07-31_10:00:00,2026-07-31_11:00:00,2026-07-31_12:00:00,2026-07-31_13:00:00,2026-07-31_14:00:00,2026-07-31_15:00:00,2026-07-31_16:00:00,2026-07-31_17:00:00,2026-07-31_18:00:00,2026-07-31_19:00:00,2026-07-31_20:00:00,2026-07-31_21:00:00,2026-07-31_22:00:00,2026-07-31_23:00:00,2026-08-01_00:00:00 --label caso1_NvC --wrf-timeout 14400 --asim-hours 12 --horizon-h 24 --t0 2026-07-31T00:00:00 (run_hours=36)
+2026-11-05 09:29:24,253 [INFO]   Evaluacion de flujo end-to-end guardada: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__op15km/evaluacion_flujo.json
+2026-11-05 09:29:24,263 [INFO] Informe del caso escrito: /home/pgich/wrf-modular-V1/outputs/informes/oficiales/variantes/op15km/informe_caso1_zonda_20260731.md
+2026-11-05 09:29:24,263 [INFO] Informe consolidado escrito: /home/pgich/wrf-modular-V1/outputs/informes/oficiales/variantes/op15km/informe_casos_estudio_20261105.md
