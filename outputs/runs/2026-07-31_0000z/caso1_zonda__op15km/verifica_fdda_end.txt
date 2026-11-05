@@ -1,0 +1,11 @@
+Salida de verifica_fdda_end.sh:
+/home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__op15km/namelist_control.input:  fdda_end = 720,
+/home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__op15km/namelist_control.input:  gfdda_inname                        = "wrffdda_d<domain>",
+/home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__op15km/namelist_control.input: gfdda_interval_m                    = 360,
+/home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__op15km/namelist_control.input: gfdda_end_h = 36,
+/home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__op15km/namelist_control.input: io_form_gfdda                       = 2,
+/home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__op15km/namelist_nudged.input:  fdda_end = 720,
+/home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__op15km/namelist_nudged.input:  gfdda_inname                        = "wrffdda_d<domain>",
+/home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__op15km/namelist_nudged.input: gfdda_interval_m                    = 360,
+/home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__op15km/namelist_nudged.input: gfdda_end_h = 36,
+/home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__op15km/namelist_nudged.input: io_form_gfdda                       = 2,

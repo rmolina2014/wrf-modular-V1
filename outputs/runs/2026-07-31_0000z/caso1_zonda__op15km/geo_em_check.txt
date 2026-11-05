@@ -1,0 +1,5 @@
+dimensions:
+		:CEN_LAT = -31.53f ;
+		:CEN_LON = -68.53f ;
+		:MOAD_CEN_LAT = -31.53f ;
+		:MAP_PROJ = 1 ;
