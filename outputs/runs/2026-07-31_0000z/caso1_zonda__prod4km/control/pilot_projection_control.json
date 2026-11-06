@@ -1,0 +1,8 @@
+{
+  "n_steps_medidos": 100,
+  "primer_paso_s": 7.13507,
+  "media_s_paso_sin_primero": 1.3723,
+  "pasos_totales": 8640,
+  "proyeccion_h": 3.293,
+  "criterio": "media pasos 2..100; abortar si proyeccion > 6 h"
+}

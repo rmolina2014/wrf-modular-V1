@@ -1,0 +1,396 @@
+ Ntasks in X            1 , ntasks in Y            1
+Domain # 1: dx =  4000.000 m
+--- ERROR: ghg_input available only for these radiation schemes: CAM, RRTM, RRTMG, RRTMG_fast
+           And the LW and SW schemes must be reasonably paired together:
+           OK = CAM LW with CAM SW
+           OK = RRTM, RRTMG LW or SW, RRTMG_fast LW or SW may be mixed
+REAL_EM V4.5 PREPROCESSOR
+No git found or not a git repository, git commit version not available.
+ *************************************
+ Parent domain
+ ids,ide,jds,jde            1         141           1         200
+ ims,ime,jms,jme           -4         146          -4         205
+ ips,ipe,jps,jpe            1         141           1         200
+ *************************************
+DYNAMICS OPTION: Eulerian Mass Coordinate
+ alloc_space_field: domain            1 ,            3141725708  bytes allocated
+Time period #   1 to process = 2026-07-30_12:00:00.
+Time period #   2 to process = 2026-07-30_15:00:00.
+Time period #   3 to process = 2026-07-30_18:00:00.
+Time period #   4 to process = 2026-07-30_21:00:00.
+Time period #   5 to process = 2026-07-31_00:00:00.
+Time period #   6 to process = 2026-07-31_03:00:00.
+Time period #   7 to process = 2026-07-31_06:00:00.
+Time period #   8 to process = 2026-07-31_09:00:00.
+Time period #   9 to process = 2026-07-31_12:00:00.
+Time period #  10 to process = 2026-07-31_15:00:00.
+Time period #  11 to process = 2026-07-31_18:00:00.
+Time period #  12 to process = 2026-07-31_21:00:00.
+Time period #  13 to process = 2026-08-01_00:00:00.
+Total analysis times to input =   13.
+  
+ -----------------------------------------------------------------------------
+  
+ Domain  1: Current date being processed: 2026-07-30_12:00:00.0000, which is loop #   1 out of   13
+ configflags%julyr, %julday, %gmt:        2026         211   12.0000000    
+ Yes, this special data is acceptable to use: OUTPUT FROM METGRID V4.5
+ Input data is acceptable to use: met_em.d01.2026-07-30_12:00:00.nc
+ metgrid input_wrf.F first_date_input = 2026-07-30_12:00:00
+ metgrid input_wrf.F first_date_nml = 2026-07-30_12:00:00
+Timing for input          0 s.
+         flag_soil_layers read from met_em file is  1
+Turning off use of MAX WIND level data in vertical interpolation
+Turning off use of TROPOPAUSE level data in vertical interpolation
+Max map factor in domain 1 =  1.00. Scale the dt in the model accordingly.
+Using sfcprs3 to compute psfc
+ using new automatic levels program
+           1   50.0000000       50.0000000      0.993814707    
+           2   64.0000000       114.000000      0.985950649       1.27999997    
+           3   81.5615997       195.561600      0.976014256       1.27440000    
+           4   103.369164       298.930756      0.963557541       1.26737535    
+           5   130.105835       429.036591      0.948093116       1.25865233    
+           6   162.366577       591.403198      0.929123759       1.24795771    
+           7   200.531372       791.934570      0.906191230       1.23505330    
+           8   244.605652       1036.54028      0.878942370       1.21978748    
+           9   294.054565       1330.59485      0.847207963       1.20215774    
+          10   347.683685       1678.27856      0.811077714       1.18237817    
+          11   403.635223       2081.91382      0.770949006       1.16092658    
+          12   459.557220       2541.47095      0.727525413       1.13854587    
+          13   512.947266       3054.41821      0.681755364       1.11617708    
+          14   564.242004       3618.66016      0.634503603       1.10000002    
+          15   620.666199       4239.32617      0.586030483       1.10000002    
+          16   682.732849       4922.05908      0.536650121       1.10000002    
+          17   751.006165       5673.06543      0.486729980       1.10000002    
+          18   826.106812       6499.17236      0.436688155       1.10000002    
+          19   908.717529       7407.88965      0.386987716       1.10000002    
+          20   999.589294       8407.47852      0.338127553       1.10000002    
+          21   1099.54822       9507.02637      0.290629715       1.10000002    
+          22   1209.50305       10716.5293      0.245022640       1.10000002    
+   25416.3906       10716.5293              34          22
+          23   1224.98840       11941.5176      0.205004439    
+          24   1224.98840       13166.5059      0.170366496    
+          25   1224.98840       14391.4941      0.140385449    
+          26   1224.98840       15616.4824      0.114435218    
+          27   1224.98840       16841.4707       9.19738933E-02
+          28   1224.98840       18066.4590       7.25323707E-02
+          29   1224.98840       19291.4473       5.57046756E-02
+          30   1224.98840       20516.4355       4.11393829E-02
+          31   1224.98840       21741.4238       2.85323095E-02
+          32   1224.98840       22966.4121       1.76202096E-02
+          33   1224.98840       24191.4004       8.17519054E-03
+          34   1224.98840       25416.3887       1.02796056E-08
+    1.0000    0.9938    0.9860    0.9760    0.9636    0.9481    0.9291    0.9062    0.8789    0.8472
+    0.8111    0.7709    0.7275    0.6818    0.6345    0.5860    0.5367    0.4867    0.4367    0.3870
+    0.3381    0.2906    0.2450    0.2050    0.1704    0.1404    0.1144    0.0920    0.0725    0.0557
+    0.0411    0.0285    0.0176    0.0082    0.0000
+Full level index =    1     Height =     0.0 m
+Full level index =    2     Height =    50.0 m      Thickness =   50.0 m
+Full level index =    3     Height =   113.9 m      Thickness =   63.9 m
+Full level index =    4     Height =   195.2 m      Thickness =   81.3 m
+Full level index =    5     Height =   298.0 m      Thickness =  102.8 m
+Full level index =    6     Height =   427.2 m      Thickness =  129.1 m
+Full level index =    7     Height =   587.8 m      Thickness =  160.7 m
+Full level index =    8     Height =   785.5 m      Thickness =  197.7 m
+Full level index =    9     Height =  1025.6 m      Thickness =  240.0 m
+Full level index =   10     Height =  1312.6 m      Thickness =  287.0 m
+Full level index =   11     Height =  1649.6 m      Thickness =  337.0 m
+Full level index =   12     Height =  2037.7 m      Thickness =  388.2 m
+Full level index =   13     Height =  2475.6 m      Thickness =  437.9 m
+Full level index =   14     Height =  2959.3 m      Thickness =  483.7 m
+Full level index =   15     Height =  3485.1 m      Thickness =  525.8 m
+Full level index =   16     Height =  4056.1 m      Thickness =  570.9 m
+Full level index =   17     Height =  4675.0 m      Thickness =  618.9 m
+Full level index =   18     Height =  5344.9 m      Thickness =  669.8 m
+Full level index =   19     Height =  6068.4 m      Thickness =  723.5 m
+Full level index =   20     Height =  6848.2 m      Thickness =  779.8 m
+Full level index =   21     Height =  7686.5 m      Thickness =  838.3 m
+Full level index =   22     Height =  8585.0 m      Thickness =  898.5 m
+Full level index =   23     Height =  9544.9 m      Thickness =  959.9 m
+Full level index =   24     Height = 10486.8 m      Thickness =  941.9 m
+Full level index =   25     Height = 11398.2 m      Thickness =  911.4 m
+Full level index =   26     Height = 12279.2 m      Thickness =  881.0 m
+Full level index =   27     Height = 13129.7 m      Thickness =  850.6 m
+Full level index =   28     Height = 13973.1 m      Thickness =  843.4 m
+Full level index =   29     Height = 14816.4 m      Thickness =  843.4 m
+Full level index =   30     Height = 15659.8 m      Thickness =  843.4 m
+Full level index =   31     Height = 16503.2 m      Thickness =  843.4 m
+Full level index =   32     Height = 17346.5 m      Thickness =  843.4 m
+Full level index =   33     Height = 18189.9 m      Thickness =  843.4 m
+Full level index =   34     Height = 19033.2 m      Thickness =  843.4 m
+Full level index =   35     Height = 19876.6 m      Thickness =  843.4 m
+No average surface temperature for use with inland lakes
+ Assume Noah LSM input
+          21         152  water and category           16  both at 50%, landmask is    0.00000000    
+          21         156  water and category           16  both at 50%, landmask is    0.00000000    
+          30         193  water and category           16  both at 50%, landmask is    0.00000000    
+forcing artificial silty clay loam at   20 points, out of  27860
+ LAND  CHANGE =            0
+ WATER CHANGE =            0
+Timing for processing          1 s.
+Timing for output          1 s.
+Timing for loop #    1 =          2 s.
+  
+ -----------------------------------------------------------------------------
+  
+ Domain  1: Current date being processed: 2026-07-30_15:00:00.0000, which is loop #   2 out of   13
+ configflags%julyr, %julday, %gmt:        2026         211   15.0000000    
+ Yes, this special data is acceptable to use: OUTPUT FROM METGRID V4.5
+ Input data is acceptable to use: met_em.d01.2026-07-30_15:00:00.nc
+ metgrid input_wrf.F first_date_input = 2026-07-30_15:00:00
+ metgrid input_wrf.F first_date_nml = 2026-07-30_12:00:00
+Timing for input          0 s.
+         flag_soil_layers read from met_em file is  1
+Turning off use of MAX WIND level data in vertical interpolation
+Turning off use of TROPOPAUSE level data in vertical interpolation
+Using sfcprs3 to compute psfc
+No average surface temperature for use with inland lakes
+ Assume Noah LSM input
+ LAND  CHANGE =            0
+ WATER CHANGE =            0
+Timing for processing          0 s.
+ LBC valid between these times 2026-07-30_12:00:00 and 2026-07-30_15:00:00
+Timing for output          0 s.
+Timing for loop #    2 =          0 s.
+  
+ -----------------------------------------------------------------------------
+  
+ Domain  1: Current date being processed: 2026-07-30_18:00:00.0000, which is loop #   3 out of   13
+ configflags%julyr, %julday, %gmt:        2026         211   18.0000000    
+ Yes, this special data is acceptable to use: OUTPUT FROM METGRID V4.5
+ Input data is acceptable to use: met_em.d01.2026-07-30_18:00:00.nc
+ metgrid input_wrf.F first_date_input = 2026-07-30_18:00:00
+ metgrid input_wrf.F first_date_nml = 2026-07-30_12:00:00
+Timing for input          0 s.
+         flag_soil_layers read from met_em file is  1
+Turning off use of MAX WIND level data in vertical interpolation
+Turning off use of TROPOPAUSE level data in vertical interpolation
+Using sfcprs3 to compute psfc
+No average surface temperature for use with inland lakes
+ Assume Noah LSM input
+ LAND  CHANGE =            0
+ WATER CHANGE =            0
+Timing for processing          0 s.
+ LBC valid between these times 2026-07-30_15:00:00 and 2026-07-30_18:00:00
+Timing for output          0 s.
+Timing for loop #    3 =          0 s.
+  
+ -----------------------------------------------------------------------------
+  
+ Domain  1: Current date being processed: 2026-07-30_21:00:00.0000, which is loop #   4 out of   13
+ configflags%julyr, %julday, %gmt:        2026         211   21.0000000    
+ Yes, this special data is acceptable to use: OUTPUT FROM METGRID V4.5
+ Input data is acceptable to use: met_em.d01.2026-07-30_21:00:00.nc
+ metgrid input_wrf.F first_date_input = 2026-07-30_21:00:00
+ metgrid input_wrf.F first_date_nml = 2026-07-30_12:00:00
+Timing for input          0 s.
+         flag_soil_layers read from met_em file is  1
+Turning off use of MAX WIND level data in vertical interpolation
+Turning off use of TROPOPAUSE level data in vertical interpolation
+Using sfcprs3 to compute psfc
+No average surface temperature for use with inland lakes
+ Assume Noah LSM input
+ LAND  CHANGE =            0
+ WATER CHANGE =            0
+Timing for processing          0 s.
+ LBC valid between these times 2026-07-30_18:00:00 and 2026-07-30_21:00:00
+Timing for output          0 s.
+Timing for loop #    4 =          0 s.
+  
+ -----------------------------------------------------------------------------
+  
+ Domain  1: Current date being processed: 2026-07-31_00:00:00.0000, which is loop #   5 out of   13
+ configflags%julyr, %julday, %gmt:        2026         212   0.00000000    
+ Yes, this special data is acceptable to use: OUTPUT FROM METGRID V4.5
+ Input data is acceptable to use: met_em.d01.2026-07-31_00:00:00.nc
+ metgrid input_wrf.F first_date_input = 2026-07-31_00:00:00
+ metgrid input_wrf.F first_date_nml = 2026-07-30_12:00:00
+Timing for input          0 s.
+         flag_soil_layers read from met_em file is  1
+Turning off use of MAX WIND level data in vertical interpolation
+Turning off use of TROPOPAUSE level data in vertical interpolation
+Using sfcprs3 to compute psfc
+No average surface temperature for use with inland lakes
+ Assume Noah LSM input
+ LAND  CHANGE =            0
+ WATER CHANGE =            0
+Timing for processing          0 s.
+ LBC valid between these times 2026-07-30_21:00:00 and 2026-07-31_00:00:00
+Timing for output          0 s.
+Timing for loop #    5 =          0 s.
+  
+ -----------------------------------------------------------------------------
+  
+ Domain  1: Current date being processed: 2026-07-31_03:00:00.0000, which is loop #   6 out of   13
+ configflags%julyr, %julday, %gmt:        2026         212   3.00000000    
+ Yes, this special data is acceptable to use: OUTPUT FROM METGRID V4.5
+ Input data is acceptable to use: met_em.d01.2026-07-31_03:00:00.nc
+ metgrid input_wrf.F first_date_input = 2026-07-31_03:00:00
+ metgrid input_wrf.F first_date_nml = 2026-07-30_12:00:00
+Timing for input          0 s.
+         flag_soil_layers read from met_em file is  1
+Turning off use of MAX WIND level data in vertical interpolation
+Turning off use of TROPOPAUSE level data in vertical interpolation
+Using sfcprs3 to compute psfc
+No average surface temperature for use with inland lakes
+ Assume Noah LSM input
+ LAND  CHANGE =            0
+ WATER CHANGE =            0
+Timing for processing          0 s.
+ LBC valid between these times 2026-07-31_00:00:00 and 2026-07-31_03:00:00
+Timing for output          0 s.
+Timing for loop #    6 =          0 s.
+  
+ -----------------------------------------------------------------------------
+  
+ Domain  1: Current date being processed: 2026-07-31_06:00:00.0000, which is loop #   7 out of   13
+ configflags%julyr, %julday, %gmt:        2026         212   6.00000000    
+ Yes, this special data is acceptable to use: OUTPUT FROM METGRID V4.5
+ Input data is acceptable to use: met_em.d01.2026-07-31_06:00:00.nc
+ metgrid input_wrf.F first_date_input = 2026-07-31_06:00:00
+ metgrid input_wrf.F first_date_nml = 2026-07-30_12:00:00
+Timing for input          0 s.
+         flag_soil_layers read from met_em file is  1
+Turning off use of MAX WIND level data in vertical interpolation
+Turning off use of TROPOPAUSE level data in vertical interpolation
+Using sfcprs3 to compute psfc
+No average surface temperature for use with inland lakes
+ Assume Noah LSM input
+ LAND  CHANGE =            0
+ WATER CHANGE =            0
+Timing for processing          0 s.
+ LBC valid between these times 2026-07-31_03:00:00 and 2026-07-31_06:00:00
+Timing for output          0 s.
+Timing for loop #    7 =          0 s.
+  
+ -----------------------------------------------------------------------------
+  
+ Domain  1: Current date being processed: 2026-07-31_09:00:00.0000, which is loop #   8 out of   13
+ configflags%julyr, %julday, %gmt:        2026         212   9.00000000    
+ Yes, this special data is acceptable to use: OUTPUT FROM METGRID V4.5
+ Input data is acceptable to use: met_em.d01.2026-07-31_09:00:00.nc
+ metgrid input_wrf.F first_date_input = 2026-07-31_09:00:00
+ metgrid input_wrf.F first_date_nml = 2026-07-30_12:00:00
+Timing for input          0 s.
+         flag_soil_layers read from met_em file is  1
+Turning off use of MAX WIND level data in vertical interpolation
+Turning off use of TROPOPAUSE level data in vertical interpolation
+Using sfcprs3 to compute psfc
+No average surface temperature for use with inland lakes
+ Assume Noah LSM input
+ LAND  CHANGE =            0
+ WATER CHANGE =            0
+Timing for processing          0 s.
+ LBC valid between these times 2026-07-31_06:00:00 and 2026-07-31_09:00:00
+Timing for output          0 s.
+Timing for loop #    8 =          0 s.
+  
+ -----------------------------------------------------------------------------
+  
+ Domain  1: Current date being processed: 2026-07-31_12:00:00.0000, which is loop #   9 out of   13
+ configflags%julyr, %julday, %gmt:        2026         212   12.0000000    
+ Yes, this special data is acceptable to use: OUTPUT FROM METGRID V4.5
+ Input data is acceptable to use: met_em.d01.2026-07-31_12:00:00.nc
+ metgrid input_wrf.F first_date_input = 2026-07-31_12:00:00
+ metgrid input_wrf.F first_date_nml = 2026-07-30_12:00:00
+Timing for input          0 s.
+         flag_soil_layers read from met_em file is  1
+Turning off use of MAX WIND level data in vertical interpolation
+Turning off use of TROPOPAUSE level data in vertical interpolation
+Using sfcprs3 to compute psfc
+No average surface temperature for use with inland lakes
+ Assume Noah LSM input
+ LAND  CHANGE =            0
+ WATER CHANGE =            0
+Timing for processing          0 s.
+ LBC valid between these times 2026-07-31_09:00:00 and 2026-07-31_12:00:00
+Timing for output          0 s.
+Timing for loop #    9 =          0 s.
+  
+ -----------------------------------------------------------------------------
+  
+ Domain  1: Current date being processed: 2026-07-31_15:00:00.0000, which is loop #  10 out of   13
+ configflags%julyr, %julday, %gmt:        2026         212   15.0000000    
+ Yes, this special data is acceptable to use: OUTPUT FROM METGRID V4.5
+ Input data is acceptable to use: met_em.d01.2026-07-31_15:00:00.nc
+ metgrid input_wrf.F first_date_input = 2026-07-31_15:00:00
+ metgrid input_wrf.F first_date_nml = 2026-07-30_12:00:00
+Timing for input          0 s.
+         flag_soil_layers read from met_em file is  1
+Turning off use of MAX WIND level data in vertical interpolation
+Turning off use of TROPOPAUSE level data in vertical interpolation
+Using sfcprs3 to compute psfc
+No average surface temperature for use with inland lakes
+ Assume Noah LSM input
+ LAND  CHANGE =            0
+ WATER CHANGE =            0
+Timing for processing          0 s.
+ LBC valid between these times 2026-07-31_12:00:00 and 2026-07-31_15:00:00
+Timing for output          0 s.
+Timing for loop #   10 =          0 s.
+  
+ -----------------------------------------------------------------------------
+  
+ Domain  1: Current date being processed: 2026-07-31_18:00:00.0000, which is loop #  11 out of   13
+ configflags%julyr, %julday, %gmt:        2026         212   18.0000000    
+ Yes, this special data is acceptable to use: OUTPUT FROM METGRID V4.5
+ Input data is acceptable to use: met_em.d01.2026-07-31_18:00:00.nc
+ metgrid input_wrf.F first_date_input = 2026-07-31_18:00:00
+ metgrid input_wrf.F first_date_nml = 2026-07-30_12:00:00
+Timing for input          0 s.
+         flag_soil_layers read from met_em file is  1
+Turning off use of MAX WIND level data in vertical interpolation
+Turning off use of TROPOPAUSE level data in vertical interpolation
+Using sfcprs3 to compute psfc
+No average surface temperature for use with inland lakes
+ Assume Noah LSM input
+ LAND  CHANGE =            0
+ WATER CHANGE =            0
+Timing for processing          0 s.
+ LBC valid between these times 2026-07-31_15:00:00 and 2026-07-31_18:00:00
+Timing for output          0 s.
+Timing for loop #   11 =          0 s.
+  
+ -----------------------------------------------------------------------------
+  
+ Domain  1: Current date being processed: 2026-07-31_21:00:00.0000, which is loop #  12 out of   13
+ configflags%julyr, %julday, %gmt:        2026         212   21.0000000    
+ Yes, this special data is acceptable to use: OUTPUT FROM METGRID V4.5
+ Input data is acceptable to use: met_em.d01.2026-07-31_21:00:00.nc
+ metgrid input_wrf.F first_date_input = 2026-07-31_21:00:00
+ metgrid input_wrf.F first_date_nml = 2026-07-30_12:00:00
+Timing for input          0 s.
+         flag_soil_layers read from met_em file is  1
+Turning off use of MAX WIND level data in vertical interpolation
+Turning off use of TROPOPAUSE level data in vertical interpolation
+Using sfcprs3 to compute psfc
+No average surface temperature for use with inland lakes
+ Assume Noah LSM input
+ LAND  CHANGE =            0
+ WATER CHANGE =            0
+Timing for processing          0 s.
+ LBC valid between these times 2026-07-31_18:00:00 and 2026-07-31_21:00:00
+Timing for output          0 s.
+Timing for loop #   12 =          0 s.
+  
+ -----------------------------------------------------------------------------
+  
+ Domain  1: Current date being processed: 2026-08-01_00:00:00.0000, which is loop #  13 out of   13
+ configflags%julyr, %julday, %gmt:        2026         213   0.00000000    
+ Yes, this special data is acceptable to use: OUTPUT FROM METGRID V4.5
+ Input data is acceptable to use: met_em.d01.2026-08-01_00:00:00.nc
+ metgrid input_wrf.F first_date_input = 2026-08-01_00:00:00
+ metgrid input_wrf.F first_date_nml = 2026-07-30_12:00:00
+Timing for input          0 s.
+         flag_soil_layers read from met_em file is  1
+Turning off use of MAX WIND level data in vertical interpolation
+Turning off use of TROPOPAUSE level data in vertical interpolation
+Using sfcprs3 to compute psfc
+No average surface temperature for use with inland lakes
+ Assume Noah LSM input
+ LAND  CHANGE =            0
+ WATER CHANGE =            0
+Timing for processing          0 s.
+ LBC valid between these times 2026-07-31_21:00:00 and 2026-08-01_00:00:00
+Timing for output          0 s.
+Timing for loop #   13 =          0 s.
+real_em: SUCCESS COMPLETE REAL_EM INIT

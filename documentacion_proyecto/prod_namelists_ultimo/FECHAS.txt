@@ -1,0 +1,13 @@
+# Fechas de los archivos copiados (PASO 0)
+
+## Enlaces en /home/pgich
+/home/pgich/namelist_ultimo.wps | tipo=enlace | size=38 | mtime=2025-09-09 11:50:37.047990753 -0300
+/home/pgich/namelist_ultimo.input | tipo=enlace | size=53 | mtime=2025-09-09 11:54:09.751988121 -0300
+
+## Destinos de los enlaces (copiados textualmente)
+/home/pgich/namelist_ultimo.wps | size=1428 | mtime=2025-03-21 12:42:34.659994077 -0300
+/home/pgich/namelist_ultimo.input | size=4618 | mtime=2026-08-14 10:56:38.588006878 -0300
+
+## Verificacion sha256
+845eb27d17ab158fc80cdf3d33bfb70cdde1897c941bb88bd9e526f607a57e3d  /home/pgich/Build_WRF/WPS/namelist.wps
+dc0382b21212bb74a88d854d9063f6118af4ac1b6fc3507e66c8228afc1bd52f  /home/pgich/Build_WRF/WRF/test/em_real/namelist.input

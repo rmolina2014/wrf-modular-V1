@@ -1,0 +1,9 @@
+estacion,rol,lat_real,lon_real,elev_real_m,i_vecino,j_vecino,lat_modelo,lon_modelo,dist_vecino_m,hgt_modelo_vecino_m,delta_vecino_m,hgt_modelo_interp_m,delta_interp_m,brazos
+INTA_POCITO,asimilacion,-31.65,-68.5833,615,90,84,-31.65778,-68.56653,1807.7,596.4,-18.6,644.8,29.8,control y nudged (misma geo_em.d01)
+ULLUM_EMBALSE,evaluacion,-31.4667,-68.6667,768,88,89,-31.47842,-68.65256,1870.4,788.7,20.7,790.1,22.1,control y nudged (misma geo_em.d01)
+ECOHUMUS,asimilacion,-31.65,-68.3,600,96,84,-31.65585,-68.31296,1388.3,576.6,-23.4,577.0,-23.0,control y nudged (misma geo_em.d01)
+PUNTA_NEGRA,asimilacion,-31.5192,-68.8178,800,84,88,-31.51531,-68.82104,530.6,1038.9,238.9,1043.5,243.5,control y nudged (misma geo_em.d01)
+INTA_SANMARTIN,evaluacion,-31.5,-68.25,600,98,88,-31.5112,-68.23026,2248.1,889.2,289.2,720.7,120.7,control y nudged (misma geo_em.d01)
+VALLE_FERTIL,asimilacion,-30.6335,-67.4682,900,116,112,-30.63861,-67.48853,2026.0,981.3,81.3,926.7,26.7,control y nudged (misma geo_em.d01)
+CUESTA_Viento,asimilacion,-30.1833,-69.0667,1530,78,125,-30.18511,-69.07925,1223.4,1557.6,27.6,1576.4,46.4,control y nudged (misma geo_em.d01)
+CARACOLES,evaluacion,-31.5194,-68.9851,942,80,88,-31.516,-68.98987,589.6,1314.6,372.6,1328.2,386.2,control y nudged (misma geo_em.d01)
