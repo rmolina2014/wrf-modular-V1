@@ -1,0 +1,14 @@
+{
+  "etiqueta": "control",
+  "comando": "./wrf.exe",
+  "cwd": "/home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control",
+  "inicio": "2026-11-06 14:24:43",
+  "fin": "2026-11-06 17:44:08",
+  "elapsed_wall_s": 11965.22,
+  "user_s": 11499.59,
+  "system_s": 464.31,
+  "maximum_resident_set_size_kbytes": 3797716,
+  "exit_status": 0,
+  "terminado_por_senal": null,
+  "cortado_por": null
+}

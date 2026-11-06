@@ -1,0 +1,11 @@
+{
+  "resultado": "completado",
+  "pasos_registrados": 8640,
+  "pasos_esperados": 8640,
+  "media_s_por_paso": 1.3604,
+  "primer_paso_s": 7.13507,
+  "proyeccion_h": 3.265,
+  "peak_rss_kbytes": 3797716,
+  "peak_threads": 1,
+  "elapsed_wall_s": 11901.3
+}

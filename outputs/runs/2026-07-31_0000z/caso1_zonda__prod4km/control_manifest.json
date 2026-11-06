@@ -1,0 +1,33 @@
+{
+  "caso": "caso1_zonda__prod4km",
+  "brazo": "control",
+  "creado": "2026-11-06T17:44:38",
+  "start": "2026-07-30_12:00:00",
+  "run_hours": 36,
+  "end": "2026-08-01_00:00:00",
+  "t0": "2026-07-31_00:00:00",
+  "asim_horas": 12.0,
+  "asim_end": "2026-07-31_00:00:00",
+  "namelist": "/home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/namelist_control.input",
+  "namelist_sha256": "a79598d3d0895b175e3ec0cb4666717e1d7694e7a3ae3b227731abe591f203fa",
+  "wrfout_count": 37,
+  "historial_archivos": "un wrfout por hora (frames_per_outfile=1)",
+  "elapsed_wall_s": 11965.22,
+  "maximum_resident_set_size_kbytes": 3797716,
+  "exit_status": 0,
+  "terminado_por_senal": null,
+  "omp_num_threads": 1,
+  "tiles": "1x1",
+  "monitor": {
+    "resultado": "completado",
+    "pasos_registrados": 8640,
+    "pasos_esperados": 8640,
+    "media_s_por_paso": 1.3604,
+    "primer_paso_s": 7.13507,
+    "proyeccion_h": 3.265,
+    "peak_rss_kbytes": 3797716,
+    "peak_threads": 1,
+    "elapsed_wall_s": 11901.3
+  },
+  "obs_nudge_opt": 0
+}

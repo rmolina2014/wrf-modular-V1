@@ -95,6 +95,16 @@ Medicion sobre los primeros 100 pasos (`control/pilot_projection_control.json`):
 - Las tablas Thompson (`qr_acr_qg_V4.dat`, `qr_acr_qsV2.dat`, `freezeH2O.dat`)
   se calcularon una vez y se reutilizan en el brazo nudged.
 
+## Resultado control
+
+- Inicio 2026-11-06 14:24:43, fin 17:44:08; `elapsed_wall_s=11965.22`.
+- 8640 pasos, media 1.3604 s/paso, 37 wrfout (12Z 30-jul a 00Z 01-ago).
+- Pico RSS 3.80 GB (`maximum_resident_set_size_kbytes=3797716`), 1 hilo.
+- `exit_status=0`, sin senal, sin corte. Log: `control/wrf_control.log`.
+- Sanidad en t0 y +24 h: sin NaN en T2/PSFC/U10/V10/QVAPOR;
+  T2 253.5-294.7 K en t0 y 246.2-301.2 K en +24 h.
+- Manifiesto: `control_manifest.json` (sha256 del namelist incluido).
+
 ## PASO 5 - Alturas del modelo en las estaciones
 
 `informes/PASO5_alturas_estaciones.csv` (misma geo_em para ambos brazos).
@@ -104,6 +114,6 @@ INTA_SANMARTIN +121 m; el resto entre -23 y +46 m (interpolado).
 
 ## Pendiente
 
-- Completar control y correr nudged.
+- Completar nudged (lanzado 17:44:23, fin estimado ~21:05).
 - Validacion +1..+24 h con `src/validacion/valida_wrf_cli.py`.
-- Manifiestos, tiempos/RSS finales y hashes de commit.
+- Manifiesto nudged, tiempos/RSS finales y hashes de commit.
