@@ -1,0 +1,14 @@
+{
+  "etiqueta": "nudged",
+  "comando": "./wrf.exe",
+  "cwd": "/home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged",
+  "inicio": "2026-11-06 17:44:23",
+  "fin": "2026-11-06 20:58:26",
+  "elapsed_wall_s": 11643.34,
+  "user_s": 11203.36,
+  "system_s": 438.33,
+  "maximum_resident_set_size_kbytes": 3840056,
+  "exit_status": 0,
+  "terminado_por_senal": null,
+  "cortado_por": null
+}

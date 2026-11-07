@@ -1,0 +1,59 @@
+{
+  "inicio": "2026-11-06T14:34:20",
+  "control": {
+    "etiqueta": "control",
+    "comando": "./wrf.exe",
+    "cwd": "/home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control",
+    "inicio": "2026-11-06 14:24:43",
+    "fin": "2026-11-06 17:44:08",
+    "elapsed_wall_s": 11965.22,
+    "user_s": 11499.59,
+    "system_s": 464.31,
+    "maximum_resident_set_size_kbytes": 3797716,
+    "exit_status": 0,
+    "terminado_por_senal": null,
+    "cortado_por": null,
+    "monitor": {
+      "resultado": "completado",
+      "pasos_registrados": 8640,
+      "pasos_esperados": 8640,
+      "media_s_por_paso": 1.3604,
+      "primer_paso_s": 7.13507,
+      "proyeccion_h": 3.265,
+      "peak_rss_kbytes": 3797716,
+      "peak_threads": 1,
+      "elapsed_wall_s": 11901.3
+    }
+  },
+  "nudged": {
+    "etiqueta": "nudged",
+    "comando": "./wrf.exe",
+    "cwd": "/home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged",
+    "inicio": "2026-11-06 17:44:23",
+    "fin": "2026-11-06 20:58:26",
+    "elapsed_wall_s": 11643.34,
+    "user_s": 11203.36,
+    "system_s": 438.33,
+    "maximum_resident_set_size_kbytes": 3840056,
+    "exit_status": 0,
+    "terminado_por_senal": null,
+    "cortado_por": null,
+    "monitor": {
+      "resultado": "completado",
+      "pasos_registrados": 8640,
+      "pasos_esperados": 8640,
+      "media_s_por_paso": 1.3466,
+      "primer_paso_s": 6.49758,
+      "proyeccion_h": 3.232,
+      "peak_rss_kbytes": 3840056,
+      "peak_threads": 1,
+      "elapsed_wall_s": 11651.3
+    }
+  },
+  "validacion": {
+    "returncode": 0,
+    "stdout": "/home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/informes/validacion_stdout.log"
+  },
+  "resultado": "completado",
+  "fin": "2026-11-06T20:59:37"
+}

@@ -2,3 +2,8 @@
 2026-11-06T17:44:23 control: ok
 2026-11-06T17:44:23 lanzando nudged
 2026-11-06T17:44:23 nudged: lanzado
+2026-11-06T20:58:56 nudged: ok
+2026-11-06T20:58:56 validando +1..+24 h
+2026-11-06T20:58:56 validacion: /home/pgich/anaconda3/bin/python3 /home/pgich/wrf-modular-V1/src/validacion/valida_wrf_cli.py --nudged-dir /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged --control-dir /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control --output-dir /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km --valid-times 2026-07-31_01:00:00,2026-07-31_02:00:00,2026-07-31_03:00:00,2026-07-31_04:00:00,2026-07-31_05:00:00,2026-07-31_06:00:00,2026-07-31_07:00:00,2026-07-31_08:00:00,2026-07-31_09:00:00,2026-07-31_10:00:00,2026-07-31_11:00:00,2026-07-31_12:00:00,2026-07-31_13:00:00,2026-07-31_14:00:00,2026-07-31_15:00:00,2026-07-31_16:00:00,2026-07-31_17:00:00,2026-07-31_18:00:00,2026-07-31_19:00:00,2026-07-31_20:00:00,2026-07-31_21:00:00,2026-07-31_22:00:00,2026-07-31_23:00:00,2026-08-01_00:00:00 --obs-json /home/pgich/wrf-modular-V1/data/raw/obs_flat_20260731.json --estaciones-json /home/pgich/wrf-modular-V1/config/estaciones.json --t0 2026-07-31T00:00:00 --horizon-h 24 --label prod4km
+2026-11-06T20:59:37 validacion: returncode=0
+2026-11-06T20:59:37 fin: completado

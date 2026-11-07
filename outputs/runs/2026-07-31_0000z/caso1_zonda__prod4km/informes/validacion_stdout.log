@@ -1,0 +1,1061 @@
+Protocolo temporal: t0=2026-07-31 00:00:00, horizonte=24 h
+Validando: wrfout_d01_2026-07-31_01:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/01Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged/wrfout_d01_2026-07-31_01:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d01_2026-07-31_01:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/01Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/01Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/01Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/01Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-07-31_01:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             7      +1.81       3.35       3.58   -0.100      +2.01       3.54       3.76   -0.217
+T2 (K)             7         [2.67, 4.22]         [2.85, 4.43]
+PSFC (hPa)         8     -11.90      12.75      16.32    0.943     -11.92      12.72      16.34    0.943
+PSFC (hPa)         8        [8.21, 23.53]        [8.16, 23.62]
+RH (%)             7     -23.87      24.51      32.03    0.580     -27.66      28.29      34.58    0.577
+RH (%)             7       [14.25, 44.75]       [19.40, 46.32]
+Wind (m/s)         7      +4.92       4.92       6.28   -0.346      +4.70       4.88       6.12   -0.436
+Wind (m/s)         7         [2.70, 8.51]         [2.65, 8.26]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-07-31_02:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/02Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged/wrfout_d01_2026-07-31_02:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d01_2026-07-31_02:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/02Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/02Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/02Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/02Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-07-31_02:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             7      +2.25       3.73       4.04   -0.245      +2.38       3.86       4.18   -0.327
+T2 (K)             7         [2.94, 4.95]         [3.08, 5.07]
+PSFC (hPa)         8     -12.28      12.93      16.64    0.942     -12.25      12.91      16.56    0.943
+PSFC (hPa)         8        [8.40, 24.05]        [8.43, 23.94]
+RH (%)             7     -28.20      28.91      36.06    0.554     -31.23      31.97      38.24    0.534
+RH (%)             7       [20.32, 48.45]       [23.81, 49.73]
+Wind (m/s)         7      +4.79       4.80       6.43   -0.256      +4.65       4.84       6.31   -0.311
+Wind (m/s)         7         [2.52, 9.37]         [2.66, 9.07]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-07-31_03:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/03Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged/wrfout_d01_2026-07-31_03:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d01_2026-07-31_03:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/03Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/03Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/03Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/03Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-07-31_03:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             7      +2.98       4.47       4.75   -0.445      +3.11       4.58       4.87   -0.478
+T2 (K)             7         [3.57, 5.73]         [3.64, 5.81]
+PSFC (hPa)         8     -12.32      13.05      16.76    0.941     -12.34      13.04      16.78    0.941
+PSFC (hPa)         8        [8.97, 24.25]        [8.94, 24.28]
+RH (%)             7     -33.06      34.04      42.52    0.428     -35.56      36.55      44.28    0.406
+RH (%)             7       [23.81, 54.09]       [26.21, 55.32]
+Wind (m/s)         7      +4.65       4.90       6.69   -0.235      +4.44       4.82       6.51   -0.270
+Wind (m/s)         7         [2.17, 9.93]         [2.25, 9.55]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-07-31_04:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/04Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged/wrfout_d01_2026-07-31_04:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d01_2026-07-31_04:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/04Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/04Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/04Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/04Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-07-31_04:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             7      +3.38       4.81       5.23   -0.356      +3.59       5.01       5.43   -0.429
+T2 (K)             7         [3.70, 6.47]         [3.91, 6.69]
+PSFC (hPa)         8     -12.42      13.16      16.84    0.941     -12.48      13.21      16.88    0.941
+PSFC (hPa)         8        [9.21, 23.98]        [9.29, 23.97]
+RH (%)             7     -34.21      35.43      43.95    0.408     -37.24      38.49      46.69    0.363
+RH (%)             7       [25.75, 56.95]       [28.88, 59.84]
+Wind (m/s)         7      +5.09       5.28       7.10   -0.160      +4.94       5.13       6.84   -0.174
+Wind (m/s)         7        [2.73, 10.50]        [2.82, 10.01]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-07-31_05:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/05Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged/wrfout_d01_2026-07-31_05:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d01_2026-07-31_05:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/05Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/05Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/05Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/05Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-07-31_05:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             7      +3.79       4.66       5.21   -0.200      +3.91       4.75       5.31   -0.236
+T2 (K)             7         [3.33, 6.52]         [3.36, 6.61]
+PSFC (hPa)         8     -11.91      13.02      16.55    0.940     -12.00      13.06      16.65    0.939
+PSFC (hPa)         8        [8.44, 23.87]        [8.48, 24.05]
+RH (%)             7     -32.55      32.92      41.37    0.445     -33.80      34.37      42.10    0.437
+RH (%)             7       [23.51, 54.52]       [24.25, 54.96]
+Wind (m/s)         7      +5.79       5.79       7.74   -0.135      +5.94       5.94       7.77   -0.162
+Wind (m/s)         7        [2.86, 11.42]        [3.08, 11.35]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-07-31_06:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/06Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged/wrfout_d01_2026-07-31_06:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d01_2026-07-31_06:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/06Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/06Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/06Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/06Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-07-31_06:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             7      +4.03       4.85       5.46   -0.164      +4.15       4.95       5.58   -0.202
+T2 (K)             7         [3.46, 6.87]         [3.56, 7.02]
+PSFC (hPa)         8     -11.71      12.80      16.43    0.939     -11.79      12.93      16.54    0.938
+PSFC (hPa)         8        [7.90, 23.78]        [8.05, 23.87]
+RH (%)             7     -35.59      35.59      44.16    0.401     -37.41      37.41      45.69    0.380
+RH (%)             7       [26.59, 57.57]       [28.82, 58.81]
+Wind (m/s)         7      +5.60       5.60       7.84   -0.357      +5.86       5.86       7.97   -0.323
+Wind (m/s)         7        [2.54, 12.23]        [2.89, 12.34]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-07-31_07:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/07Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged/wrfout_d01_2026-07-31_07:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d01_2026-07-31_07:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/07Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/07Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/07Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/07Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-07-31_07:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             7      +5.31       6.18       6.86   -0.229      +5.46       6.34       7.05   -0.283
+T2 (K)             7         [4.57, 8.12]         [4.78, 8.45]
+PSFC (hPa)         8     -11.78      12.89      16.47    0.939     -11.87      12.97      16.56    0.939
+PSFC (hPa)         8        [8.22, 23.58]        [8.22, 23.67]
+RH (%)             7     -43.43      44.06      52.75    0.195     -45.27      45.84      54.33    0.159
+RH (%)             7       [30.46, 66.42]       [32.26, 67.51]
+Wind (m/s)         7      +8.00       8.00      10.50   -0.244      +8.04       8.04      10.51   -0.259
+Wind (m/s)         7        [4.22, 15.10]        [4.34, 15.03]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-07-31_08:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/08Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged/wrfout_d01_2026-07-31_08:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d01_2026-07-31_08:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/08Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/08Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/08Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/08Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-07-31_08:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             7      +5.59       5.96       6.73    0.059      +5.68       6.02       6.81   -0.015
+T2 (K)             7         [4.55, 8.21]         [4.66, 8.38]
+PSFC (hPa)         8     -11.57      12.62      16.26    0.940     -11.57      12.64      16.23    0.941
+PSFC (hPa)         8        [8.15, 23.37]        [8.24, 23.31]
+RH (%)             7     -47.85      48.29      55.71    0.138     -48.87      49.25      56.32    0.122
+RH (%)             7       [34.40, 67.89]       [35.91, 68.34]
+Wind (m/s)         7      +8.60       8.60      11.24   -0.031      +8.39       8.39      11.16   -0.007
+Wind (m/s)         7        [3.92, 15.53]        [3.81, 15.44]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-07-31_09:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/09Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged/wrfout_d01_2026-07-31_09:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d01_2026-07-31_09:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/09Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/09Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/09Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/09Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-07-31_09:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             7      +5.05       5.76       6.40   -0.304      +5.01       5.69       6.34   -0.232
+T2 (K)             7         [4.12, 8.12]         [4.07, 8.14]
+PSFC (hPa)         8     -11.55      12.68      16.32    0.938     -11.63      12.74      16.33    0.940
+PSFC (hPa)         8        [8.98, 23.74]        [8.99, 23.76]
+RH (%)             7     -51.99      52.74      57.86    0.070     -51.38      52.06      57.36    0.105
+RH (%)             7       [42.48, 69.33]       [42.10, 69.38]
+Wind (m/s)         7      +9.03       9.03      10.86    0.066      +8.99       8.99      10.92    0.008
+Wind (m/s)         7        [5.39, 15.23]        [5.27, 15.38]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-07-31_10:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/10Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged/wrfout_d01_2026-07-31_10:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d01_2026-07-31_10:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/10Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/10Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/10Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/10Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-07-31_10:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             7      +4.30       7.49       7.95   -0.274      +4.29       7.54       7.98   -0.288
+T2 (K)             7         [5.77, 9.92]         [5.85, 9.95]
+PSFC (hPa)         8     -11.69      12.70      16.43    0.938     -11.68      12.69      16.44    0.938
+PSFC (hPa)         8        [8.91, 23.88]        [8.92, 23.93]
+RH (%)             7     -47.25      48.31      56.43    0.077     -47.17      48.28      56.42    0.067
+RH (%)             7       [38.41, 70.53]       [38.28, 70.42]
+Wind (m/s)         7     +11.29      11.29      12.23    0.572     +11.14      11.14      12.09    0.543
+Wind (m/s)         7        [8.45, 15.02]        [8.34, 14.94]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-07-31_11:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/11Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged/wrfout_d01_2026-07-31_11:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d01_2026-07-31_11:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/11Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/11Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/11Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/11Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-07-31_11:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             7      +2.92       7.86       8.19   -0.361      +2.89       7.85       8.18   -0.360
+T2 (K)             7         [6.47, 9.96]         [6.48, 9.91]
+PSFC (hPa)         8     -11.65      13.14      16.94    0.930     -11.76      13.07      16.95    0.931
+PSFC (hPa)         8        [7.74, 24.07]        [7.73, 24.10]
+RH (%)             7     -42.01      43.99      54.82   -0.091     -41.95      43.91      54.77   -0.093
+RH (%)             7       [36.52, 70.35]       [36.81, 70.20]
+Wind (m/s)         7     +13.21      13.21      14.21    0.251     +13.29      13.29      14.28    0.263
+Wind (m/s)         7       [10.39, 16.84]       [10.42, 16.94]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-07-31_12:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/12Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged/wrfout_d01_2026-07-31_12:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d01_2026-07-31_12:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/12Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/12Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/12Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/12Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-07-31_12:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             7      +1.94       7.26       8.16   -0.505      +1.88       7.20       8.07   -0.480
+T2 (K)             7        [5.58, 10.09]        [5.60, 10.00]
+PSFC (hPa)         8     -11.12      12.82      16.69    0.929     -10.99      12.82      16.59    0.930
+PSFC (hPa)         8        [7.14, 24.63]        [7.21, 24.42]
+RH (%)             7     -37.30      38.35      51.36   -0.270     -37.20      38.20      51.22   -0.255
+RH (%)             7       [27.55, 70.37]       [27.61, 70.19]
+Wind (m/s)         7     +13.23      13.23      14.23    0.314     +13.13      13.13      14.18    0.284
+Wind (m/s)         7        [9.99, 17.71]        [9.97, 17.74]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-07-31_13:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/13Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged/wrfout_d01_2026-07-31_13:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d01_2026-07-31_13:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/13Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/13Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/13Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/13Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-07-31_13:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             7      +0.30       5.41       6.26   -0.416      +0.29       5.40       6.25   -0.413
+T2 (K)             7         [3.51, 8.81]         [3.52, 8.78]
+PSFC (hPa)         8     -10.45      12.43      16.03    0.931     -10.46      12.56      16.09    0.931
+PSFC (hPa)         8        [7.47, 23.41]        [7.55, 23.53]
+RH (%)             7     -31.84      31.84      44.85   -0.528     -31.83      31.83      44.84   -0.532
+RH (%)             7       [21.67, 61.80]       [21.71, 61.76]
+Wind (m/s)         7     +12.83      12.83      14.02   -0.142     +12.82      12.82      14.04   -0.142
+Wind (m/s)         7        [9.19, 18.23]        [9.18, 18.26]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-07-31_14:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/14Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged/wrfout_d01_2026-07-31_14:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d01_2026-07-31_14:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/14Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/14Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/14Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/14Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-07-31_14:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             7      -1.00       3.70       4.25    0.123      -0.99       3.69       4.24    0.124
+T2 (K)             7         [2.73, 5.57]         [2.72, 5.57]
+PSFC (hPa)         8      -9.95      12.27      15.95    0.929      -9.88      12.29      15.94    0.928
+PSFC (hPa)         8        [7.94, 23.63]        [7.99, 23.60]
+RH (%)             7     -22.67      22.91      31.51   -0.340     -22.67      22.91      31.49   -0.334
+RH (%)             7        [7.25, 43.31]        [7.29, 43.27]
+Wind (m/s)         7     +12.55      12.55      14.18   -0.256     +12.46      12.46      14.11   -0.261
+Wind (m/s)         7        [9.33, 18.85]        [9.20, 18.65]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-07-31_15:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/15Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged/wrfout_d01_2026-07-31_15:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d01_2026-07-31_15:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/15Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/15Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/15Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/15Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-07-31_15:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             7      -2.82       2.87       3.46    0.803      -2.83       2.85       3.46    0.803
+T2 (K)             7         [1.96, 4.78]         [1.95, 4.78]
+PSFC (hPa)         8      -9.61      11.88      15.24    0.934      -9.60      11.91      15.25    0.934
+PSFC (hPa)         8        [7.99, 22.99]        [8.02, 22.99]
+RH (%)             7     -11.15      11.66      15.44   -0.075     -11.14      11.68      15.41   -0.070
+RH (%)             7        [6.84, 22.34]        [6.86, 22.30]
+Wind (m/s)         7     +11.60      12.12      13.89   -0.344     +11.66      12.19      13.94   -0.351
+Wind (m/s)         7        [8.60, 18.13]        [8.66, 18.12]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-07-31_16:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/16Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged/wrfout_d01_2026-07-31_16:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d01_2026-07-31_16:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/16Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/16Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/16Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/16Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-07-31_16:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             7      -3.91       3.91       4.26    0.903      -3.91       3.91       4.25    0.904
+T2 (K)             7         [3.10, 5.18]         [3.11, 5.18]
+PSFC (hPa)         8     -10.14      11.82      15.24    0.939     -10.16      11.85      15.26    0.939
+PSFC (hPa)         8        [7.11, 22.76]        [7.15, 22.76]
+RH (%)             7      -2.75       3.44       4.67    0.582      -2.79       3.44       4.66    0.593
+RH (%)             7         [1.76, 6.43]         [1.79, 6.38]
+Wind (m/s)         7     +10.30      10.30      11.55    0.241     +10.35      10.35      11.61    0.228
+Wind (m/s)         7        [7.93, 14.55]        [8.02, 14.62]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-07-31_17:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/17Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged/wrfout_d01_2026-07-31_17:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d01_2026-07-31_17:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/17Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/17Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/17Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/17Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-07-31_17:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             7      -3.43       3.43       3.79    0.893      -3.43       3.43       3.79    0.892
+T2 (K)             7         [2.61, 4.65]         [2.59, 4.65]
+PSFC (hPa)         8     -10.89      12.15      15.89    0.936     -10.89      12.16      15.90    0.936
+PSFC (hPa)         8        [7.23, 23.38]        [7.26, 23.38]
+RH (%)             7      -2.65       2.89       3.55    0.799      -2.66       2.90       3.57    0.794
+RH (%)             7         [1.94, 4.85]         [1.95, 4.89]
+Wind (m/s)         7     +10.89      10.89      11.69   -0.008     +10.86      10.86      11.65   -0.007
+Wind (m/s)         7        [7.90, 14.57]        [7.91, 14.54]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-07-31_18:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/18Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged/wrfout_d01_2026-07-31_18:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d01_2026-07-31_18:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/18Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/18Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/18Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/18Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-07-31_18:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             7      -1.91       2.19       2.49    0.890      -1.92       2.21       2.50    0.889
+T2 (K)             7         [1.50, 3.49]         [1.52, 3.51]
+PSFC (hPa)         8     -11.50      12.52      16.30    0.937     -11.51      12.52      16.30    0.937
+PSFC (hPa)         8        [7.62, 24.24]        [7.63, 24.25]
+RH (%)             7      -4.89       4.89       6.00    0.552      -4.87       4.87       5.99    0.546
+RH (%)             7         [2.89, 8.62]         [2.87, 8.61]
+Wind (m/s)         7      +8.03       8.03       9.12   -0.014      +8.12       8.12       9.21   -0.028
+Wind (m/s)         7        [5.60, 11.70]        [5.66, 11.80]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-07-31_19:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/19Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged/wrfout_d01_2026-07-31_19:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d01_2026-07-31_19:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/19Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/19Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/19Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/19Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-07-31_19:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             7      -1.55       2.10       2.54    0.832      -1.54       2.07       2.52    0.832
+T2 (K)             7         [1.40, 3.69]         [1.37, 3.68]
+PSFC (hPa)         8     -12.18      12.78      16.56    0.939     -12.25      12.84      16.64    0.938
+PSFC (hPa)         8        [8.38, 23.91]        [8.46, 24.01]
+RH (%)             7      -4.53       4.53       5.34    0.768      -4.60       4.60       5.40    0.769
+RH (%)             7         [3.10, 7.48]         [3.15, 7.54]
+Wind (m/s)         7      +9.10       9.10       9.63    0.387      +8.99       8.99       9.45    0.468
+Wind (m/s)         7        [7.24, 11.73]        [7.17, 11.26]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-07-31_20:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/20Z
+Estaciones: 7
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged/wrfout_d01_2026-07-31_20:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d01_2026-07-31_20:00:00
+  7 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/20Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/20Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/20Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/20Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-07-31_20:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             6      -1.33       1.74       2.38    0.865      -1.30       1.72       2.38    0.863
+T2 (K)             6         [0.84, 3.78]         [0.83, 3.77]
+PSFC (hPa)         7      -8.89       9.67      11.50    0.972      -8.90       9.68      11.51    0.972
+PSFC (hPa)         7        [6.62, 15.03]        [6.62, 15.03]
+RH (%)             6      -1.77       2.15       2.93    0.936      -1.85       2.22       2.97    0.934
+RH (%)             6         [0.74, 4.29]         [0.83, 4.38]
+Wind (m/s)         6      +7.77       7.77       8.36    0.200      +7.58       7.58       8.25    0.163
+Wind (m/s)         6        [5.78, 10.34]        [5.50, 10.31]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-07-31_21:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/21Z
+Estaciones: 7
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged/wrfout_d01_2026-07-31_21:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d01_2026-07-31_21:00:00
+  7 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/21Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/21Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/21Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/21Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-07-31_21:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             6      -1.50       1.75       2.11    0.894      -1.46       1.79       2.12    0.887
+T2 (K)             6         [0.99, 2.96]         [1.03, 2.94]
+PSFC (hPa)         7      -9.05       9.73      11.78    0.971      -9.04       9.71      11.73    0.971
+PSFC (hPa)         7        [7.15, 15.50]        [7.10, 15.45]
+RH (%)             6      -0.72       3.07       3.57    0.760      -0.88       3.11       3.66    0.750
+RH (%)             6         [1.84, 5.08]         [1.85, 5.29]
+Wind (m/s)         6      +7.62       7.62       8.18    0.354      +7.55       7.55       8.13    0.327
+Wind (m/s)         6        [5.82, 10.87]        [5.69, 10.84]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-07-31_22:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/22Z
+Estaciones: 7
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged/wrfout_d01_2026-07-31_22:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d01_2026-07-31_22:00:00
+  7 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/22Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/22Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/22Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/22Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-07-31_22:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             6      -2.28       2.28       2.64    0.909      -2.30       2.30       2.63    0.912
+T2 (K)             6         [1.44, 3.58]         [1.47, 3.55]
+PSFC (hPa)         7      -8.69       9.55      11.45    0.973      -8.73       9.59      11.48    0.973
+PSFC (hPa)         7        [6.53, 14.97]        [6.62, 15.02]
+RH (%)             6      +0.31       2.02       2.42    0.830      +0.21       2.08       2.52    0.809
+RH (%)             6         [1.19, 3.24]         [1.21, 3.39]
+Wind (m/s)         6      +7.69       7.69       9.00   -0.366      +7.29       7.29       8.51   -0.320
+Wind (m/s)         6        [4.92, 12.23]        [4.75, 11.48]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-07-31_23:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/23Z
+Estaciones: 7
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged/wrfout_d01_2026-07-31_23:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d01_2026-07-31_23:00:00
+  7 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/23Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/23Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/23Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/23Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-07-31_23:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             6      -2.15       2.15       2.44    0.884      -2.11       2.11       2.40    0.888
+T2 (K)             6         [1.48, 3.47]         [1.47, 3.44]
+PSFC (hPa)         7      -9.67      10.28      12.40    0.973      -9.62      10.30      12.38    0.973
+PSFC (hPa)         7        [7.35, 16.12]        [7.33, 16.11]
+RH (%)             6      +0.25       2.54       3.34    0.092      -0.20       2.14       3.13    0.270
+RH (%)             6         [1.26, 5.16]         [1.00, 5.01]
+Wind (m/s)         6      +8.47       8.47      10.11   -0.831      +8.52       8.52      10.07   -0.733
+Wind (m/s)         6        [6.10, 12.89]        [5.76, 13.37]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-08-01_00:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/24Z
+Estaciones: 7
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/nudged/wrfout_d01_2026-08-01_00:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d01_2026-08-01_00:00:00
+  7 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/24Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/24Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/24Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/24Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-08-01_00:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             6      -2.34       2.34       2.71    0.852      -2.43       2.43       2.80    0.848
+T2 (K)             6         [1.53, 3.94]         [1.58, 4.04]
+PSFC (hPa)         7      -8.65       9.76      11.57    0.974      -8.48       9.80      11.52    0.973
+PSFC (hPa)         7        [6.81, 15.25]        [6.78, 15.14]
+RH (%)             6      -0.67       3.12       3.60   -0.189      -0.68       2.82       3.44   -0.023
+RH (%)             6         [1.86, 4.98]         [1.49, 4.93]
+Wind (m/s)         6      +3.41       3.73       4.66    0.096      +3.39       3.39       4.43    0.215
+Wind (m/s)         6         [2.15, 6.58]         [1.86, 6.51]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/informe_evolucion_nudging.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/informe_evolucion_nudging.txt
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/tabla_evolutiva.json
+
+Informe de evolución del nudging en /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/errores_largo.csv
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/metricas_por_horizonte.csv
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/metricas_por_tramo.csv
+Validacion completa.
