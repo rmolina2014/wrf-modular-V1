@@ -1,0 +1,181 @@
+{
+  "caso": "caso3_frentefrio__prod4km",
+  "config_caso": {
+    "id": "caso3_frentefrio",
+    "num": 3,
+    "fecha": "2026-05-16",
+    "t0": "2026-05-16T00:00:00Z",
+    "evento": "frente_frio",
+    "titulo": "Caso 3 - Ingreso de frente frio",
+    "descripcion": "Evento de ingreso de frente frío sobre San Juan",
+    "fuente": "gfs_aws",
+    "resultados_dir": "outputs/runs/2026-05-16_0000z/caso3_frentefrio",
+    "informe": "outputs/informes/oficiales/informe_caso3_frentefrio_20260516.md"
+  },
+  "t0": "2026-05-16T00:00:00Z",
+  "start": "2026-05-15_12:00:00",
+  "end": "2026-05-17_00:00:00",
+  "run_hours": 36,
+  "asim_horas": 12.0,
+  "obs_json": "/home/pgich/wrf-modular-V1/data/raw/obs_flat_20260516.json",
+  "obs_json_sha256": "ba5ba3cc51d316a8f088e52adec03fb0a14e6ce74cf46c282c6ef5186e53e141",
+  "obs_json_registros": 606,
+  "obs_json_estaciones": [
+    "CARACOLES",
+    "CUESTA_Viento",
+    "ECOHUMUS",
+    "INTA_POCITO",
+    "PUNTA_NEGRA",
+    "ULLUM_EMBALSE",
+    "VALLE_FERTIL"
+  ],
+  "obs_json_cobertura": {
+    "CARACOLES": {
+      "n": 96,
+      "min": "2026-05-15T03:00:00+00:00",
+      "max": "2026-05-17T02:30:00+00:00"
+    },
+    "CUESTA_Viento": {
+      "n": 96,
+      "min": "2026-05-15T03:00:00+00:00",
+      "max": "2026-05-17T02:30:00+00:00"
+    },
+    "ECOHUMUS": {
+      "n": 96,
+      "min": "2026-05-15T03:00:00+00:00",
+      "max": "2026-05-17T02:30:00+00:00"
+    },
+    "INTA_POCITO": {
+      "n": 96,
+      "min": "2026-05-15T03:00:00+00:00",
+      "max": "2026-05-17T02:30:00+00:00"
+    },
+    "PUNTA_NEGRA": {
+      "n": 95,
+      "min": "2026-05-15T03:00:00+00:00",
+      "max": "2026-05-17T02:30:00+00:00"
+    },
+    "ULLUM_EMBALSE": {
+      "n": 32,
+      "min": "2026-05-15T03:00:00+00:00",
+      "max": "2026-05-15T18:30:00+00:00"
+    },
+    "VALLE_FERTIL": {
+      "n": 95,
+      "min": "2026-05-15T03:00:00+00:00",
+      "max": "2026-05-17T02:30:00+00:00"
+    }
+  },
+  "obs_domain101": "/home/pgich/wrf-modular-V1/outputs/runs/2026-05-16_0000z/caso3_frentefrio__prod4km/input/OBS_DOMAIN101",
+  "obs_domain101_sha256": "3166ac181e09bcfe751f04c2fc748d3b030f7ca99d961a5684238c1774740c26",
+  "datos_validados": "/home/pgich/wrf-modular-V1/outputs/runs/2026-05-16_0000z/caso3_frentefrio__prod4km/input/datos_validados_20260515_120000.csv",
+  "datos_validados_sha256": "0d75b37ba613717425eb0796611194d742cac1a4776f4c559779f8ba0dbdd357",
+  "gfs_dir": "/home/pgich/wrf-modular-V1/wps_sanjuan/gfs_data/2026-05-15_12",
+  "gfs_files": [
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f000",
+      "bytes": 512283645
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f003",
+      "bytes": 543193106
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f006",
+      "bytes": 549723168
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f009",
+      "bytes": 549234005
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f012",
+      "bytes": 552454718
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f015",
+      "bytes": 553519801
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f018",
+      "bytes": 557122352
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f021",
+      "bytes": 551426384
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f024",
+      "bytes": 549709665
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f027",
+      "bytes": 548106312
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f030",
+      "bytes": 549589269
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f033",
+      "bytes": 548694356
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f036",
+      "bytes": 550970367
+    }
+  ],
+  "gfs_total_bytes": 7116027148,
+  "namelist_diff_vs_caso1": [
+    "/home/pgich/wrf-modular-V1/outputs/runs/2026-05-16_0000z/caso3_frentefrio__prod4km/informes/diff_wps_namelist.wps_vs_caso1.txt",
+    "/home/pgich/wrf-modular-V1/outputs/runs/2026-05-16_0000z/caso3_frentefrio__prod4km/informes/diff_namelist_control.input_vs_caso1.txt",
+    "/home/pgich/wrf-modular-V1/outputs/runs/2026-05-16_0000z/caso3_frentefrio__prod4km/informes/diff_namelist_nudged.input_vs_caso1.txt"
+  ],
+  "estaciones_config": {
+    "INTA_POCITO": {
+      "rol": "asimilacion",
+      "elev": 615
+    },
+    "ULLUM_EMBALSE": {
+      "rol": "evaluacion",
+      "elev": 768
+    },
+    "ECOHUMUS": {
+      "rol": "asimilacion",
+      "elev": 600
+    },
+    "PUNTA_NEGRA": {
+      "rol": "asimilacion",
+      "elev": 800
+    },
+    "INTA_SANMARTIN": {
+      "rol": "evaluacion",
+      "elev": 600
+    },
+    "VALLE_FERTIL": {
+      "rol": "asimilacion",
+      "elev": 900
+    },
+    "CUESTA_Viento": {
+      "rol": "asimilacion",
+      "elev": 1530
+    },
+    "CARACOLES": {
+      "rol": "evaluacion",
+      "elev": 942
+    }
+  },
+  "notas": [
+    "El JSON oficial del Caso 3 tiene 606 registros de 7 estaciones; INTA_SANMARTIN no aparece.",
+    "ULLUM_EMBALSE solo tiene datos hasta 2026-05-15 18:30 UTC; no aporta pares en +1..+24 h.",
+    "La validacion oficial del Caso 3 retuvo 6 estaciones (mismo archivo OBS_DOMAIN101).",
+    "Los namelists son identicos al Caso 1 salvo fechas e history_outname (ver diffs).",
+    "GFS 0.25 disponible localmente; no se descargo nada."
+  ],
+  "referencias": {
+    "tesis": "outputs/runs/2026-05-16_0000z/caso3_frentefrio",
+    "op15km": "outputs/runs/2026-05-16_0000z/caso3_frentefrio__op15km",
+    "tesis_errores": "outputs/runs/2026-05-16_0000z/caso3_frentefrio/errores_largo.csv",
+    "op15km_errores": "outputs/runs/2026-05-16_0000z/caso3_frentefrio__op15km/errores_largo.csv"
+  }
+}

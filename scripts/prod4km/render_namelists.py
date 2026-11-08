@@ -31,10 +31,10 @@ TRUELAT2 = "-31.121"
 STAND_LON = "-69.433"
 WPS_GEOG = "/home/pgich/wrf-operativo/datos/WPS_GEOG"
 
-# Protocolo temporal: t0=2026-07-31 00:00 UTC, arranque t0-12 h, 36 h.
-START = ("2026", "07", "30", "12")
-END = ("2026", "08", "01", "00")
-RUN_HOURS = "36"
+# Defaults = Caso 1 (t0=2026-07-31 00:00 UTC, arranque t0-12 h, 36 h).
+DEFAULT_START = "2026-07-30_12:00:00"
+DEFAULT_END = "2026-08-01_00:00:00"
+DEFAULT_RUN_HOURS = 36
 
 FDDA_NUDGED = """ &fdda
  grid_fdda                           = 0,
@@ -67,10 +67,17 @@ FDDA_NUDGED = """ &fdda
 """
 
 
-def render_wps(template: str) -> str:
+def parse_date(value: str) -> tuple[str, str, str, str, str, str]:
+    date, clock = value.split("_")
+    year, month, day = date.split("-")
+    hour, minute, second = clock.split(":")
+    return year, month, day, hour, minute, second
+
+
+def render_wps(template: str, *, start: str, end: str) -> str:
     c = template
-    c = c.replace("START_DATE", "2026-07-30_12:00:00")
-    c = c.replace("END_DATE", "2026-08-01_00:00:00")
+    c = c.replace("START_DATE", start)
+    c = c.replace("END_DATE", end)
     c = c.replace("REF_LAT", REF_LAT)
     c = c.replace("REF_LON", REF_LON)
     c = c.replace("TRUELAT1", TRUELAT1)
@@ -82,17 +89,34 @@ def render_wps(template: str) -> str:
     return c
 
 
-def render_input(template: str, *, nudged: bool, history_outname: str) -> str:
+def render_input(
+    template: str,
+    *,
+    start: str,
+    end: str,
+    run_hours: int,
+    nudged: bool,
+    history_outname: str,
+) -> str:
     c = template
-    c = c.replace("RUN_HOURS", RUN_HOURS)
+    c = c.replace("RUN_HOURS", str(run_hours))
     for key, val in zip(
-        ("START_YEAR", "START_MONTH", "START_DAY", "START_HOUR"), START
+        (
+            "START_YEAR",
+            "START_MONTH",
+            "START_DAY",
+            "START_HOUR",
+            "START_MINUTE",
+            "START_SECOND",
+        ),
+        parse_date(start),
     ):
         c = c.replace(key, val)
-    for key, val in zip(("END_YEAR", "END_MONTH", "END_DAY", "END_HOUR"), END):
+    for key, val in zip(
+        ("END_YEAR", "END_MONTH", "END_DAY", "END_HOUR", "END_MINUTE", "END_SECOND"),
+        parse_date(end),
+    ):
         c = c.replace(key, val)
-    c = c.replace("START_MINUTE", "00").replace("START_SECOND", "00")
-    c = c.replace("END_MINUTE", "00").replace("END_SECOND", "00")
     c = c.replace("HISTORY_OUTNAME", history_outname)
 
     # Unica diferencia declarada con la plantilla en los niveles de metgrid.
@@ -125,19 +149,34 @@ def render_input(template: str, *, nudged: bool, history_outname: str) -> str:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--case-dir", required=True, type=Path)
+    ap.add_argument("--start", default=DEFAULT_START)
+    ap.add_argument("--end", default=DEFAULT_END)
+    ap.add_argument("--run-hours", default=DEFAULT_RUN_HOURS, type=int)
     args = ap.parse_args()
     case = args.case_dir.resolve()
     (case / "wps").mkdir(parents=True, exist_ok=True)
 
-    wps_text = render_wps(WPS_TEMPLATE.read_text(encoding="utf-8"))
+    wps_text = render_wps(
+        WPS_TEMPLATE.read_text(encoding="utf-8"), start=args.start, end=args.end
+    )
     (case / "wps" / "namelist.wps").write_text(wps_text, encoding="utf-8")
 
     tpl = INPUT_TEMPLATE.read_text(encoding="utf-8")
     control = render_input(
-        tpl, nudged=False, history_outname=str(case / "control" / "wrfout_d<domain>_<date>")
+        tpl,
+        start=args.start,
+        end=args.end,
+        run_hours=args.run_hours,
+        nudged=False,
+        history_outname=str(case / "control" / "wrfout_d<domain>_<date>"),
     )
     nudged = render_input(
-        tpl, nudged=True, history_outname=str(case / "nudged" / "wrfout_d<domain>_<date>")
+        tpl,
+        start=args.start,
+        end=args.end,
+        run_hours=args.run_hours,
+        nudged=True,
+        history_outname=str(case / "nudged" / "wrfout_d<domain>_<date>"),
     )
     (case / "namelist_control.input").write_text(control, encoding="utf-8")
     (case / "namelist_nudged.input").write_text(nudged, encoding="utf-8")

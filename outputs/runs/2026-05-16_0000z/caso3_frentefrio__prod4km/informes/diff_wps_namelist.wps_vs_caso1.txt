@@ -1,0 +1,13 @@
+--- outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/wps/namelist.wps	2026-11-06 14:15:10.946013763 -0300
++++ outputs/runs/2026-05-16_0000z/caso3_frentefrio__prod4km/wps/namelist.wps	2026-11-08 20:17:44.956404068 -0300
+@@ -1,8 +1,8 @@
+ &share
+  wrf_core = 'ARW',
+  max_dom = 1,
+- start_date = '2026-07-30_12:00:00','2026-07-30_12:00:00' 
+- end_date   = '2026-08-01_00:00:00','2026-08-01_00:00:00'
++ start_date = '2026-05-15_12:00:00','2026-05-15_12:00:00' 
++ end_date   = '2026-05-17_00:00:00','2026-05-17_00:00:00'
+  interval_seconds = 10800
+  io_form_geogrid = 2,
+ /

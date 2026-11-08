@@ -236,3 +236,36 @@ coinciden con las corridas.
   el mismo del PASO5 prod4km. `HGT_<grilla>` es el valor interpolado; las
   columnas `_vecino`/`_interp` quedan explicitas. Deltas = HGT_modelo - elev_real_m.
 - Metadata y sha256: `documentacion_proyecto/alturas_estaciones_3grillas_meta.json`.
+
+## Caso 3 - preflight de insumos (frente frio, 2026-05-16)
+
+Se preparo `outputs/runs/2026-05-16_0000z/caso3_frentefrio__prod4km/` con la
+misma configuracion 4 km del Caso 1. No se corrio nada aun.
+
+- t0 = `2026-05-16T00:00:00Z`; arranque t0-12 h = `2026-05-15_12:00:00`;
+  fin = `2026-05-17_00:00:00`; `run_hours=36`; evaluacion +1..+24 h.
+- Obs JSON: `data/raw/obs_flat_20260516.json`, sha256
+  `ba5ba3cc51d316a8f088e52adec03fb0a14e6ce74cf46c282c6ef5186e53e141`,
+  606 registros. `input/OBS_DOMAIN101` sha256
+  `3166ac181e09bcfe751f04c2fc748d3b030f7ca99d961a5684238c1774740c26`
+  y `input/datos_validados_20260515_120000.csv` sha256
+  `0d75b37ba613717425eb0796611194d742cac1a4776f4c559779f8ba0dbdd357`,
+  copiados desde `caso3_frentefrio/input/` (identicos en la corrida oficial y
+  en `caso3_frentefrio__op15km`).
+- Estaciones en el JSON: CARACOLES, CUESTA_Viento, ECOHUMUS, INTA_POCITO,
+  PUNTA_NEGRA, ULLUM_EMBALSE, VALLE_FERTIL. No aparece INTA_SANMARTIN.
+  ULLUM_EMBALSE solo tiene datos hasta `2026-05-15 18:30 UTC`, por lo que no
+  aporta pares en +1..+24 h; la validacion oficial del Caso 3 retuvo 6
+  estaciones con el mismo `OBS_DOMAIN101`.
+- GFS 0.25: `wps_sanjuan/gfs_data/2026-05-15_12/`, 13 archivos
+  `gfs.t12z.pgrb2.0p25.f000`..`f036` cada 3 h (6.7 GB); disponibles localmente,
+  no se descargo nada.
+- Configuracion: `wps/namelist.wps`, `namelist_control.input` y
+  `namelist_nudged.input` son identicos al Caso 1 salvo fechas e
+  `history_outname` (diffs en `informes/diff_*_vs_caso1.txt`). Mismo dominio
+  141x200, 4 km, Lambert -31.121/-69.433, 34 niveles, `frames_per_outfile=1`
+  y mismo bloque `&fdda`.
+- Referencias: `caso3_frentefrio` (tesis 15 km) y `caso3_frentefrio__op15km`;
+  ambas usan el mismo t0, ventana y archivo de observaciones.
+- Preflight completo: `preflight_caso3_prod4km.json`.
+- Sin discrepancias con la configuracion de la tesis para el Caso 3.

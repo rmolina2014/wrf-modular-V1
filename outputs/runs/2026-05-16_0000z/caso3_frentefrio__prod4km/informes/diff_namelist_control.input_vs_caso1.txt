@@ -1,0 +1,30 @@
+--- outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/namelist_control.input	2026-11-06 14:15:10.946013763 -0300
++++ outputs/runs/2026-05-16_0000z/caso3_frentefrio__prod4km/namelist_control.input	2026-11-08 20:17:44.956404068 -0300
+@@ -4,14 +4,14 @@
+  run_minutes                         = 0,
+  run_seconds                         = 0,
+  start_year                          = 2026, 2026, 2000,
+- start_month                         = 07, 07,   01,
+- start_day                           = 30, 30,   24,
++ start_month                         = 05, 05,   01,
++ start_day                           = 15, 15,   24,
+  start_hour                          = 12, 12,   12,
+  start_minute                        = 00, 00,   00,
+  start_second                        = 00, 00,   00,
+  end_year                            = 2026, 2026, 2000,
+- end_month                           = 08, 08,   01,
+- end_day                             = 01, 01,   25,
++ end_month                           = 05, 05,   01,
++ end_day                             = 17, 17,   25,
+  end_hour                            = 00, 00,   12,
+  end_minute                          = 00, 00,   00,
+  end_second                          = 00, 00,   00,
+@@ -26,7 +26,7 @@
+  io_form_input                       = 2
+  io_form_boundary                    = 2
+  debug_level                         = 0
+- history_outname                     = "/home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d<domain>_<date>"
++ history_outname                     = "/home/pgich/wrf-modular-V1/outputs/runs/2026-05-16_0000z/caso3_frentefrio__prod4km/control/wrfout_d<domain>_<date>"
+  /
+ 
+  &domains
