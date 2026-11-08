@@ -1,0 +1,163 @@
+{
+  "caso": "caso3_frentefrio__prod4km",
+  "stage": "WPS",
+  "status": "OK",
+  "t0": "2026-05-16T00:00:00Z",
+  "start": "2026-05-15_12:00:00",
+  "end": "2026-05-17_00:00:00",
+  "run_hours": 36,
+  "commands": [
+    "./link_grib.csh /home/pgich/wrf-modular-V1/wps_sanjuan/gfs_data/2026-05-15_12/gfs.t12z.pgrb2.0p25.f",
+    "./geogrid.exe > geogrid.log 2>&1",
+    "./ungrib.exe > ungrib.log 2>&1",
+    "./metgrid.exe > metgrid.log 2>&1"
+  ],
+  "return_codes": {
+    "geogrid": 0,
+    "ungrib": 0,
+    "metgrid": 0
+  },
+  "duration_seconds": {
+    "geogrid": 3,
+    "ungrib": 151,
+    "metgrid": 77
+  },
+  "success_markers": {
+    "geogrid": "*** Successful completion of program geogrid.exe ***",
+    "ungrib": "*** Successful completion of program ungrib.exe ***",
+    "metgrid": "*** Successful completion of program metgrid.exe ***"
+  },
+  "geo_em": {
+    "file": "wps/geo_em.d01.nc",
+    "sha256": "33a83127a9e2e45ecf025d19c513fe08adf640f025261c46071adf349e1c8f20",
+    "bytes": 4236176,
+    "attrs": {
+      "MAP_PROJ": 1,
+      "CEN_LAT": -31.12099838256836,
+      "CEN_LON": -69.4329833984375,
+      "TRUELAT1": -31.121000289916992,
+      "TRUELAT2": -31.121000289916992,
+      "STAND_LON": -69.43299865722656,
+      "DX": 4000.0,
+      "DY": 4000.0,
+      "WEST-EAST_GRID_DIMENSION": 141,
+      "SOUTH-NORTH_GRID_DIMENSION": 200,
+      "HGT_M_shape": [
+        1,
+        199,
+        140
+      ]
+    }
+  },
+  "met_em": [
+    {
+      "file": "wps/met_em.d01.2026-05-15_12:00:00.nc",
+      "time": "2026-05-15_12:00:00",
+      "sha256": "f3efc3c5273c701e17ba1bbc51017ca45b6263b678b728d5500d5a09f9a7e3ac",
+      "bytes": 17293599
+    },
+    {
+      "file": "wps/met_em.d01.2026-05-15_15:00:00.nc",
+      "time": "2026-05-15_15:00:00",
+      "sha256": "ff9488defbe7fd9d6b1f48ddd53ef79678eae0056cd7f23f31f3ceee30de5881",
+      "bytes": 17378634
+    },
+    {
+      "file": "wps/met_em.d01.2026-05-15_18:00:00.nc",
+      "time": "2026-05-15_18:00:00",
+      "sha256": "2f13d2fc1a4264263b11284c2a545cf0e7b87a7a7745a3dd8f618b916edd54e1",
+      "bytes": 17353380
+    },
+    {
+      "file": "wps/met_em.d01.2026-05-15_21:00:00.nc",
+      "time": "2026-05-15_21:00:00",
+      "sha256": "d18c03fa11afec67c6e47f7684a7271024c206097bc6cd4e470924644db2168f",
+      "bytes": 17414025
+    },
+    {
+      "file": "wps/met_em.d01.2026-05-16_00:00:00.nc",
+      "time": "2026-05-16_00:00:00",
+      "sha256": "37fe4fae85450c47ae0925bc0da50cb9ad9793e7a34158fccdd0ed4d83459d30",
+      "bytes": 17496492
+    },
+    {
+      "file": "wps/met_em.d01.2026-05-16_03:00:00.nc",
+      "time": "2026-05-16_03:00:00",
+      "sha256": "5f384079c93a900bc23cbab77f46d09f9466730576ff2c002e9cc982ca4361eb",
+      "bytes": 17495818
+    },
+    {
+      "file": "wps/met_em.d01.2026-05-16_06:00:00.nc",
+      "time": "2026-05-16_06:00:00",
+      "sha256": "820d64ceeaf3d72998333774f16af8a93b582ef99786d43f07220b96377bd52e",
+      "bytes": 17522530
+    },
+    {
+      "file": "wps/met_em.d01.2026-05-16_09:00:00.nc",
+      "time": "2026-05-16_09:00:00",
+      "sha256": "e5ae039803e789d4d451bb1723610e85ba9a2a509865edc98a92a63718e72017",
+      "bytes": 17551365
+    },
+    {
+      "file": "wps/met_em.d01.2026-05-16_12:00:00.nc",
+      "time": "2026-05-16_12:00:00",
+      "sha256": "17aecc0a4f1fb7100ff3dfb69be0c2f47798c4c43ab196ab3dcbab69b002ee7e",
+      "bytes": 17590281
+    },
+    {
+      "file": "wps/met_em.d01.2026-05-16_15:00:00.nc",
+      "time": "2026-05-16_15:00:00",
+      "sha256": "d5610a1de56176c1959f2d8dad0502e59683ba23d4086250b6b3643fdbd20910",
+      "bytes": 17599800
+    },
+    {
+      "file": "wps/met_em.d01.2026-05-16_18:00:00.nc",
+      "time": "2026-05-16_18:00:00",
+      "sha256": "25912a84bc2b1bd3174d5ac7fcee25fa4cfbfce6053b1a1e0ab2dfdd4545b0e6",
+      "bytes": 17548300
+    },
+    {
+      "file": "wps/met_em.d01.2026-05-16_21:00:00.nc",
+      "time": "2026-05-16_21:00:00",
+      "sha256": "96a7e1406bda121e8a76eebb4d740bd7829a4e7eb9518db7b2e6c0cdc3334ea7",
+      "bytes": 17505039
+    },
+    {
+      "file": "wps/met_em.d01.2026-05-17_00:00:00.nc",
+      "time": "2026-05-17_00:00:00",
+      "sha256": "424297e99469d39594c8cbb82abc20606236d1d8974f2dc2644a6e18f00fb4ad",
+      "bytes": 17554894
+    }
+  ],
+  "met_em_count": 13,
+  "namelist_wps_sha256": "d08add448651dbb9fc531c7ca9dc394e3976d7624b6bfec9fd89e0f8b7439c2f",
+  "logs": [
+    {
+      "file": "wps/geogrid.log",
+      "sha256": "8b6a8b2c1ccb05627822e3b1cea0e1b9a95009a795112fd6653772b146337f43",
+      "bytes": 23584
+    },
+    {
+      "file": "wps/ungrib.log",
+      "sha256": "d43886796eecca1315fde7ef9ee972972f6a502a17126873a62c55a13c21264a",
+      "bytes": 383932
+    },
+    {
+      "file": "wps/metgrid.log",
+      "sha256": "5239acbb1cfb34cb6e02605786178d467765f20ac7776bcdf6321e8d25e16589",
+      "bytes": 392573
+    }
+  ],
+  "cleanup_removed": [
+    "GRIBFILE.*",
+    "GFS:*",
+    "PFILE:*",
+    "Vtable",
+    "geogrid.exe",
+    "ungrib.exe",
+    "metgrid.exe",
+    "link_grib.csh",
+    "geogrid/",
+    "metgrid/"
+  ]
+}

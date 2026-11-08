@@ -269,3 +269,18 @@ misma configuracion 4 km del Caso 1. No se corrio nada aun.
   ambas usan el mismo t0, ventana y archivo de observaciones.
 - Preflight completo: `preflight_caso3_prod4km.json`.
 - Sin discrepancias con la configuracion de la tesis para el Caso 3.
+
+## Caso 3 - WPS OK (2026-05-15_12 a 2026-05-17_00)
+
+- `geogrid.exe`: rc=0, 3 s; `ungrib.exe`: rc=0, 151 s; `metgrid.exe`: rc=0,
+  77 s. Los tres logs con el marcador de finalizacion exitosa quedaron en
+  `outputs/runs/2026-05-16_0000z/caso3_frentefrio__prod4km/wps/`.
+- `geo_em.d01.nc`: MAP_PROJ=1, CEN_LAT=-31.120998, CEN_LON=-69.43298,
+  TRUELAT1/2=-31.121, STAND_LON=-69.433, DX=DY=4000, 141x200 (HGT_M 199x140).
+  Coincide con el `geo_em` del Caso 1.
+- 13 `met_em.d01.*.nc` desde `2026-05-15_12:00:00` hasta
+  `2026-05-17_00:00:00` cada 3 h.
+- Manifiesto con sha256 de `geo_em`, los 13 `met_em`, namelist y logs:
+  `wps/wps_manifest.json`.
+- Se eliminaron los intermedios `GRIBFILE.*`, `GFS:*`, `PFILE:*`, `Vtable`
+  y los symlinks de ejecutables/tablas; quedan logs, namelist y salidas.
