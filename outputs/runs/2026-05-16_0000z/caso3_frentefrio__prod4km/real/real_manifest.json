@@ -1,0 +1,73 @@
+{
+  "caso": "caso3_frentefrio__prod4km",
+  "stage": "real",
+  "status": "OK",
+  "t0": "2026-05-16T00:00:00Z",
+  "start": "2026-05-15_12:00:00",
+  "end": "2026-05-17_00:00:00",
+  "run_hours": 36,
+  "command": "./real.exe > real.log 2>&1",
+  "return_code": 0,
+  "duration_seconds": 9,
+  "success_marker": "real_em: SUCCESS COMPLETE REAL_EM INIT",
+  "namelist_input": {
+    "file": "real/namelist.input",
+    "sha256": "d0335aa4942c1f0a9a161e4396be859d2aca052a42b7af4571cee02e3367fbd6",
+    "bytes": 4571
+  },
+  "wrfinput_d01": {
+    "file": "real/wrfinput_d01",
+    "sha256": "60714bf92fd7d579b2c886c6bab2ed712208b3fc4444bbb39c9c748bc65af37b",
+    "bytes": 29641875,
+    "attrs": {
+      "MAP_PROJ": 1,
+      "CEN_LAT": -31.12099838256836,
+      "CEN_LON": -69.4329833984375,
+      "TRUELAT1": -31.121000289916992,
+      "TRUELAT2": -31.121000289916992,
+      "STAND_LON": -69.43299865722656,
+      "DX": 4000.0,
+      "DY": 4000.0,
+      "BOTTOM-TOP_GRID_DIMENSION": 35,
+      "WEST-EAST_GRID_DIMENSION": 141,
+      "SOUTH-NORTH_GRID_DIMENSION": 200,
+      "START_DATE": "2026-05-15_12:00:00",
+      "Times_first": "2026-05-15_12:00:00",
+      "Times_last": "2026-05-15_12:00:00",
+      "Times_count": 1
+    }
+  },
+  "wrfbdy_d01": {
+    "file": "real/wrfbdy_d01",
+    "sha256": "01736377438a75d9a5a6e7d0c7991a77aa9958c5d81d06690b5d1e05977180ff",
+    "bytes": 43821353,
+    "attrs": {
+      "MAP_PROJ": 1,
+      "CEN_LAT": -31.12099838256836,
+      "CEN_LON": -69.4329833984375,
+      "TRUELAT1": -31.121000289916992,
+      "TRUELAT2": -31.121000289916992,
+      "STAND_LON": -69.43299865722656,
+      "DX": 4000.0,
+      "DY": 4000.0,
+      "BOTTOM-TOP_GRID_DIMENSION": 35,
+      "WEST-EAST_GRID_DIMENSION": 141,
+      "SOUTH-NORTH_GRID_DIMENSION": 200,
+      "START_DATE": "2026-05-15_12:00:00",
+      "Times_first": "2026-05-15_12:00:00",
+      "Times_last": "2026-05-16_21:00:00",
+      "Times_count": 12
+    }
+  },
+  "real_log": {
+    "file": "real/real.log",
+    "sha256": "ae51c30c833cc8a188b884a52a6ffeeb15a7f335b20979d36c1b1feb59f87abd",
+    "bytes": 21607
+  },
+  "met_em_source_count": 13,
+  "cleanup_removed": [
+    "symlinks de ejecutables/tablas",
+    "symlinks met_em",
+    "namelist.output"
+  ]
+}

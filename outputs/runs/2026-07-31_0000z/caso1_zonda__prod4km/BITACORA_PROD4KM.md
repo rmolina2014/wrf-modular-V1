@@ -284,3 +284,15 @@ misma configuracion 4 km del Caso 1. No se corrio nada aun.
   `wps/wps_manifest.json`.
 - Se eliminaron los intermedios `GRIBFILE.*`, `GFS:*`, `PFILE:*`, `Vtable`
   y los symlinks de ejecutables/tablas; quedan logs, namelist y salidas.
+
+## Caso 3 - real OK
+
+- `real.exe`: rc=0, 9 s; `real_em: SUCCESS COMPLETE REAL_EM INIT`.
+- `wrfinput_d01`: MAP_PROJ=1, CEN_LAT=-31.120998, CEN_LON=-69.43298,
+  DX=DY=4000, 141x200, 35 niveles; `START_DATE=2026-05-15_12:00:00`.
+- `wrfbdy_d01`: 12 tiempos, de `2026-05-15_12:00:00` a
+  `2026-05-16_21:00:00` (mismo esquema que el Caso 1).
+- Manifiesto con sha256 de namelist, log, `wrfinput_d01` y `wrfbdy_d01`:
+  `real/real_manifest.json`. Los binarios quedan locales; sus hashes estan
+  en el manifiesto.
+- Symlinks de tablas/ejecutables/`met_em` y `namelist.output` eliminados.
