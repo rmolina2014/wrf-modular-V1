@@ -1,0 +1,302 @@
+{
+  "metodo": {
+    "vecino": "celda mas cercana en lat/lon (distancia euclidiana local)",
+    "interp": "scipy.interpolate.griddata(method='linear'), mismo metodo del PASO5 prod4km",
+    "columnas_HGT": "HGT_<grilla> = valor interpolado; HGT_<grilla>_vecino/_interp explicitos",
+    "deltas": "HGT_modelo - elev_real_m"
+  },
+  "prod4km_copiado_de": "outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/informes/PASO5_alturas_estaciones.csv",
+  "prod4km_csv_sha256": "1c4abf6830cfaa65276ceec2b2db2ea3db459d225fd995150fe450b1cc3449ce",
+  "estaciones_json": "config/estaciones.json",
+  "estaciones_sha256": "df5232ad0d87023c805640bcd4277b8c92e7b5c195598649639f0ef450ba23d5",
+  "grillas": {
+    "tesis15": {
+      "geo_em": "outputs/evidencia_geog/geogrid_lowres/geo_em.d01.nc",
+      "geo_em_sha256": "fd89eec2290089a530e221ae1b1214ea8b4371af3cff1faa2da67bb062d72646",
+      "namelist_wps": "outputs/evidencia_geog/geogrid_lowres/namelist.wps",
+      "namelist_wps_sha256": "842ebb7871d691bfde11651c128bf95b201fdf1cf3d760152b62917b599e56b0",
+      "config": "15 km Mercator geog lowres",
+      "regenerado": false,
+      "attrs": {
+        "MAP_PROJ": 3,
+        "CEN_LAT": -31.50000762939453,
+        "CEN_LON": -68.5,
+        "TRUELAT1": -31.5,
+        "TRUELAT2": 0.0,
+        "STAND_LON": -68.5,
+        "DX": 15000.0,
+        "DY": 15000.0,
+        "HGT_M_shape": [
+          59,
+          79
+        ]
+      },
+      "estaciones": {
+        "INTA_POCITO": {
+          "i_vecino": 38,
+          "j_vecino": 28,
+          "lat_modelo": -31.63482666015625,
+          "lon_modelo": -68.65823364257812,
+          "dist_vecino_m": 7291.449172794071,
+          "hgt_vecino": 940.962158203125,
+          "hgt_interp": 791.922901691729
+        },
+        "ULLUM_EMBALSE": {
+          "i_vecino": 38,
+          "j_vecino": 29,
+          "lat_modelo": -31.50000762939453,
+          "lon_modelo": -68.65823364257812,
+          "dist_vecino_m": 3789.6548626664153,
+          "hgt_vecino": 859.3485107421875,
+          "hgt_interp": 920.2208957686737
+        },
+        "ECOHUMUS": {
+          "i_vecino": 40,
+          "j_vecino": 28,
+          "lat_modelo": -31.63482666015625,
+          "lon_modelo": -68.34176635742188,
+          "dist_vecino_m": 4298.735054815789,
+          "hgt_vecino": 562.9273681640625,
+          "hgt_interp": 617.361650016711
+        },
+        "PUNTA_NEGRA": {
+          "i_vecino": 37,
+          "j_vecino": 29,
+          "lat_modelo": -31.50000762939453,
+          "lon_modelo": -68.81647491455078,
+          "dist_vecino_m": 2137.7881044200917,
+          "hgt_vecino": 1276.3953857421875,
+          "hgt_interp": 1319.889232122752
+        },
+        "INTA_SANMARTIN": {
+          "i_vecino": 41,
+          "j_vecino": 29,
+          "lat_modelo": -31.50000762939453,
+          "lon_modelo": -68.18352508544922,
+          "dist_vecino_m": 6302.437195782067,
+          "hgt_vecino": 1105.9420166015625,
+          "hgt_interp": 889.2313908445972
+        },
+        "VALLE_FERTIL": {
+          "i_vecino": 46,
+          "j_vecino": 35,
+          "lat_modelo": -30.68700408935547,
+          "lon_modelo": -67.39234161376953,
+          "dist_vecino_m": 9383.134130019129,
+          "hgt_vecino": 868.039794921875,
+          "hgt_interp": 1049.5719952832872
+        },
+        "CUESTA_Viento": {
+          "i_vecino": 35,
+          "j_vecino": 39,
+          "lat_modelo": -30.141155242919922,
+          "lon_modelo": -69.13294982910156,
+          "dist_vecino_m": 7907.499820791695,
+          "hgt_vecino": 1821.685546875,
+          "hgt_interp": 1934.0907205564927
+        },
+        "CARACOLES": {
+          "i_vecino": 36,
+          "j_vecino": 29,
+          "lat_modelo": -31.50000762939453,
+          "lon_modelo": -68.9747085571289,
+          "dist_vecino_m": 2370.6961831277895,
+          "hgt_vecino": 1859.1629638671875,
+          "hgt_interp": 1987.2770358454877
+        }
+      }
+    },
+    "op15km": {
+      "geo_em": "wps_sanjuan/geo_em.d01.nc",
+      "geo_em_sha256": "ed702f7d198244e4774b68d38711a2fc0de2065b63b8acddc2e8f6964e64e022",
+      "namelist_wps": "wps_sanjuan/namelist.wps",
+      "namelist_wps_sha256": "54716cbfeea919ed47c0308fe40af032d4227e5cbd4dee63c627e771d0c1e8ed",
+      "config": "15 km Lambert -31.53/-68.53 geog default",
+      "regenerado": false,
+      "attrs": {
+        "MAP_PROJ": 1,
+        "CEN_LAT": -31.529998779296875,
+        "CEN_LON": -68.52999877929688,
+        "TRUELAT1": -31.530000686645508,
+        "TRUELAT2": -31.530000686645508,
+        "STAND_LON": -68.52999877929688,
+        "DX": 15000.0,
+        "DY": 15000.0,
+        "HGT_M_shape": [
+          59,
+          79
+        ]
+      },
+      "estaciones": {
+        "INTA_POCITO": {
+          "i_vecino": 39,
+          "j_vecino": 28,
+          "lat_modelo": -31.66490936279297,
+          "lon_modelo": -68.52999877929688,
+          "dist_vecino_m": 5310.3360642208345,
+          "hgt_vecino": 662.6155395507812,
+          "hgt_interp": 783.244304446058
+        },
+        "ULLUM_EMBALSE": {
+          "i_vecino": 38,
+          "j_vecino": 29,
+          "lat_modelo": -31.529895782470703,
+          "lon_modelo": -68.68829345703125,
+          "dist_vecino_m": 7319.211788415936,
+          "hgt_vecino": 909.3225708007812,
+          "hgt_interp": 931.7108582932836
+        },
+        "ECOHUMUS": {
+          "i_vecino": 40,
+          "j_vecino": 28,
+          "lat_modelo": -31.664813995361328,
+          "lon_modelo": -68.37149047851562,
+          "dist_vecino_m": 6964.139136456793,
+          "hgt_vecino": 540.1102905273438,
+          "hgt_interp": 661.4232767687265
+        },
+        "PUNTA_NEGRA": {
+          "i_vecino": 37,
+          "j_vecino": 29,
+          "lat_modelo": -31.52960205078125,
+          "lon_modelo": -68.8465576171875,
+          "dist_vecino_m": 2961.03183147979,
+          "hgt_vecino": 1382.752197265625,
+          "hgt_interp": 1305.8999476971426
+        },
+        "INTA_SANMARTIN": {
+          "i_vecino": 41,
+          "j_vecino": 29,
+          "lat_modelo": -31.52960205078125,
+          "lon_modelo": -68.21343994140625,
+          "dist_vecino_m": 4779.704645222423,
+          "hgt_vecino": 969.1160278320312,
+          "hgt_interp": 856.0389688559436
+        },
+        "VALLE_FERTIL": {
+          "i_vecino": 46,
+          "j_vecino": 36,
+          "lat_modelo": -30.580867767333984,
+          "lon_modelo": -67.43310546875,
+          "dist_vecino_m": 6747.708818948764,
+          "hgt_vecino": 868.8773193359375,
+          "hgt_interp": 1003.3982606924526
+        },
+        "CUESTA_Viento": {
+          "i_vecino": 36,
+          "j_vecino": 39,
+          "lat_modelo": -30.180057525634766,
+          "lon_modelo": -68.99810791015625,
+          "dist_vecino_m": 6602.981067871357,
+          "hgt_vecino": 1902.5543212890625,
+          "hgt_interp": 1860.0928037949875
+        },
+        "CARACOLES": {
+          "i_vecino": 36,
+          "j_vecino": 29,
+          "lat_modelo": -31.529117584228516,
+          "lon_modelo": -69.00485229492188,
+          "dist_vecino_m": 2161.65830163038,
+          "hgt_vecino": 2140.98388671875,
+          "hgt_interp": 2033.612220249207
+        }
+      }
+    },
+    "prod4km": {
+      "geo_em": "outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/wps/geo_em.d01.nc",
+      "geo_em_sha256": "33a83127a9e2e45ecf025d19c513fe08adf640f025261c46071adf349e1c8f20",
+      "namelist_wps": "outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/wps/namelist.wps",
+      "namelist_wps_sha256": "b579914c20289aea551807efe9d4439f9175287f5f57ce2b8e72aa2d30351246",
+      "config": "4 km Lambert -31.121/-69.433",
+      "regenerado": false,
+      "attrs": {
+        "MAP_PROJ": 1,
+        "CEN_LAT": -31.12099838256836,
+        "CEN_LON": -69.4329833984375,
+        "TRUELAT1": -31.121000289916992,
+        "TRUELAT2": -31.121000289916992,
+        "STAND_LON": -69.43299865722656,
+        "DX": 4000.0,
+        "DY": 4000.0,
+        "HGT_M_shape": [
+          199,
+          140
+        ]
+      },
+      "estaciones": {
+        "INTA_POCITO": {
+          "i_vecino": 90,
+          "j_vecino": 84,
+          "lat_modelo": -31.65777587890625,
+          "lon_modelo": -68.5665283203125,
+          "dist_vecino_m": 1807.682616691706,
+          "hgt_vecino": 596.4404296875,
+          "hgt_interp": 644.829866245243
+        },
+        "ULLUM_EMBALSE": {
+          "i_vecino": 88,
+          "j_vecino": 89,
+          "lat_modelo": -31.478424072265625,
+          "lon_modelo": -68.65255737304688,
+          "dist_vecino_m": 1870.4174762476687,
+          "hgt_vecino": 788.7489624023438,
+          "hgt_interp": 790.0700303194208
+        },
+        "ECOHUMUS": {
+          "i_vecino": 96,
+          "j_vecino": 84,
+          "lat_modelo": -31.65584945678711,
+          "lon_modelo": -68.31295776367188,
+          "dist_vecino_m": 1388.2963994735196,
+          "hgt_vecino": 576.632568359375,
+          "hgt_interp": 576.975540844968
+        },
+        "PUNTA_NEGRA": {
+          "i_vecino": 84,
+          "j_vecino": 88,
+          "lat_modelo": -31.51531219482422,
+          "lon_modelo": -68.821044921875,
+          "dist_vecino_m": 530.565431415452,
+          "hgt_vecino": 1038.949951171875,
+          "hgt_interp": 1043.4509101837102
+        },
+        "INTA_SANMARTIN": {
+          "i_vecino": 98,
+          "j_vecino": 88,
+          "lat_modelo": -31.51119613647461,
+          "lon_modelo": -68.23025512695312,
+          "dist_vecino_m": 2248.079575170116,
+          "hgt_vecino": 889.2435302734375,
+          "hgt_interp": 720.7170424748251
+        },
+        "VALLE_FERTIL": {
+          "i_vecino": 116,
+          "j_vecino": 112,
+          "lat_modelo": -30.63861083984375,
+          "lon_modelo": -67.488525390625,
+          "dist_vecino_m": 2025.9610127219332,
+          "hgt_vecino": 981.3301391601562,
+          "hgt_interp": 926.7448181649183
+        },
+        "CUESTA_Viento": {
+          "i_vecino": 78,
+          "j_vecino": 125,
+          "lat_modelo": -30.18511199951172,
+          "lon_modelo": -69.07925415039062,
+          "dist_vecino_m": 1223.3904630375669,
+          "hgt_vecino": 1557.6400146484375,
+          "hgt_interp": 1576.437547447212
+        },
+        "CARACOLES": {
+          "i_vecino": 80,
+          "j_vecino": 88,
+          "lat_modelo": -31.515995025634766,
+          "lon_modelo": -68.9898681640625,
+          "dist_vecino_m": 589.6069626214451,
+          "hgt_vecino": 1314.62255859375,
+          "hgt_interp": 1328.1709230247761
+        }
+      }
+    }
+  }
+}

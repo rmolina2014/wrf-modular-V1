@@ -211,3 +211,28 @@ la tabla no aísla la causa.
 - `9cee00d4390db05e8f467e491b24864082e85b1a`: WPS 4 km, real y piloto.
 - `fb3534ab83cf91786075283d1a53621730857791`: control completado y manifiesto.
 - Commit de resultados finales: el HEAD de `prod4km` que contiene esta bitacora.
+
+## PASO 5 ampliado - alturas en 3 grillas
+
+Se completo `documentacion_proyecto/alturas_estaciones_3grillas.csv` con las 8
+estaciones. No se regenero ninguna `geo_em`: las tres ya existian y sus atributos
+coinciden con las corridas.
+
+| grilla | geo_em | MAP_PROJ | CEN_LAT | CEN_LON | DX (m) | HGT_M | configuracion |
+|---|---|---:|---:|---:|---:|---|---|
+| tesis15 | `outputs/evidencia_geog/geogrid_lowres/geo_em.d01.nc` | 3 (Mercator) | -31.500008 | -68.5 | 15000 | 59x79 | 15 km Mercator, geog lowres |
+| op15km | `wps_sanjuan/geo_em.d01.nc` | 1 (Lambert) | -31.529999 | -68.53 | 15000 | 59x79 | 15 km Lambert -31.53/-68.53, geog default |
+| prod4km | `outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/wps/geo_em.d01.nc` | 1 (Lambert) | -31.120998 | -69.43298 | 4000 | 199x140 | 4 km Lambert -31.121/-69.433 |
+
+- tesis15: namelist `outputs/evidencia_geog/geogrid_lowres/namelist.wps`
+  (coincide con `outputs/evidencia_operativo/repo_tesis/namelist.wps`);
+  verificado contra el `wrfout` oficial del Caso 3 (MAP_PROJ=3,
+  CEN_LAT=-31.500008, DX=15000).
+- op15km: namelist `wps_sanjuan/namelist.wps`; verificado contra el `wrfout` de
+  `caso3_frentefrio__op15km` (MAP_PROJ=1, CEN_LAT=-31.529999, DX=15000).
+- prod4km: `wps/namelist.wps` y `geo_em.d01.nc` del Caso 1; HGT vecino/interp
+  copiados del CSV existente, sin recalcular.
+- Metodo: vecino = celda mas cercana; interp = `griddata(method="linear")`,
+  el mismo del PASO5 prod4km. `HGT_<grilla>` es el valor interpolado; las
+  columnas `_vecino`/`_interp` quedan explicitas. Deltas = HGT_modelo - elev_real_m.
+- Metadata y sha256: `documentacion_proyecto/alturas_estaciones_3grillas_meta.json`.
