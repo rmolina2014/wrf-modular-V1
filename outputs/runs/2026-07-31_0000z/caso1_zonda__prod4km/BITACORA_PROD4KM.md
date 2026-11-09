@@ -296,3 +296,24 @@ misma configuracion 4 km del Caso 1. No se corrio nada aun.
   `real/real_manifest.json`. Los binarios quedan locales; sus hashes estan
   en el manifiesto.
 - Symlinks de tablas/ejecutables/`met_em` y `namelist.output` eliminados.
+
+## Caso 3 - control OK
+
+- `control`: `wrf.exe` rc=0; `wrf: SUCCESS COMPLETE WRF`; 8640 pasos;
+  37 `wrfout_d01_*` (un archivo por hora, `2026-05-15_12` a
+  `2026-05-17_00`).
+- Inicio `2026-11-08 20:28:55`, fin `2026-11-09 00:04:07`;
+  `elapsed_wall_s=12911.43` (3.59 h); `user_s=12428.62`,
+  `system_s=481.14`; pico RSS `3,790,320 kB` (~3.79 GB);
+  `OMP_NUM_THREADS=1`, 1 thread.
+- Monitor: `resultado=completado`, 8640/8640 pasos, media 1.4701 s/paso,
+  primer paso 6.89661 s, proyeccion 3.528 h; `monitor_control.json`.
+- Piloto de costo: primeros 100 pasos, media 1.4282 s/paso (sin el primero),
+  proyeccion 3.428 h < 6 h; `pilot_projection_control.json`.
+- El primer lanzamiento arranco con 10 threads por el default de OpenMP; se
+  detuvo antes de producir timing y se relanzo con `OMP_NUM_THREADS=1`. La
+  corrida valida y usada para metricas es la de 1 thread.
+- Manifiesto: `control_manifest.json` (namelist sha256
+  `d0335aa4942c1f0a9a161e4396be859d2aca052a42b7af4571cee02e3367fbd6`,
+  37 wrfout, exit 0, tiempos/RSS). Symlinks de tablas/ejecutables/inputs y
+  `namelist.output` eliminados; `wrfout` quedan locales.
