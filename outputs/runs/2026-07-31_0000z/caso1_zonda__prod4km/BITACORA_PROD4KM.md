@@ -339,3 +339,66 @@ misma configuracion 4 km del Caso 1. No se corrio nada aun.
   `3166ac181e09bcfe751f04c2fc748d3b030f7ca99d961a5684238c1774740c26`;
   37 wrfout, exit 0, tiempos/RSS). Symlinks de tablas/ejecutables/inputs y
   `namelist.output` eliminados; `wrfout` quedan locales.
+
+## Caso 3 - validacion +1..+24 h OK
+
+Ejecutada con `/home/pgich/anaconda3/bin/python3 src/validacion/valida_wrf_cli.py`
+(24 tiempos, `--t0 2026-05-16T00:00:00 --horizon-h 24`,
+`--obs-json data/raw/obs_flat_20260516.json`).
+`returncode=0`; `errores_largo.csv` tiene 576 filas (24 horizontes, 6
+estaciones, 4 variables). Salidas: `errores_largo.csv`,
+`metricas_por_horizonte.csv`, `metricas_por_tramo.csv`,
+`informe_evolucion_nudging.txt`, `tabla_evolutiva.json`,
+`informes/validacion_stdout.log`.
+
+RMSE global +1..+24 h (prod4km):
+
+| variable | n | control | nudged | mejora % | sesgo control |
+|---|---:|---:|---:|---:|---:|
+| t2 | 144 | 1.760 | 1.681 | +4.49 | +0.408 K |
+| psfc | 144 | 21.190 | 21.175 | +0.07 | -17.769 hPa |
+| rh | 144 | 12.860 | 12.077 | +6.09 | -8.043 % |
+| wspd | 144 | 6.034 | 6.005 | +0.47 | +5.145 m/s |
+
+RMSE por variable y tramo (control / nudged / persistencia):
+
+| variable | tramo | n | control | nudged | persistencia |
+|---|---|---:|---:|---:|---:|
+| t2 | +1-6h | 36 | 1.760 | 1.622 | 2.429 |
+| t2 | +7-12h | 36 | 2.419 | 2.304 | 2.866 |
+| t2 | +13-18h | 36 | 1.382 | 1.348 | 4.814 |
+| t2 | +19-24h | 36 | 1.239 | 1.244 | 6.857 |
+| rh | +1-6h | 36 | 14.665 | 12.788 | 10.415 |
+| rh | +7-12h | 36 | 14.318 | 13.437 | 15.517 |
+| rh | +13-18h | 36 | 13.228 | 13.072 | 20.421 |
+| rh | +19-24h | 36 | 8.154 | 8.273 | 20.940 |
+| psfc | +1-6h | 36 | 20.313 | 20.267 | 1.275 |
+| psfc | +7-12h | 36 | 20.693 | 20.686 | 3.436 |
+| psfc | +13-18h | 36 | 21.956 | 21.948 | 7.912 |
+| psfc | +19-24h | 36 | 21.754 | 21.754 | 9.949 |
+| wspd | +1-6h | 36 | 4.308 | 4.077 | 0.641 |
+| wspd | +7-12h | 36 | 3.735 | 3.819 | 0.849 |
+| wspd | +13-18h | 36 | 7.370 | 7.377 | 1.935 |
+| wspd | +19-24h | 36 | 7.669 | 7.656 | 1.039 |
+
+## Caso 3 - comparacion con op15km y tesis
+
+RMSE global +1..+24 h (control / nudged):
+
+| variable | prod4km | op15km | tesis15 |
+|---|---:|---:|---:|
+| t2 | 1.760 / 1.681 | 4.080 / 4.019 | 3.477 / 3.373 |
+| psfc | 21.190 / 21.175 | 70.319 / 70.304 | 50.628 / 50.632 |
+| rh | 12.860 / 12.077 | 15.746 / 15.808 | 18.256 / 16.851 |
+| wspd | 6.034 / 6.005 | 3.373 / 3.324 | 3.826 / 3.830 |
+
+- Detalle por tramo: `informes/comparacion_op15km_prod4km.csv` y
+  `informes/comparacion_tesis_prod4km.csv`.
+- prod4km tiene menor RMSE de T2 y PSFC que op15km y tesis en todos los
+  tramos. En RH, nudged queda por debajo de op15km en los 4 tramos; control
+  queda por debajo en +13-18 y +19-24, y por encima en +1-6 y +7-12. En
+  viento queda por encima de ambas (delta global +2.66 m/s vs op15km y
+  +2.21 m/s vs tesis en control).
+- El sesgo de PSFC de prod4km es -17.77 hPa, menor en magnitud que op15km
+  (-54.27 hPa) y tesis (-40.49 hPa).
+- No se interpretan causas; solo se reportan los valores.
