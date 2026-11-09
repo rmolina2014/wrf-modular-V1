@@ -317,3 +317,25 @@ misma configuracion 4 km del Caso 1. No se corrio nada aun.
   `d0335aa4942c1f0a9a161e4396be859d2aca052a42b7af4571cee02e3367fbd6`,
   37 wrfout, exit 0, tiempos/RSS). Symlinks de tablas/ejecutables/inputs y
   `namelist.output` eliminados; `wrfout` quedan locales.
+
+## Caso 3 - nudged OK
+
+- `nudged`: `wrf.exe` rc=0; `wrf: SUCCESS COMPLETE WRF`; 8640 pasos;
+  37 `wrfout_d01_*` (un archivo por hora, `2026-05-15_12` a
+  `2026-05-17_00`).
+- Inicio `2026-11-09 08:42:39`, fin `2026-11-09 12:18:42`;
+  `elapsed_wall_s=12962.98` (3.60 h); `user_s=12505.63`,
+  `system_s=455.56`; pico RSS `3,837,920 kB` (~3.84 GB);
+  `OMP_NUM_THREADS=1`, 1 thread.
+- Monitor: `resultado=completado`, 8640/8640 pasos, media 1.4772 s/paso,
+  primer paso 6.21894 s, proyeccion 3.545 h; `monitor_nudged.json`.
+- Piloto de costo: primeros 100 pasos, media 1.2729 s/paso (sin el primero),
+  proyeccion 3.055 h < 6 h; `pilot_projection_nudged.json`.
+- Nudging: 2881 llamadas `IN4DOB`; ultima en `KTAU=2880`, `XTIME=720.00`,
+  `NSTA=12`; no hay llamadas con `XTIME>720` (fin de `fdda_end`).
+- Manifiesto: `nudged_manifest.json` (namelist sha256
+  `fc49ae989c8367ff4354bae98f1da09726ae3b8a8b6e8b1818eba1ab698c6b75`;
+  `OBS_DOMAIN101` sha256
+  `3166ac181e09bcfe751f04c2fc748d3b030f7ca99d961a5684238c1774740c26`;
+  37 wrfout, exit 0, tiempos/RSS). Symlinks de tablas/ejecutables/inputs y
+  `namelist.output` eliminados; `wrfout` quedan locales.
