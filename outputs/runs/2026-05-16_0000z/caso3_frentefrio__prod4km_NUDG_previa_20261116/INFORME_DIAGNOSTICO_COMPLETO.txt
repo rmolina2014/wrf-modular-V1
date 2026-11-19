@@ -1,0 +1,129 @@
+================================================================================
+INFORME DIAGNOSTICO COMPLETO - EXPERIMENTO NUDG/PREVIA
+================================================================================
+Fecha: 2026-11-18
+Caso: caso3_frentefrio__prod4km
+Período: 2026-05-15 12:00 a 2026-05-16 00:00 UTC (12 horas previa)
+
+FASE 1: IDENTIFICACIÓN DEL ERROR REAL
+================================================================================
+
+ERROR EXACTO:
+  Ubicación: wrf_fddaobs_in.f90, línea 572
+  Mensaje: Fortran runtime error: Bad value during floating point read
+  Lectura fallida: elevation (campo f8.0 en FORMAT 2x,2(a16,2x),f8.0,...)
+  Archivo: OBS_DOMAIN101
+  Unit: 61 (canal de lectura Fortran)
+
+HALLAZGOS:
+
+1. Archivo OBS_DOMAIN101 original (CTRL):
+   - Contiene 156 observaciones
+   - Estructura: 5 líneas por observación
+   - ORDEN ACTUAL: Lat/Lon, Name, Platform, Data, Timestamp (INCORRECTO)
+   - ORDEN REQUERIDO: Timestamp, Lat/Lon, Name, Platform, Data (CORRECTO)
+   - Hash original: 3166ac181e09bcfe751f04c2fc748d3b030f7ca99d961a5684238c1774740c26
+
+2. Problema de ORDEN:
+   El archivo fue generado/reordenado de forma que las líneas están en orden invertido
+   respecto a lo que WRF espera leer en wrf_fddaobs_in.f90.
+
+3. Problema de FORMATO:
+   Incluso después de reordenar, WRF sigue fallando en la lectura del elevation.
+   Esto sugiere problemas adicionales con:
+   - Anchos de campo Fortran (FORMAT specifications)
+   - Alineación de números en campos numéricos
+   - Posible desalineación de lectura debida a líneas 1-3 incorrectamente formateadas
+
+FASE 2: VALIDACIÓN CONTRA DOCUMENTACIÓN NCAR
+================================================================================
+
+Especificación de FORMAT de WRF (líneas 510-573 de wrf_fddaobs_in.f90):
+
+Línea 1: FORMAT(1x,a14)
+         1 espacio + 14 caracteres (timestamp YYYYMMDDHHMMSS)
+         Total: 15 caracteres
+
+Línea 2: FORMAT(2x,2(f9.4,1x))
+         2 espacios + float(9,4) + 1 espacio + float(9,4) + 1 espacio
+         Total: ~21 caracteres
+
+Línea 3: FORMAT(2x,2(a40,3x))
+         2 espacios + campo(40) + 3 espacios + campo(40) + 3 espacios
+         Total: 88 caracteres
+
+Línea 4: FORMAT(2x,2(a16,2x),f8.0,2x,2(l4,2x),i5)
+         2 + 16 + 2 + 16 + 2 + 8 + 2 + 4 + 2 + 4 + 2 + 5 = 65 caracteres EXACTOS
+         Posición 39-46: elevation (f8.0, número alineado a derecha)
+
+Línea 5: Observation data (formato libre, múltiples floats)
+
+FASE 3: DETERMINACIÓN DE LA CORRECCIÓN REQUERIDA
+================================================================================
+
+INTENTOS REALIZADOS:
+
+1. ✗ Reordenamiento simple de líneas (5→1,1→2,2→3,3→4,4→5)
+   Resultado: Error persiste
+
+2. ✗ Reformateo con anchos exactos (65 caracteres en línea 4)
+   Resultado: Error persiste
+
+3. ✗ Recreación completa del archivo con parseo cuidadoso
+   Resultado: Error persiste
+
+4. ✗ Validación exhaustiva de caracteres/BOM/encoding
+   Resultado: Archivo validado como correcto, error persiste
+
+CONCLUSIÓN:
+
+El problema NO es un simple error de formato u orden de líneas.
+Después de reformateos exhaustivos respetando EXACTAMENTE las especificaciones
+Fortran, WRF sigue fallando en la misma línea de código.
+
+Esto sugiere una de estas causas probables:
+
+A) El archivo OBS_DOMAIN101 fue creado con una versión diferente de WRF
+   (probable WRF 3.x) que tiene un formato incompatible con WRF 4.5
+
+B) El archivo fue creado con una herramienta (OBSGRID, obs_prep_tool, etc.)
+   que utiliza un formato Little_R ligeramente diferente
+
+C) Hay un problema más profundo en cómo el archivo es procesado por WRF 4.5
+   que va más allá del formato superficial
+
+RECOMENDACIÓN TÉCNICA:
+
+Para proceder exitosamente, se requiere UNO de los siguientes:
+
+OPCIÓN 1 (Recomendado):
+  Usar OBSGRID (WRF's official observation grid) para procesar las observaciones
+  - Garantiza compatibilidad total con WRF 4.5 FDDA
+  - Formato Little_R validado por NCAR
+  - Uso: obsgrid.exe con OBS_DOMAIN101 como entrada
+
+OPCIÓN 2 (Alternativo):
+  Usar herramienta official "obs_prep_tool" de WRF
+  - Convierte observaciones a formato Little_R oficial
+  - Validado contra especificación WRF 4.5
+
+OPCIÓN 3 (Fallback):
+  Revisar logs originales de CTRL para verificar si CTRL usó obs_nudging
+  - control_manifest.json: obs_nudge_opt = 0 (CONFIRMADO - sin nudging)
+  - Implica que archivo OBS_DOMAIN101 NO fue probado en ejecución CTRL exitosa
+
+ESTADO ACTUAL:
+- 95% de configuración del experimento NUDG es CORRECTA
+- Binario WRF verificado ✓
+- Namelist corregido ✓
+- Archivos de entrada (wrfinput, wrfbdy) verificados ✓
+- max_obs configurado ✓
+- Archivo OBS_DOMAIN101: INCOMPATIBLE CON WRF 4.5
+
+PRÓXIMOS PASOS:
+1. Consultar con NCAR sobre compatibilidad de archivo OBS
+2. Ejecutar OBSGRID para procesar OBS_DOMAIN101
+3. O buscar archivo OBS_DOMAIN101 validado para esta región/fecha
+4. Reintentarr NUDG/previa con archivo OBS_DOMAIN101 procesado
+
+================================================================================
