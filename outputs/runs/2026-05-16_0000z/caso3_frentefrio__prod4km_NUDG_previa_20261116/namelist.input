@@ -81,7 +81,7 @@
 
  &fdda
  max_obs                             = 1000,
- grid_fdda                           = 0,
+ grid_fdda                           = 1,
  obs_nudge_opt                       = 1,
  obs_nudge_wind                      = 1,
  obs_nudge_temp                      = 1,
