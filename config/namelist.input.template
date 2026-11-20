@@ -21,7 +21,8 @@
  io_form_restart                     = 2
  io_form_input                       = 2
  io_form_boundary                    = 2
- auxinput11_interval_m               = 30,
+ auxinput11_interval_s               = 90,
+ auxinput11_end_h                    = 12,
  auxinput11_inname                   = "OBS_DOMAIN101",
  /
 
@@ -86,6 +87,8 @@
  obs_ionf                            = 1,
  obs_npfi                            = 30,
  obs_ipf_in4dob                      = .true.,
+ obs_ipf_errob                       = .true.,
+ obs_ipf_nudob                       = .true.,
  max_obs                             = 10000,
  obs_prt_max                         = 100,
   fdda_end                            = 720,

@@ -80,6 +80,54 @@ class NamelistManager:
         pos = m.start(2)
         return c[:pos] + ins + c[pos:]
 
+    def _poner_en_bloque(self, c: str, bloque: str, param: str, val_str: str) -> str:
+        """Reemplaza `param` si existe (línea completa) o lo agrega al final del `&bloque`."""
+        patron = rf"^([ \t]*{param}[ \t]*=[ \t]*)[^,;\n]+"
+        if re.search(patron, c, flags=re.MULTILINE):
+            return re.sub(patron, rf"\g<1>{val_str}", c, count=1, flags=re.MULTILINE)
+        m = re.search(rf"(&{bloque}\b.*?)(\n[ \t]*/[ \t]*(?:\n|$))", c, flags=re.DOTALL)
+        if not m:
+            logger.warning(f"No se encontró el bloque &{bloque}; no se agregó {param}")
+            return c
+        ins = f"\n {param:<35} = {val_str},"
+        return c[:m.end(1)] + ins + c[m.end(1):]
+
+    def configurar_lectura_obs(self, end_h: int, interval_s: Optional[int] = None) -> "NamelistManager":
+        """Configura la lectura del archivo OBS_DOMAIN101 (stream auxinput11) en &time_control.
+
+        - `auxinput11_end_h` debe cubrir toda la ventana de nudging. Si no se declara,
+          WRF usa su valor por defecto (6 h según la guía de namelist) y deja de leer
+          observaciones antes de que termine una ventana de asimilación de 12 h.
+        - `auxinput11_interval_s` debe tener la misma frecuencia que `obs_ionf` o mayor
+          (guía de WRF): por defecto `obs_ionf * time_step` segundos. Se elimina
+          `auxinput11_interval_m` para no declarar dos intervalos a la vez.
+        """
+        c = self.contenido
+        m_dt = re.search(r"^[ \t]*time_step[ \t]*=[ \t]*(\d+)", c, flags=re.MULTILINE)
+        m_ionf = re.search(r"^[ \t]*obs_ionf[ \t]*=[ \t]*(\d+)", c, flags=re.MULTILINE)
+        dt = int(m_dt.group(1)) if m_dt else None
+        ionf = int(m_ionf.group(1)) if m_ionf else 1
+        if interval_s is None:
+            interval_s = ionf * dt if dt else 180
+        # quitar auxinput11_interval y auxinput11_interval_m (minutos) para evitar conflicto
+        c = re.sub(r"^[ \t]*auxinput11_interval(?:_m)?[ \t]*=[^\n]*\n", "", c, flags=re.MULTILINE)
+        c = self._poner_en_bloque(c, "time_control", "auxinput11_interval_s", str(int(interval_s)))
+        c = self._poner_en_bloque(c, "time_control", "auxinput11_end_h", str(int(end_h)))
+        self.contenido = c
+        return self
+
+    def configurar_diagnosticos(self) -> "NamelistManager":
+        """Activa los diagnósticos de obs-nudging (IN4DOB, ERROB, NUDOB) en rsl.out.*.
+
+        Sin estos mensajes no se puede comprobar que las observaciones se leen, que
+        se calculan errores y que se aplican tendencias, ni cuándo se apaga el nudging.
+        """
+        c = self.contenido
+        for p in ("obs_ipf_in4dob", "obs_ipf_errob", "obs_ipf_nudob"):
+            c = self._poner_en_bloque(c, "fdda", p, ".true.")
+        self.contenido = c
+        return self
+
     def configurar_fdda(
         self,
         obs_nudge_opt: int = 1,

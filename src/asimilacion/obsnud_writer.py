@@ -87,7 +87,7 @@ class ObsNudWriter:
                 t_k = float(t_c) + 273.15
                 t_qc = 0.0
             else:
-                t_k = -999999.0
+                t_k = -888888.0
                 t_qc = -888888.0
 
             rh_val = obs.get("humedad")
@@ -95,7 +95,7 @@ class ObsNudWriter:
                 rh = float(rh_val)
                 rh_qc = 0.0
             else:
-                rh = -999999.0
+                rh = -888888.0
                 rh_qc = -888888.0
 
             p_val = obs.get("presion_absoluta")

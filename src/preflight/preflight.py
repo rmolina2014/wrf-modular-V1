@@ -488,6 +488,61 @@ class ChequeosObservaciones:
             informe.agregar("2.2.8", "Separación temporal asimilación/pronóstico",
                             Estado.OK, detalle)
 
+    # 2.2.9 Lectura de OBS_DOMAIN101 (stream auxinput11)
+    def check_2229_lectura_observaciones(self, informe: InformePreflight) -> None:
+        """Verifica que WRF lea observaciones durante toda la ventana de nudging.
+
+        (a) `auxinput11_end_h` debe estar declarado y cubrir `fdda_end`. Si falta, WRF usa
+            su valor por defecto (6 h según la guía de namelist) y las observaciones de
+            la segunda mitad de una ventana de 12 h no se leen.
+        (b) `auxinput11_interval_s` (o `_m`) debe ser igual o más frecuente que
+            `obs_ionf * time_step` (guía de WRF para obs-nudging).
+        Solo aplica si el namelist tiene `obs_nudge_opt = 1`.
+        """
+        titulo = "Lectura de observaciones (auxinput11)"
+        opt = _leer_namelist_valor(self.namelist, "obs_nudge_opt")
+        if opt is None or int(opt) != 1:
+            informe.agregar("2.2.9", titulo, Estado.OK,
+                            "obs_nudge_opt != 1 o no declarado en el namelist: no aplica")
+            return
+
+        bloqueantes: List[str] = []
+        advertencias: List[str] = []
+
+        end_h = _leer_namelist_valor(self.namelist, "auxinput11_end_h")
+        fdda_end = _leer_namelist_valor(self.namelist, "fdda_end")
+        if end_h is None:
+            bloqueantes.append(
+                "auxinput11_end_h no declarado: WRF usaría su valor por defecto (6 h) y dejaría "
+                "de leer observaciones antes del fin de la ventana de nudging")
+        elif fdda_end is not None and end_h * 60 + 1e-6 < fdda_end:
+            bloqueantes.append(
+                f"auxinput11_end_h={end_h:.0f} h < fdda_end={fdda_end:.0f} min: "
+                "las observaciones se dejan de leer antes de que termine el nudging")
+
+        dt = _leer_namelist_valor(self.namelist, "time_step")
+        ionf = _leer_namelist_valor(self.namelist, "obs_ionf") or 1.0
+        intervalo_s = _leer_namelist_valor(self.namelist, "auxinput11_interval_s")
+        if intervalo_s is None:
+            intervalo_m = _leer_namelist_valor(self.namelist, "auxinput11_interval_m")
+            intervalo_s = intervalo_m * 60 if intervalo_m is not None else None
+        if intervalo_s is None:
+            advertencias.append("sin auxinput11_interval_s/_m declarado")
+        elif dt and intervalo_s > ionf * dt + 1e-6:
+            advertencias.append(
+                f"intervalo de lectura {intervalo_s:.0f} s > obs_ionf*time_step = {ionf * dt:.0f} s "
+                "(la guía pide igual o más frecuente)")
+
+        if bloqueantes:
+            informe.agregar("2.2.9", titulo, Estado.BLOQUEANTE, " ; ".join(bloqueantes + advertencias))
+        elif advertencias:
+            informe.agregar("2.2.9", titulo, Estado.ADVERTENCIA, " ; ".join(advertencias))
+        else:
+            informe.agregar("2.2.9", titulo, Estado.OK,
+                            f"auxinput11_end_h={end_h:.0f} h cubre fdda_end="
+                            f"{(fdda_end if fdda_end is not None else float('nan')):.0f} min; "
+                            f"intervalo={intervalo_s:.0f} s")
+
 
 class PreflightRunner:
     """Orquesta los chequeos de secciones activas y devuelve el informe."""
@@ -530,4 +585,5 @@ def correr_preflight_observaciones(
     runner.registrar(chequeos.check_2226_cobertura)
     runner.registrar(chequeos.check_2227_huso_horario)
     runner.registrar(chequeos.check_2228_separacion_temporal)
+    runner.registrar(chequeos.check_2229_lectura_observaciones)
     return runner.correr(informe)

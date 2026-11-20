@@ -27,6 +27,7 @@ import argparse
 import hashlib
 import json
 import logging
+import math
 import os
 import re
 import shutil
@@ -208,9 +209,15 @@ def preparar_namelist(namelist_src, obs_nudge_opt, output_path, start_dt=None,
     mgr.contenido = re.sub(r'fdda_end\s*=\s*\d+', f'fdda_end = {_fdda_min}', mgr.contenido)
     mgr.contenido = re.sub(r'gfdda_end_h\s*=\s*\d+', f'gfdda_end_h = {run_hours}', mgr.contenido)
     mgr.configurar_fdda(obs_nudge_opt=obs_nudge_opt, **kwargs)
+    # Lectura de OBS_DOMAIN101: auxinput11_end_h debe cubrir toda la ventana de nudging
+    # (si no, WRF usa 6 h por defecto) e intervalo coherente con obs_ionf*time_step.
+    # Se aplica igual a nudged y control para que los namelists solo difieran en nudging.
+    _end_h = int(math.ceil(_fdda_min / 60.0))
+    mgr.configurar_lectura_obs(end_h=_end_h)
+    mgr.configurar_diagnosticos()
     mgr.guardar(output_path)
     logger.info(f"Namelist preparado: {output_path} (obs_nudge_opt={obs_nudge_opt}, "
-                f"run_hours={run_hours}, fdda_end={_fdda_min})")
+                f"run_hours={run_hours}, fdda_end={_fdda_min}, auxinput11_end_h={_end_h})")
     return Path(output_path)
 
 
