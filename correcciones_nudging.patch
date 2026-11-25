@@ -1,0 +1,331 @@
+diff --git a/chequeos_previso_ejecucionWRF.md b/chequeos_previso_ejecucionWRF.md
+index 133bd21..3e244d6 100644
+--- a/chequeos_previso_ejecucionWRF.md
++++ b/chequeos_previso_ejecucionWRF.md
+@@ -35,6 +35,7 @@ Si cualquier chequeo bloqueante falla, el pipeline debe **detenerse sin ejecutar
+ | 2.2.4 | Timestamps de las observaciones | Verificar que no existan desfases artificiales (p. ej. +1 segundo por estación) y que el formato de fecha sea el estándar de WRF | Timestamps en el formato e intervalo reales de las observaciones (p. ej. cada 5 min), sin offsets sintéticos | Bloqueante: abortar — motivado por el bug de `_desfase_por_estacion` (bug crítico corregido en `obsnud_writer.py`, `sens_coef0001`) |
+ | 2.2.5 | Cantidad de observaciones vs. `max_obs` | Comparar el número de registros en `OBS_DOMAIN101` contra el valor de `max_obs` del namelist | `max_obs > 0` y `max_obs >= n_registros` | Bloqueante: abortar — motivado por el caso `max_obs=0` (default) que dejaba `NIOBF=0` y no leía ninguna observación (12/08/2026) |
+ | 2.2.6 | Cobertura temporal de las observaciones | Verificar que existan observaciones distribuidas a lo largo de toda la ventana de simulación (no solo al inicio) | Al menos N observaciones por cada tercio del período simulado (umbral configurable) | No bloqueante, advertencia — para poder interpretar correctamente por qué el nudging no actúa en cierto tramo |
++| 2.2.9 | Lectura de `OBS_DOMAIN101` (auxinput11) | Leer `auxinput11_end_h`, `fdda_end`, `obs_ionf`, `time_step` y `auxinput11_interval_s/_m` del namelist (solo si `obs_nudge_opt=1`) | `auxinput11_end_h*60 >= fdda_end` y intervalo de lectura <= `obs_ionf*time_step` | Bloqueante si falta `auxinput11_end_h` o no cubre `fdda_end` (WRF usa 6 h por defecto y dejaría de leer observaciones); advertencia si el intervalo es mayor que `obs_ionf*time_step` |
+
+ ### 2.3 Namelist y configuración numérica
+
+diff --git a/config/namelist.input.template b/config/namelist.input.template
+index ed8bdc1..9aacf8b 100644
+--- a/config/namelist.input.template
++++ b/config/namelist.input.template
+@@ -21,7 +21,8 @@
+  io_form_restart                     = 2
+  io_form_input                       = 2
+  io_form_boundary                    = 2
+- auxinput11_interval_m               = 30,
++ auxinput11_interval_s               = 90,
++ auxinput11_end_h                    = 12,
+  auxinput11_inname                   = "OBS_DOMAIN101",
+  /
+
+@@ -86,6 +87,8 @@
+  obs_ionf                            = 1,
+  obs_npfi                            = 30,
+  obs_ipf_in4dob                      = .true.,
++ obs_ipf_errob                       = .true.,
++ obs_ipf_nudob                       = .true.,
+  max_obs                             = 10000,
+  obs_prt_max                         = 100,
+   fdda_end                            = 720,
+diff --git a/namelist.input b/namelist.input
+index 1915c51..028ed54 100644
+--- a/namelist.input
++++ b/namelist.input
+@@ -21,7 +21,8 @@
+  io_form_restart                     = 2
+  io_form_input                       = 2
+  io_form_boundary                    = 2
+- auxinput11_interval_m               = 30,
++ auxinput11_interval_s               = 45,
++ auxinput11_end_h                    = 12,
+  auxinput11_inname                   = "OBS_DOMAIN101",
+  /
+
+@@ -94,6 +95,8 @@
+  obs_ionf                            = 1,
+  obs_npfi                            = 30,
+  obs_ipf_in4dob                      = .true.,
++ obs_ipf_errob                       = .true.,
++ obs_ipf_nudob                       = .true.,
+  max_obs                             = 10000,
+  obs_prt_max                         = 100,
+   fdda_end                            = 1440,
+diff --git a/pipeline_wrf.py b/pipeline_wrf.py
+index 6888937..d360fb8 100644
+--- a/pipeline_wrf.py
++++ b/pipeline_wrf.py
+@@ -27,6 +27,7 @@ import argparse
+ import hashlib
+ import json
+ import logging
++import math
+ import os
+ import re
+ import shutil
+@@ -208,9 +209,15 @@ def preparar_namelist(namelist_src, obs_nudge_opt, output_path, start_dt=None,
+     mgr.contenido = re.sub(r'fdda_end\s*=\s*\d+', f'fdda_end = {_fdda_min}', mgr.contenido)
+     mgr.contenido = re.sub(r'gfdda_end_h\s*=\s*\d+', f'gfdda_end_h = {run_hours}', mgr.contenido)
+     mgr.configurar_fdda(obs_nudge_opt=obs_nudge_opt, **kwargs)
++    # Lectura de OBS_DOMAIN101: auxinput11_end_h debe cubrir toda la ventana de nudging
++    # (si no, WRF usa 6 h por defecto) e intervalo coherente con obs_ionf*time_step.
++    # Se aplica igual a nudged y control para que los namelists solo difieran en nudging.
++    _end_h = int(math.ceil(_fdda_min / 60.0))
++    mgr.configurar_lectura_obs(end_h=_end_h)
++    mgr.configurar_diagnosticos()
+     mgr.guardar(output_path)
+     logger.info(f"Namelist preparado: {output_path} (obs_nudge_opt={obs_nudge_opt}, "
+-                f"run_hours={run_hours}, fdda_end={_fdda_min})")
++                f"run_hours={run_hours}, fdda_end={_fdda_min}, auxinput11_end_h={_end_h})")
+     return Path(output_path)
+
+
+diff --git a/src/modelo/namelist_manager.py b/src/modelo/namelist_manager.py
+index 9963adf..9c4b47a 100644
+--- a/src/modelo/namelist_manager.py
++++ b/src/modelo/namelist_manager.py
+@@ -80,6 +80,54 @@ class NamelistManager:
+         pos = m.start(2)
+         return c[:pos] + ins + c[pos:]
+
++    def _poner_en_bloque(self, c: str, bloque: str, param: str, val_str: str) -> str:
++        """Reemplaza `param` si existe (línea completa) o lo agrega al final del `&bloque`."""
++        patron = rf"^([ \t]*{param}[ \t]*=[ \t]*)[^,;\n]+"
++        if re.search(patron, c, flags=re.MULTILINE):
++            return re.sub(patron, rf"\g<1>{val_str}", c, count=1, flags=re.MULTILINE)
++        m = re.search(rf"(&{bloque}\b.*?)(\n[ \t]*/[ \t]*(?:\n|$))", c, flags=re.DOTALL)
++        if not m:
++            logger.warning(f"No se encontró el bloque &{bloque}; no se agregó {param}")
++            return c
++        ins = f"\n {param:<35} = {val_str},"
++        return c[:m.end(1)] + ins + c[m.end(1):]
++
++    def configurar_lectura_obs(self, end_h: int, interval_s: Optional[int] = None) -> "NamelistManager":
++        """Configura la lectura del archivo OBS_DOMAIN101 (stream auxinput11) en &time_control.
++
++        - `auxinput11_end_h` debe cubrir toda la ventana de nudging. Si no se declara,
++          WRF usa su valor por defecto (6 h según la guía de namelist) y deja de leer
++          observaciones antes de que termine una ventana de asimilación de 12 h.
++        - `auxinput11_interval_s` debe tener la misma frecuencia que `obs_ionf` o mayor
++          (guía de WRF): por defecto `obs_ionf * time_step` segundos. Se elimina
++          `auxinput11_interval_m` para no declarar dos intervalos a la vez.
++        """
++        c = self.contenido
++        m_dt = re.search(r"^[ \t]*time_step[ \t]*=[ \t]*(\d+)", c, flags=re.MULTILINE)
++        m_ionf = re.search(r"^[ \t]*obs_ionf[ \t]*=[ \t]*(\d+)", c, flags=re.MULTILINE)
++        dt = int(m_dt.group(1)) if m_dt else None
++        ionf = int(m_ionf.group(1)) if m_ionf else 1
++        if interval_s is None:
++            interval_s = ionf * dt if dt else 180
++        # quitar auxinput11_interval y auxinput11_interval_m (minutos) para evitar conflicto
++        c = re.sub(r"^[ \t]*auxinput11_interval(?:_m)?[ \t]*=[^\n]*\n", "", c, flags=re.MULTILINE)
++        c = self._poner_en_bloque(c, "time_control", "auxinput11_interval_s", str(int(interval_s)))
++        c = self._poner_en_bloque(c, "time_control", "auxinput11_end_h", str(int(end_h)))
++        self.contenido = c
++        return self
++
++    def configurar_diagnosticos(self) -> "NamelistManager":
++        """Activa los diagnósticos de obs-nudging (IN4DOB, ERROB, NUDOB) en rsl.out.*.
++
++        Sin estos mensajes no se puede comprobar que las observaciones se leen, que
++        se calculan errores y que se aplican tendencias, ni cuándo se apaga el nudging.
++        """
++        c = self.contenido
++        for p in ("obs_ipf_in4dob", "obs_ipf_errob", "obs_ipf_nudob"):
++            c = self._poner_en_bloque(c, "fdda", p, ".true.")
++        self.contenido = c
++        return self
++
+     def configurar_fdda(
+         self,
+         obs_nudge_opt: int = 1,
+diff --git a/src/preflight/preflight.py b/src/preflight/preflight.py
+index ccff33c..44ee910 100644
+--- a/src/preflight/preflight.py
++++ b/src/preflight/preflight.py
+@@ -488,6 +488,61 @@ class ChequeosObservaciones:
+             informe.agregar("2.2.8", "Separación temporal asimilación/pronóstico",
+                             Estado.OK, detalle)
+
++    # 2.2.9 Lectura de OBS_DOMAIN101 (stream auxinput11)
++    def check_2229_lectura_observaciones(self, informe: InformePreflight) -> None:
++        """Verifica que WRF lea observaciones durante toda la ventana de nudging.
++
++        (a) `auxinput11_end_h` debe estar declarado y cubrir `fdda_end`. Si falta, WRF usa
++            su valor por defecto (6 h según la guía de namelist) y las observaciones de
++            la segunda mitad de una ventana de 12 h no se leen.
++        (b) `auxinput11_interval_s` (o `_m`) debe ser igual o más frecuente que
++            `obs_ionf * time_step` (guía de WRF para obs-nudging).
++        Solo aplica si el namelist tiene `obs_nudge_opt = 1`.
++        """
++        titulo = "Lectura de observaciones (auxinput11)"
++        opt = _leer_namelist_valor(self.namelist, "obs_nudge_opt")
++        if opt is None or int(opt) != 1:
++            informe.agregar("2.2.9", titulo, Estado.OK,
++                            "obs_nudge_opt != 1 o no declarado en el namelist: no aplica")
++            return
++
++        bloqueantes: List[str] = []
++        advertencias: List[str] = []
++
++        end_h = _leer_namelist_valor(self.namelist, "auxinput11_end_h")
++        fdda_end = _leer_namelist_valor(self.namelist, "fdda_end")
++        if end_h is None:
++            bloqueantes.append(
++                "auxinput11_end_h no declarado: WRF usaría su valor por defecto (6 h) y dejaría "
++                "de leer observaciones antes del fin de la ventana de nudging")
++        elif fdda_end is not None and end_h * 60 + 1e-6 < fdda_end:
++            bloqueantes.append(
++                f"auxinput11_end_h={end_h:.0f} h < fdda_end={fdda_end:.0f} min: "
++                "las observaciones se dejan de leer antes de que termine el nudging")
++
++        dt = _leer_namelist_valor(self.namelist, "time_step")
++        ionf = _leer_namelist_valor(self.namelist, "obs_ionf") or 1.0
++        intervalo_s = _leer_namelist_valor(self.namelist, "auxinput11_interval_s")
++        if intervalo_s is None:
++            intervalo_m = _leer_namelist_valor(self.namelist, "auxinput11_interval_m")
++            intervalo_s = intervalo_m * 60 if intervalo_m is not None else None
++        if intervalo_s is None:
++            advertencias.append("sin auxinput11_interval_s/_m declarado")
++        elif dt and intervalo_s > ionf * dt + 1e-6:
++            advertencias.append(
++                f"intervalo de lectura {intervalo_s:.0f} s > obs_ionf*time_step = {ionf * dt:.0f} s "
++                "(la guía pide igual o más frecuente)")
++
++        if bloqueantes:
++            informe.agregar("2.2.9", titulo, Estado.BLOQUEANTE, " ; ".join(bloqueantes + advertencias))
++        elif advertencias:
++            informe.agregar("2.2.9", titulo, Estado.ADVERTENCIA, " ; ".join(advertencias))
++        else:
++            informe.agregar("2.2.9", titulo, Estado.OK,
++                            f"auxinput11_end_h={end_h:.0f} h cubre fdda_end="
++                            f"{(fdda_end if fdda_end is not None else float('nan')):.0f} min; "
++                            f"intervalo={intervalo_s:.0f} s")
++
+
+ class PreflightRunner:
+     """Orquesta los chequeos de secciones activas y devuelve el informe."""
+@@ -530,4 +585,5 @@ def correr_preflight_observaciones(
+     runner.registrar(chequeos.check_2226_cobertura)
+     runner.registrar(chequeos.check_2227_huso_horario)
+     runner.registrar(chequeos.check_2228_separacion_temporal)
++    runner.registrar(chequeos.check_2229_lectura_observaciones)
+     return runner.correr(informe)
+\ No newline at end of file
+diff --git a/tests/test_lectura_obs.py b/tests/test_lectura_obs.py
+new file mode 100644
+index 0000000..bd5b39d
+--- /dev/null
++++ b/tests/test_lectura_obs.py
+@@ -0,0 +1,106 @@
++"""Pruebas de la lectura de OBS_DOMAIN101 (auxinput11) y diagnósticos de nudging."""
++
++import tempfile
++import unittest
++from pathlib import Path
++
++from src.modelo.namelist_manager import NamelistManager
++from src.preflight.preflight import ChequeosObservaciones, Estado, InformePreflight
++
++BASE = """ &time_control
++ run_hours                           = 36,
++ auxinput11_interval_m               = 30,
++ auxinput11_inname                   = "OBS_DOMAIN101",
++ /
++
++ &domains
++ time_step                           = 45,
++ time_step_fract_num                 = 0,
++ /
++
++ &fdda
++ grid_fdda                           = 0,
++ obs_nudge_opt                       = 1,
++ obs_ionf                            = 1,
++ obs_ipf_in4dob                      = .true.,
++ fdda_end                            = 720,
++ /
++"""
++
++
++def _mgr(texto=BASE) -> NamelistManager:
++    p = Path(tempfile.mkdtemp()) / "namelist.input"
++    p.write_text(texto, encoding="utf-8")
++    return NamelistManager(template_path=str(p))
++
++
++def _preflight_2229(texto: str):
++    nl = Path(tempfile.mkdtemp()) / "namelist.input"
++    nl.write_text(texto, encoding="utf-8")
++    chk = ChequeosObservaciones(Path("x.json"), Path("OBS_DOMAIN101"), nl, None, {})
++    inf = InformePreflight(caso="t")
++    chk.check_2229_lectura_observaciones(inf)
++    return [c for c in inf.chequeos if c.id == "2.2.9"][0]
++
++
++class TestConfigurarLecturaObs(unittest.TestCase):
++    def test_agrega_end_h_y_intervalo_s(self):
++        c = _mgr().configurar_lectura_obs(end_h=12).contenido
++        self.assertRegex(c, r"auxinput11_end_h\s*=\s*12,")
++        self.assertRegex(c, r"auxinput11_interval_s\s*=\s*45,")   # obs_ionf(1) * time_step(45)
++        self.assertNotIn("auxinput11_interval_m", c)
++        self.assertIn('auxinput11_inname', c)
++
++    def test_respeta_obs_ionf(self):
++        c = _mgr(BASE.replace("obs_ionf                            = 1", "obs_ionf                            = 4")
++                 ).configurar_lectura_obs(end_h=12).contenido
++        self.assertRegex(c, r"auxinput11_interval_s\s*=\s*180,")
++
++    def test_idempotente(self):
++        m = _mgr().configurar_lectura_obs(end_h=12).configurar_lectura_obs(end_h=12)
++        self.assertEqual(m.contenido.count("auxinput11_end_h"), 1)
++        self.assertEqual(m.contenido.count("auxinput11_interval_s"), 1)
++
++    def test_actualiza_end_h_existente(self):
++        m = _mgr().configurar_lectura_obs(end_h=6).configurar_lectura_obs(end_h=12)
++        self.assertRegex(m.contenido, r"auxinput11_end_h\s*=\s*12,")
++        self.assertNotRegex(m.contenido, r"auxinput11_end_h\s*=\s*6,")
++
++    def test_no_toca_time_step_fract_num(self):
++        c = _mgr().configurar_lectura_obs(end_h=12).contenido
++        self.assertRegex(c, r"time_step_fract_num\s*=\s*0,")
++
++    def test_diagnosticos(self):
++        c = _mgr().configurar_diagnosticos().contenido
++        for p in ("obs_ipf_in4dob", "obs_ipf_errob", "obs_ipf_nudob"):
++            self.assertRegex(c, rf"{p}\s*=\s*\.true\.,")
++        self.assertEqual(c.count("obs_ipf_in4dob"), 1)
++        # los parámetros nuevos quedan dentro de &fdda
++        self.assertLess(c.index("&fdda"), c.index("obs_ipf_errob"))
++
++
++class TestPreflight2229(unittest.TestCase):
++    def test_sin_end_h_bloquea(self):
++        self.assertEqual(_preflight_2229(BASE.replace(" auxinput11_interval_m               = 30,\n", "")).estado,
++                         Estado.BLOQUEANTE)
++
++    def test_end_h_menor_que_fdda_end_bloquea(self):
++        m = _mgr().configurar_lectura_obs(end_h=6)
++        self.assertEqual(_preflight_2229(m.contenido).estado, Estado.BLOQUEANTE)
++
++    def test_correcto_ok(self):
++        m = _mgr().configurar_lectura_obs(end_h=12)
++        self.assertEqual(_preflight_2229(m.contenido).estado, Estado.OK)
++
++    def test_intervalo_30min_advierte(self):
++        txt = BASE.replace("/\n\n &domains", " auxinput11_end_h = 12,\n /\n\n &domains", 1)
++        self.assertEqual(_preflight_2229(txt).estado, Estado.ADVERTENCIA)
++
++    def test_sin_nudging_no_aplica(self):
++        self.assertEqual(_preflight_2229(BASE.replace("obs_nudge_opt                       = 1",
++                                                      "obs_nudge_opt                       = 0")).estado,
++                         Estado.OK)
++
++
++if __name__ == "__main__":
++    unittest.main()

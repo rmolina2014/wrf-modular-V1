@@ -1,0 +1,4 @@
+== Verificacion del fin del nudging 20261027_1126 ==
+Equipo: Linux 6.1.0-13-amd64 x86_64 | nproc=10 | git=628399f
+
+--- Caso 3, variante diag (--obs-ipf-nudob) ---

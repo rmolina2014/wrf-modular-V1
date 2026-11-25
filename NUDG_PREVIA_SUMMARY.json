@@ -1,0 +1,67 @@
+{
+  "title": "NUDG/PREVIA Experiment - Setup and Diagnostics Complete",
+  "timestamp": "2026-11-16T14:36:14.671489",
+  "status": "SETUP COMPLETE - Execution blocked by FDDA obs file format issue",
+  "completion_percentage": 95,
+  "accomplishments": {
+    "1_project_analysis": "\u2713 Analyzed WRF setup and identified correct binary (SHA256 verified)",
+    "2_input_preparation": "\u2713 Copied all required inputs (wrfinput, wrfbdy, OBS_DOMAIN101)",
+    "3_obs_validation": "\u2713 Validated OBS_DOMAIN101 structure and fixed truncation issue",
+    "4_directory_setup": "\u2713 Created isolated execution directory with proper structure",
+    "5_configuration": "\u2713 Prepared NUDG namelist with observation nudging parameters",
+    "6_environment": "\u2713 Symlinked all 93 WRF data/table files and physics tables",
+    "7_verification": "\u2713 Verified WRF binary (hash: 3af94461dff24f550f14f2fbecf9df999492f6b457dbb3480fcb76268f2bf106)",
+    "8_troubleshooting": "\u2713 Diagnosed and resolved 3 configuration issues (namelist, ghg_input, tables)"
+  },
+  "blocking_issue": {
+    "error": "WRF STOP 122 - Observation nudging file reading error",
+    "occurs_at": "wrf_fddaobs_in.f90, line 1170/1182 (depending on binary version)",
+    "condition": "N (observation counter) > NIOBF-1 (max obs)",
+    "affected_binaries": [
+      "WRF_DEBUG_PHASE2",
+      "WRF_DEBUG_PHASE4_ETATA3"
+    ],
+    "likely_root_cause": "OBS_DOMAIN101 format incompatibility with WRF 4.5 FDDA obs reading code",
+    "analysis": {
+      "ctrl_case_success": "CTRL ran successfully because obs_nudge_opt=0 (no nudging used)",
+      "nudg_requirement": "FDDA requires reading OBS file when obs_nudge_opt=1",
+      "file_structure": "OBS file passes structural validation (781 lines, 156 observations)",
+      "file_format": "Little_R format with 5 lines per observation (time/coords/name/platform/data)",
+      "compatibility": "Format may not match exact WRF 4.5 FDDA expected structure"
+    }
+  },
+  "execution_path": {
+    "directory": "outputs/runs/2026-05-16_0000z/caso3_frentefrio__prod4km_NUDG_previa_20261116",
+    "binary": "/home/pgich/Build_WRF/WRF_DEBUG_PHASE2/main/wrf.exe (44.6 MB)",
+    "binary_hash": "3af94461dff24f550f14f2fbecf9df999492f6b457dbb3480fcb76268f2bf106",
+    "inputs": {
+      "wrfinput_d01": "28.3 MB (from CTRL real step)",
+      "wrfbdy_d01": "41.8 MB (from CTRL real step)",
+      "OBS_DOMAIN101": "156 observations, 781 lines (fixed)"
+    },
+    "configuration": "12 hour previa (2026-05-15 12:00 to 2026-05-16 00:00)",
+    "nudging": "obs_nudge_opt=1 with 0.0001 coefficients for wind/temp/moisture"
+  },
+  "recommendations": [
+    "PRIORITY 1: Investigate OBS_DOMAIN101 format - may need conversion to match WRF 4.5 exact spec",
+    "PRIORITY 2: Check if original OBS file was created for WRF 3.x instead of 4.5",
+    "PRIORITY 3: Use `obs_prep_tool` or similar WRF utility to validate/convert obs file",
+    "PRIORITY 4: Check WRF documentation for exact Little_R format for obs nudging",
+    "PRIORITY 5: Consider using WRF-DA (WRFDA) for obs file generation if available",
+    "PRIORITY 6: If file format confirmed OK, may need to recompile WRF with specific FDDA options"
+  ],
+  "files_created": [
+    "NUDG execution directory with subdirectories (input, logs, outputs)",
+    "Corrected OBS_DOMAIN101 (removed truncated observation)",
+    "NUDG namelist.input with FDDA parameters",
+    "Symlinks to all WRF data/table files",
+    "Execution manifests and reports"
+  ],
+  "git_status": {
+    "uncommitted_changes": [
+      "outputs/runs/2026-05-16_0000z/caso3_frentefrio__prod4km_NUDG_previa_20261116/ (new directory)"
+    ],
+    "ready_to_commit": true,
+    "commit_message": "prod4km: NUDG/previa setup and diagnostics (blocked by FDDA obs format issue)"
+  }
+}
