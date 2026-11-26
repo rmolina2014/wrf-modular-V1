@@ -1,0 +1,38 @@
+Fecha: 2026-11-26
+Rama: prod4km
+Caso: caso2_calor__prod4km, brazo control
+
+PASO DONDE SE DETIENE: verificacion posterior a WRF (sanidad NaN) en
+/tmp/opencode/prod4km_arm.py, funcion n_anomalies(), antes de escribir
+control_manifest.json y antes de la limpieza de symlinks.
+
+Mensaje exacto del traceback (informes/control_lanzamiento.log):
+
+  Traceback (most recent call last):
+    File "/tmp/opencode/prod4km_arm.py", line 221, in <module>
+      main()
+    File "/tmp/opencode/prod4km_arm.py", line 163, in main
+      raise RuntimeError(f"{a.arm}: sanidad={checks}")
+  RuntimeError: control: sanidad={'_2025-12-31_12:00:00': 'AUSENTE', '_2026-01-02_00:00:00': 'AUSENTE'}
+
+CAUSA: bug del script de verificacion, no de WRF. El nombre del wrfout es
+'wrfout_d01_2025-12-31_12:00:00'; el prefijo 'wrfout_d01_' tiene 11 caracteres
+(idx 0..10), por lo que el timestamp comienza en [11:]. El script usaba [10:]
+y dejaba un '_' inicial, por lo que no encontraba los tiempos.
+
+ESTADO REAL DE LA CORRIDA WRF (sin reejecutar nada):
+  inicio = 2026-11-26 08:08:54
+  fin    = 2026-11-26 11:05:55
+  elapsed_wall_s = 10620.65
+  exit_status = 0
+  terminado_por_senal = null
+  cortado_por = null
+  monitor = completado, 8640/8640 pasos, 1 hilo, peak RSS 1396752 kB
+  wrfout_d01_* = 37 archivos (de 2025-12-31_12:00:00 a 2026-01-02_00:00:00)
+
+Decision: detener segun la regla 7 y no reejecutar WRF, no cambiar parametros
+del modelo ni probar otro binario. La verificacion de NaN quedo pendiente;
+el directorio control/ conserva los symlinks, rsl.* y namelist.output porque
+la limpieza ocurre despues del punto de fallo.
+
+No se hizo commit del brazo control. Ultimo commit: 139d25a (real OK).

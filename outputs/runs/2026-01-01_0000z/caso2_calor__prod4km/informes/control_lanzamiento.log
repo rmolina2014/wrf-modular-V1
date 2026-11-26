@@ -1,0 +1,18 @@
+2026-11-26T08:08:54 control: lanzado
+2026-11-26T11:05:58 control: time file: {'etiqueta': 'control', 'comando': './wrf.exe', 'cwd': '/home/pgich/wrf-modular-V1/outputs/runs/2026-01-01_0000z/caso2_calor__prod4km/control', 'inicio': '2026-11-26 08:08:54', 'fin': '2026-11-26 11:05:55', 'elapsed_wall_s': 10620.65, 'user_s': 10291.15, 'system_s': 328.43, 'maximum_resident_set_size_kbytes': 1396752, 'exit_status': 0, 'terminado_por_senal': None, 'cortado_por': None}
+Traceback (most recent call last):
+  File "/tmp/opencode/prod4km_arm.py", line 221, in <module>
+    main()
+  File "/tmp/opencode/prod4km_arm.py", line 163, in main
+    raise RuntimeError(f"{a.arm}: sanidad={checks}")
+RuntimeError: control: sanidad={'_2025-12-31_12:00:00': 'AUSENTE', '_2026-01-02_00:00:00': 'AUSENTE'}
+2026-11-26T11:43:46 control: reanudado desde verificacion (sin relanzar WRF)
+Traceback (most recent call last):
+  File "/tmp/opencode/prod4km_arm.py", line 227, in <module>
+    main()
+  File "/tmp/opencode/prod4km_arm.py", line 169, in main
+    raise RuntimeError(f"{a.arm}: sanidad={checks}")
+RuntimeError: control: sanidad={'2025-12-31_12:00:00': 'OK', '2026-01-02_00:00:00': 'AUSENTE'}
+2026-11-26T11:44:03 control: reanudado desde verificacion (sin relanzar WRF)
+2026-11-26T11:44:03 control: OK -> /home/pgich/wrf-modular-V1/outputs/runs/2026-01-01_0000z/caso2_calor__prod4km/control_manifest.json
+2026-11-26T11:44:03 control: limpieza OK

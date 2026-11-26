@@ -1,0 +1,42 @@
+{
+  "caso": "caso2_calor__prod4km",
+  "brazo": "control",
+  "creado": "2026-11-26T11:44:03",
+  "start": "2025-12-31_12:00:00",
+  "run_hours": 36,
+  "end": "2026-01-02_00:00:00",
+  "t0": "2026-01-01_00:00:00",
+  "asim_horas": 12.0,
+  "asim_end": "2026-01-01_00:00:00",
+  "namelist": "/home/pgich/wrf-modular-V1/outputs/runs/2026-01-01_0000z/caso2_calor__prod4km/namelist_control.input",
+  "namelist_sha256": "4976f79513f1febf5be359a6faeef4103077675a71860053ba89109bd61ee414",
+  "wrfout_count": 37,
+  "wrfout_first": "wrfout_d01_2025-12-31_12:00:00",
+  "wrfout_last": "wrfout_d01_2026-01-02_00:00:00",
+  "historial_archivos": "un wrfout por hora (frames_per_outfile=1)",
+  "elapsed_wall_s": 10620.65,
+  "maximum_resident_set_size_kbytes": 1396752,
+  "exit_status": 0,
+  "terminado_por_senal": null,
+  "cortado_por": null,
+  "omp_num_threads": 1,
+  "tiles": "1x1",
+  "binario": "/home/pgich/Build_WRF/WRF_DEBUG_PHASE4_ETAPA3/main/wrf.exe",
+  "binario_sha256": "91283460023d25d751ad7c6fc479624e126be0cc3308b23a284b2298084643b3",
+  "monitor": {
+    "resultado": "completado",
+    "pasos_registrados": 8640,
+    "pasos_esperados": 8640,
+    "media_s_por_paso": 1.2059,
+    "primer_paso_s": 5.76297,
+    "proyeccion_h": 2.894,
+    "peak_rss_kbytes": 1396752,
+    "peak_threads": 1,
+    "elapsed_wall_s": 10620.9
+  },
+  "sanidad": {
+    "2025-12-31_12:00:00": "OK",
+    "2026-01-02_00:00:00": "OK"
+  },
+  "obs_nudge_opt": 0
+}
