@@ -1,0 +1,11 @@
+[OK ] T1 inicio = t0 - ventana | start=2025-12-31 12:00:00 esperado=2025-12-31 12:00:00
+[OK ] T2 run_hours = ventana + horizonte | run_hours=36 esperado=36
+[OK ] T3 fdda_end = ventana*60 y obs_nudge_opt=1 | fdda_end=720 esperado=720; obs_nudge_opt=1
+[FALLA] T4 control = nudged salvo obs_nudge_opt | obs_nudge_opt control=None
+[OK ] T5 coeficientes = 0.0001 | ['0.0001', '0.0001', '0.0001']
+[OK ] T6 OBS_DOMAIN101: 5 lineas/registro y orden cronologico | registros=168
+[OK ] T7 ninguna obs posterior a t0 | ultima=2025-12-31 23:30:00 t0=2026-01-01 00:00:00
+[OK ] T8 ninguna obs anterior al inicio | primera=2025-12-31 12:00:00 inicio=2025-12-31 12:00:00
+[OK ] T9 wrfout nudged = 37 | encontrados=37
+[OK ] T9 wrfout control = 37 | encontrados=37
+RESULTADO: NO CUMPLE

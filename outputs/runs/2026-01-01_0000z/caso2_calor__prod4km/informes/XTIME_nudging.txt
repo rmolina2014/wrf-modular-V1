@@ -1,0 +1,10 @@
+{
+  "xtime_min": 0.0,
+  "xtime_max": 720.0,
+  "lineas_obs_nudging_o_in4dob": 5788,
+  "ultima_linea": "****** CALL IN4DOB AT KTAU =  2880 AND XTIME =     720.00:  NSTA =      14 ******",
+  "ultimo_xtime_call_in4dob": 720.0,
+  "sin_lecturas_obs_despues": true,
+  "fdda_end_esperado": 720.0,
+  "ok": true
+}

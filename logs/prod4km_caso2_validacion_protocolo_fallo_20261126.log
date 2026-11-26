@@ -1,0 +1,41 @@
+Fecha: 2026-11-26
+Rama: prod4km
+Caso: caso2_calor__prod4km
+
+PASO DONDE SE DETIENE: verificacion de protocolo temporal
+(scripts/verifica_protocolo_temporal.py), chequeo T4, durante la etapa de
+validacion final. No se reejecuto WRF ni se cambiaron parametros o binarios.
+
+Mensaje exacto (informes/protocolo_temporal.txt):
+
+  [OK ] T1 inicio = t0 - ventana | start=2025-12-31 12:00:00 esperado=2025-12-31 12:00:00
+  [OK ] T2 run_hours = ventana + horizonte | run_hours=36 esperado=36
+  [OK ] T3 fdda_end = ventana*60 y obs_nudge_opt=1 | fdda_end=720 esperado=720; obs_nudge_opt=1
+  [FALLA] T4 control = nudged salvo obs_nudge_opt | obs_nudge_opt control=None
+  [OK ] T5 coeficientes = 0.0001 | ['0.0001', '0.0001', '0.0001']
+  [OK ] T6 OBS_DOMAIN101: 5 lineas/registro y orden cronologico | registros=168
+  [OK ] T7 ninguna obs posterior a t0 | ultima=2025-12-31 23:30:00 t0=2026-01-01 00:00:00
+  [OK ] T8 ninguna obs anterior al inicio | primera=2025-12-31 12:00:00 inicio=2025-12-31 12:00:00
+  [OK ] T9 wrfout nudged = 37 | encontrados=37
+  [OK ] T9 wrfout control = 37 | encontrados=37
+  RESULTADO: NO CUMPLE
+
+CAUSA (falso positivo del verificador, no del experimento):
+T4 asume que control y nudged difieren SOLO en la linea obs_nudge_opt. En los
+namelists generados por scripts/prod4km/render_namelists.py (autorizados), el
+brazo control NO incluye el bloque &fdda completo (ni obs_nudge_opt, ni
+auxinput11_*, ni coeficientes), y ademas history_outname apunta a control/
+vs nudged/. Lo mismo ocurre en los namelists de los casos 1 y 3:
+  grep obs_nudge_opt caso1/namelist_control.input -> (sin coincidencias)
+  grep obs_nudge_opt caso3/namelist_control.input -> (sin coincidencias)
+Por tanto T4 no puede pasar con esta configuracion sin editar namelists, lo
+cual esta prohibido por la regla 3.
+
+ESTADO SI CORRECTO (sin reejecutar nada):
+  valida_wrf_cli.py: returncode=0, "Validacion completa."
+  salidas: errores_largo.csv, metricas_por_horizonte.csv, metricas_por_tramo.csv,
+           informe_evolucion_nudging.txt, tabla_evolutiva.json
+  corte nudging: ultima CALL IN4DOB en XTIME=720.00, sin lecturas de obs posteriores.
+  T1,T2,T3,T5,T6,T7,T8,T9: todos OK.
+
+No se hizo commit de la etapa de validacion. Ultimo commit: 044f287 (nudging OK).
