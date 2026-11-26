@@ -1,0 +1,14 @@
+{
+  "etiqueta": "nudged",
+  "comando": "./wrf.exe",
+  "cwd": "/home/pgich/wrf-modular-V1/outputs/runs/2026-01-01_0000z/caso2_calor__prod4km/nudged",
+  "inicio": "2026-11-26 11:44:58",
+  "fin": "2026-11-26 14:45:02",
+  "elapsed_wall_s": 10803.75,
+  "user_s": 10487.23,
+  "system_s": 315.46,
+  "maximum_resident_set_size_kbytes": 1438492,
+  "exit_status": 0,
+  "terminado_por_senal": null,
+  "cortado_por": null
+}
