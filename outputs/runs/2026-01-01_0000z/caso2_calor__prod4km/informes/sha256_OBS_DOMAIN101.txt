@@ -1,0 +1,4 @@
+8ff3752a5efadbd97414089ab82ce1bd64253a1295c68b54178b91f1f5b80986  outputs/runs/2026-01-01_0000z/caso2_calor/input/OBS_DOMAIN101
+8ff3752a5efadbd97414089ab82ce1bd64253a1295c68b54178b91f1f5b80986  outputs/runs/2026-01-01_0000z/caso2_calor__prod4km/input/OBS_DOMAIN101
+8ff3752a5efadbd97414089ab82ce1bd64253a1295c68b54178b91f1f5b80986  outputs/runs/2026-01-01_0000z/caso2_calor__prod4km/nudged/OBS_DOMAIN101
+registros 168 estaciones 7 20251231120000 20251231233000

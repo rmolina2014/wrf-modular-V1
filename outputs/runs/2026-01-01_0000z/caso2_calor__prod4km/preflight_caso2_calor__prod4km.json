@@ -1,0 +1,178 @@
+{
+  "caso": "caso2_calor__prod4km",
+  "config_caso": {
+    "id": "caso2_calor",
+    "num": 2,
+    "fecha": "2026-01-01",
+    "t0": "2026-01-01T00:00:00Z",
+    "evento": "calor_verano",
+    "titulo": "Caso 2 - Calor de verano (Año Nuevo)",
+    "descripcion": "Evento de calor en verano sobre San Juan",
+    "fuente": "gfs_aws",
+    "resultados_dir": "outputs/runs/2026-01-01_0000z/caso2_calor",
+    "informe": "outputs/informes/oficiales/informe_caso2_calor_20260101.md"
+  },
+  "t0": "2026-01-01T00:00:00Z",
+  "start": "2025-12-31_12:00:00",
+  "end": "2026-01-02_00:00:00",
+  "run_hours": 36,
+  "asim_horas": 12.0,
+  "obs_json": "/home/pgich/wrf-modular-V1/data/raw/obs_flat_20260101.json",
+  "obs_json_sha256": "47fc874ab90e1f994fec94fd21a08e2d7b35c01cdcdb19d85620e8f9567b8ad5",
+  "obs_json_registros": 624,
+  "obs_json_estaciones": [
+    "CARACOLES",
+    "CUESTA_Viento",
+    "ECOHUMUS",
+    "INTA_POCITO",
+    "PUNTA_NEGRA",
+    "ULLUM_EMBALSE",
+    "VALLE_FERTIL"
+  ],
+  "obs_json_cobertura": {
+    "CARACOLES": {
+      "n": 96,
+      "min": "2025-12-31T03:00:00+00:00",
+      "max": "2026-01-02T02:30:00+00:00"
+    },
+    "CUESTA_Viento": {
+      "n": 96,
+      "min": "2025-12-31T03:00:00+00:00",
+      "max": "2026-01-02T02:30:00+00:00"
+    },
+    "ECOHUMUS": {
+      "n": 96,
+      "min": "2025-12-31T03:00:00+00:00",
+      "max": "2026-01-02T02:30:00+00:00"
+    },
+    "INTA_POCITO": {
+      "n": 48,
+      "min": "2025-12-31T03:00:00+00:00",
+      "max": "2026-01-01T03:30:00+00:00"
+    },
+    "PUNTA_NEGRA": {
+      "n": 96,
+      "min": "2025-12-31T03:00:00+00:00",
+      "max": "2026-01-02T02:30:00+00:00"
+    },
+    "ULLUM_EMBALSE": {
+      "n": 96,
+      "min": "2025-12-31T03:00:00+00:00",
+      "max": "2026-01-02T02:30:00+00:00"
+    },
+    "VALLE_FERTIL": {
+      "n": 96,
+      "min": "2025-12-31T03:00:00+00:00",
+      "max": "2026-01-02T02:30:00+00:00"
+    }
+  },
+  "obs_domain101": "/home/pgich/wrf-modular-V1/outputs/runs/2026-01-01_0000z/caso2_calor/input/OBS_DOMAIN101",
+  "obs_domain101_sha256": "8ff3752a5efadbd97414089ab82ce1bd64253a1295c68b54178b91f1f5b80986",
+  "datos_validados": "/home/pgich/wrf-modular-V1/outputs/runs/2026-01-01_0000z/caso2_calor/input/datos_validados_20251231_120000.csv",
+  "datos_validados_sha256": "3ec5dc368e8311bd680968d1bb00fc5a75ce7700a257c87daac3905a193cf12f",
+  "gfs_dir": "/home/pgich/wrf-modular-V1/wps_sanjuan/gfs_data/2025-12-31_12",
+  "gfs_files": [
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f000",
+      "bytes": 505578309
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f003",
+      "bytes": 539282045
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f006",
+      "bytes": 544671292
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f009",
+      "bytes": 544257266
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f012",
+      "bytes": 546201234
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f015",
+      "bytes": 543738423
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f018",
+      "bytes": 544718218
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f021",
+      "bytes": 543574551
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f024",
+      "bytes": 546464913
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f027",
+      "bytes": 544479619
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f030",
+      "bytes": 542914479
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f033",
+      "bytes": 542009061
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f036",
+      "bytes": 544028685
+    }
+  ],
+  "gfs_total_bytes": 7031918095,
+  "namelist_diff_vs_caso1": [
+    "/home/pgich/wrf-modular-V1/outputs/runs/2026-01-01_0000z/caso2_calor__prod4km/informes/diff_wps_namelist.wps_vs_caso1.txt",
+    "/home/pgich/wrf-modular-V1/outputs/runs/2026-01-01_0000z/caso2_calor__prod4km/informes/diff_namelist_control.input_vs_caso1.txt",
+    "/home/pgich/wrf-modular-V1/outputs/runs/2026-01-01_0000z/caso2_calor__prod4km/informes/diff_namelist_nudged.input_vs_caso1.txt"
+  ],
+  "estaciones_config": {
+    "INTA_POCITO": {
+      "rol": "asimilacion",
+      "elev": 615
+    },
+    "ULLUM_EMBALSE": {
+      "rol": "evaluacion",
+      "elev": 768
+    },
+    "ECOHUMUS": {
+      "rol": "asimilacion",
+      "elev": 600
+    },
+    "PUNTA_NEGRA": {
+      "rol": "asimilacion",
+      "elev": 800
+    },
+    "INTA_SANMARTIN": {
+      "rol": "evaluacion",
+      "elev": 600
+    },
+    "VALLE_FERTIL": {
+      "rol": "asimilacion",
+      "elev": 900
+    },
+    "CUESTA_Viento": {
+      "rol": "asimilacion",
+      "elev": 1530
+    },
+    "CARACOLES": {
+      "rol": "evaluacion",
+      "elev": 942
+    }
+  },
+  "notas": [
+    "Namelists renderizados solo con scripts/prod4km/render_namelists.py.",
+    "OBS_DOMAIN101 copiado sin regenerar ni editar desde el caso oficial.",
+    "GFS 0.25 disponible localmente; no se descargo nada.",
+    "Binario: excepcion documentada en informes/BINARIO_PROD4KM.md (autorizada por el usuario 2026-11-26)."
+  ],
+  "referencias": {
+    "oficial": "outputs/runs/2026-01-01_0000z/caso2_calor",
+    "op15km": "outputs/runs/2026-01-01_0000z/caso2_calor__op15km"
+  }
+}

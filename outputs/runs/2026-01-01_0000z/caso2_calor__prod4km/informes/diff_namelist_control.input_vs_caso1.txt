@@ -1,0 +1,18 @@
+6,8c6,8
+<  start_year                          = 2026, 2026, 2000,
+<  start_month                         = 07, 07,   01,
+<  start_day                           = 30, 30,   24,
+---
+>  start_year                          = 2025, 2025, 2000,
+>  start_month                         = 12, 12,   01,
+>  start_day                           = 31, 31,   24,
+13,14c13,14
+<  end_month                           = 08, 08,   01,
+<  end_day                             = 01, 01,   25,
+---
+>  end_month                           = 01, 01,   01,
+>  end_day                             = 02, 02,   25,
+29c29
+<  history_outname                     = "/home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d<domain>_<date>"
+---
+>  history_outname                     = "/home/pgich/wrf-modular-V1/outputs/runs/2026-01-01_0000z/caso2_calor__prod4km/control/wrfout_d<domain>_<date>"
