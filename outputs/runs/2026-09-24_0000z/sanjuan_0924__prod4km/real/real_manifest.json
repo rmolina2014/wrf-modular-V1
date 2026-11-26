@@ -1,0 +1,73 @@
+{
+  "caso": "sanjuan_0924__prod4km",
+  "stage": "real",
+  "status": "OK",
+  "t0": "2026-09-24T00:00:00Z",
+  "start": "2026-09-23_12:00:00",
+  "end": "2026-09-25_00:00:00",
+  "run_hours": 36,
+  "command": "./real.exe > real.log 2>&1",
+  "return_code": 0,
+  "success_marker": "real_em: SUCCESS COMPLETE REAL_EM INIT",
+  "binario": "/home/pgich/Build_WRF/WRF_DEBUG_PHASE4_ETAPA3/main/real.exe",
+  "namelist_input": {
+    "file": "real/namelist.input",
+    "sha256": "a8122dd282db48b002409556da61bce569e4b14ba2ecb0abc565b0089922a0e6",
+    "bytes": 4567
+  },
+  "wrfinput_d01": {
+    "file": "real/wrfinput_d01",
+    "sha256": "ee5f9759427597f77f0432ba4cee01c7b3be20f82f20ede4515b3abce6cbf726",
+    "bytes": 29830787,
+    "attrs": {
+      "MAP_PROJ": 1,
+      "CEN_LAT": -31.12099838256836,
+      "CEN_LON": -69.4329833984375,
+      "TRUELAT1": -31.121000289916992,
+      "TRUELAT2": -31.121000289916992,
+      "STAND_LON": -69.43299865722656,
+      "DX": 4000.0,
+      "DY": 4000.0,
+      "BOTTOM-TOP_GRID_DIMENSION": 35,
+      "WEST-EAST_GRID_DIMENSION": 141,
+      "SOUTH-NORTH_GRID_DIMENSION": 200,
+      "START_DATE": "2026-09-23_12:00:00",
+      "Times_first": "2026-09-23_12:00:00",
+      "Times_last": "2026-09-23_12:00:00",
+      "Times_count": 1
+    }
+  },
+  "wrfbdy_d01": {
+    "file": "real/wrfbdy_d01",
+    "sha256": "cc603c3dc0cfcd3cb16e36cbfceb7c46062ccda7149ff7f9dbb2f8511969e829",
+    "bytes": 43842468,
+    "attrs": {
+      "MAP_PROJ": 1,
+      "CEN_LAT": -31.12099838256836,
+      "CEN_LON": -69.4329833984375,
+      "TRUELAT1": -31.121000289916992,
+      "TRUELAT2": -31.121000289916992,
+      "STAND_LON": -69.43299865722656,
+      "DX": 4000.0,
+      "DY": 4000.0,
+      "BOTTOM-TOP_GRID_DIMENSION": 35,
+      "WEST-EAST_GRID_DIMENSION": 141,
+      "SOUTH-NORTH_GRID_DIMENSION": 200,
+      "START_DATE": "2026-09-23_12:00:00",
+      "Times_first": "2026-09-23_12:00:00",
+      "Times_last": "2026-09-24_21:00:00",
+      "Times_count": 12
+    }
+  },
+  "real_log": {
+    "file": "real/real.log",
+    "sha256": "c5895f2962ed589bfb16e1d889bbeb7ddc5954c79ba88171d1da8471111542d7",
+    "bytes": 21263
+  },
+  "met_em_source_count": 13,
+  "cleanup_removed": [
+    "symlinks de ejecutables/tablas",
+    "symlinks met_em",
+    "namelist.output"
+  ]
+}
