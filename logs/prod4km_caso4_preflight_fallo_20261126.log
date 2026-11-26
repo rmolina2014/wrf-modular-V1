@@ -1,0 +1,26 @@
+Fecha: 2026-11-26
+Rama: prod4km
+Caso: sanjuan_0924__prod4km
+
+PASO DONDE SE DETIENE: generacion del JSON de preflight de insumos,
+ dentro de /tmp/opencode/caso4_stage1.sh (paso 1: namelists/preflight).
+ No se corrio WPS, real.exe ni WRF. No se cambiaron parametros del modelo.
+
+Mensaje exacto:
+
+  Traceback (most recent call last):
+    File "/tmp/opencode/prod4km_preflight.py", line 92, in <module>
+      main()
+    File "/tmp/opencode/prod4km_preflight.py", line 36, in main
+      c = next(x for x in cfg["casos"] if x["id"] == a.caso_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  StopIteration
+
+CAUSA: el script puso --caso-id sanjuan_0924, pero config/casos_oficiales.json
+ registra el caso con id "caso4_sanjuan_0924" (linea 63). Los namelists ya
+ generados no se tocaron.
+
+Accion: corregir solo el id en el script auxiliar y reanudar desde el preflight,
+ sin regenerar namelists ni recopiar OBS_DOMAIN101.
+
+Ultimo commit antes del incidente: 4f20fc8 (Caso 2 validacion OK).

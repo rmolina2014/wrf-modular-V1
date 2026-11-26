@@ -1,0 +1,16 @@
+7,8c7,8
+<  start_month                         = 07, 07,   01,
+<  start_day                           = 30, 30,   24,
+---
+>  start_month                         = 09, 09,   01,
+>  start_day                           = 23, 23,   24,
+13,14c13,14
+<  end_month                           = 08, 08,   01,
+<  end_day                             = 01, 01,   25,
+---
+>  end_month                           = 09, 09,   01,
+>  end_day                             = 25, 25,   25,
+29c29
+<  history_outname                     = "/home/pgich/wrf-modular-V1/outputs/runs/2026-07-31_0000z/caso1_zonda__prod4km/control/wrfout_d<domain>_<date>"
+---
+>  history_outname                     = "/home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control/wrfout_d<domain>_<date>"

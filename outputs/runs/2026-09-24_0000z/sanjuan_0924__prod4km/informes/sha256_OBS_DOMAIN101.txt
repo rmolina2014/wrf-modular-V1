@@ -1,0 +1,4 @@
+3311f57a0f2bf94fe2c759e0bbb6a881f5b75be0cfba7224256ee2b590cebfc1  outputs/runs/2026-09-24_0000z/sanjuan_0924/input/OBS_DOMAIN101
+3311f57a0f2bf94fe2c759e0bbb6a881f5b75be0cfba7224256ee2b590cebfc1  outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/input/OBS_DOMAIN101
+3311f57a0f2bf94fe2c759e0bbb6a881f5b75be0cfba7224256ee2b590cebfc1  outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged/OBS_DOMAIN101
+registros 994 estaciones 8 20260923120000 20260923235500

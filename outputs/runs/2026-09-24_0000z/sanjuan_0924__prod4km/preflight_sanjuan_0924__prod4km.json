@@ -1,0 +1,184 @@
+{
+  "caso": "sanjuan_0924__prod4km",
+  "config_caso": {
+    "id": "caso4_sanjuan_0924",
+    "num": 4,
+    "fecha": "2026-09-24",
+    "t0": "2026-09-24T00:00:00Z",
+    "evento": "caso_sanjuan_0924",
+    "titulo": "Caso 4 - San Juan 2026-09-24",
+    "descripcion": "Caso oficial San Juan 2026-09-24 (todas las estaciones operativas con datos)",
+    "fuente": "gfs_aws",
+    "resultados_dir": "outputs/runs/2026-09-24_0000z/sanjuan_0924",
+    "informe": "outputs/informes/oficiales/informe_caso4_sanjuan_0924_20260924.md"
+  },
+  "t0": "2026-09-24T00:00:00Z",
+  "start": "2026-09-23_12:00:00",
+  "end": "2026-09-25_00:00:00",
+  "run_hours": 36,
+  "asim_horas": 12.0,
+  "obs_json": "/home/pgich/wrf-modular-V1/data/raw/obs_flat_20260924.json",
+  "obs_json_sha256": "f6987c41364154cfa57171985fae3d74bdbe85c841ebf63af977056a3bf1dc04",
+  "obs_json_registros": 4123,
+  "obs_json_estaciones": [
+    "CARACOLES",
+    "CUESTA_Viento",
+    "ECOHUMUS",
+    "INTA_POCITO",
+    "INTA_SANMARTIN",
+    "PUNTA_NEGRA",
+    "ULLUM_EMBALSE",
+    "VALLE_FERTIL"
+  ],
+  "obs_json_cobertura": {
+    "CARACOLES": {
+      "n": 564,
+      "min": "2026-09-23T03:00:00+00:00",
+      "max": "2026-09-25T02:55:00+00:00"
+    },
+    "CUESTA_Viento": {
+      "n": 576,
+      "min": "2026-09-23T03:00:00+00:00",
+      "max": "2026-09-25T02:55:00+00:00"
+    },
+    "ECOHUMUS": {
+      "n": 420,
+      "min": "2026-09-23T16:00:00+00:00",
+      "max": "2026-09-25T02:55:00+00:00"
+    },
+    "INTA_POCITO": {
+      "n": 446,
+      "min": "2026-09-23T03:00:00+00:00",
+      "max": "2026-09-25T02:55:00+00:00"
+    },
+    "INTA_SANMARTIN": {
+      "n": 576,
+      "min": "2026-09-23T03:00:00+00:00",
+      "max": "2026-09-25T02:55:00+00:00"
+    },
+    "PUNTA_NEGRA": {
+      "n": 389,
+      "min": "2026-09-23T18:35:00+00:00",
+      "max": "2026-09-25T02:55:00+00:00"
+    },
+    "ULLUM_EMBALSE": {
+      "n": 576,
+      "min": "2026-09-23T03:00:00+00:00",
+      "max": "2026-09-25T02:55:00+00:00"
+    },
+    "VALLE_FERTIL": {
+      "n": 576,
+      "min": "2026-09-23T03:00:00+00:00",
+      "max": "2026-09-25T02:55:00+00:00"
+    }
+  },
+  "obs_domain101": "/home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924/input/OBS_DOMAIN101",
+  "obs_domain101_sha256": "3311f57a0f2bf94fe2c759e0bbb6a881f5b75be0cfba7224256ee2b590cebfc1",
+  "datos_validados": "/home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924/input/datos_validados_20260923_120000.csv",
+  "datos_validados_sha256": "c712bfa788b029398e101ddccc35b5b6d991fa3c9bf8c3360abb8cd4e299d82f",
+  "gfs_dir": "/home/pgich/wrf-modular-V1/wps_sanjuan/gfs_data/2026-09-23_12",
+  "gfs_files": [
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f000",
+      "bytes": 481519881
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f003",
+      "bytes": 518607736
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f006",
+      "bytes": 521616240
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f009",
+      "bytes": 519835816
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f012",
+      "bytes": 522191714
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f015",
+      "bytes": 525210239
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f018",
+      "bytes": 528132100
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f021",
+      "bytes": 525233205
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f024",
+      "bytes": 526743435
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f027",
+      "bytes": 527929904
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f030",
+      "bytes": 537149957
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f033",
+      "bytes": 537207903
+    },
+    {
+      "name": "gfs.t12z.pgrb2.0p25.f036",
+      "bytes": 536585726
+    }
+  ],
+  "gfs_total_bytes": 6807963856,
+  "namelist_diff_vs_caso1": [
+    "/home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/informes/diff_wps_namelist.wps_vs_caso1.txt",
+    "/home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/informes/diff_namelist_control.input_vs_caso1.txt",
+    "/home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/informes/diff_namelist_nudged.input_vs_caso1.txt"
+  ],
+  "estaciones_config": {
+    "INTA_POCITO": {
+      "rol": "asimilacion",
+      "elev": 615
+    },
+    "ULLUM_EMBALSE": {
+      "rol": "evaluacion",
+      "elev": 768
+    },
+    "ECOHUMUS": {
+      "rol": "asimilacion",
+      "elev": 600
+    },
+    "PUNTA_NEGRA": {
+      "rol": "asimilacion",
+      "elev": 800
+    },
+    "INTA_SANMARTIN": {
+      "rol": "evaluacion",
+      "elev": 600
+    },
+    "VALLE_FERTIL": {
+      "rol": "asimilacion",
+      "elev": 900
+    },
+    "CUESTA_Viento": {
+      "rol": "asimilacion",
+      "elev": 1530
+    },
+    "CARACOLES": {
+      "rol": "evaluacion",
+      "elev": 942
+    }
+  },
+  "notas": [
+    "Namelists renderizados solo con scripts/prod4km/render_namelists.py.",
+    "OBS_DOMAIN101 copiado sin regenerar ni editar desde el caso oficial.",
+    "GFS 0.25 disponible localmente; no se descargo nada.",
+    "Binario: excepcion documentada en informes/BINARIO_PROD4KM.md (autorizada por el usuario 2026-11-26)."
+  ],
+  "referencias": {
+    "oficial": "outputs/runs/2026-09-24_0000z/sanjuan_0924",
+    "op15km": "outputs/runs/2026-09-24_0000z/sanjuan_0924__op15km"
+  }
+}
