@@ -1,0 +1,4 @@
+2026-11-26T23:57:25 nudged: lanzado
+2026-11-27T03:16:59 nudged: time file: {'etiqueta': 'nudged', 'comando': './wrf.exe', 'cwd': '/home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged', 'inicio': '2026-11-26 23:57:25', 'fin': '2026-11-27 03:16:48', 'elapsed_wall_s': 11963.1, 'user_s': 11644.35, 'system_s': 317.38, 'maximum_resident_set_size_kbytes': 1419048, 'exit_status': 0, 'terminado_por_senal': None, 'cortado_por': None}
+2026-11-27T03:16:59 nudged: OK -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged_manifest.json
+2026-11-27T03:16:59 nudged: limpieza OK

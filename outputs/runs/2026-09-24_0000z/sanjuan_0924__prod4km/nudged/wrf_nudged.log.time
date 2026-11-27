@@ -1,0 +1,14 @@
+{
+  "etiqueta": "nudged",
+  "comando": "./wrf.exe",
+  "cwd": "/home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged",
+  "inicio": "2026-11-26 23:57:25",
+  "fin": "2026-11-27 03:16:48",
+  "elapsed_wall_s": 11963.1,
+  "user_s": 11644.35,
+  "system_s": 317.38,
+  "maximum_resident_set_size_kbytes": 1419048,
+  "exit_status": 0,
+  "terminado_por_senal": null,
+  "cortado_por": null
+}
