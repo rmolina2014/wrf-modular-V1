@@ -1,0 +1,1059 @@
+Protocolo temporal: t0=2026-09-24 00:00:00, horizonte=24 h
+Validando: wrfout_d01_2026-09-24_01:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/01Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged/wrfout_d01_2026-09-24_01:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control/wrfout_d01_2026-09-24_01:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/01Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/01Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/01Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/01Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-09-24_01:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             8      -0.62       1.92       2.78    0.661      -0.45       1.93       2.87    0.613
+T2 (K)             8         [0.98, 4.35]         [0.90, 4.42]
+PSFC (hPa)         8     -13.46      13.97      18.13    0.936     -13.51      14.01      18.15    0.936
+PSFC (hPa)         8        [8.94, 26.54]        [9.00, 26.53]
+RH (%)             8      -6.05       6.93       7.95    0.872      -9.39      10.22      11.20    0.840
+RH (%)             8        [4.73, 10.47]        [7.91, 13.40]
+Wind (m/s)         8      +4.50       4.50       5.59    0.530      +4.38       4.38       5.24    0.572
+Wind (m/s)         8         [2.79, 7.93]         [2.75, 7.30]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-09-24_02:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/02Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged/wrfout_d01_2026-09-24_02:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control/wrfout_d01_2026-09-24_02:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/02Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/02Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/02Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/02Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-09-24_02:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             8      -0.44       2.60       3.25    0.544      -0.47       2.51       3.27    0.537
+T2 (K)             8         [1.61, 4.71]         [1.51, 4.76]
+PSFC (hPa)         8     -13.34      13.85      18.03    0.937     -13.34      13.84      18.00    0.937
+PSFC (hPa)         8        [9.17, 26.38]        [9.15, 26.33]
+RH (%)             8      -8.00       8.49       9.95    0.841     -10.45      10.95      12.43    0.797
+RH (%)             8        [6.28, 12.54]        [8.52, 15.38]
+Wind (m/s)         8      +5.01       5.01       6.20    0.873      +4.90       4.90       6.01    0.890
+Wind (m/s)         8         [3.14, 9.26]         [3.12, 8.96]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-09-24_03:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/03Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged/wrfout_d01_2026-09-24_03:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control/wrfout_d01_2026-09-24_03:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/03Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/03Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/03Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/03Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-09-24_03:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             8      +0.24       2.94       3.79    0.569      +0.26       2.82       3.71    0.597
+T2 (K)             8         [1.64, 5.32]         [1.53, 5.23]
+PSFC (hPa)         8     -12.58      13.36      17.31    0.939     -12.58      13.37      17.35    0.938
+PSFC (hPa)         8        [8.61, 25.38]        [8.57, 25.50]
+RH (%)             8     -10.57      10.92      12.91    0.805     -12.59      12.93      14.87    0.787
+RH (%)             8        [8.01, 16.96]       [10.21, 18.92]
+Wind (m/s)         8      +4.16       4.16       5.63    0.985      +3.89       3.89       5.63    0.983
+Wind (m/s)         8         [2.44, 8.90]         [2.14, 9.06]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-09-24_04:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/04Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged/wrfout_d01_2026-09-24_04:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control/wrfout_d01_2026-09-24_04:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/04Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/04Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/04Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/04Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-09-24_04:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             8      +0.72       3.51       4.30    0.473      +0.78       3.54       4.30    0.477
+T2 (K)             8         [2.25, 5.97]         [2.24, 5.99]
+PSFC (hPa)         8     -12.62      13.33      17.32    0.938     -12.59      13.31      17.30    0.938
+PSFC (hPa)         8        [8.46, 25.97]        [8.43, 25.96]
+RH (%)             8     -13.59      13.69      16.49    0.693     -15.17      15.27      17.89    0.682
+RH (%)             8        [9.82, 21.76]       [11.47, 23.10]
+Wind (m/s)         8      +3.97       3.97       5.15    0.981      +3.94       3.94       5.17    0.986
+Wind (m/s)         8         [2.45, 7.99]         [2.40, 8.10]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-09-24_05:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/05Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged/wrfout_d01_2026-09-24_05:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control/wrfout_d01_2026-09-24_05:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/05Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/05Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/05Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/05Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-09-24_05:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             8      +1.57       4.06       4.91    0.390      +1.65       4.18       5.05    0.344
+T2 (K)             8         [2.58, 6.79]         [2.81, 6.91]
+PSFC (hPa)         8     -12.97      13.50      17.46    0.940     -12.99      13.52      17.45    0.940
+PSFC (hPa)         8        [8.52, 25.42]        [8.54, 25.33]
+RH (%)             8     -16.05      16.05      19.08    0.664     -17.39      17.39      20.40    0.633
+RH (%)             8       [11.57, 24.91]       [12.83, 26.27]
+Wind (m/s)         8      +3.44       3.44       4.19    0.985      +3.33       3.33       4.06    0.977
+Wind (m/s)         8         [2.29, 6.24]         [2.21, 5.98]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-09-24_06:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/06Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged/wrfout_d01_2026-09-24_06:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control/wrfout_d01_2026-09-24_06:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/06Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/06Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/06Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/06Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-09-24_06:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             8      +1.53       3.58       4.36    0.464      +1.79       3.78       4.58    0.403
+T2 (K)             8         [2.35, 5.92]         [2.63, 6.11]
+PSFC (hPa)         8     -13.00      13.69      17.63    0.937     -13.03      13.71      17.65    0.937
+PSFC (hPa)         8        [8.66, 25.63]        [8.66, 25.67]
+RH (%)             8     -16.20      16.20      18.77    0.680     -17.77      17.77      20.43    0.625
+RH (%)             8       [12.50, 23.83]       [14.16, 25.90]
+Wind (m/s)         8      +3.31       3.31       4.44    0.936      +3.20       3.24       4.51    0.925
+Wind (m/s)         8         [1.88, 6.64]         [1.64, 6.78]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-09-24_07:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/07Z
+Estaciones: 7
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged/wrfout_d01_2026-09-24_07:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control/wrfout_d01_2026-09-24_07:00:00
+  7 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/07Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/07Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/07Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/07Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-09-24_07:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             7      +1.47       4.33       4.63    0.819      +1.68       4.46       4.79    0.777
+T2 (K)             7         [3.23, 5.85]         [3.25, 5.94]
+PSFC (hPa)         7     -11.81      13.00      17.38    0.936     -11.78      13.00      17.31    0.936
+PSFC (hPa)         7        [7.34, 26.38]        [7.34, 26.21]
+RH (%)             7     -15.24      15.24      17.33    0.873     -16.79      16.79      18.97    0.859
+RH (%)             7       [11.24, 21.97]       [12.62, 23.32]
+Wind (m/s)         7      +2.75       2.77       4.99    0.836      +2.65       2.65       4.84    0.832
+Wind (m/s)         7         [0.52, 8.35]         [0.34, 8.11]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-09-24_08:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/08Z
+Estaciones: 7
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged/wrfout_d01_2026-09-24_08:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control/wrfout_d01_2026-09-24_08:00:00
+  7 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/08Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/08Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/08Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/08Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-09-24_08:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             7      +1.48       4.13       4.35    0.768      +1.32       3.98       4.22    0.779
+T2 (K)             7         [3.28, 5.32]         [3.03, 5.23]
+PSFC (hPa)         7     -11.35      12.77      16.89    0.937     -11.34      12.75      16.89    0.937
+PSFC (hPa)         7        [6.65, 25.47]        [6.60, 25.49]
+RH (%)             7     -15.25      15.25      17.86    0.766     -16.12      16.12      18.78    0.747
+RH (%)             7       [10.44, 23.55]       [11.22, 24.93]
+Wind (m/s)         7      +2.30       2.35       4.24    0.907      +2.18       2.30       4.25    0.904
+Wind (m/s)         7         [0.57, 7.13]         [0.51, 7.16]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-09-24_09:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/09Z
+Estaciones: 7
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged/wrfout_d01_2026-09-24_09:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control/wrfout_d01_2026-09-24_09:00:00
+  7 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/09Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/09Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/09Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/09Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-09-24_09:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             7      +1.86       4.13       4.64    0.662      +1.88       3.98       4.63    0.641
+T2 (K)             7         [2.97, 5.86]         [2.85, 5.89]
+PSFC (hPa)         7     -11.21      12.72      16.58    0.940     -11.21      12.71      16.57    0.940
+PSFC (hPa)         7        [6.92, 24.89]        [6.88, 24.85]
+RH (%)             7     -16.79      16.79      20.39    0.654     -17.83      17.83      21.55    0.606
+RH (%)             7       [11.05, 28.37]       [11.90, 30.00]
+Wind (m/s)         7      +2.33       2.49       3.48    0.674      +2.22       2.26       3.37    0.729
+Wind (m/s)         7         [1.27, 5.49]         [1.00, 5.40]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-09-24_10:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/10Z
+Estaciones: 7
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged/wrfout_d01_2026-09-24_10:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control/wrfout_d01_2026-09-24_10:00:00
+  7 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/10Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/10Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/10Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/10Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-09-24_10:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             7      -0.48       4.07       4.81    0.625      -0.62       4.51       5.19    0.498
+T2 (K)             7         [2.94, 6.31]         [3.28, 6.72]
+PSFC (hPa)         7     -10.90      12.59      16.22    0.942     -10.89      12.62      16.23    0.942
+PSFC (hPa)         7        [6.68, 24.38]        [6.74, 24.41]
+RH (%)             7     -11.34      11.34      14.84    0.772     -12.31      12.31      15.99    0.736
+RH (%)             7        [6.41, 20.91]        [7.73, 22.24]
+Wind (m/s)         7      +3.83       3.88       4.72    0.216      +3.62       3.62       4.35    0.420
+Wind (m/s)         7         [2.78, 6.18]         [2.50, 5.73]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-09-24_11:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/11Z
+Estaciones: 7
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged/wrfout_d01_2026-09-24_11:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control/wrfout_d01_2026-09-24_11:00:00
+  7 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/11Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/11Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/11Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/11Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-09-24_11:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             7      +0.30       3.81       4.61    0.725      +0.29       3.89       4.63    0.703
+T2 (K)             7         [2.76, 6.04]         [2.83, 6.01]
+PSFC (hPa)         7     -10.81      12.59      16.04    0.944     -10.84      12.63      16.11    0.943
+PSFC (hPa)         7        [6.86, 23.69]        [6.88, 23.87]
+RH (%)             7     -11.55      11.55      14.42    0.827     -12.41      12.41      15.25    0.821
+RH (%)             7        [6.65, 20.08]        [7.22, 20.93]
+Wind (m/s)         7      +4.01       4.32       5.83    0.172      +4.09       4.33       5.72    0.181
+Wind (m/s)         7         [2.52, 9.11]         [2.69, 8.77]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-09-24_12:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/12Z
+Estaciones: 7
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged/wrfout_d01_2026-09-24_12:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control/wrfout_d01_2026-09-24_12:00:00
+  7 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/12Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/12Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/12Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/12Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-09-24_12:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             7      +1.15       3.60       3.78    0.795      +1.21       3.64       3.78    0.796
+T2 (K)             7         [2.97, 4.53]         [3.07, 4.47]
+PSFC (hPa)         7     -10.82      12.56      16.05    0.943     -10.85      12.60      16.07    0.943
+PSFC (hPa)         7        [6.97, 23.85]        [6.98, 23.84]
+RH (%)             7      -9.96       9.96      11.41    0.864     -10.94      10.94      12.25    0.878
+RH (%)             7        [7.13, 14.48]        [8.32, 15.34]
+Wind (m/s)         7      +2.68       3.21       5.45    0.096      +2.92       3.47       6.00    0.105
+Wind (m/s)         7         [1.14, 9.08]         [1.27, 9.96]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-09-24_13:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/13Z
+Estaciones: 7
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged/wrfout_d01_2026-09-24_13:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control/wrfout_d01_2026-09-24_13:00:00
+  7 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/13Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/13Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/13Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/13Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-09-24_13:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             7      +0.45       2.54       2.72    0.747      +0.42       2.55       2.76    0.736
+T2 (K)             7         [1.97, 3.33]         [1.99, 3.40]
+PSFC (hPa)         7     -11.01      12.56      16.10    0.944     -10.99      12.69      16.20    0.942
+PSFC (hPa)         7        [6.88, 23.80]        [7.01, 23.96]
+RH (%)             7      -8.41       8.41       9.10    0.913      -9.15       9.15      10.01    0.883
+RH (%)             7        [6.56, 10.99]        [6.89, 12.43]
+Wind (m/s)         7      +3.82       4.54       6.67    0.150      +3.38       4.51       6.57    0.080
+Wind (m/s)         7        [2.09, 10.81]        [2.05, 10.66]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-09-24_14:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/14Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged/wrfout_d01_2026-09-24_14:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control/wrfout_d01_2026-09-24_14:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/14Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/14Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/14Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/14Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-09-24_14:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             8      +0.88       2.64       3.52    0.399      +0.87       2.61       3.50    0.414
+T2 (K)             8         [1.60, 5.23]         [1.61, 5.18]
+PSFC (hPa)         8     -11.36      12.75      15.83    0.946     -11.39      12.91      16.02    0.944
+PSFC (hPa)         8        [8.60, 22.74]        [8.64, 23.12]
+RH (%)             8      -9.42       9.42      11.42    0.561      -9.96       9.96      11.85    0.564
+RH (%)             8        [6.38, 16.69]        [6.94, 17.02]
+Wind (m/s)         8      +5.85       5.89       8.17    0.233      +6.11       6.11       8.29    0.189
+Wind (m/s)         8        [2.99, 11.79]        [3.00, 11.36]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-09-24_15:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/15Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged/wrfout_d01_2026-09-24_15:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control/wrfout_d01_2026-09-24_15:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/15Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/15Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/15Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/15Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-09-24_15:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             8      -1.52       2.53       2.81    0.750      -1.48       2.49       2.77    0.756
+T2 (K)             8         [1.89, 3.74]         [1.88, 3.67]
+PSFC (hPa)         8     -10.81      12.59      15.46    0.946     -10.86      12.65      15.56    0.944
+PSFC (hPa)         8        [8.29, 22.18]        [8.46, 22.30]
+RH (%)             8      -4.16       4.32       5.07    0.812      -4.64       4.64       5.21    0.883
+RH (%)             8         [3.11, 6.60]         [3.43, 6.68]
+Wind (m/s)         8      +4.39       5.05       7.11    0.240      +4.48       5.20       7.23    0.180
+Wind (m/s)         8        [2.55, 10.50]        [2.62, 10.33]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-09-24_16:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/16Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged/wrfout_d01_2026-09-24_16:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control/wrfout_d01_2026-09-24_16:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/16Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/16Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/16Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/16Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-09-24_16:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             8      -1.03       2.38       2.58    0.718      -1.02       2.40       2.60    0.709
+T2 (K)             8         [1.99, 3.03]         [1.99, 3.07]
+PSFC (hPa)         8     -11.12      12.21      15.47    0.945     -11.10      12.38      15.67    0.942
+PSFC (hPa)         8        [7.53, 22.57]        [7.60, 22.82]
+RH (%)             8      -4.67       4.67       5.35    0.848      -4.77       4.77       5.40    0.862
+RH (%)             8         [3.31, 6.98]         [3.47, 7.04]
+Wind (m/s)         8      +5.67       6.87       8.01    0.203      +5.52       6.88       8.31    0.070
+Wind (m/s)         8        [4.64, 10.35]        [4.82, 10.76]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-09-24_17:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/17Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged/wrfout_d01_2026-09-24_17:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control/wrfout_d01_2026-09-24_17:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/17Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/17Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/17Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/17Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-09-24_17:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             8      -1.07       2.34       2.71    0.683      -1.05       2.33       2.69    0.685
+T2 (K)             8         [1.85, 3.38]         [1.85, 3.34]
+PSFC (hPa)         8     -11.22      12.44      15.80    0.939     -11.12      12.47      15.76    0.939
+PSFC (hPa)         8        [7.75, 22.91]        [7.78, 22.85]
+RH (%)             8      -4.69       4.69       5.19    0.870      -4.75       4.75       5.28    0.868
+RH (%)             8         [3.65, 6.58]         [3.77, 6.69]
+Wind (m/s)         8      +7.70       7.70       9.20    0.279      +7.54       7.54       9.06    0.266
+Wind (m/s)         8        [5.40, 12.14]        [5.24, 12.03]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-09-24_18:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/18Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged/wrfout_d01_2026-09-24_18:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control/wrfout_d01_2026-09-24_18:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/18Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/18Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/18Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/18Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-09-24_18:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             8      -1.46       2.21       2.56    0.742      -1.42       2.17       2.52    0.747
+T2 (K)             8         [1.65, 3.20]         [1.61, 3.12]
+PSFC (hPa)         8     -10.92      12.45      15.79    0.936     -10.98      12.41      15.74    0.938
+PSFC (hPa)         8        [7.84, 22.28]        [7.96, 22.24]
+RH (%)             8      -4.13       4.13       4.60    0.892      -4.24       4.24       4.74    0.883
+RH (%)             8         [3.08, 5.88]         [3.11, 6.07]
+Wind (m/s)         8      +7.88       7.88       9.55    0.269      +8.20       8.20       9.72    0.285
+Wind (m/s)         8        [5.06, 13.32]        [5.68, 13.35]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-09-24_19:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/19Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged/wrfout_d01_2026-09-24_19:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control/wrfout_d01_2026-09-24_19:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/19Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/19Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/19Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/19Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-09-24_19:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             8      -1.69       2.06       2.40    0.801      -1.66       2.06       2.38    0.799
+T2 (K)             8         [1.54, 3.05]         [1.53, 3.05]
+PSFC (hPa)         8     -10.80      12.19      15.62    0.938     -10.71      12.13      15.44    0.940
+PSFC (hPa)         8        [7.67, 22.75]        [7.61, 22.48]
+RH (%)             8      -3.30       3.30       3.74    0.920      -3.32       3.32       3.82    0.908
+RH (%)             8         [2.28, 4.83]         [2.30, 4.96]
+Wind (m/s)         8      +7.75       7.75       9.53    0.292      +7.68       7.68       9.32    0.310
+Wind (m/s)         8        [4.94, 13.52]        [4.88, 13.02]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-09-24_20:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/20Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged/wrfout_d01_2026-09-24_20:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control/wrfout_d01_2026-09-24_20:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/20Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/20Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/20Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/20Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-09-24_20:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             8      -2.12       2.20       2.61    0.825      -2.13       2.21       2.65    0.810
+T2 (K)             8         [1.64, 3.43]         [1.65, 3.51]
+PSFC (hPa)         8     -10.47      11.97      15.21    0.942     -10.56      11.97      15.15    0.943
+PSFC (hPa)         8        [8.33, 22.05]        [8.41, 21.75]
+RH (%)             8      -2.83       2.83       3.36    0.949      -2.80       2.80       3.43    0.933
+RH (%)             8         [1.90, 4.71]         [1.79, 4.93]
+Wind (m/s)         8      +7.23       7.23       9.14    0.278      +7.46       7.46       9.56    0.226
+Wind (m/s)         8        [4.41, 13.68]        [4.27, 14.49]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-09-24_21:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/21Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged/wrfout_d01_2026-09-24_21:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control/wrfout_d01_2026-09-24_21:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/21Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/21Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/21Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/21Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-09-24_21:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             8      -2.62       2.62       3.04    0.804      -2.67       2.67       3.07    0.813
+T2 (K)             8         [1.91, 4.00]         [1.93, 3.98]
+PSFC (hPa)         8     -10.23      11.94      15.11    0.942     -10.38      12.14      15.20    0.943
+PSFC (hPa)         8        [8.13, 22.01]        [8.19, 21.84]
+RH (%)             8      -2.50       2.50       3.17    0.904      -2.30       2.30       3.11    0.880
+RH (%)             8         [1.43, 4.49]         [1.14, 4.60]
+Wind (m/s)         8      +6.02       6.02       7.74    0.238      +6.29       6.29       8.37    0.210
+Wind (m/s)         8        [3.43, 11.18]        [3.52, 12.50]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-09-24_22:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/22Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged/wrfout_d01_2026-09-24_22:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control/wrfout_d01_2026-09-24_22:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/22Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/22Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/22Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/22Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-09-24_22:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             8      -3.27       3.27       3.82    0.639      -3.51       3.51       3.94    0.721
+T2 (K)             8         [2.29, 5.18]         [2.57, 5.21]
+PSFC (hPa)         8     -10.18      12.15      15.06    0.946      -9.93      11.95      14.93    0.944
+PSFC (hPa)         8        [8.53, 21.77]        [8.39, 21.69]
+RH (%)             8      -2.12       2.83       4.42    0.498      -1.52       2.19       3.87    0.672
+RH (%)             8         [1.15, 7.01]         [0.81, 6.52]
+Wind (m/s)         8      +4.55       4.75       6.50    0.287      +4.34       4.65       6.55    0.334
+Wind (m/s)         8         [2.57, 9.88]        [2.37, 10.28]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-09-24_23:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/23Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged/wrfout_d01_2026-09-24_23:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control/wrfout_d01_2026-09-24_23:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/23Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/23Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/23Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/23Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-09-24_23:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             8      -4.20       5.04       5.54    0.230      -4.26       5.10       5.55    0.286
+T2 (K)             8         [3.82, 7.20]         [3.87, 7.22]
+PSFC (hPa)         8      -9.52      11.98      14.79    0.942      -9.42      11.94      14.73    0.943
+PSFC (hPa)         8        [8.25, 21.44]        [8.23, 21.37]
+RH (%)             8      -1.91       4.80       7.67   -0.445      -1.76       4.31       7.38   -0.375
+RH (%)             8        [2.16, 12.51]        [1.84, 12.36]
+Wind (m/s)         8      +3.81       4.25       5.80    0.168      +4.11       4.39       6.29    0.178
+Wind (m/s)         8         [2.24, 8.50]         [2.18, 9.27]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+Validando: wrfout_d01_2026-09-25_00:00:00
+Nudged: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged
+Control: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control
+Salida: /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/24Z
+Estaciones: 8
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/nudged/wrfout_d01_2026-09-25_00:00:00
+  Leyendo /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/control/wrfout_d01_2026-09-25_00:00:00
+  8 estaciones procesadas en cada corrida
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/24Z/scatter_4panels.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/24Z/mapa_errores_t2.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/24Z/tabla_metricas.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/24Z/metricas_resumen.txt
+================================================================================
+VALIDACION WRF vs OBSERVACIONES - wrfout_d01_2026-09-25_00:00:00 prod4km
+================================================================================
+
+Variable           N     Bias N      MAE N     RMSE N      r N     Bias C      MAE C     RMSE C      r C
+
+IC95 (95% bootstrap) del RMSE por corrida (prod4km):
+Variable           N          IC95 RMSE N          IC95 RMSE C
+--------------------------------------------------------------------------------------------------------------------------------------------
+T2 (K)             8      -4.34       5.52       6.09    0.086      -4.10       5.46       6.06    0.037
+T2 (K)             8         [4.13, 7.96]         [4.10, 7.90]
+PSFC (hPa)         8      -9.07      11.90      14.53    0.942      -9.09      11.88      14.45    0.945
+PSFC (hPa)         8        [7.99, 20.90]        [7.94, 20.78]
+RH (%)             8      -2.61       5.39       9.30   -0.709      -2.87       5.19       9.26   -0.650
+RH (%)             8        [1.98, 15.42]        [1.82, 15.45]
+Wind (m/s)         8      +4.05       4.68       6.53    0.044      +4.96       5.52       7.82   -0.060
+Wind (m/s)         8         [2.52, 9.45]        [3.01, 11.20]
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+N = Nudged (obs_nudge_opt=1), C = Control (obs_nudge_opt=0)
+
+  INTA_POCITO           lat=-31.6500  lon=-68.5833  elev=  615m
+  INTA_SANMARTIN        lat=-31.5000  lon=-68.2500  elev=  600m
+  ECOHUMUS              lat=-31.6500  lon=-68.3000  elev=  600m
+  CARACOLES             lat=-31.5194  lon=-68.9851  elev=  942m
+  VALLE_FERTIL          lat=-30.6335  lon=-67.4682  elev=  900m
+  CUESTA_Viento         lat=-30.1833  lon=-69.0667  elev= 1530m
+  PUNTA_NEGRA           lat=-31.5192  lon=-68.8178  elev=  800m
+  ULLUM_EMBALSE         lat=-31.4667  lon=-68.6667  elev=  768m
+
+
+  Protocolo temporal: todas las estaciones con datos se asimilan (D3); sin hold-out espacial.
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/informe_evolucion_nudging.png
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/informe_evolucion_nudging.txt
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/tabla_evolutiva.json
+
+Informe de evolución del nudging en /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/errores_largo.csv
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/metricas_por_horizonte.csv
+  -> /home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/metricas_por_tramo.csv
+Validacion completa.

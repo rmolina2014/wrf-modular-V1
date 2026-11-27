@@ -1,0 +1,28 @@
+{
+  "caso": "sanjuan_0924__prod4km",
+  "fin": "2026-11-27T03:18:08",
+  "validacion": {
+    "returncode": 0,
+    "stdout": "/home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/informes/validacion_stdout.log"
+  },
+  "protocolo_temporal": {
+    "returncode": 0,
+    "stdout": "/home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/informes/protocolo_temporal_adaptado.txt",
+    "verificador": "/tmp/opencode/verifica_protocolo_temporal_adaptado.py",
+    "script_original": {
+      "returncode": 1,
+      "stdout": "/home/pgich/wrf-modular-V1/outputs/runs/2026-09-24_0000z/sanjuan_0924__prod4km/informes/protocolo_temporal.txt"
+    }
+  },
+  "nudging_xtime": {
+    "xtime_min": 0.0,
+    "xtime_max": 720.0,
+    "lineas_obs_nudging_o_in4dob": 5898,
+    "ultima_linea": "****** CALL IN4DOB AT KTAU =  2880 AND XTIME =     720.00:  NSTA =      96 ******",
+    "ultimo_xtime_call_in4dob": 720.0,
+    "sin_lecturas_obs_despues": true,
+    "fdda_end_esperado": 720.0,
+    "ok": true
+  },
+  "resultado": "completado"
+}
